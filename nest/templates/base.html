@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Quail Comics{% endblock %}</title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}
+                {% block content %}
+                {% endblock %}
+            {% endblock %}
+        </div>
+    </body>

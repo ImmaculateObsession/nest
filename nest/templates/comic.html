@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ comic.title }}</h1>
+<img src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+{% if post %}
+    <p>{{ post.post }}
+{% endif %}
+{% endblock %}
