@@ -10,7 +10,7 @@ class Comic(models.Model):
     image_url = models.URLField()
     image_url_large = models.URLField(blank=True)
     alt_text = models.CharField(max_length=200, blank=True) 
-    published = models.DateTimeField(default=timezone.now())
+    published = models.DateTimeField(default=timezone.now(), blank=True)
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
     tags = TaggableManager(blank=True)
@@ -40,4 +40,4 @@ class Character(models.Model):
     profile_pic_url = models.URLField(blank=True)
 
     def __str__(self):
-        return self.title
+        return self.name
