@@ -1,37 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>{{ comic.title }}</h1>
-<div class="row">
-    <div class="comic col-md-10 col-md-offset-1">
-        <img class="img-responsive" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
-    </div>
-</div>
-<div class="row">
-<div class="btn-group col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5">
-    <button type="button" class="btn btn-default">
-        <a href="/comic/{{ first_comic.post.slug }}" title="first">
-            <span class="glyphicon glyphicon-step-backward"></span>
-        </a>
-    </button>
-    <button type="button" class="btn btn-default">
-        <a href="/comic/{{ previous.post.slug }}" title="previous">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-    </button>
-    <button type="button" class="btn btn-default">
-        <a href="/comic/{{ first_comic.post.slug }}" title="first">
-            <span class="glyphicon glyphicon-step-backward"></span>
-        </a>
-    </button>
-    <button type="button" class="btn btn-default">
-        <a href="/comic/{{ previous.post.slug }}" title="previous">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-    </button>
-</div>
-</div>
+<div class="container">
+    <h1>{{ comic.title }}</h1>
+        <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+        <div class="comic_footer">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default">
+                    <a href="/comic/{{ first_comic.post.slug }}" title="first">
+                        <span class="glyphicon glyphicon-step-backward"></span>
+                    </a>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <a href="/comic/{{ previous.post.slug }}" title="previous">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                    </a>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <a href="/comic/{{ first_comic.post.slug }}" title="first">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                    </a>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <a href="/comic/{{ previous.post.slug }}" title="previous">
+                        <span class="glyphicon glyphicon-step-forward"></span>
+                    </a>
+                </button>
+            </div>
+        </div>
 {% if post %}
     <p>{{ post.post }}</p>
 {% endif %}
+</div>
 {% endblock %}
