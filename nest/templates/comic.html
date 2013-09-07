@@ -1,9 +1,45 @@
-{% extends "base.html" %}
-
-{% block content %}
-<h1>{{ comic.title }}</h1>
-<img src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
-{% if post %}
-    <p>{{ post.post }}
-{% endif %}
-{% endblock %}
+<div class="row">
+    <a href="/comic/{{ comic.post.slug }}"><h1 class="col-md-offset-1">{{ comic.title }}</h1></a>
+    <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}">
+        <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+    </a>
+</div>
+<div class="row">
+    <div class="comic_footer">
+        <div class="row btn-group">
+            {% if first_comic %}
+            <button type="button" class="btn btn-default">
+                <a href="/comic/{{ first_comic.post.slug }}" title="first">
+                    <span class="glyphicon glyphicon-step-backward"></span>
+                </a>
+            </button>
+            {% endif %}
+            {% if previous %}
+            <button type="button" class="btn btn-default">
+                <a href="/comic/{{ previous.post.slug }}" title="previous">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+            </button>
+            {% endif %}
+            {% if next %}
+            <button type="button" class="btn btn-default">
+                <a href="/comic/{{ first_comic.post.slug }}" title="first">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
+            </button>
+            {% endif %}
+            {% if last_comic %}
+            <button type="button" class="btn btn-default">
+                <a href="/comic/{{ previous.post.slug }}" title="previous">
+                    <span class="glyphicon glyphicon-step-forward"></span>
+                </a>
+            </button>
+            {% endif %}
+        </div>
+        <div class="row share_buttons">
+            <fb:like href="http://www.quailcomics.com/comic/{{ comic.post.slug }}" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
+            <a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; padding-bottom: 10px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;">Share on Tumblr</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-via="quailcomics" data-count="none">Tweet</a>
+        </div>
+    </div>
+</div>

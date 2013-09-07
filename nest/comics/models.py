@@ -2,9 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from taggit.managers import TaggableManager
-from taggit.models import Tag
-
 class Comic(models.Model):
     title = models.CharField(max_length=140)
     image_url = models.URLField()
@@ -13,7 +10,7 @@ class Comic(models.Model):
     published = models.DateTimeField(default=timezone.now(), blank=True)
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
-    tags = TaggableManager(blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
     post = models.ForeignKey('Post', blank=True, null=True)
     characters = models.ManyToManyField('Character', blank=True, null=True)
     creator = models.ForeignKey(User, blank=True, null=True)
@@ -28,7 +25,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(default=timezone.now())
     is_live = models.BooleanField(default=False)
-    tags = TaggableManager(blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
     creator = models.ForeignKey(User, blank=True, null=True)
 
     def __str__(self):
@@ -41,3 +38,11 @@ class Character(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Tag(models.Model):
+    tag = models.CharField(max_length=140)
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.tag

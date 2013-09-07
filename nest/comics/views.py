@@ -20,25 +20,31 @@ class HomeView(TemplateView):
                 context['post'] = Post.objects.latest('published')
             except Post.DoesNotExist:
                 pass
+        try:
+            context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
+        except IndexError:
+            pass
 
-        context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
         return context
 
 class ComicPostView(TemplateView):
-    template_name = "comic.html"
+    template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):
-        context = super(ComicView, self).get_context_data(**kwargs)
+        context = super(ComicPostView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, slug=self.kwargs['slug'])
         comic = Comic.objects.get(post=post)
 
         context['post'] = post
         context['comic'] = comic
 
-        context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
-        context['last_comic'] = Comic.objects.latest('published')
-        context['previous'] = Comic.objects.filter(published__lt=comic.published).order_by('-published')[0]
-        context['next'] = Comic.objects.filter(published__gt=comic.published).order_by('published')[0]
+        try: 
+            context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
+            context['last_comic'] = Comic.objects.latest('published')
+            context['previous'] = Comic.objects.filter(published__lt=comic.published).order_by('-published')[0]
+            context['next'] = Comic.objects.filter(published__gt=comic.published).order_by('published')[0]
+        except IndexError:
+            pass
 
         return context
 
