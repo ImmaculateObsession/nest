@@ -1,5 +1,8 @@
 from django.shortcuts import get_object_or_404
-from django.views.generic import TemplateView
+from django.views.generic import (
+    TemplateView,
+    ListView,
+)
 
 from comics.models import (
     Post,
@@ -50,3 +53,8 @@ class ComicPostView(TemplateView):
 
 class ComicDetailView(TemplateView):
     pass
+
+
+class ComicListView(ListView):
+    model = Comic
+    template_name = "comic_list.html"
