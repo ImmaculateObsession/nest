@@ -1,6 +1,6 @@
 <div class="row">
-    <a href="/comic/{{ comic.post.slug }}"><h1 class="col-md-offset-1">{{ comic.title }}</h1></a>
-    <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}">
+    <a href="/comic/{{ comic.post.slug }}"><h2 class="col-md-offset-1">{{ comic.title }}</h2></a>
+    <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}" target="_blank">
         <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
     </a>
 </div>
@@ -23,14 +23,14 @@
             {% endif %}
             {% if next %}
             <button type="button" class="btn btn-default">
-                <a href="/comic/{{ first_comic.post.slug }}" title="first">
+                <a href="/comic/{{ next.post.slug }}" title="next">
                     <span class="glyphicon glyphicon-arrow-right"></span>
                 </a>
             </button>
             {% endif %}
             {% if last_comic %}
             <button type="button" class="btn btn-default">
-                <a href="/comic/{{ previous.post.slug }}" title="previous">
+                <a href="/comic/{{ last_comic.post.slug }}" title="last">
                     <span class="glyphicon glyphicon-step-forward"></span>
                 </a>
             </button>

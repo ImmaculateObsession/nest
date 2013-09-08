@@ -25,6 +25,7 @@ class HomeView(TemplateView):
                 pass
         try:
             context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
+            context['previous'] = Comic.objects.filter(published__lt=comic.published).order_by('-published')[0]
         except IndexError:
             pass
 
@@ -43,8 +44,12 @@ class ComicPostView(TemplateView):
 
         try: 
             context['first_comic'] = Comic.objects.filter(published__lt=comic.published).order_by('published')[0]
-            context['last_comic'] = Comic.objects.latest('published')
             context['previous'] = Comic.objects.filter(published__lt=comic.published).order_by('-published')[0]
+        except IndexError:
+            pass
+
+        try:
+            context['last_comic'] = Comic.objects.latest('published')
             context['next'] = Comic.objects.filter(published__gt=comic.published).order_by('published')[0]
         except IndexError:
             pass
