@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+
+class PublishedComicManager(models.Manager):
+    def get_query_set(self):
+        return super(PublishedComicManager, self).get_query_set().filter(is_live=True)
+
+
 class Comic(models.Model):
     title = models.CharField(max_length=140)
     image_url = models.URLField()
@@ -15,8 +21,16 @@ class Comic(models.Model):
     characters = models.ManyToManyField('Character', blank=True, null=True)
     creator = models.ForeignKey(User, blank=True, null=True)
 
+    published_comics = PublishedComicManager()
+
     def __str__(self):
         return self.title
+
+
+class PublishedPostManager(models.Manager):
+    def get_query_set(self):
+        return super(PublishedPostManager, self).get_query_set().filter(is_live=True)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=140)
@@ -28,8 +42,11 @@ class Post(models.Model):
     tags = models.ManyToManyField('Tag', blank=True)
     creator = models.ForeignKey(User, blank=True, null=True)
 
+    published_posts = PublishedPostManager()
+
     def __str__(self):
         return self.title
+
 
 class Character(models.Model):
     name = models.CharField(max_length=140)
