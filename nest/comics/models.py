@@ -8,6 +8,10 @@ class PublishedComicManager(models.Manager):
         return super(PublishedComicManager, self).get_query_set().filter(is_live=True)
 
 
+class ComicManager(models.Manager):
+    pass
+
+
 class Comic(models.Model):
     title = models.CharField(max_length=140)
     image_url = models.URLField()
@@ -22,6 +26,7 @@ class Comic(models.Model):
     creator = models.ForeignKey(User, blank=True, null=True)
 
     published_comics = PublishedComicManager()
+    objects = ComicManager()
 
     def __str__(self):
         return self.title
@@ -30,6 +35,10 @@ class Comic(models.Model):
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
         return super(PublishedPostManager, self).get_query_set().filter(is_live=True)
+
+
+class PostManager(models.Manager):
+    pass
 
 
 class Post(models.Model):
@@ -43,6 +52,8 @@ class Post(models.Model):
     creator = models.ForeignKey(User, blank=True, null=True)
 
     published_posts = PublishedPostManager()
+
+    objects = PostManager()
 
     def __str__(self):
         return self.title
