@@ -1,8 +1,1 @@
-Django==1.5.2
-Unipath==1.0
-dj-database-url==0.2.2
-django-suit==0.2.4
-gunicorn==18.0
-psycopg2==2.5.1
-uWSGI==1.9.15
-wsgiref==0.1.2
+-r requirements/heroku.txt
