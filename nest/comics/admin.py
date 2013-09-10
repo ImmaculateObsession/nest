@@ -6,11 +6,15 @@ from comics.models import (
     Tag,
 )
 
+
 class ComicAdmin(admin.ModelAdmin):
+
     def queryset(self, request):
         return Comic.objects.all()
 
+
 class PostAdmin(admin.ModelAdmin):
+
     def queryset(self, request):
         return Post.objects.all()
 
