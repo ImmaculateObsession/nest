@@ -1,6 +1,15 @@
 # Django settings for nest project.
+import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from unipath import Path
+
+def get_env_variable(var_name):
+    """ Get the environment variable or return exception """
+    try:
+        return os.environ[var_name]
+    except KeyError:
+        error_msg = "Set the %s env variable" % var_name
+        raise ImproperlyConfigured(error_msg)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -71,7 +80,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'y0u2hk=su$f^suh0328veav^+rra-60$%z!%v#6xrje+vnb7=5'
+SECRET_KEY = get_env_variable("SECRET_KEY")
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
