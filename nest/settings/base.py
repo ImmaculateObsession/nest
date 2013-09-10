@@ -1,6 +1,7 @@
 # Django settings for nest project.
 import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
+from django.core.exceptions import ImproperlyConfigured
 from unipath import Path
 
 def get_env_variable(var_name):
