@@ -2,3 +2,7 @@ Django==1.5.2
 Unipath==1.0
 dj-database-url==0.2.2
 django-suit==0.2.4
+django-jsonfield==0.9.3
+django-modeldict==1.4.1
+git+https://github.com/dcramer/nexus.git#egg=nexus
+git+https://github.com/ImmaculateObsession/gargoyle.git#egg=gargoyle

@@ -1,3 +1,5 @@
+import nexus
+
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
@@ -11,6 +13,7 @@ from comics.views import (
 from comics.feeds import LatestComicPostFeed
 
 admin.autodiscover()
+nexus.autodiscover()
 
 
 urlpatterns = patterns('',
@@ -23,4 +26,5 @@ urlpatterns = patterns('',
     url(r'^feed/$', LatestComicPostFeed(), name='comcipostfeed'),
     
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^nexus/', include(nexus.site.urls)),
 )
