@@ -10,7 +10,7 @@ from comics.views import (
     PostView,
 )
 
-from comics.feeds import LatestComicPostFeed
+from comics.feeds import LatestPostFeed
 
 admin.autodiscover()
 nexus.autodiscover()
@@ -23,7 +23,7 @@ urlpatterns = patterns('',
     url(r'^comic/all/$', ComicListView.as_view(), name='comiclistview'),
     url(r'^comic/(?P<slug>[\w-]+)/$', ComicPostView.as_view(), name='comicpostview'),
     url(r'^post/(?P<slug>[\w-]+)/$', PostView.as_view(), name='postview'),
-    url(r'^feed/$', LatestComicPostFeed(), name='comcipostfeed'),
+    url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     
     url(r'^admin/', include(admin.site.urls)),
     url(r'^nexus/', include(nexus.site.urls)),

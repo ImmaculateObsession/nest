@@ -58,6 +58,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    @property
+    def comic(self):
+        return Comic.objects.filter(post=self)[0]
+
 
 class Character(models.Model):
     name = models.CharField(max_length=140)

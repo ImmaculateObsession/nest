@@ -1,0 +1,5 @@
+{% if obj.comic %}
+<img src={{ obj.comic.image_url }} alt={{ obj.comic.image_alt_text }}></img>
+{% endif %}
+
+<p>{{ obj.post | safe }}</p>
