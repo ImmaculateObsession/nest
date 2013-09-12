@@ -1,0 +1,14 @@
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).keydown(function(event){
+        if (event.which == 37) {
+            event.preventDefault();
+            document.location.href="/comic/{{ previous.post.slug }}"
+        }
+        if (event.which == 39) {
+            event.preventDefault
+            document.location.href="/comic/{{ next.post.slug }}"
+        }
+    });
+});
+</script>

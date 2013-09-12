@@ -6,7 +6,8 @@
         <title>{% block title %}Quail Comics{% endblock %}</title>
         <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="{% static "comic.css" %}">
-        <div id="fb-root"></div>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
         <!-- facebook share below -->
         <script>
         (function(d, s, id) {
@@ -17,9 +18,11 @@
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
         </script>
+
         <!-- twitter share below -->
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
         </script>
+
         <!-- google analytics below -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -29,6 +32,7 @@
             ga('create', 'UA-36515305-4', 'quailcomics.com');
             ga('send', 'pageview');
         </script>
+
         <!-- disqus js below -->
         <script type="text/javascript">
             var disqus_shortname = 'quailcomics';
@@ -41,12 +45,16 @@
                 (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
             })();
         </script>
+
     </head>
     <body>
-            {% block body %}
-                {% include "header.html" %}
-                {% block content %}
-                {% endblock %}
-                {% include "footer.html" %}
+        <div id="fb-root"></div>
+        {% block body %}
+            {% include "header.html" %}
+            {% block content %}
             {% endblock %}
+            {% include "footer.html" %}
+        {% endblock %}
+        {% block js_defer %}
+        {% endblock %}
     </body>
