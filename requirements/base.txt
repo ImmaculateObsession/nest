@@ -6,3 +6,4 @@ django-jsonfield==0.9.3
 django-modeldict==1.4.1
 git+https://github.com/dcramer/nexus.git#egg=nexus
 git+https://github.com/ImmaculateObsession/gargoyle.git#egg=gargoyle
+newrelic==2.0.0.1
