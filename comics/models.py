@@ -5,7 +5,11 @@ from django.utils import timezone
 
 class PublishedComicManager(models.Manager):
     def get_query_set(self):
-        return super(PublishedComicManager, self).get_query_set().filter(is_live=True)
+        return super(PublishedComicManager, self).get_query_set().filter(
+                is_live=True
+            ).filter(
+                published__lte=timezone.now()
+            )
 
 
 class ComicManager(models.Manager):
@@ -34,7 +38,11 @@ class Comic(models.Model):
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
-        return super(PublishedPostManager, self).get_query_set().filter(is_live=True)
+        return super(PublishedPostManager, self).get_query_set().filter(
+                is_live=True
+            ).filter(
+                published__lte=timezone.now()
+            )
 
 
 class PostManager(models.Manager):
