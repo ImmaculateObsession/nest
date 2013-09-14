@@ -12,10 +12,6 @@ class PublishedComicManager(models.Manager):
             )
 
 
-class ComicManager(models.Manager):
-    pass
-
-
 class Comic(models.Model):
     title = models.CharField(max_length=140)
     image_url = models.URLField()
@@ -29,8 +25,9 @@ class Comic(models.Model):
     characters = models.ManyToManyField('Character', blank=True, null=True)
     creator = models.ForeignKey(User, blank=True, null=True)
 
+    objects = models.Manager()
+
     published_comics = PublishedComicManager()
-    objects = ComicManager()
 
     def __str__(self):
         return self.title
@@ -45,10 +42,6 @@ class PublishedPostManager(models.Manager):
             )
 
 
-class PostManager(models.Manager):
-    pass
-
-
 class Post(models.Model):
     title = models.CharField(max_length=140)
     post = models.TextField(blank=True)
@@ -59,9 +52,9 @@ class Post(models.Model):
     tags = models.ManyToManyField('Tag', blank=True)
     creator = models.ForeignKey(User, blank=True, null=True)
 
-    published_posts = PublishedPostManager()
+    objects = models.Manager()
 
-    objects = PostManager()
+    published_posts = PublishedPostManager()
 
     def __str__(self):
         return self.title
