@@ -1,4 +1,6 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.utils.decorators import method_decorator
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -8,6 +10,12 @@ from comics.models import (
     Post,
     Comic,
 )
+
+class PreviewView(TemplateView):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PreviewView, self).dispatch(*args, **kwargs)
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -60,6 +68,21 @@ class ComicListView(ListView):
     template_name = "comic_list.html"
     queryset = Comic.published_comics.all()
 
+
+class ComicPreviewView(PreviewView):
+    template_name = "comicpostview.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ComicPreviewView, self).get_context_data(**kwargs)
+        post = get_object_or_404(Post, slug=self.kwargs['slug'])
+        comic = Comic.objects.get(post=post)
+
+        context['post'] = post
+        context['comic'] = comic
+
+        return context
+
+
 class PostView(TemplateView):
     template_name = "postview.html"
 
@@ -68,5 +91,15 @@ class PostView(TemplateView):
         post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
         context['post'] = post
         context['disqus_indentifier'] = post.slug
+        return context
+
+
+class PostPreviewView(PreviewView):
+    template_name = "postview.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PostPreviewView, self).get_context_data(**kwargs)
+        post = get_object_or_404(Post, slug=self.kwargs['slug'])
+        context['post'] = post
         return context
 
