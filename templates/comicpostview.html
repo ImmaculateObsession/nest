@@ -4,7 +4,10 @@
 <div class="container">
     {% include "comic.html" %}
     <div class="row">
-        <p class="col-md-5 col-md-offset-1">{{ post.post | safe }}</p>
+        <div class="col-md-5 col-md-offset-1">
+            <p class="lead">{{ post.published | date:"DATE_FORMAT" }}</p>
+            {{ post.post | safe }}
+        </div>
         <div class="col-md-5">
             {% include "disqus.html" %}
         </div>

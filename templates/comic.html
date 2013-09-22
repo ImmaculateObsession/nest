@@ -1,5 +1,10 @@
 <div class="row">
-    <a href="/comic/{{ comic.post.slug }}"><h2 class="col-md-offset-1">{{ comic.title }}</h2></a>
+    <h2 class="col-md-offset-1">
+        <a href="/comic/{{ comic.post.slug }}">{{ comic.title }}</a>
+        <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
+    </h2>
+</div>
+<div class="row">
     <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}" target="_blank">
         <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
     </a>

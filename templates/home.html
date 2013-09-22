@@ -6,7 +6,9 @@
     {% include "comic.html" %}
     <div class="row">
     {% if post %}
-        <p class="col-md-8 col-md-offset-2">{{ post.post | safe }}</p>
+        <div class="col-md-8 col-md-offset-2">
+            <p class="lead">{{ post.published | date:"DATE_FORMAT" }}</p>{{ post.post | safe }}
+        </div>
     {% endif %}
     </div>
     {% include "disqus.html" %}
