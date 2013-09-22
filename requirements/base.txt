@@ -7,3 +7,5 @@ django-modeldict==1.4.1
 git+https://github.com/dcramer/nexus.git#egg=nexus
 git+https://github.com/ImmaculateObsession/gargoyle.git#egg=gargoyle
 newrelic==2.0.0.1
+mock==1.0.1
+factory-boy==2.1.2

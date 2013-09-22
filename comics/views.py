@@ -17,12 +17,20 @@ class PreviewView(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(PreviewView, self).dispatch(*args, **kwargs)
 
-class HomeView(TemplateView):
+class ComicViewMixin(object):
+
+    def get_comic(self, post=None):
+        if post: 
+            return Comic.published_comics.get(post=post)
+        else:
+            return Comic.published_comics.latest('published')
+
+class HomeView(ComicViewMixin, TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        comic = Comic.published_comics.latest('published')
+        comic = self.get_comic()
         context['comic'] = comic
         if comic.post:
             context['post'] = comic.post
@@ -37,13 +45,13 @@ class HomeView(TemplateView):
 
         return context
 
-class ComicPostView(TemplateView):
+class ComicPostView(ComicViewMixin, TemplateView):
     template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):
         context = super(ComicPostView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
-        comic = Comic.published_comics.get(post=post)
+        comic = self.get_comic(post=post)
 
         context['post'] = post
         context['comic'] = comic
