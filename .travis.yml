@@ -2,6 +2,8 @@ language: python
 python:
     - "2.7"
 install: "pip install -r requirements.txt"
+env:
+    - SECRET_KEY="shhthisisasecret"
 script: "python manage.py test comics --settings=nest.settings.base"
 notifications: 
   email: 
