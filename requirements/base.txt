@@ -9,3 +9,4 @@ git+https://github.com/ImmaculateObsession/gargoyle.git#egg=gargoyle
 newrelic==2.0.0.1
 mock==1.0.1
 factory-boy==2.1.2
+mandrill==1.0.51
