@@ -2,6 +2,7 @@ import mandrill
 import base64
 
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core import management
@@ -145,9 +146,12 @@ class ComicBackupView(View):
                     'from_email': 'site@quailcomics.com',
                     'from_name': 'Quail Comics Site',
                     'html': "Here's the backup",
+                    'subject': 'Backup of quailcomics.com',
                     'to': [{'email': 'philip@immaculateobsession.com' , 'name': 'Philip James'}],
                 }
                 result = mandrill_client.messages.send(message=message, async=False)
+
+                messages.add_message(self.request, messages.SUCCESS, 'Backup emailed.')
 
             except mandrill.Error, e:
                 print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
