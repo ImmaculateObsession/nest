@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ flatpage.content }}
+<div class="container">
+    <div class="page-header">
+        <h1>{{ flatpage.title }}</h1>
+    </div>
+    <div class="container">
+        {{ flatpage.content }}
+    </div>
+</div>
 {% endblock %}

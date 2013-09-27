@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
-    url(r'^page/$', include('django.contrib.flatpages.urls')),
+    url(r'^page/', include('django.contrib.flatpages.urls')),
     
     url(r'^admin/', include(admin.site.urls)),
     url(r'^nexus/', include(nexus.site.urls)),
