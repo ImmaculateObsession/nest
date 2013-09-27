@@ -1,9 +1,19 @@
+import mandrill
+import base64
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
+from django.contrib.admin.views.decorators import staff_member_required
+from django.core import management
+from django.shortcuts import (
+    get_object_or_404,
+    redirect,
+)
 from django.utils.decorators import method_decorator
 from django.views.generic import (
     TemplateView,
     ListView,
+    View,
 )
 
 from comics.models import (
@@ -110,4 +120,40 @@ class PostPreviewView(PreviewView):
         post = get_object_or_404(Post, slug=self.kwargs['slug'])
         context['post'] = post
         return context
+
+
+class ComicBackupView(View):
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        with open(str(settings.PROJECT_ROOT) + '/dump.json', 'w') as f:
+            management.call_command('dumpdata', indent=4, stdout=f)
+            
+        with open(str(settings.PROJECT_ROOT) + '/dump.json', 'r') as f: 
+            data = base64.b64encode(f.read())
+
+            try:
+                mandrill_client = mandrill.Mandrill('eFsqh2Q4xJ25pAKnkgdT1w')
+                message = {
+                    'attachments': [{
+                        'content': data,
+                        'name': 'dump.json',
+                        'type': 'application/json'
+                    }],
+                    'auto_html': None,
+                    'auto_text': None,
+                    'from_email': 'site@quailcomics.com',
+                    'from_name': 'Quail Comics Site',
+                    'html': "Here's the backup",
+                    'to': [{'email': 'philip@immaculateobsession.com' , 'name': 'Philip James'}],
+                }
+                result = mandrill_client.messages.send(message=message, async=False)
+
+            except mandrill.Error, e:
+                print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
+
+        return redirect('/admin', permanent=False)
+
+        return super(RedirectView, self).dispatch(*args, **kwargs)
+
 

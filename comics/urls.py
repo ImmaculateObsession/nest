@@ -7,11 +7,13 @@ from comics.views import (
     ComicListView,
     PostView,
     PostPreviewView,
+    ComicBackupView,
 )
 
 comicpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='comichomeview'),
     url(r'^all/$', ComicListView.as_view(), name='comiclistview'),
+    url(r'^backup/$', ComicBackupView.as_view(), name='comicbackupview'),
     url(
         r'^(?P<slug>[\w-]+)/$',
         ComicPostView.as_view(),
