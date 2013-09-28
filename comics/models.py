@@ -93,6 +93,7 @@ class ReferralCode(models.Model):
     def __str__(self):
         return '%s - %s' % (self.code, self.user)
 
+
 class ReferralHit(models.Model):
     code = models.ForeignKey('ReferralCode')
     created = models.DateTimeField(auto_now_add=True)

@@ -35,8 +35,24 @@
         </div>
         <div class="row share_buttons">
             <fb:like href="http://www.quailcomics.com/comic/{{ comic.post.slug }}" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
-            <a href="http://www.tumblr.com/share" title="Share on Tumblr" style="display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; padding-bottom: 10px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;">Share on Tumblr</a>
+            <span id="tumblr_button_abc123"></span>
             <a href="https://twitter.com/share" class="twitter-share-button" data-via="quailcomics" data-count="none">Tweet</a>
         </div>
     </div>
 </div>
+
+<!-- Todo: Firgure out some way to move this outside this file -->
+<script type="text/javascript">
+    var tumblr_photo_source = "{{ comic.image_url }}";
+    var tumblr_photo_caption = "{{ comic.title }}";
+    var tumblr_photo_click_thru = "http://www.quailcomics.com/{{ request.get_full_path }}";
+</script>
+
+<!-- Put this code at the bottom of your page -->
+<script type="text/javascript">
+    var tumblr_button = document.createElement("a");
+    tumblr_button.setAttribute("href", "http://www.tumblr.com/share/photo?source=" + encodeURIComponent(tumblr_photo_source) + "&caption=" + encodeURIComponent(tumblr_photo_caption) + "&clickthru=" + encodeURIComponent(tumblr_photo_click_thru));
+    tumblr_button.setAttribute("title", "Share on Tumblr");
+    tumblr_button.setAttribute("style", "display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;");
+    document.getElementById("tumblr_button_abc123").appendChild(tumblr_button);
+</script>
