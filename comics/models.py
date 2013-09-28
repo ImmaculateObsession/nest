@@ -79,3 +79,24 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.tag
+
+
+class ReferralCode(models.Model):
+    code = models.CharField(max_length=10)
+    note = models.TextField(blank=True, null=True)
+    changed = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User)
+    is_active = models.BooleanField(default=True)
+    campaign = models.CharField(max_length=140, blank=True, null=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.code, self.user)
+
+class ReferralHit(models.Model):
+    code = models.ForeignKey('ReferralCode')
+    created = models.DateTimeField(auto_now_add=True)
+    ip = models.GenericIPAddressField(unpack_ipv4=True)
+
+    def __str__(self):
+        return '%s @ %s (%s)' % (self.code, self.ip, self.created)
