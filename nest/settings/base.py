@@ -103,6 +103,13 @@ MIDDLEWARE_CLASSES = (
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+    'allauth.account.context_processors.account',
+    'allauth.socialaccount.context_processors.socialaccount',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 ROOT_URLCONF = 'nest.urls'
@@ -123,7 +130,20 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'nexus',
     'gargoyle',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 )
+
+#ALLAUTH SETTINGS
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_UNIQUE_EMAIL=True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mandrillapp.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'pjj@philipjohnjames.com'
+EMAIL_HOST_PASSWORD = 't8WQ8z7yFNUqM8Clfn1PVw'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

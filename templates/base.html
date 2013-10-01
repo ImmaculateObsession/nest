@@ -51,15 +51,17 @@
         <script>(function(){var uv=document.createElement('script');uv.type='text/javascript';uv.async=true;uv.src='//widget.uservoice.com/7vZK95BYqTAxjLJf4Nkyjg.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(uv,s)})()
         </script>
 
-        
+
 
     </head>
     <body>
         <div id="fb-root"></div>
         {% block body %}
             {% include "header.html" %}
-            {% block content %}
-            {% endblock %}
+            <div class="container">
+                {% block content %}
+                {% endblock %}
+            </div>
             {% include "footer.html" %}
         {% endblock %}
         {% block js_defer %}
