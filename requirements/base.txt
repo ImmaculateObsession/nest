@@ -10,3 +10,4 @@ newrelic==2.0.0.1
 mock==1.0.1
 factory-boy==2.1.2
 mandrill==1.0.51
+django-allauth==0.13.0

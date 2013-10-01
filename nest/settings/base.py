@@ -144,6 +144,7 @@ EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pjj@philipjohnjames.com'
 EMAIL_HOST_PASSWORD = 't8WQ8z7yFNUqM8Clfn1PVw'
+DEFAULT_FROM_EMAIL = 'site@quailcomics.com'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
