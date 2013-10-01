@@ -4,6 +4,7 @@ python:
 install: "pip install -r requirements.txt"
 env:
     - SECRET_KEY="shhthisisasecret"
+    - secure: "iSDxfwsv6KDocUDi9rHkPHlYTlJX5E7gRgwwfWMSVFdClHEbSeE2/ZGvb8u20/UwTTaNQa7MPPEWPKMp+wqkWJts+RD46YeAkeh4ujkuZkj7km+ENIbVfGbexDQWqbzFa2ZIBx1WBu65lenqlQuHSRUBLWTD++5Ggbv3S1euC8k="
 script: "python manage.py test comics --settings=nest.settings.base"
 notifications: 
   email: 
