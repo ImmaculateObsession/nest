@@ -134,7 +134,7 @@ class ComicBackupView(View):
             data = base64.b64encode(f.read())
 
             try:
-                mandrill_client = mandrill.Mandrill('eFsqh2Q4xJ25pAKnkgdT1w')
+                mandrill_client = mandrill.Mandrill(settings.EMAIL_HOST_PASSWORD)
                 message = {
                     'attachments': [{
                         'content': data,
