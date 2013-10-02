@@ -93,6 +93,11 @@ class ReferralCode(models.Model):
     def __str__(self):
         return '%s - %s' % (self.code, self.user)
 
+    @property
+    def hits(self):
+        return ReferralHit.objects.filter(code=self).values('ip').distinct().count()
+
+
 
 class ReferralHit(models.Model):
     code = models.ForeignKey('ReferralCode')
