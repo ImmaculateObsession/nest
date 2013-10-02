@@ -1,9 +1,11 @@
 import mandrill
 import base64
+import hashlib
 
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core import management
 from django.shortcuts import (
@@ -11,15 +13,18 @@ from django.shortcuts import (
     redirect,
 )
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.views.generic import (
     TemplateView,
     ListView,
     View,
+    DetailView,
 )
 
 from comics.models import (
     Post,
     Comic,
+    ReferralCode,
 )
 
 class PreviewView(TemplateView):
@@ -160,4 +165,34 @@ class ComicBackupView(View):
 
         return super(RedirectView, self).dispatch(*args, **kwargs)
 
+
+class CreateRefCodeView(View):
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        user = self.request.user
+        referral_code = ReferralCode.objects.create(
+            code=hashlib.sha1(
+                str(user) + str(timezone.now())
+            ).hexdigest()[:6],
+            user=self.request.user,
+            is_active=True,
+            campaign='First Round of Shirts',
+        )
+
+        return redirect('/accounts/profile/')
+
+
+
+class ProfileView(DetailView):
+    template_name="profile.html"
+    model = User
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.user = self.request.user
+        return super(ProfileView, self).dispatch(*args, **kwargs)
+
+    def get_object(self):
+        return self.user
 

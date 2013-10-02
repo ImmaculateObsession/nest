@@ -3,7 +3,7 @@ import nexus
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from comics.views import HomeView
+from comics.views import HomeView, ProfileView, CreateRefCodeView
 from comics.urls import comicpatterns, postpatterns
 
 from comics.feeds import LatestPostFeed
@@ -17,7 +17,8 @@ urlpatterns = patterns('',
     url(r'^post/', include(postpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     url(r'^page/', include('django.contrib.flatpages.urls')),
-    url(r'^accounts/profile/', HomeView.as_view()),
+    url(r'^refcode/$', CreateRefCodeView.as_view()),
+    url(r'^accounts/profile/$', ProfileView.as_view()),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^nexus/', include(nexus.site.urls)),
