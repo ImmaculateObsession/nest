@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="/">Quail Comics</a>
     </div>
@@ -14,6 +14,20 @@
             <li><a href="/feed/">Feed</a></li>
             <li><a href="https://www.facebook.com/quailcomics">Facebook</a></li>
             <li><a href="https://twitter.com/quailcomics">Twitter</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/accounts/profile">Profile</a></li>
+                    <li><a href="/accounts/logout">Logout</a></li>
+                </ul>
+            </li>
+            {% else %}
+            <li><a href="/accounts/signup/">Signup</a></li>
+            <li><a href="/accounts/login/">Login</a></li>
+            {% endif %}
         </ul>
     </div>
 </nav>
