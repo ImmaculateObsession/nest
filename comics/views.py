@@ -51,9 +51,9 @@ class HomeView(ComicViewMixin, TemplateView):
         context['comic'] = comic
         if comic.post:
             context['post'] = comic.post
-            context['disqus_indentifier'] = comic.post.slug
+            context['disqus_identifier'] = comic.post.slug
         else:
-            context['disqus_indentifier'] = comic.title
+            context['disqus_identifier'] = comic.title
         try:
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
             context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
@@ -72,7 +72,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
 
         context['post'] = post
         context['comic'] = comic
-        context['disqus_indentifier'] = post.slug
+        context['disqus_identifier'] = post.slug
 
         try: 
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
@@ -115,7 +115,7 @@ class PostView(TemplateView):
         context = super(PostView, self).get_context_data(**kwargs)
         post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
         context['post'] = post
-        context['disqus_indentifier'] = post.slug
+        context['disqus_identifier'] = post.slug
         return context
 
 
