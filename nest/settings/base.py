@@ -135,6 +135,8 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
 )
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 #ALLAUTH SETTINGS
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True
