@@ -204,3 +204,13 @@ class ProfileView(DetailView):
 
         return context
 
+
+class PlaygroundView(TemplateView):
+
+    template_name = "playground.html"
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PlaygroundView, self).dispatch(*args, **kwargs)
+
+
