@@ -2,12 +2,15 @@
 {% load staticfiles %}
 
 {% block content %}
+
 {% include "comic.html" %}
 <div class="row">
 {% if post %}
-    <div class="col-md-8 col-md-offset-2">
+    {% include "sidebar_ad.html" %}
+    <div class="col-md-8">
         <p class="lead">{{ post.published | date:"DATE_FORMAT" }}</p>{{ post.post | safe }}
     </div>
+    {% include "sidebar_ad.html" %}
 {% endif %}
 </div>
 {% include "disqus.html" %}

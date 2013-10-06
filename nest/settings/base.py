@@ -15,6 +15,8 @@ def get_env_variable(var_name):
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
+GARGOYLE_AUTO_CREATE = True
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )

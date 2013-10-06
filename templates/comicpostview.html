@@ -3,13 +3,15 @@
 {% block content %}
 {% include "comic.html" %}
 <div class="row">
-    <div class="col-md-5 col-md-offset-1">
+    {% include "sidebar_ad.html" %}
+    <div class="col-md-4">
         <p class="lead">{{ post.published | date:"DATE_FORMAT" }}</p>
         {{ post.post | safe }}
     </div>
-    <div class="col-md-5">
+    <div class="col-md-4">
         {% include "disqus.html" %}
     </div>
+    {% include "sidebar_ad.html" %}
 </div>
 {% endblock %}
 
