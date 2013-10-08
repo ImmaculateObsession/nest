@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'comics',
     'suit',
     'django.contrib.admin',
+    'suit_redactor',
     'nexus',
     'gargoyle',
     'allauth',

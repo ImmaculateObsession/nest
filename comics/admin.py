@@ -1,4 +1,6 @@
 from django.contrib import admin
+from django.forms import ModelForm
+from suit_redactor.widgets import RedactorWidget
 from comics.models import (
     Comic,
     Post,
@@ -8,6 +10,13 @@ from comics.models import (
     ReferralHit,
 )
 
+class PostForm(ModelForm):
+
+    class Meta:
+        widgets = {
+            'post': RedactorWidget(editor_options={'lang': 'en'})
+        }
+
 
 class ComicAdmin(admin.ModelAdmin):
 
@@ -16,6 +25,8 @@ class ComicAdmin(admin.ModelAdmin):
 
 
 class PostAdmin(admin.ModelAdmin):
+
+    form = PostForm
 
     def queryset(self, request):
         return Post.objects.all()
