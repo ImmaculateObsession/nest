@@ -52,8 +52,10 @@ class HomeView(ComicViewMixin, TemplateView):
         if comic.post:
             context['post'] = comic.post
             context['disqus_identifier'] = comic.post.slug
+            context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (comic.post.slug)
         else:
             context['disqus_identifier'] = comic.title
+            context['disqus_url'] = 'http://www.captainquail.com/'
         try:
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
             context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
@@ -73,6 +75,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
         context['post'] = post
         context['comic'] = comic
         context['disqus_identifier'] = post.slug
+        context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (post.slug)
 
         try: 
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]

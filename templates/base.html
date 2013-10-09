@@ -39,6 +39,9 @@
         <script type="text/javascript">
             var disqus_shortname = 'quailcomics';
             var disqus_identifier = '{{ disqus_identifier }}';
+            {% if disqus_url %}
+            var disqus_url = ' {{ disqus_url }}';
+            {% endif %}
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {
