@@ -61,7 +61,7 @@ class HomeView(ComicViewMixin, TemplateView):
             context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
         except IndexError:
             pass
-
+        context['disqus_title'] = comic.title
         return context
 
 class ComicPostView(ComicViewMixin, TemplateView):
@@ -88,7 +88,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
             context['next'] = Comic.published_comics.filter(published__gt=comic.published).order_by('published')[0]
         except IndexError:
             pass
-
+        context['disqus_title'] = comic.title
         return context
 
 
