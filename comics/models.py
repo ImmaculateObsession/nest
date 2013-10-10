@@ -102,7 +102,7 @@ class ReferralCode(models.Model):
 class ReferralHit(models.Model):
     code = models.ForeignKey('ReferralCode')
     created = models.DateTimeField(auto_now_add=True)
-    ip = models.GenericIPAddressField(unpack_ipv4=True)
+    ip = models.GenericIPAddressField(unpack_ipv4=True, blank=True)
 
     def __str__(self):
-        return '%s @ %s (%s)' % (self.code, self.ip, self.created)
+        return '%s (%s)' % (self.code, self.ip, self.created)

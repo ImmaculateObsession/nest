@@ -21,7 +21,6 @@ class ReferralMiddleware(object):
                     )
                     ReferralHit.objects.create(
                         code=code,
-                        ip=request.META.get('REMOTE_ADDR'),
                     )
                     response.set_cookie('ref_code_tracked', 'true')
                 except ReferralCode.DoesNotExist:
