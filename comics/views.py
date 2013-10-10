@@ -156,7 +156,7 @@ class ComicBackupView(View):
                     'from_name': 'Quail Comics Site',
                     'html': "Here's the backup",
                     'subject': 'Backup of quailcomics.com',
-                    'to': [{'email': 'philip@immaculateobsession.com' , 'name': 'Philip James'}],
+                    'to': [{'email': settings.ADMINS[0][1], 'name': settings.ADMINS[0][0]}],
                 }
                 result = mandrill_client.messages.send(message=message, async=False)
 

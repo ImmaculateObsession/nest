@@ -18,7 +18,7 @@ TEMPLATE_DEBUG = DEBUG
 GARGOYLE_AUTO_CREATE = True
 
 ADMINS = (
-    ('Philip James', 'pjj@philipjohnjames.com'),
+    ('Philip James', 'philip@immaculateobsession.com'),
 )
 
 MANAGERS = ADMINS
