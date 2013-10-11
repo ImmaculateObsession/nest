@@ -8,6 +8,7 @@ from comics.views import (
     PostView,
     PostPreviewView,
     ComicBackupView,
+    TagView,
 )
 
 comicpatterns = patterns('',
@@ -24,6 +25,10 @@ comicpatterns = patterns('',
         ComicPreviewView.as_view(),
         name='comicpreviewview'
     ),
+    url(r'^tag/(?P<tag>[\w-]+)/$',
+        TagView.as_view(),
+        name='tagview',
+    ),
 )
 
 postpatterns = patterns('',
@@ -36,5 +41,6 @@ postpatterns = patterns('',
         r'^(?P<slug>[\w-]+)/preview/$',
         PostPreviewView.as_view(),
         name='postpreviewview'
-    )
+    ),
 )
+    

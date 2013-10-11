@@ -1,0 +1,11 @@
+{% for comic in object_list %}
+    <div class="row">
+        <h2 class="col-md-offset-1">
+            <a href="/comic/{{ comic.post.slug }}">{{ comic.title }}</a>
+            <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
+        </h2>
+        <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}">
+            <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+        </a>
+    </div>
+{% endfor %}

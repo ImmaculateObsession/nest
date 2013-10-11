@@ -28,6 +28,7 @@ from comics.models import (
     ReferralHit,
 )
 
+
 class PreviewView(TemplateView):
 
     @method_decorator(login_required)
@@ -216,4 +217,16 @@ class PlaygroundView(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(PlaygroundView, self).dispatch(*args, **kwargs)
 
+class TagView(ListView):
+
+    template_name = "tag_list.html"
+
+    def get_queryset(self):
+        return Comic.objects.filter(tags__tag__in=[self.kwargs['tag']])
+
+    def get_context_data(self, **kwargs):
+        context = super(TagView, self).get_context_data(**kwargs)
+        context['tag'] = self.kwargs['tag']
+
+        return context
 

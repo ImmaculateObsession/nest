@@ -2,6 +2,9 @@
     <h2 class="col-md-offset-1">
         <a href="/comic/{{ comic.post.slug }}">{{ comic.title }}</a>
         <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
+        {% for tag in comic.tags.all %}
+        <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
+        {% endfor %}
     </h2>
 </div>
 <div class="row">

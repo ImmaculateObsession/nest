@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Quail Comics - All Comics{% endblock %} 
+{% block title %}Quail Comics - "{{ tag }}" Comics{% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <h2 class="col-md-offset-1">All Comics</h2>
+    <h2 class="col-md-offset-1">{{ tag }}</h2>
 </div>
 
 {% include "list.html" %}
+
 {% endblock %}
