@@ -6,14 +6,15 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Quail Comics</a>
+        <a class="navbar-brand" href="/">Captain Quail</a>
+        <p class="navbar-text"><small><em>Every Tuesday and Friday</em></small></p>
     </div>
     
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/feed/">Feed</a></li>
-            <li><a href="https://www.facebook.com/quailcomics">Facebook</a></li>
-            <li><a href="https://twitter.com/quailcomics">Twitter</a></li>
+            <li><a href="/feed/">Feed <span class="glyphicon glyphicon-list"></span></a></li>
+            <li><a href="https://www.facebook.com/quailcomics">Facebook <span class="glyphicon glyphicon-thumbs-up"></span></a></li>
+            <li><a href="https://twitter.com/quailcomics">Twitter <span class="glyphicon glyphicon-comment"></span></a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
