@@ -35,6 +35,7 @@ class PreviewView(TemplateView):
     def dispatch(self, *args, **kwargs):
         return super(PreviewView, self).dispatch(*args, **kwargs)
 
+
 class ComicViewMixin(object):
 
     def get_comic(self, post=None):
@@ -43,7 +44,24 @@ class ComicViewMixin(object):
         else:
             return Comic.published_comics.latest('published')
 
-class HomeView(ComicViewMixin, TemplateView):
+class LastReadComicMixin(object):
+
+    def get_context_data(self, **kwargs):
+        context = super(LastReadComicMixin, self).get_context_data(**kwargs)
+        if self.request.COOKIES.get('last_read_comic') and not self.request.COOKIES.get('hide_resume_link'):
+            context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
+
+        return context
+
+    def render_to_response(self, context, **kwargs):
+        response = super(LastReadComicMixin, self).render_to_response(context, **kwargs)
+        if response.context_data.get('disqus_identifier'):
+            response.set_cookie('last_read_comic', response.context_data.get('disqus_identifier'))
+            response.set_cookie('hide_resume_link', value='true', expires=3600)
+        return response
+
+
+class HomeView(LastReadComicMixin, ComicViewMixin, TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
@@ -63,9 +81,10 @@ class HomeView(ComicViewMixin, TemplateView):
         except IndexError:
             pass
         context['disqus_title'] = comic.title
+
         return context
 
-class ComicPostView(ComicViewMixin, TemplateView):
+class ComicPostView(LastReadComicMixin, ComicViewMixin, TemplateView):
     template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):

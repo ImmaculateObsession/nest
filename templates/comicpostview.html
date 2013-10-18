@@ -3,6 +3,14 @@
 {% block title%}Quail Comics - {{ comic.title }}{% endblock %}
 
 {% block content %}
+{% if last_read_comic %}
+<div class="row">
+<div class="alert alert-info">
+    Looks like you're not where you left off. Go to your last read page?
+    <a href="/comic/{{ last_read_comic }}/" class="btn btn-info btn-sm">Take me there!</a>
+</div>
+</div>
+{% endif %}
 {% include "comic.html" %}
 <div class="row">
     {% include "sidebar_ad.html" %}
