@@ -1,6 +1,7 @@
 import mandrill
 import base64
 import hashlib
+import datetime
 
 from django.conf import settings
 from django.contrib import messages
@@ -56,8 +57,16 @@ class LastReadComicMixin(object):
     def render_to_response(self, context, **kwargs):
         response = super(LastReadComicMixin, self).render_to_response(context, **kwargs)
         if response.context_data.get('disqus_identifier'):
-            response.set_cookie('last_read_comic', response.context_data.get('disqus_identifier'))
-            response.set_cookie('hide_resume_link', value='true', expires=3600)
+            response.set_cookie(
+                'last_read_comic',
+                value=response.context_data.get('disqus_identifier'),
+                expires=timezone.now() + datetime.timedelta(days=7),
+            )
+            response.set_cookie(
+                'hide_resume_link',
+                value='true',
+                max_age=3600,
+            )
         return response
 
 

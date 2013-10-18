@@ -4,10 +4,11 @@
 
 {% block content %}
 {% if last_read_comic %}
-<div class="row">
-<div class="alert alert-info">
-    Looks like you're not where you left off. Go to your last read page?
-    <a href="/comic/{{ last_read_comic }}/" class="btn btn-info btn-sm">Take me there!</a>
+<div class="row row-message">
+<div class="col-md-6 col-md-offset-3 alert alert-info alert-dismissable">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <span>Looks like you're not where you left off. Go to your last read page?</span>
+    <a href="/comic/{{ last_read_comic }}/" class="btn btn-info btn-sm">Yes please!</a>
 </div>
 </div>
 {% endif %}

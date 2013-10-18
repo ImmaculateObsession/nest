@@ -8,7 +8,11 @@
 }
 
 .row {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+}
+
+.row-message {
+    margin-bottom: 0px;
 }
 
 .footer {
