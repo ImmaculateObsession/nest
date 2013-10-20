@@ -9,6 +9,7 @@ To run Nest:
 - activate virtualenv (. bin/activate)
 - install requirements (pip install -r requirements/base.txt)
 - create nest db (python manage.py syncdb --settings=nest.settings.base)
+- load test data (python manage.py loaddata comics.json --settings=nest.settings.base)
 - run nest dev server (python manage.py runserver --settings=nest.settings.base)
 
 Share and enjoy.
