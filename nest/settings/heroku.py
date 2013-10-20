@@ -6,6 +6,8 @@ TEMPLATE_DEBUG = DEBUG
 
 DATABASES['default'] = dj_database_url.config()
 
+SECRET_KEY = get_env_variable("SECRET_KEY")
+
 ALLOWED_HOSTS = [
     '.captainquail.com',
     '.quailcomics.com',
