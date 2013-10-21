@@ -1,0 +1,2612 @@
+[
+{
+    "fields": {
+        "app_label": "auth", 
+        "name": "permission", 
+        "model": "permission"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 1
+},
+{
+    "fields": {
+        "app_label": "auth", 
+        "name": "group", 
+        "model": "group"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 2
+},
+{
+    "fields": {
+        "app_label": "auth", 
+        "name": "user", 
+        "model": "user"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 3
+},
+{
+    "fields": {
+        "app_label": "contenttypes", 
+        "name": "content type", 
+        "model": "contenttype"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 4
+},
+{
+    "fields": {
+        "app_label": "sessions", 
+        "name": "session", 
+        "model": "session"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 5
+},
+{
+    "fields": {
+        "app_label": "sites", 
+        "name": "site", 
+        "model": "site"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 6
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "comic", 
+        "model": "comic"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 7
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "post", 
+        "model": "post"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 8
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "character", 
+        "model": "character"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 9
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "tag", 
+        "model": "tag"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 10
+},
+{
+    "fields": {
+        "app_label": "admin", 
+        "name": "log entry", 
+        "model": "logentry"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 11
+},
+{
+    "fields": {
+        "app_label": "flatpages", 
+        "name": "flat page", 
+        "model": "flatpage"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 12
+},
+{
+    "fields": {
+        "app_label": "gargoyle", 
+        "name": "switch", 
+        "model": "switch"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 13
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "referral code", 
+        "model": "referralcode"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 14
+},
+{
+    "fields": {
+        "app_label": "comics", 
+        "name": "referral hit", 
+        "model": "referralhit"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 15
+},
+{
+    "fields": {
+        "app_label": "account", 
+        "name": "email address", 
+        "model": "emailaddress"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 16
+},
+{
+    "fields": {
+        "app_label": "account", 
+        "name": "email confirmation", 
+        "model": "emailconfirmation"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 17
+},
+{
+    "fields": {
+        "app_label": "socialaccount", 
+        "name": "social app", 
+        "model": "socialapp"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 18
+},
+{
+    "fields": {
+        "app_label": "socialaccount", 
+        "name": "social account", 
+        "model": "socialaccount"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 19
+},
+{
+    "fields": {
+        "app_label": "socialaccount", 
+        "name": "social token", 
+        "model": "socialtoken"
+    }, 
+    "model": "contenttypes.contenttype", 
+    "pk": 20
+},
+{
+    "fields": {
+        "session_data": "MDZhNmUwNmViMGU1NGVjOTM1ZDlhZWVjYzI5YzEyYTE0YWNhM2I4MzqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZFUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRVDV9hdXRoX3VzZXJfaWRLAXUu", 
+        "expire_date": "2013-11-01T05:27:46.262Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "6nlf50uf7wo64jqu7i6re57ohobrhbn4"
+},
+{
+    "fields": {
+        "session_data": "MjgxYzZlYjdlM2FkZjM5ZTE0NDQ2NTE0MjZiOGIxNWYwYmI2OGMzYjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu", 
+        "expire_date": "2013-11-01T05:39:30.186Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "6pql6k5dmeytcml797uxxs2h17h7y4kn"
+},
+{
+    "fields": {
+        "session_data": "OTJiYTUyMjE5YzkxOWY0Yzg0Y2MyMmNmYjFiYTE4ZmVkNGFiNTk0ZTqAAn1xAVgKAAAAdGVzdGNvb2tpZXECWAYAAAB3b3JrZWRxA3Mu", 
+        "expire_date": "2013-10-22T04:20:51.094Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "c0divv4zl33mlrh92fuegjh2rm3cf5wm"
+},
+{
+    "fields": {
+        "session_data": "NmVkOWRlMjVkNjI5ZWFiNWFmNWNlNzQ3NzIzY2MzZGQ0MmE0ZDcwNzqAAn1xAShVDV9hdXRoX3VzZXJfaWRxAksBVRJfYXV0aF91c2VyX2JhY2tlbmRxA1UpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRxBHUu", 
+        "expire_date": "2013-10-26T05:39:20.429Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "ca307ewp4wh1bc1srurkj0eqt10i0v9b"
+},
+{
+    "fields": {
+        "session_data": "MjgxYzZlYjdlM2FkZjM5ZTE0NDQ2NTE0MjZiOGIxNWYwYmI2OGMzYjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu", 
+        "expire_date": "2013-10-11T06:44:06.603Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "d3aii5d8lg45vd74lhn508q7th9jgsc2"
+},
+{
+    "fields": {
+        "session_data": "YzdlZGJlNTU1MDQ3OTFjOTRhZTE0ZDI1NzFhMGJiZDg3NTBhYzQ0ZDqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAXUu", 
+        "expire_date": "2013-09-26T05:59:31.459Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "hsb1rl4l7rza46s4v1seo3i4d3dcxed7"
+},
+{
+    "fields": {
+        "session_data": "MjgxYzZlYjdlM2FkZjM5ZTE0NDQ2NTE0MjZiOGIxNWYwYmI2OGMzYjqAAn1xAShVEl9hdXRoX3VzZXJfYmFja2VuZHECVSlkamFuZ28uY29udHJpYi5hdXRoLmJhY2tlbmRzLk1vZGVsQmFja2VuZHEDVQ1fYXV0aF91c2VyX2lkcQRLAnUu", 
+        "expire_date": "2013-10-14T16:46:57.660Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "hzpbcb7cvcnycsft8kn9368i8i8elyup"
+},
+{
+    "fields": {
+        "session_data": "ZmQ2NzMzNWQxYmU4MTg1ZTczM2M4MTMyZTRiYTg4MWY2MmQyMzBjNTqAAn1xAVgKAAAAdGVzdGNvb2tpZVgGAAAAd29ya2VkcQJzLg==", 
+        "expire_date": "2013-11-01T00:32:56.716Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "mrhdg1fmesfrifurnyc1uozx1z43zu8z"
+},
+{
+    "fields": {
+        "session_data": "Njk0Mjk5NzhjMDQ1NzRkODY1ZmQwZGVmZjY5NGM3NWI1NjM3ZTg5MzqAAn1xAShVDV9hdXRoX3VzZXJfaWRxAksEVRJfYXV0aF91c2VyX2JhY2tlbmRxA1UpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRxBFUWYWNjb3VudF92ZXJpZmllZF9lbWFpbHEFTnUu", 
+        "expire_date": "2013-10-19T02:29:39.357Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "n6b9mif7b0t1l88fblsx9nyehaymnaxg"
+},
+{
+    "fields": {
+        "session_data": "NmVkOWRlMjVkNjI5ZWFiNWFmNWNlNzQ3NzIzY2MzZGQ0MmE0ZDcwNzqAAn1xAShVDV9hdXRoX3VzZXJfaWRxAksBVRJfYXV0aF91c2VyX2JhY2tlbmRxA1UpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmRxBHUu", 
+        "expire_date": "2013-09-27T17:02:20.041Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "ot0a4qxfw3or7qj04dq39w7g4axkmmb2"
+},
+{
+    "fields": {
+        "session_data": "ODgzMGU1N2Q0OWExYWY0ZGZiZGU1Nzg2YjcyMDgxYTQwMDljYzUyZDqAAn1xAShYCgAAAHRlc3Rjb29raWVYBgAAAHdvcmtlZFUSX2F1dGhfdXNlcl9iYWNrZW5kcQJVKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kcQNVDV9hdXRoX3VzZXJfaWRxBEsBdS4=", 
+        "expire_date": "2013-10-11T04:07:34.540Z"
+    }, 
+    "model": "sessions.session", 
+    "pk": "vz1p5aryc7inorx6ebqa9g88i4asma51"
+},
+{
+    "fields": {
+        "name": "captainquail.com", 
+        "domain": "captainquail.com"
+    }, 
+    "model": "sites.site", 
+    "pk": 1
+},
+{
+    "fields": {
+        "description": "Fearless Leader", 
+        "name": "Captain Quail", 
+        "profile_pic_url": "http://www.google.com/"
+    }, 
+    "model": "comics.character", 
+    "pk": 1
+},
+{
+    "fields": {
+        "description": "Second in command.", 
+        "name": "Skuak", 
+        "profile_pic_url": "http://www.google.com/"
+    }, 
+    "model": "comics.character", 
+    "pk": 2
+},
+{
+    "fields": {
+        "description": "a comic", 
+        "tag": "comic"
+    }, 
+    "model": "comics.tag", 
+    "pk": 1
+},
+{
+    "fields": {
+        "description": "testing", 
+        "tag": "test"
+    }, 
+    "model": "comics.tag", 
+    "pk": 2
+},
+{
+    "fields": {
+        "created": "2013-10-03T23:11:31.162Z", 
+        "code": 1, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 1
+},
+{
+    "fields": {
+        "created": "2013-10-05T02:29:48.245Z", 
+        "code": 2, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 2
+},
+{
+    "fields": {
+        "created": "2013-10-05T02:40:37.527Z", 
+        "code": 2, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 3
+},
+{
+    "fields": {
+        "created": "2013-10-05T02:41:14.804Z", 
+        "code": 2, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 4
+},
+{
+    "fields": {
+        "created": "2013-10-07T22:42:46.529Z", 
+        "code": 2, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 5
+},
+{
+    "fields": {
+        "created": "2013-10-08T17:21:27.954Z", 
+        "code": 2, 
+        "ip": "172.17.42.1"
+    }, 
+    "model": "comics.referralhit", 
+    "pk": 6
+},
+{
+    "fields": {
+        "description": null, 
+        "date_modified": "2013-10-08T22:17:53.625Z", 
+        "value": {}, 
+        "status": 1, 
+        "label": null, 
+        "date_created": "2013-10-08T22:17:53.625Z"
+    }, 
+    "model": "gargoyle.switch", 
+    "pk": "\"show_ads\""
+},
+{
+    "fields": {
+        "sent": "2013-10-03T23:11:06.380Z", 
+        "created": "2013-10-03T23:11:05.652Z", 
+        "email_address": 1, 
+        "key": "11f0809231614231a711ff48569a9001a424b8ddba672a697d16d4f754d81862"
+    }, 
+    "model": "account.emailconfirmation", 
+    "pk": 1
+},
+{
+    "fields": {
+        "sent": "2013-10-05T02:29:39.335Z", 
+        "created": "2013-10-05T02:29:38.632Z", 
+        "email_address": 2, 
+        "key": "3cedcdc1472264c13bad06d03e6faebfa438092f4b8db59d58c73c5edac96209"
+    }, 
+    "model": "account.emailconfirmation", 
+    "pk": 2
+},
+{
+    "fields": {
+        "content_type": 1, 
+        "name": "Can add permission", 
+        "codename": "add_permission"
+    }, 
+    "model": "auth.permission", 
+    "pk": 1
+},
+{
+    "fields": {
+        "content_type": 1, 
+        "name": "Can change permission", 
+        "codename": "change_permission"
+    }, 
+    "model": "auth.permission", 
+    "pk": 2
+},
+{
+    "fields": {
+        "content_type": 1, 
+        "name": "Can delete permission", 
+        "codename": "delete_permission"
+    }, 
+    "model": "auth.permission", 
+    "pk": 3
+},
+{
+    "fields": {
+        "content_type": 2, 
+        "name": "Can add group", 
+        "codename": "add_group"
+    }, 
+    "model": "auth.permission", 
+    "pk": 4
+},
+{
+    "fields": {
+        "content_type": 2, 
+        "name": "Can change group", 
+        "codename": "change_group"
+    }, 
+    "model": "auth.permission", 
+    "pk": 5
+},
+{
+    "fields": {
+        "content_type": 2, 
+        "name": "Can delete group", 
+        "codename": "delete_group"
+    }, 
+    "model": "auth.permission", 
+    "pk": 6
+},
+{
+    "fields": {
+        "content_type": 3, 
+        "name": "Can add user", 
+        "codename": "add_user"
+    }, 
+    "model": "auth.permission", 
+    "pk": 7
+},
+{
+    "fields": {
+        "content_type": 3, 
+        "name": "Can change user", 
+        "codename": "change_user"
+    }, 
+    "model": "auth.permission", 
+    "pk": 8
+},
+{
+    "fields": {
+        "content_type": 3, 
+        "name": "Can delete user", 
+        "codename": "delete_user"
+    }, 
+    "model": "auth.permission", 
+    "pk": 9
+},
+{
+    "fields": {
+        "content_type": 4, 
+        "name": "Can add content type", 
+        "codename": "add_contenttype"
+    }, 
+    "model": "auth.permission", 
+    "pk": 10
+},
+{
+    "fields": {
+        "content_type": 4, 
+        "name": "Can change content type", 
+        "codename": "change_contenttype"
+    }, 
+    "model": "auth.permission", 
+    "pk": 11
+},
+{
+    "fields": {
+        "content_type": 4, 
+        "name": "Can delete content type", 
+        "codename": "delete_contenttype"
+    }, 
+    "model": "auth.permission", 
+    "pk": 12
+},
+{
+    "fields": {
+        "content_type": 5, 
+        "name": "Can add session", 
+        "codename": "add_session"
+    }, 
+    "model": "auth.permission", 
+    "pk": 13
+},
+{
+    "fields": {
+        "content_type": 5, 
+        "name": "Can change session", 
+        "codename": "change_session"
+    }, 
+    "model": "auth.permission", 
+    "pk": 14
+},
+{
+    "fields": {
+        "content_type": 5, 
+        "name": "Can delete session", 
+        "codename": "delete_session"
+    }, 
+    "model": "auth.permission", 
+    "pk": 15
+},
+{
+    "fields": {
+        "content_type": 6, 
+        "name": "Can add site", 
+        "codename": "add_site"
+    }, 
+    "model": "auth.permission", 
+    "pk": 16
+},
+{
+    "fields": {
+        "content_type": 6, 
+        "name": "Can change site", 
+        "codename": "change_site"
+    }, 
+    "model": "auth.permission", 
+    "pk": 17
+},
+{
+    "fields": {
+        "content_type": 6, 
+        "name": "Can delete site", 
+        "codename": "delete_site"
+    }, 
+    "model": "auth.permission", 
+    "pk": 18
+},
+{
+    "fields": {
+        "content_type": 7, 
+        "name": "Can add comic", 
+        "codename": "add_comic"
+    }, 
+    "model": "auth.permission", 
+    "pk": 19
+},
+{
+    "fields": {
+        "content_type": 7, 
+        "name": "Can change comic", 
+        "codename": "change_comic"
+    }, 
+    "model": "auth.permission", 
+    "pk": 20
+},
+{
+    "fields": {
+        "content_type": 7, 
+        "name": "Can delete comic", 
+        "codename": "delete_comic"
+    }, 
+    "model": "auth.permission", 
+    "pk": 21
+},
+{
+    "fields": {
+        "content_type": 8, 
+        "name": "Can add post", 
+        "codename": "add_post"
+    }, 
+    "model": "auth.permission", 
+    "pk": 22
+},
+{
+    "fields": {
+        "content_type": 8, 
+        "name": "Can change post", 
+        "codename": "change_post"
+    }, 
+    "model": "auth.permission", 
+    "pk": 23
+},
+{
+    "fields": {
+        "content_type": 8, 
+        "name": "Can delete post", 
+        "codename": "delete_post"
+    }, 
+    "model": "auth.permission", 
+    "pk": 24
+},
+{
+    "fields": {
+        "content_type": 9, 
+        "name": "Can add character", 
+        "codename": "add_character"
+    }, 
+    "model": "auth.permission", 
+    "pk": 25
+},
+{
+    "fields": {
+        "content_type": 9, 
+        "name": "Can change character", 
+        "codename": "change_character"
+    }, 
+    "model": "auth.permission", 
+    "pk": 26
+},
+{
+    "fields": {
+        "content_type": 9, 
+        "name": "Can delete character", 
+        "codename": "delete_character"
+    }, 
+    "model": "auth.permission", 
+    "pk": 27
+},
+{
+    "fields": {
+        "content_type": 10, 
+        "name": "Can add tag", 
+        "codename": "add_tag"
+    }, 
+    "model": "auth.permission", 
+    "pk": 28
+},
+{
+    "fields": {
+        "content_type": 10, 
+        "name": "Can change tag", 
+        "codename": "change_tag"
+    }, 
+    "model": "auth.permission", 
+    "pk": 29
+},
+{
+    "fields": {
+        "content_type": 10, 
+        "name": "Can delete tag", 
+        "codename": "delete_tag"
+    }, 
+    "model": "auth.permission", 
+    "pk": 30
+},
+{
+    "fields": {
+        "content_type": 11, 
+        "name": "Can add log entry", 
+        "codename": "add_logentry"
+    }, 
+    "model": "auth.permission", 
+    "pk": 31
+},
+{
+    "fields": {
+        "content_type": 11, 
+        "name": "Can change log entry", 
+        "codename": "change_logentry"
+    }, 
+    "model": "auth.permission", 
+    "pk": 32
+},
+{
+    "fields": {
+        "content_type": 11, 
+        "name": "Can delete log entry", 
+        "codename": "delete_logentry"
+    }, 
+    "model": "auth.permission", 
+    "pk": 33
+},
+{
+    "fields": {
+        "content_type": 12, 
+        "name": "Can add flat page", 
+        "codename": "add_flatpage"
+    }, 
+    "model": "auth.permission", 
+    "pk": 34
+},
+{
+    "fields": {
+        "content_type": 12, 
+        "name": "Can change flat page", 
+        "codename": "change_flatpage"
+    }, 
+    "model": "auth.permission", 
+    "pk": 35
+},
+{
+    "fields": {
+        "content_type": 12, 
+        "name": "Can delete flat page", 
+        "codename": "delete_flatpage"
+    }, 
+    "model": "auth.permission", 
+    "pk": 36
+},
+{
+    "fields": {
+        "content_type": 13, 
+        "name": "Can add switch", 
+        "codename": "add_switch"
+    }, 
+    "model": "auth.permission", 
+    "pk": 37
+},
+{
+    "fields": {
+        "content_type": 13, 
+        "name": "Can change switch", 
+        "codename": "change_switch"
+    }, 
+    "model": "auth.permission", 
+    "pk": 38
+},
+{
+    "fields": {
+        "content_type": 13, 
+        "name": "Can delete switch", 
+        "codename": "delete_switch"
+    }, 
+    "model": "auth.permission", 
+    "pk": 39
+},
+{
+    "fields": {
+        "content_type": 13, 
+        "name": "Can view", 
+        "codename": "can_view"
+    }, 
+    "model": "auth.permission", 
+    "pk": 40
+},
+{
+    "fields": {
+        "content_type": 14, 
+        "name": "Can add referral code", 
+        "codename": "add_referralcode"
+    }, 
+    "model": "auth.permission", 
+    "pk": 41
+},
+{
+    "fields": {
+        "content_type": 14, 
+        "name": "Can change referral code", 
+        "codename": "change_referralcode"
+    }, 
+    "model": "auth.permission", 
+    "pk": 42
+},
+{
+    "fields": {
+        "content_type": 14, 
+        "name": "Can delete referral code", 
+        "codename": "delete_referralcode"
+    }, 
+    "model": "auth.permission", 
+    "pk": 43
+},
+{
+    "fields": {
+        "content_type": 15, 
+        "name": "Can add referral hit", 
+        "codename": "add_referralhit"
+    }, 
+    "model": "auth.permission", 
+    "pk": 44
+},
+{
+    "fields": {
+        "content_type": 15, 
+        "name": "Can change referral hit", 
+        "codename": "change_referralhit"
+    }, 
+    "model": "auth.permission", 
+    "pk": 45
+},
+{
+    "fields": {
+        "content_type": 15, 
+        "name": "Can delete referral hit", 
+        "codename": "delete_referralhit"
+    }, 
+    "model": "auth.permission", 
+    "pk": 46
+},
+{
+    "fields": {
+        "content_type": 16, 
+        "name": "Can add email address", 
+        "codename": "add_emailaddress"
+    }, 
+    "model": "auth.permission", 
+    "pk": 47
+},
+{
+    "fields": {
+        "content_type": 16, 
+        "name": "Can change email address", 
+        "codename": "change_emailaddress"
+    }, 
+    "model": "auth.permission", 
+    "pk": 48
+},
+{
+    "fields": {
+        "content_type": 16, 
+        "name": "Can delete email address", 
+        "codename": "delete_emailaddress"
+    }, 
+    "model": "auth.permission", 
+    "pk": 49
+},
+{
+    "fields": {
+        "content_type": 17, 
+        "name": "Can add email confirmation", 
+        "codename": "add_emailconfirmation"
+    }, 
+    "model": "auth.permission", 
+    "pk": 50
+},
+{
+    "fields": {
+        "content_type": 17, 
+        "name": "Can change email confirmation", 
+        "codename": "change_emailconfirmation"
+    }, 
+    "model": "auth.permission", 
+    "pk": 51
+},
+{
+    "fields": {
+        "content_type": 17, 
+        "name": "Can delete email confirmation", 
+        "codename": "delete_emailconfirmation"
+    }, 
+    "model": "auth.permission", 
+    "pk": 52
+},
+{
+    "fields": {
+        "content_type": 18, 
+        "name": "Can add social app", 
+        "codename": "add_socialapp"
+    }, 
+    "model": "auth.permission", 
+    "pk": 53
+},
+{
+    "fields": {
+        "content_type": 18, 
+        "name": "Can change social app", 
+        "codename": "change_socialapp"
+    }, 
+    "model": "auth.permission", 
+    "pk": 54
+},
+{
+    "fields": {
+        "content_type": 18, 
+        "name": "Can delete social app", 
+        "codename": "delete_socialapp"
+    }, 
+    "model": "auth.permission", 
+    "pk": 55
+},
+{
+    "fields": {
+        "content_type": 19, 
+        "name": "Can add social account", 
+        "codename": "add_socialaccount"
+    }, 
+    "model": "auth.permission", 
+    "pk": 56
+},
+{
+    "fields": {
+        "content_type": 19, 
+        "name": "Can change social account", 
+        "codename": "change_socialaccount"
+    }, 
+    "model": "auth.permission", 
+    "pk": 57
+},
+{
+    "fields": {
+        "content_type": 19, 
+        "name": "Can delete social account", 
+        "codename": "delete_socialaccount"
+    }, 
+    "model": "auth.permission", 
+    "pk": 58
+},
+{
+    "fields": {
+        "content_type": 20, 
+        "name": "Can add social token", 
+        "codename": "add_socialtoken"
+    }, 
+    "model": "auth.permission", 
+    "pk": 59
+},
+{
+    "fields": {
+        "content_type": 20, 
+        "name": "Can change social token", 
+        "codename": "change_socialtoken"
+    }, 
+    "model": "auth.permission", 
+    "pk": 60
+},
+{
+    "fields": {
+        "content_type": 20, 
+        "name": "Can delete social token", 
+        "codename": "delete_socialtoken"
+    }, 
+    "model": "auth.permission", 
+    "pk": 61
+},
+{
+    "fields": {
+        "groups": [], 
+        "date_joined": "2013-09-11T18:05:11.179Z", 
+        "is_active": true, 
+        "email": "pjj@philipjohnjames.com", 
+        "last_name": "", 
+        "last_login": "2013-10-15T01:52:07.614Z", 
+        "password": "pbkdf2_sha256$10000$mUs9kVZ0Mj8l$GY4Gqlc83ugxI/e6J3tsUmVGR481+T+CyXSobdY8EAc=", 
+        "user_permissions": [], 
+        "is_superuser": true, 
+        "username": "phildini", 
+        "first_name": "", 
+        "is_staff": true
+    }, 
+    "model": "auth.user", 
+    "pk": 1
+},
+{
+    "fields": {
+        "groups": [], 
+        "date_joined": "2013-09-27T06:43:18Z", 
+        "is_active": true, 
+        "email": "", 
+        "last_name": "", 
+        "last_login": "2013-10-18T05:39:30.182Z", 
+        "password": "pbkdf2_sha256$10000$0RDLpr6pRUaz$q4wYZTh6jiwEwV27wfJXUsWj0m0Dob3q2fvQqjI5qiU=", 
+        "user_permissions": [], 
+        "is_superuser": true, 
+        "username": "elzilrac", 
+        "first_name": "", 
+        "is_staff": true
+    }, 
+    "model": "auth.user", 
+    "pk": 2
+},
+{
+    "fields": {
+        "groups": [], 
+        "date_joined": "2013-10-03T23:11:05.514Z", 
+        "is_active": true, 
+        "email": "pjj+test@philipjohnjames.com", 
+        "last_name": "", 
+        "last_login": "2013-10-03T23:11:06.400Z", 
+        "password": "pbkdf2_sha256$10000$C3hMrdqXvmyp$Wen1XTC1+ewQQ4cD9lHSXhcyOR4k0waN7b8C7RKIktA=", 
+        "user_permissions": [], 
+        "is_superuser": false, 
+        "username": "test", 
+        "first_name": "", 
+        "is_staff": false
+    }, 
+    "model": "auth.user", 
+    "pk": 3
+},
+{
+    "fields": {
+        "groups": [], 
+        "date_joined": "2013-10-05T02:29:38.485Z", 
+        "is_active": true, 
+        "email": "chris.clark@actian.com", 
+        "last_name": "", 
+        "last_login": "2013-10-05T02:29:39.350Z", 
+        "password": "pbkdf2_sha256$10000$4RVbSnvi0Nfy$D4dvh6gU/QC5A9d8GoiDk5gFzAWRNpEaA3mwpkcteqo=", 
+        "user_permissions": [], 
+        "is_superuser": false, 
+        "username": "clach04", 
+        "first_name": "", 
+        "is_staff": false
+    }, 
+    "model": "auth.user", 
+    "pk": 4
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-07-25T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail1.png", 
+        "alt_text": "Captain Quail is looking into growing out his neckbeard. The free food is hard to resist.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 1", 
+        "post": 1, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail1_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 1
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-07-28T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_002.png", 
+        "alt_text": "The Quail says: \"Whee!\"", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 2 - Split Infinitives", 
+        "post": 2, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_002_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 2
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-07-31T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_003.png", 
+        "alt_text": "Quail used SPEAK against Barista! It was super-effective!", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 3", 
+        "post": 3, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_003_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 3
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-06T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_004.png", 
+        "alt_text": "", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 4 - Romance", 
+        "post": 4, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_004_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 4
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-14T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_005.png", 
+        "alt_text": "Leaving a guy for bread is harsh. A double-fudge brownie on the other hand...", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 5 - Heartbreak", 
+        "post": 5, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_005_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 5
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-16T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_006.png", 
+        "alt_text": "Fly like a hummingbird, splat like a pigeon.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 6 - Humdrive", 
+        "post": 6, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_006_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 6
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-20T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_007.png", 
+        "alt_text": "Aisles of smiles for all whom tech beguiles.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 7 - Chips", 
+        "post": 7, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_007_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 7
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-23T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_008.png", 
+        "alt_text": "Who knows what darkness lurks in the heart of men's harddrives?", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 8 - Exposed", 
+        "post": 8, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_008_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 8
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-27T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_009.png", 
+        "alt_text": "She canna take any more load, cap'n!", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 9 - Skuak", 
+        "post": 9, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_009_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 9
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-08-30T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_010.png", 
+        "alt_text": "Mountain climbers must look really weird from the air.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 10 - Rock Climbing", 
+        "post": 10, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_010_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 10
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-09-03T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_011.png", 
+        "alt_text": "Captain Quail is more a lover than a fighter.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 11 - Martial Arts", 
+        "post": 11, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_011_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 11
+},
+{
+    "fields": {
+        "transcript": "This is a test", 
+        "published": "2013-09-06T01:12:03Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_012.png", 
+        "alt_text": "Skauk prefers free-range organic mice.", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "title": "Captain Quail 12 - Fusion", 
+        "post": 12, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_012_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 12
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-13T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_013.png", 
+        "alt_text": "The Quailship Egg Surprise has very strong parental filters", 
+        "characters": [], 
+        "title": "Captain Quail 13 - Can Has", 
+        "post": 13, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_013_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 13
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-13T20:50:27Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_014.png", 
+        "alt_text": "Does Skuak's terminal remind anyone else of a viewmaster?", 
+        "characters": [], 
+        "title": "Captain Quail 14 - Enemies", 
+        "post": 14, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_014_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 14
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-17T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_015.png", 
+        "alt_text": "No one said Earth BIRDS were easy", 
+        "characters": [], 
+        "title": "Captain Quail 15 - Missed Connections", 
+        "post": 15, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_015_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 15
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-20T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_016.png", 
+        "alt_text": "Robin Redshirt had it coming.", 
+        "characters": [], 
+        "title": "Captain Quail 16 - Red Shirt", 
+        "post": 16, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_016_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 16
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-24T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_017.png", 
+        "alt_text": "Angry quail is angry. Serious hawk is serious. Science owl is... science?", 
+        "characters": [], 
+        "title": "Captain Quail 17 - Hostilities", 
+        "post": 17, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_017_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 17
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-09-27T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_018.png", 
+        "alt_text": "\"Or that time you wanted to use the engine exhaust to heat the ships kitchens...\"", 
+        "characters": [], 
+        "title": "Captain Quail 18 - Diplomacy", 
+        "post": 18, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_018_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 18
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-01T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_019.png", 
+        "alt_text": "Captain Quail just had to say it, didn't he?", 
+        "characters": [], 
+        "title": "Captain Quail 19 - Best Laid Plans", 
+        "post": 19, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_019_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 19
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-04T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_020.png", 
+        "alt_text": "This is like that one Star Trek movie, all over again.", 
+        "characters": [], 
+        "title": "Captain Quail 20 - Evasive Action", 
+        "post": 20, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_020_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 20
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-08T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_021.png", 
+        "alt_text": "Combes is the best, no bones about it.", 
+        "characters": [], 
+        "title": "Captain Quail 21 - Combes", 
+        "post": 21, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_021_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 21
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-11T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_022.png", 
+        "alt_text": "Unfortunately, she only dates birds who can double as fans.", 
+        "characters": [], 
+        "title": "Captain Quail 22 - If At First...", 
+        "post": 22, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_022_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 22
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-15T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_023.png", 
+        "alt_text": "Even the elephant is confused.", 
+        "characters": [], 
+        "title": "Captain Quail 23 - Reading Comprehension", 
+        "post": 23, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_023_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 23
+},
+{
+    "fields": {
+        "transcript": "", 
+        "published": "2013-10-18T07:01:00Z", 
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_024.png", 
+        "alt_text": "Skuak always looks like he is mere seconds from killing something", 
+        "characters": [], 
+        "title": "Captain Quail 24 - Discovered", 
+        "post": 24, 
+        "tags": [], 
+        "creator": 1, 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_024_1000x400.png", 
+        "is_live": true
+    }, 
+    "model": "comics.comic", 
+    "pk": 24
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-07-25T01:12:03Z", 
+        "post": "Hello! You have stumbled upon the very first Quail Comic - Captain Quail #1. Allison and I are hoping to embark on a grand adventure exploring the all the various things quails can get up to. We hope you enjoy what we have coming.</br></br>Since we both currently work for tech companies, this comic is close to home for the two of us. Engineers in SF have it pretty good these days, but that still doesn't stop many of them from griping about their first world problems. I know I'm guilty of it, and most people at my company are. This is our not-at-all subtle jibe at life in the current tech center of the world.</br></br>Thanks.</br></br>PJJ", 
+        "title": "Captain Quail 1", 
+        "published": "2013-07-25T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-1", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 1
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-07-28T01:12:03Z", 
+        "post": "I got into the Star Trek game kind of late. It floated on the edge of my perception for a real long time, and I knew a lot of the random pop-culture bits from it long before I actually sat down and started watching it. Tribbles. Live long and prosper. KHAAAAAAN!</br></br>It wasn't until college that I started hanging out with real trekkies, and it wasn't until almost the end of college that I started my quest to sit down and watch all of Star Trek. I started with TNG, because while Kirk is a pop culture Olympian, Picard felt more like the kind of guy I would want as my commanding officer.</br></br>True confessions: I have not seen all of Star Trek. I have not even seen all of TNG. This makes me eminently unqualified to talk about Star Trek in any meaningful way, I feel. What I can say is what Star Trek means to me. And the biggest piece of that meaning, the one that I think a lot of fans agree with, is that Star Trek is a vision for the future we hope we get, and would happily work towards. Its the ideal of the world we want to live in.</br></br>Gabriel Quail, Capt., is a representative of his race's better future who must contend with our imperfect present. He's a bird on a mission, a mission we want to share with you.</br></br>Thanks,</br></br>PJJ", 
+        "title": "Captain Quail 2 - Split Infinitives", 
+        "published": "2013-07-28T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-2-split-infinitives", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 2
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-07-31T01:12:03Z", 
+        "post": "Coffee. It powers so much of the Western business world that it would be a tough choice deciding which would have the greater impact: If all the oil in the world were to suddenly disappear, or if there was not a single coffee bean left on Earth. Coffee, like tea and alcohol, can also be a great social elixir. I find myself scheduling coffee meetings more than any other kind of casual encounter, because its a concept almost everyone is familiar with. It makes perfect sense that a quail from beyond the stars would want to see what all the fuss was about, and Captain Gabriel Quail charges straight into the barista's den in today's comic.</br></br>I have almost gotten into a coffee habit at every job I've had, but somehow pulled back right before the edge. This wasn't intentional on my part, something would just interrupt the pattern and I never got back onto it. Posts like <a title=\"A year without caffeine, part one\" href=\"http://bryanalexander.org/2013/01/04/a-year-without-caffeine/\" target=\"_blank\">this</a> and <a title=\"A year without caffeine, part two\" href=\"http://bryanalexander.org/2013/01/06/a-year-without-caffeine-part-2/\" target=\"_blank\">it's sequel</a> make me pretty happy about that. Allison, the better half of this strip, drinks coffee regularly every morning, but is nowhere near extreme about it.</br></br>It would be amusing if Captain Quail had managed to get his hands on a cup of Joe. A hyper-kinetic quail sounds darned amusing, and may appear later in this series. Until then,</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 3", 
+        "published": "2013-07-31T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-3", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 3
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-06T01:12:03Z", 
+        "post": "So both Allison and I are pretty big fans of Jim Butcher's <a title=\"The Dresden Files\" href=\"http://www.jim-butcher.com/books/dresden\" target=\"_blank\">Dresden Files</a>. They are really great reads, and I'm in the process of re-reading all of them right now. Well, I say in the process, but I actually just finished going through the run. Its amazing watching the main character, Harry Dresden, change over the course of the books. He gets more powerful, as you would expect a hero to do over time, but his reasons for why he does what he does also change.</br></br>I would argue that Dresden at the beginning of the series acts out of a desire to right the wrongs in the whole world. He has led a hard life already, has seen what the dark side looks like, and decides to use his wizardly might to overcome that darkness. As the series progresses, he continues to save the world, but does so out of an increasing motivation to save the people he loves.</br></br>Love is a powerful force. I'm not going to get much more sappy here, and I think the way Captain Quail is experiencing love in today's comic is a perfect example of one facet of the emotion. What's a space quail to do, alone on a strange planet, but try to mingle with the natives? And isn't it natural for his head to be turned by a smooth beak and gleaming feathers?</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 4 - Romance", 
+        "published": "2013-08-06T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-4-romance", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 4
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-14T01:12:03Z", 
+        "post": "I'd like to say the reason that it's been so long since we posted a comic is that we couldn't bear to bring ourselves to showcase the heartbreak Captain Quail goes through in today's panel. In reality, making a comic is hard, and we're busy people. Allison and I work full-time jobs, and I've got more side projects going on than is healthy. (Shameless plug: check out <a title=\"This Is Not That Game\" href=\"http://www.thisisnotthatgame.com\" target=\"_blank\">This Is Not That Game</a>)</br></br>That being said, being passed over for food is still pretty damn stone cold. We've all gone through bad rejections and bad breakups, but I don't know anyone outside the internet who's actually been dumped for a piece of bread. Maybe its a bird thing.</br></br>On an unrelated note, we are possibly the last people on the internet to discover <a title=\"Welcome to Night Vale on iTunes\" href=\"https://itunes.apple.com/us/podcast/welcome-to-night-vale/id536258179\" target=\"_blank\">Welcome to Night Vale</a>. In case we aren't and you've never heard of it, go check it out. It's hilariously creepy so far, and worth a listen if you're into the same things we're into. I mean, you;re here, so you must be, right? In any case, you should give the show a chance, and push yourself past the first episode. Getting used to the format is part of the fun.</br></br>In other unrelated news, today is my birthday! You know what would be an awesome gift? If you were to share Quail Comics with all your friends, neighbors, and random people on the street. Even if you happen to read this post\u00a0<em>not</em> on my birthday, it would still make a great birthday gift. Thanking you in advance.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 5 - Heartbreak", 
+        "published": "2013-08-14T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-5-heartbreak", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 5
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-16T01:12:03Z", 
+        "post": "We're taking the strip in a pretty heavy Star Trek direction, if that wasn't <a title=\"Captain Quail 2: Split Infinitives\" href=\"http://www.quailcomics.com/comic/captain-quail-2-split-infinitives/\" target=\"_blank\">obvious already</a>, but Allison and I are both well-versed in general pop culture, especially pop culture with a Science Fiction bent. Humdrive is, in my mind, reminiscent of the Spacing Guild Navigators from Dune, but there's probably a bit of TNG's Data in there as well. \u00a0The Spice must flow!\u00a0Humdrive is pretty advanced technology, although she's not quite showing it at the end of today's strip. If I were flying a spaceship full of birds, I would probably have trouble with glass surfaces myself.</br></br>I know I'm way late to the party here, but <a title=\"XCOM: Enemy Unknown\" href=\"http://www.giantbomb.com/xcom-enemy-unknown/3030-37152/\" target=\"_blank\">XCOM: Enemy Unknown</a> is a pretty awesome game. I've always had a soft spot for top-down turn based strategy games, and for single-player squad based games. I thought <a title=\"Dawn of War II - Giant Bomb\" href=\"http://www.giantbomb.com/warhammer-40000-dawn-of-war-ii/3030-21175/\" target=\"_blank\">Dawn of War II</a> was the pinnacle of that type of game, until I played XCOM. Taking a game engine traditionally reserved for first-person shooters (the Unreal engine), and using it for a strategy game is part of the brilliance, and allows for great in-motion cinematics as you command your squad.</br></br>As I've recently come into some birthday money, and some of it is in the form of Amazon gift cards, I've been thinking about what I should get myself for my birthday; being a geek, naturally my thoughts turned to technology. I'm in this weird position though, where there's not any tech that I really want (at least not in the 'ooh, shiny!' sense). So I'm looking instead for tech things that will be actually helpful to my life, and coming up surprisingly short. The <a title=\"Google Chromecast\" href=\"http://www.google.com/intl/en/chrome/devices/chromecast/\" target=\"_blank\">Google Chromecast</a> comes closest, but I already have something that functions pretty well as a set-top box. I'm left in this weird position where I feel like some technological thing could help me in some way, but nothing I see seems good enough to spend my money on. Maybe there's an app for that.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 6 - Humdrive", 
+        "published": "2013-08-16T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-6-humdrive", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 6
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-20T01:12:03Z", 
+        "post": "In high school, when I reunited with my first mistress technology after a brief stint where I was wholly devoted to my first wife, reading, I was very much into hardware. I loved breaking apart and building up computers and electronics of all types, and would pore over PC Magazine and Maximum PC as though they were holy writ. I barely understood what was going behind the blinkenlights, but I knew I enjoyed making them dance.</br></br>For an impressionable youth with an inclination towards electronics, especially in they lived on the West coast in the 90s and early 2000s, there was a certain store that was Mecca, Shangri-La, a store to which no other store could possibly compare. Glancing at today's comic and <a title=\"Captain Quail 6 \u2013 Humdrive\" href=\"http://www.quailcomics.com/comic/captain-quail-6-humdrive/\" target=\"_blank\">our last post</a>, you may be able to tell which store I'm talking about. Both Allison and I can understand spending way more time than is healthy ogling electronics, even though both of us now work more in software than in hardware. (If you're not certain of the difference, hardware people make the boxes with screens all around us. Software people find pretty, hopefully useful things to put on those screens.)</br></br>Being in software means we're closer than most to the pulse of where main-stream technology is headed. Some of it is magical, some of it is terrifying, some of it is both. Its incredibly possible that we'll do a comic in the future where Captain Quail and his trusty crew have to deal with some of the issues that are getting more and more important in our world: issues like trust, privacy, and security.</br></br>Its also equally possible that we'll just keep trying to create the quail equivalent of this:\u00a0<a href=\"http://www.youtube.com/watch?v=J-ZYzvD1rJ8\" target=\"_blank\">http://www.youtube.com/watch?v=J-ZYzv</a></br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 7 - Chips", 
+        "published": "2013-08-20T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-7-chips", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 7
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-23T01:12:03Z", 
+        "post": "I am unabashedly a huge fan of Futurama. That's not to say I like every episode. Even the most die-hard Trekkies I know have at least one episode they will admit (normally in private, after you get them pretty drunk) is not great. I especially think that the stories Groening and co. created were better when they were still on Fox. The restrictions that I'm sure the the network made them conform to possibly made them more creative. I can't find any great articles (feel free to leave one in the comments), but my experience has been that working with restrictions makes better art.</br></br>That said, there is one episode of the newer Futurama seasons that I find outrageously funny. \"All the Presidents' Heads\"\u00a0sends the Planet Express crew to the time of the American Revolution, and hilarity ensues. This episode also has one of the best running gags in the series, I feel: the people of the past view Bender, a robot from the future, as a piece of technology that can do everything their current technology can do. Bender is, over the course of the episode, referred to as a stove, a crockpot, and a cannon, and despite Bender's insistence that he's none of those things, he can perform all those functions.</br></br>When we expect sufficiently advanced technology to be magic, we also expect it to be able to do everything magically.</br></br>Poor Humdrive probably doesn't think she can serve as a USB stick full of cat pictures. She's hyper-advanced bird technology from beyond the stars! Its also amusing to imagine what a civilization of birds must think about cats.</br></br>Captain Quail and Humdrive will be returning to the final frontier soon enough, so stay tuned!</br></br>Thanks,</br></br>Philip</br></br>(P.S. Take a close look at the second panel today. Humdrive has better USB support than my MacBook.)", 
+        "title": "Captain Quail 8 - Exposed", 
+        "published": "2013-08-23T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-8-exposed", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 8
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-27T01:12:03Z", 
+        "post": "Allison and I spend a lot of time on the internet. I think that's possibly a pre-requisite for creating a webcomic. What's surprising to me is that, given how much time I spend on the internet, I find very little content that I think has broad enough appeal to be reposted, either on the various social networks or this comic. Its been a red-letter weekend by that count, because here are two things that I think you should go watch. Preferably now.</br></br><a title=\"Be a MANN\" href=\"http://www.youtube.com/watch?v=z9-QaIvjtBw\" target=\"_blank\">Be a MANN</a></br></br><a title=\"Go!Robins! - Bath Time\" href=\"http://www.youtube.com/watch?v=CFXwU9gtu1A\" target=\"_blank\">Go!Robins! - Bath Time</a></br></br>That first video is awesome because there needs to be more Disney/TF2 Crossover in the world. The second video is awesome because it represents one of the promises of the internet, at least for Quail Comics: You are not alone. A lot of us are attracted to the internet by the promise that there are people and communities who care about what we care about, and do what we want to do. That being said, I never imagined there would be somebody ELSE making genre media homages using small woodland birds. Thank you, Internet. Thank you.</br></br>We saw The World's End last night. I really like Simon Pegg, and Nick Frost, et al. Shaun of the Dead is \u00a0funny, Hot Fuzz is hilarious and The World's End is... well done. I certainly laughed through it, and the action was kicked up yet another notch from Hot Fuzz. But there was something about the movie that rubbed me the wrong way. It may be because of alcoholism in my family, or the sense that we as human beings should aspire to overcome our baser natures rather than being free to indulge in them constantly or... bah. I'm getting crotchety.</br></br>The World's End is a really good film. I don't regret seeing it, and I will probably watch it many more times in the future. But Hot Fuzz is still the best in the trilogy, as far as I'm concerned. If you liked Shaun of the Dead and Hot Fuzz, you should go see it. If you didn't, but like buddy-films with lots of action and laughs, go see it. Simon Pegg is a really cool dude, by all accounts, and I'm happy to watch any movie he's in.</br></br>Administrivia: We're going to really try and post Tuesdays and Fridays regular. Please share with your friends, your followers, and your cat!</br></br>Well, this post is almost as full as Humdrive's bag from today's strip (see? I did link back to the comic), so I'm going to call that a wrap. See you Friday.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 9 - Skuak", 
+        "published": "2013-08-27T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-9-skuak", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 9
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-08-30T01:12:03Z", 
+        "post": "There are some mountains you climb because you need to. There are some mountains you climb because they are in your way. There are some mountains you climb just because they're there. And then there's indoor rock climbing.</br></br>I have nothing against indoor rock climbing, per se, but I'm about as good at is Captain Gabriel Quail, and I see the point of it about as much as Skuak. Which isn't to say that I'm not trying to be a fit person. As a household, we're trying to get more fit all the time, although Allison is leading the pack there. I have recently rediscovered the joy of bicycles, and have not yet started riding only fixies and wearing vnecks with scarves despite living in the Bay Area, so that's a plus. If you have no idea on Earth what I'm talking about, congratulations! If I have offended you in some way, oops.</br></br>I have trouble riding a bike now without thinking of the <a href=\"http://www.youtube.com/watch?v=ob_GX50Za6c\" target=\"_blank\">Steve Jobs quote</a>. You should watch the video (its short) for the background, but the relevant soundbite is:</br></br>\"A computer is a bicycle for the mind.\"</br></br>Computers aren't magic, they aren't alien technology. They are a very advanced tool, that lets us create other tools almost as fast as we can think of them. And when we've created those tools, we get to be creative in ways we never dreamed.</br></br>Interesting news! We will probably be changing the look of the site sometime soon. These visual changes will be the cue to you, the reader, that things of changed, but to us, the creators, it will mean a whole new backend that we're building for this site. Hopefully this new architecture will help us do more creative things quickly, and provide more to our dedicated readers.</br></br>Speaking of which, we've received our first piece of <a title=\"Quail Comics Fan Mail 1\" href=\"http://www.quailcomics.com/2013/08/29/quail-comics-fan-mail/\" target=\"_blank\">fan mail</a>! Thank you so much for the kind words, and keep 'em coming!</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 10 - Rock Climbing", 
+        "published": "2013-08-30T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-10-rock-climbing", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 10
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-03T01:12:03Z", 
+        "post": "I have just returned from a trip through the central valley of California, visiting Yosemite and then returning over the course of two whirlwind days. I've made this trip a number of times, as I have family that lives near one of the entrances to Yosemite, but something struck me this trip that I don't think I would have thought had I not started writing regularly: \"Epic stories need epic spaces.\"</br></br>As I rode past miles and miles of mountains and fields, and looked out on a sky that seemed so much bigger than the sky in the sub/urban area where I live, I was struck by a sense of scale that I hadn't ever noticed before. I think the Western Genre draws us in partly because it normally happens in these wide open spaces, where the sheer size of the landscape seems to focus all your attention on the actions of a few characters. Its part of the reason why epic stories that happen in cities don't just happen in any old city. They happen in mega-cities. Metropolis. Gotham. New York. Cities that, real or fictional, operate like gravity wells in a narrative ecosystem, drawing all the action around them into them.</br></br>I also thought a second version of the thought above: \"Epic stories need epic spaces. And there is no more epic space than space.\" When we call space the 'Final Frontier', we aren't just expressing our desire to explore, we're harkening back to the Western stories that seemed bigger than life for generations from a previous century. Every action that happens in space is all the more significant because of the vastness its happening in. A single light in a pitch black room is the center of attention. Even a somewhat-cocky commanding officer getting thrashed in a sparring match with his subordinate feels bigger because its taking place in a tin can hurtling through the void.</br></br>Speaking of genres and tropes, I'm pretty sure the 'Superior officer passing off losing as letting the other guy win' predates written stories. Nobody wants to look foolish, especially Quail captains. Also, Skuak is shaping up to be a pretty excellent foil for Gabriel Quail, and this makes me happy more than I thought it would. Hopefully you share in our joy.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 11 - Martial Arts", 
+        "published": "2013-09-03T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-11-martial-arts", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 11
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-06T01:12:03Z", 
+        "post": "There are some stories and worlds that are well-springs of creativity. You dive into them, and you swim through grottoes full of magic, barely believing what you're seeing. Eventually you surface, and you try desperately to remember all you've taken in while you mentally prepare yourself for the next dive. You know that your creativity and imagination has been kicked up a notch just by exposure to these universes, of which there are few. Neil Gaiman's Sandman is one. I would argue the Bioshock series is another. It would be tempting to add Tolkien's work, but that is a universe which has been heavily mined by popular culture, and its hard to feel inspired by it. (Personal opinion here, feel free to disagree in the comments.)</br></br>Then, there's Brian K. Vaughn. I could wax poetical for days about Fables, but its his more recent series that is my current cave of wonders. \u00a0I'm talking about Saga. I tend to read comic series in trade paperback or graphic novel form, even when the original material first came out in single issues, so I have just finished the second Saga trade paperback. The first one blew my mind in terms of discussing social justice and civil rights in a new and novel way. The second book went off the chain, and its not going to come back any time soon.</br></br>This well-spring effect often manifests itself in me as a series of questions, usually uttered in my head in an awed tone of voice. (Yes, my inner voice has tones. I did theater as a child.) Their ship is a what? Magic works by knowing secrets? The planet is actually WHAT? Really? That's a ROBOT? Holy crap, THAT'S HIS EX?\u00a0I hope you pick up the books, and that you too find yourself struck by some of the same questions I had.</br></br>A lot of times, I think creators create by trying to well-spring in reverse; namely, they throw a bunch of things together and see what sticks. This is a perfectly valid way of creating, and is often the best way to try things when you're starting out. Sometimes, though, you get bad fusions. Like Andy Warhol and Stephany Meyer. Garth Brooks and 50 Cent. Japanese-Mexican-Italian. I'm pretty sure only that last one is real, or at least that last one is the only one I've heard about. And, if you particularly hate yourself, you can find that restaurant in the Bay Area, where Allison and I live and work. Maybe its a Quail delicacy.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 12 - Fusion", 
+        "published": "2013-09-06T01:12:03Z", 
+        "creator": 1, 
+        "slug": "captain-quail-12-fusion", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 12
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-13T04:37:56.565Z", 
+        "post": "The whole lolcats phenomenon is kind of weird. If someone had told me a decade ago that putting captions on pictures of animals would become one of the primary ways the Internet expresses itself, I probably would have refused to believe them. It seems like one of those fads that should have burned out within a year, and has continued on despite expectations.</br></br>Some semantics: pictures with overlaid with text in impact font are memes, but not all memes are pictures overlaid with text in impact font. Meme is just giving a word to something that has existed since there have been humans. I personally like the Reddit-inspired name Advice Animals for these lolcat derivatives, but using the word meme to describe only funny captioned pictures on the internet is kind of missing the point of the word. This paragraph is more of a rant than I intended, but I\u2019m betting there\u2019s a couple people out there who really dig semantics and agree with me.</br></br>I really don\u2019t have a lot for today\u2019s post, I\u2019m sorry to say. We\u2019ve got a lot of cool stuff coming up for the site, hopefully some awesome big changes, and we\u2019re spending most of our free time working on those things.</br></br>Some things you can look forward to, in the future:\r\n</br></br>\r\nEpic battles</br>\r\nMore pop culture references</br>\r\nA whole new site</br>\r\nAnd a whole new comic!</br>\r\n</br></br>We will also be at the Alternative Press Expo in San Francisco October 12-13. We won\u2019t have a booth or anything, we\u2019ll just be there having a good time and seeing all the other awesome stuff people are making. We might even have Captain Quail t-shirts!</br></br>That\u2019s about all that\u2019s in my brain right now, that I can talk about. Exciting stuff ahead, stay tuned.</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 13 - Can Has", 
+        "published": "2013-09-12T22:36:34Z", 
+        "creator": 1, 
+        "slug": "captain-quail-13-can-has", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 13
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-14T00:44:17.967Z", 
+        "post": "</br></br>Its not all bird baths and free seeds in the world of Captain Gabriel Quail. There are enemies that seek to destroy the Avian Federation, who believe in the conquest of all other winged peoples. The Raptor Empire is one such enemy, and Captain Quail knew, just\u00a0<em>knew</em> he would have to face them sooner or later.</br></br>This is the beginning of what will actually be a pretty decent story arc in the Adventures of Captain Quail, and we're just as excited to see where it goes as I hope you are. Since we're just starting out in the world of possibility that surrounds this comic, we haven't quite decided how we're going to subdivide the what we have into logical groupings. Chapters? Seasons? By year? Its not a super important question right now, but we think it would be nice to organize the entire set of comics into chunks that are more digestible.</br></br>Speaking of reorganization, I'm super excited to announce the beta of the new home for The Adventures of Captain Quail: <a title=\"Captain Quail\" href=\"http://www.captainquail.com\" target=\"_blank\">www.captainquail.com</a>. This new site (which is still in beta but getting better all the time) has been built from the ground-up for this comic, but hopefully built in such a way that adding more comics will be easy. By building it ourselves, we get full control over what we can do with it, and hopefully provide some awesome experiences to our readers.</br></br>Please play around with it, and let us know of any problems or suggestions for feedback you might. We're always available at our twitter and facebook pages (see above the comic), and we're hoping to add better reader feedback soon. The new site isn't quite as up-to-date with comics as this current site, but it may be by the time you read this. (Definitely check out my current personal favorite new feature, the <a title=\"All Comics\" href=\"http://www.captainquail.com/comic/all\" target=\"_blank\">All Comics View</a>, where you can see all the comics on one page to help you catch up quickly.)</br></br>Hopefully we'll be moving over to the new site permanently soon, stay tuned!</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 14 - Enemies", 
+        "published": "2013-09-14T00:42:20Z", 
+        "creator": 1, 
+        "slug": "captain-quail-14-enemies", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 14
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-17T03:58:58.781Z", 
+        "post": "Greetings fair gentlefolk! Good morrow to thee!</br></br>Allison and I care involved or interested in pretty much all things geeky. This should be fairly self-explanatory as we're both software engineers who make webcomics in our spare time. So it shouldn't be any surprise that us and a gathering of our friends went to the <a title=\"Norcal Renaissance Faire\" href=\"http://www.norcalrenfaire.com/\" target=\"_blank\">Norcal Renaissance Faire</a> this weekend.</br></br>I've gone to a few faires of this type before (Dickens' Faire is great!), and I almost always have a good time after I make the mental shift necessary to really enjoy myself. The people who go and really get into it live in a headspace that has familiar geography to my own, and my brain takes a little time to recognize I'm in a safe space, a space I can let myself go more than usual.</br></br>Its also been my experience that going to historic faires and conventions is more fascinating if you grab all of geek culture by the horns and don't let go. For example, at the faire Allison and I saw someone who I swear was going for elf, but Allison thinks was trying for Romulan. Its amazing to me that two engineers making a webcomic about space opera and quails can be at a Renaissance faire and discuss whether another attendee was aping Star Trek of the Lord of the Rings. The geek community can be abrasive, offensive, and just plain weird, but it can also be magical, inclusive, and transformative.</br></br>Which one or set of the above adjectives apply to this comic is up to you the reader, but we hope you enjoy it and add it to your personal venn diagram of what you're into.</br></br>Thanks,</br></br>Philip</br></br>PS - You should go to the Norcal Ren Faire, especially if you've never been. Its fun. Really, really fun, and costumes are not required.", 
+        "title": "Captain Quail 15 - Missed Connections", 
+        "published": "2013-09-17T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-15-missed-connections", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 15
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-20T05:37:29.383Z", 
+        "post": "Kirk, Spock, and a Red Shirt go down to the planet... woops! Wrong show.</br></br>Today's comic allows me to talk about one of my favorite pieces of meta-fiction: John Scalzi's\u00a0<em>Redshirts.</em> Its a Star Trek universe told from the perspective of a lowly crewmember, and that premise alone will probably grab your interest if you're already reading this comic. Its also one of the more convincing pieces of meta-fiction I've read. Well, I say read. I really mean listened to, and the melodious tones of Wesley Crusher himself lend an uber-meta quality to the work when you experience it in audiobook.</br></br>Switching tracks, I had this idea a while back that we would try to highlight a new webcomic every week, because I believe in using this space to help highlight other cool things Allison and I find across the internet. This idea has not materialized yet, but that's all about to change! This week's comic highlight doesn't really need the extra press, but its a comic I've enjoyed in the past which has the same initials as ours! <a title=\"Questionable Content\" href=\"http://questionablecontent.net\" target=\"_blank\">Questionable Content</a> has been going strong for more years than I can remember, and its one of the few comics that I feel has consistently good storylines. Beyond that, they have some of the most original and recognizable shirts I know. How recognizable? I got stopped by someone at Ren Faire who recognized the shirt I was wearing as being a Questionable Content shirt. (Yes, I do like owls). Fair warning: QC is a 'slice-of'life' comic, where the only non-realistic elements are some anthropomorphized computers. If hilarious angsty hipster romance doesn't sound like your thing, you may not enjoy the comic. (I still think you should give it a try, though)</br></br>In site news, this will probably be the last Captain Quail posted to this old site! When you come back Tuesday morning (you do check every Tuesday and Friday, right?) this quailcomics.com will be using the shiny new system we built. Hooray!</br></br>I think that does it for today. Have a great weekend!</br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 16 - Red Shirt", 
+        "published": "2013-09-20T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-16-red-shirt", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 16
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-24T03:50:18.217Z", 
+        "post": "</br></br>It is really hard to get over your prejudices. No matter how much time you spend thinking about social justice and trying to correct your own preconceived notions,  your subconscious can blindside you with some garbage ideas that are just <em>wrong</em>. My experience has been that its the times I think I have a handle on things and am pretty well adjusted that I am closest to being a bigot. </br></br>We are raised in bubbles, and the bubble is thickest when we first enter adulthood. By exposing ourselves to new ideas and other people's bubbles, we stretch our own, making the walls thinner and thinner. I'm not sure if the bubble you grew up in ever pops; I'm still growing. I do know that sometimes it seems like I've just traded one bubble for another. </br></br>There's been a lot of talk recently about the bubble that is Silicon Valley, although its possible that that talk is only being heard from inside the valley's bubble. Many articles and blog posts have lamented that the companies in the valley are only trying to solve the problems of the valley's elite inhabitants. There is, as far as I can see, some truth to this statement. We don't need the majority of the services that most valley startups are trying to create. </br></br>Its easy to fall into the trap of believing that your way is right, especially when most of those around you reflect your opinions. Captain Quail and the crew of the Egg Surprise think they're defending Earth from Raptor aggression, and based on the Raptors' actions they seem to be right. But I hope we get to dive into backstory a bit with some of these cultures, and see that nothing is truly black and white. Its a lesson I need to remind myself of constantly. </br></br>Thanks,</br></br>Philip", 
+        "title": "Captain Quail 17 - Hostilities", 
+        "published": "2013-09-24T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-17-hostilities", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 17
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-09-27T06:38:12.316Z", 
+        "post": "Imagine you are floating. Floating through space and time. No, not floating, flying. Flying on the back of a gigantic bird. Welcome to space. Welcome to the bird. Welcome to... The Advnetures of Captain Quail.</br></br>Yes. We have been listening to far, far too much Welcome to Night Vale. We've also been watching heist movies. Well, me moreso than Allison. I have a deep abiding love for heist movies, the Ocean's 11 series in particular. There's something so deeply satisfying about seeing a plan pulled off flawlessly. </br></br>We here at Quail Comics are deeply excited for a number of reasons. Two of those reasons will become clear in the coming weeks, and we're not going to talk about them quite yet. The source of excitement we will talk about is this: we're doing a pretty good job at keeping a regular posting schedule. Keeping a regular posting schedule for an extended period of time seems to be what makes or breaks a webcomic. Allison and I have both seen comics that got us really excited, and then died mysteriously when their creators just stopped posting. We hope you've been enjoying our regular updates, and that we can keep providing them to you for the foreseeable future. </br></br>Speaking of the world o' webcomics, the series we'd like to highlight this week is <a href=\"http://www.olympusoverdrive.com/\">Olympus Overdrive</a>. We are really big fans of pieces that remix old stories in new ways (like classic space opera stories done with Quails) and Olympus Overdrive hits that button for us. You could describe the comic as the Greek mythos seen through the lens of a modern Alternate Reality Game, but you would really only be scratching the surface. It has some echoes of Digimon and Death Note (at least for me) that make it a really enjoyable read. Also, the creators aren't afraid to break out of the traditional comic medium and mix-in some actual animation, which makes my new-media radar set up and take notice. We enjoy it, and hope you will too. </br></br>Stay tuned next week, where you'll hear about some exciting things we've got going over the next month, as well as the revelation of Captain Quail's master plan to beat the Raptors!</br></br>Good night, sweet listeners. Good night.</br></br>Philip", 
+        "title": "Captain Quail 18 - Diplomacy", 
+        "published": "2013-09-27T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-18-diplomacy", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 18
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-01T05:09:32.646Z", 
+        "post": "Imagine you are a dragonfly, iridescent in your flittering flight. You glide through the air, basking in the nighttime warmth radiating from the desert floor. Your life is perfect. </br></br>Welcome to The Adventures of Captain Quail. </br></br>Today marks the beginning of a potentially awesome month for Quail Comics. For one, Friday will mark our 20th comic. Which is amazing. We don't have a goal with how far we're going to take the series, but milestones like this make us just want to keep going. </br></br>We also have two very exciting weekends ahead of us. This weekend, we will be at <a href=\"http://www.krakencon.com/\">Kraken Con</a>! Kraken Con is a new fan con happening just South of San Francisco, and we hope it will take off. We won't have a booth, but we will be wearing official Captain Quail T-Shirts, and handing out free prints from the comic. What do these T-shirts look like? I'm glad you asked, because we're going to be showing pictures of the shirts, as well as telling you how you can win one, in Friday's post.</br></br>It's our plan to have a rollicking good time with our prints and our shirts this weekend at Kraken Con, but no plan survives contact with the enemy. As Captain Quail is soon to discover in today's comic. </br></br>Thanks for reading!</br></br>Philip</br></br>P.S. Here it is, your moment of zen: <a href=\"http://www.youtube.com/watch?v=jofNR_WkoCE\">http://www.youtube.com/watch?v=jofNR_WkoCE</a>\r\n", 
+        "title": "Captain Quail 19 - Best Laid Plans", 
+        "published": "2013-10-01T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-19-best-laid-plans", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 19
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-04T03:00:50.882Z", 
+        "post": "I was going to start this post with another story-based non-sequitor, since Allison and I are still way deep in Welcome to Night Vale, but I feel like spacing those out is a good idea. \r\n\r\n</br></br>Exciting news! You can now create a Quail Comics account! See that lovely \"Signup\" button at the top of the page? Nice, isn't it? Why would you want to create an account for a comics site, you ask? So that you can win free stuff! We are beginning a new program, starting today, that will let you get FREE Captain Quail swag. All you have to do is create an account, create a referral code on your profile page, and then pass that link around. The first five people to get one hundred referrals will win a Captain Quail tshirt in their size, absolutely free! We'll even ship it to you. If you aren't one of the first five, still keep sending your codes! We'll be running discounts off Captain Quail merch, and doing giveaways, based on these codes. \r\n\r\n</br></br>What do these shirts look like? I'm glad you asked! Here is the very first Captain Quail Tshirt, a copy of which could be yours!\r\n\r\n</br></br><img class=\"img-responsive\" src=\"http://media.quailcomics.com/images/shirt1_front.JPG\"></img>\r\n</br></br><img class=\"img-responsive\" src=\"http://media.quailcomics.com/images/shirt1_back.JPG\"></img>\r\n\r\n</br></br>We will be having these shirts for sale as well, as soon as we can figure out the best way to sell them. \r\n\r\n</br></br>Also! We will be at <a href=\"http://krakencon.com\">Kraken Con</a> this weekend. If you seem someone in one of these shirts, its probably us!\r\n\r\n</br></br>Since we don't have a lot of extra space this week, but we still want to keep up the \"webcomic-a-week\" series, check out <a href=\"http://penny-arcade.com\">Penny Arcade</a>. I don't think any explanation is needed here.\r\n\r\n</br></br>Thanks everybody! See you next week!\r\n\r\n</br></br>Philip\r\n\r\n</br></br>P.S. A moment of zen appropriate for the US Government shutdown: <a href=\"http://www.youtube.com/watch?v=KaOC9danxNo\">http://www.youtube.com/watch?v=KaOC9danxNo</a>", 
+        "title": "Captain Quail 20 - Evasive Action", 
+        "published": "2013-10-04T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-20-evasive-action", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 20
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-08T00:22:00.078Z", 
+        "post": "As you've probably figured out by now, we really love puns here. Especially Star Trek inspired puns. The last panel of today's comic has been in the back of our minds for a while now, and this story arc gave us the opportunity to introduce the Egg Surprise's medical officer, and use a joke line that has had us cracking up. We hope other people find it funny, but we really don't know. (psst. you can use the comment field below this post to let us know what you think)</br></br>Along with geeky puns, we also love geeky cons. This weekend, this past Saturday to be exact, was KrakenCon, a brand new con that we were very pleased by. KrakenCon has a lot of the potential for fun of FanimeCon, without much of the included drama that has been building in recent years. (Although both cons suffer from sever disorganization of the ticketing and admission lines) Hopefully, KrakenCon will continue to grow, and we will have a stronger presence in the coming years. This year was more exploration for us, and we enjoyed meandering the halls in our tshirts and handing out micro-prints. </br></br>We've had enough requests for shirts that we are definitely looking into getting those available for sale, as well as being giveaways in our referral challenge. If you would like to be first in line when we're doing our first batch for sale, leave a comment or use that handy box to the right to let us know.</br></br>Thanks,</br></br>Philip</br></br>P.S. Here it is your moment of zen: <a href=\"http://www.youtube.com/watch?v=Uj4RBmU-PIo\">http://www.youtube.com/watch?v=Uj4RBmU-PIo</a>", 
+        "title": "Captain Quail 21 - Combes", 
+        "published": "2013-10-08T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-21-combes", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 21
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-11T05:21:24.712Z", 
+        "post": "<p>The time has, the Walrus said, to talk of many things. Of shoes and ships and sealing wax-- but mostly about <a href=\"http://orteil.dashnet.org/cookieclicker/\" target=\"_blank\">Cookie Clicker</a>. If you haven't discovered this phenomenon, wait until you're done reading this post, and then go play. Why should you wait? Because if you go now, you'll probably never finish this post.&nbsp;</p><p><span style=\"line-height: 1.45em;\">On the outside, Cookie Clicker looks like another Skinner Box online game. Once you dive in, you discover a world of baking madness that you never knew existed. The best creative works out there let you feel like you're taking a peek into the mind of the designers, and the mysterious <a href=\"http://orteil.dashnet.org/\" target=\"_blank\">Orteil</a> has a delightful mind of whimsy and wonder, if Cookie Clicker is any indication. It should be noted that Allison and I hate most online/Facebook games with a passion, but we have both been completely sucked into Cookie Clicker. Start playing after you're done here, and play for a little bit - once you get going you'll see what's so amazing.</span><br></p><p><span style=\"line-height: 1.45em;\">Wait, why I am wasting space talking about games? *flips table* This weekend is <a href=\"http://www.comic-con.org/ape\" target=\"_blank\">APE</a>! The Alternative Press Expo is this weekend in San Francisco, and we're going! Not like, with a booth or anything (that'll be later) but we'll be walking the floor and chatting with all the awesome people there. If you see us in our Captain Quail T-Shirts, stop and say hi!</span></p><p><span style=\"line-height: 1.45em;\">Keeping up with Webcomic of the Week series, this week we think you should check out <a href=\"http://www.casualvillain.com/Unsounded/\" target=\"_blank\">Unsounded</a>. It is, to quote Allison, \"A magical epic about a girl and her attack zombie\". Its a series we both enjoy, and we really want to see where Ashely Cope it. If you like interesting magic systems, bio-steampunk, and generally fantastic fantasy, you'll like unsounded.</span></p><p><span style=\"line-height: 1.45em;\">That wraps up this week. Hope to see you all at APE, and right back here Tuesday for the continuing adventures of Captain Quail!</span></p><p><span style=\"line-height: 1.45em;\">Thanks,</span></p><p><span style=\"line-height: 1.45em;\">Philip</span></p><p><span style=\"line-height: 1.45em;\">P.S. You moment of zen:&nbsp;<a href=\"http://www.youtube.com/watch?v=IU4SDDNXuUA\" target=\"_blank\">http://www.youtube.com/watch?v=IU4SDDNXuUA</a></span></p>\r\n", 
+        "title": "Captain Quail 22 - If At First...", 
+        "published": "2013-10-11T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-22-if-at-first", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 22
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-15T02:11:54.931Z", 
+        "post": "<p>This past weekend was <a href=\"http://www.comic-con.org/ape\" target=\"_blank\">APE</a>. I tried to think about how I would describe the simply incredible experience that was this year's Alternative Press Expo, but no description could really do it justice. The closest I can come is to relate a small story.&nbsp;</p><p>Saturday afternoon, as I was getting ready to head home for the day, my face felt sore. I tried to figure out why that could be the case, and I realized that I had been<i> smiling the whole damn day.</i>&nbsp;While I like to think I'm quick to humor, its been a while since I've had the experience of breaking out in smiles for no apparent reason. Allison felt the same way. APE is magical, wonderful, fantastic. It shows off all that is best in creative endeavors, and lets you meet people who see the world through their own unique lenses, like you probably do. Last year, I wrote a <a href=\"http://darlingdork.com/ape_worth_a_thousand_words/\" target=\"_blank\">piece for Darling Dork about APE</a>. Everything I said there still holds true, with the added bonus this year that I got to connect with other creators as a creator.</p><p>APE gave us lots of material for our Webcomic O' the Week, and we're very much looking forward to sharing those on Fridays. The compliments we got on Allison's shirt design also lit a fire under my posterior to try and work out mass-printing and distribution so we can get these shirts in people's hands. We're going to do our very best to return to APE next year, as attendees and (hopefully) exhibitors.</p><p>Thanks for reading, and see you Friday.</p><p>Philip</p>\r\n", 
+        "title": "Captain Quail 23 - Reading Comprehension", 
+        "published": "2013-10-15T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-23-reading-comprehension", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 23
+},
+{
+    "fields": {
+        "tags": [], 
+        "created": "2013-10-18T04:04:51.674Z", 
+        "post": "<p>We're kind of obsessed with good stories. What makes a good story? That's kind of an ephemeral question, and its going to vary wildly from person to person. Allison and I agree on some aspects, and disagree on others. One criteria, that I think we both agree on, is that a good story must live in a world that draws you in, that seems so self-contained and complete that you spend hours trying to explore every inch of it.</p><p>This is possibly why we give scifi and fantasy more leeway, when it comes to judging stories; its more fun for us to explore imaginary worlds than it is to explore worlds more grounded in reality.</p><p>Of all the webcomics I've read (a list that has really grown since we started Captain Quail) none has a more engaging storyworld than <a href=\"http://www.gunnerkrigg.com/\" target=\"_blank\">Gunnerkrigg Court</a>. Tom Siddell's ongoing story of what happens when you take Hogwarts and <i>really</i>&nbsp;push the envelope hits so many of our buttons. Interesting backgrounds, robots, fairies, dragons, sea monsters, beings of fire and flame; they're all in here, and they don't seem out of place. Nothing feels shoe-horned.&nbsp;</p><p><span style=\"line-height: 1.45em;\">Given that I've been seeing Gunnerkrigg in my peripheral internet vision for years, I don't know how much I need to promote it. If you're also a fan of engrossing stories, I think you owe it to yourself to read Gunnerkrigg. I hope you like it as much as we do.&nbsp;</span></p><p><span style=\"line-height: 1.45em;\">Speaking of stories, we're pretty close to wrapping up this, our first major Captain Quail story arc. I think now that we've seen what we can do, and what can be done with the medium (thank you APE), we're going to start committing to telling the best stories about Birds in Space that we can. We'd love to have you along for the ride.</span></p><p>Thanks,</p><p>Philip</p>", 
+        "title": "Captain Quail 24 - Discovered", 
+        "published": "2013-10-18T07:01:00Z", 
+        "creator": 1, 
+        "slug": "captain-quail-24-discovered", 
+        "is_live": true
+    }, 
+    "model": "comics.post", 
+    "pk": 24
+},
+{
+    "fields": {
+        "is_active": true, 
+        "changed": "2013-10-03T23:11:25.595Z", 
+        "note": null, 
+        "code": "8ef07a", 
+        "created": "2013-10-03T23:11:25.595Z", 
+        "campaign": "First Round of Shirts", 
+        "user": 3
+    }, 
+    "model": "comics.referralcode", 
+    "pk": 1
+},
+{
+    "fields": {
+        "is_active": true, 
+        "changed": "2013-10-05T02:29:44.644Z", 
+        "note": null, 
+        "code": "289e78", 
+        "created": "2013-10-05T02:29:44.644Z", 
+        "campaign": "First Round of Shirts", 
+        "user": 4
+    }, 
+    "model": "comics.referralcode", 
+    "pk": 2
+},
+{
+    "fields": {
+        "object_repr": "captainquail.com", 
+        "content_type": 6, 
+        "object_id": "1", 
+        "change_message": "Changed domain and name.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-12T05:59:53.570Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 1
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 7, 
+        "object_id": "13", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-13T00:40:42.685Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 2
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 8, 
+        "object_id": "13", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-13T04:37:56.570Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 3
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 8, 
+        "object_id": "13", 
+        "change_message": "Changed creator.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T16:58:54.931Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 4
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 7, 
+        "object_id": "13", 
+        "change_message": "Changed alt_text, published and creator.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:01:03.359Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 5
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 8, 
+        "object_id": "13", 
+        "change_message": "Changed is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:01:16.520Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 6
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 7, 
+        "object_id": "13", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:01:29.307Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 7
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 7, 
+        "object_id": "13", 
+        "change_message": "Changed is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:01:33.998Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 8
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 8, 
+        "object_id": "13", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:02:45.961Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 9
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 13 - Can Has", 
+        "content_type": 8, 
+        "object_id": "13", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-13T17:04:17.766Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 10
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 14 - Enemies", 
+        "content_type": 7, 
+        "object_id": "14", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-14T00:30:18.031Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 11
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 14 - Enemies", 
+        "content_type": 8, 
+        "object_id": "14", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-14T00:44:17.971Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 12
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 14 - Enemies", 
+        "content_type": 7, 
+        "object_id": "14", 
+        "change_message": "Changed is_live and post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-14T00:44:32.229Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 13
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 14 - Enemies", 
+        "content_type": 8, 
+        "object_id": "14", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-14T04:11:39.037Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 14
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 15 - Missed Connections", 
+        "content_type": 8, 
+        "object_id": "15", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-17T03:58:58.787Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 15
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 15 - Missed Connections", 
+        "content_type": 7, 
+        "object_id": "15", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-17T03:59:57.275Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 16
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 16 - Red Shirt", 
+        "content_type": 8, 
+        "object_id": "16", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-20T05:37:29.390Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 17
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 16 - Red Shirt", 
+        "content_type": 7, 
+        "object_id": "16", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-20T05:38:28.478Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 18
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 16 - Red Shirt", 
+        "content_type": 8, 
+        "object_id": "16", 
+        "change_message": "Changed published.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-20T05:38:37.996Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 19
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 7, 
+        "object_id": "17", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-24T03:48:10.158Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 20
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 8, 
+        "object_id": "17", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-24T03:50:18.221Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 21
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 7, 
+        "object_id": "17", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-24T03:50:36.597Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 22
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 8, 
+        "object_id": "17", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-24T05:28:14.935Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 23
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 8, 
+        "object_id": "17", 
+        "change_message": "Changed is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-24T05:44:12.789Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 24
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 17 - Hostilities", 
+        "content_type": 7, 
+        "object_id": "17", 
+        "change_message": "Changed alt_text and is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-24T05:45:24.323Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 25
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 18 - Diplomacy", 
+        "content_type": 8, 
+        "object_id": "18", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-27T06:38:12.326Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 26
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 18 - Diplomacy", 
+        "content_type": 7, 
+        "object_id": "18", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-27T06:41:05.905Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 27
+},
+{
+    "fields": {
+        "object_repr": "elzilrac", 
+        "content_type": 3, 
+        "object_id": "2", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-09-27T06:43:19.082Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 28
+},
+{
+    "fields": {
+        "object_repr": "elzilrac", 
+        "content_type": 3, 
+        "object_id": "2", 
+        "change_message": "Changed password, is_staff and is_superuser.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-27T06:43:44.017Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 29
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 18 - Diplomacy", 
+        "content_type": 8, 
+        "object_id": "18", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-27T17:07:58.722Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 30
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 18 - Diplomacy", 
+        "content_type": 7, 
+        "object_id": "18", 
+        "change_message": "Changed tags.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-28T16:30:31.990Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 31
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 18 - Diplomacy", 
+        "content_type": 8, 
+        "object_id": "18", 
+        "change_message": "Changed tags.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-09-28T16:30:41.359Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 32
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 19 - Best Laid Plans", 
+        "content_type": 7, 
+        "object_id": "19", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-01T04:09:59.400Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 33
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 19 - Best Laid Plans", 
+        "content_type": 7, 
+        "object_id": "19", 
+        "change_message": "Changed published.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-01T04:22:01.073Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 34
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 19 - Best Laid Plans", 
+        "content_type": 8, 
+        "object_id": "19", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-01T05:09:32.651Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 35
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 19 - Best Laid Plans", 
+        "content_type": 7, 
+        "object_id": "19", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-01T05:10:21.391Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 36
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 19 - Best Laid Plans", 
+        "content_type": 8, 
+        "object_id": "19", 
+        "change_message": "Changed slug.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-01T05:10:49.559Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 37
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 8, 
+        "object_id": "20", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-04T03:00:50.886Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 38
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 7, 
+        "object_id": "20", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-04T03:03:50.982Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 39
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 8, 
+        "object_id": "20", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-04T03:29:52.562Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 40
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 8, 
+        "object_id": "20", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-04T03:31:22.964Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 41
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 8, 
+        "object_id": "20", 
+        "change_message": "Changed is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-04T03:35:51.859Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 42
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 7, 
+        "object_id": "20", 
+        "change_message": "Changed is_live.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-04T03:35:57.934Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 43
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 20 - Evasive Action", 
+        "content_type": 8, 
+        "object_id": "20", 
+        "change_message": "Changed post.", 
+        "user": 2, 
+        "action_flag": 2, 
+        "action_time": "2013-10-04T05:06:41.975Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 44
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combs", 
+        "content_type": 7, 
+        "object_id": "21", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-06T18:49:28.322Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 45
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combs", 
+        "content_type": 7, 
+        "object_id": "21", 
+        "change_message": "Changed alt_text.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-06T18:49:36.097Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 46
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combes", 
+        "content_type": 8, 
+        "object_id": "21", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-08T00:22:00.083Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 47
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combes", 
+        "content_type": 8, 
+        "object_id": "21", 
+        "change_message": "Changed post, published, is_live and creator.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-08T00:36:53.069Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 48
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combes", 
+        "content_type": 7, 
+        "object_id": "21", 
+        "change_message": "Changed title, is_live and post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-08T00:37:09.866Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 49
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 21 - Combes", 
+        "content_type": 8, 
+        "object_id": "21", 
+        "change_message": "No fields changed.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-08T22:21:34.037Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 50
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 22 - If At First...", 
+        "content_type": 8, 
+        "object_id": "22", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-11T05:21:24.753Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 51
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 22 - If At First...", 
+        "content_type": 7, 
+        "object_id": "22", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-11T05:23:11.780Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 52
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 22 - If At First...", 
+        "content_type": 8, 
+        "object_id": "22", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-11T22:26:04.086Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 53
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 23 - Reading Comprehension", 
+        "content_type": 7, 
+        "object_id": "23", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-15T01:55:19.537Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 54
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 23 - Reading Comprehension", 
+        "content_type": 8, 
+        "object_id": "23", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-15T02:11:54.936Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 55
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 23 - Reading Comprehension", 
+        "content_type": 7, 
+        "object_id": "23", 
+        "change_message": "Changed alt_text and post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-15T04:31:52.887Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 56
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 23 - Reading Comprehension", 
+        "content_type": 8, 
+        "object_id": "23", 
+        "change_message": "Changed post.", 
+        "user": 1, 
+        "action_flag": 2, 
+        "action_time": "2013-10-15T04:34:05.411Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 57
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 24 - Discovered", 
+        "content_type": 8, 
+        "object_id": "24", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-18T04:04:51.679Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 58
+},
+{
+    "fields": {
+        "object_repr": "Captain Quail 24 - Discovered", 
+        "content_type": 7, 
+        "object_id": "24", 
+        "change_message": "", 
+        "user": 1, 
+        "action_flag": 1, 
+        "action_time": "2013-10-18T05:27:46.106Z"
+    }, 
+    "model": "admin.logentry", 
+    "pk": 59
+},
+{
+    "fields": {
+        "primary": true, 
+        "verified": false, 
+        "user": 3, 
+        "email": "pjj+test@philipjohnjames.com"
+    }, 
+    "model": "account.emailaddress", 
+    "pk": 1
+},
+{
+    "fields": {
+        "primary": true, 
+        "verified": true, 
+        "user": 4, 
+        "email": "chris.clark@actian.com"
+    }, 
+    "model": "account.emailaddress", 
+    "pk": 2
+}
+]
