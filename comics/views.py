@@ -166,7 +166,7 @@ class ComicBackupView(View):
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
         with open(str(settings.PROJECT_ROOT) + '/dump.json', 'w') as f:
-            management.call_command('dumpdata', indent=4, stdout=f)
+            management.call_command('dumpdata', 'comics', indent=4, stdout=f)
             
         with open(str(settings.PROJECT_ROOT) + '/dump.json', 'r') as f: 
             data = base64.b64encode(f.read())
