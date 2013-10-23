@@ -45,17 +45,36 @@ class ComicViewMixin(object):
         else:
             return Comic.published_comics.latest('published')
 
-class LastReadComicMixin(object):
-
     def get_context_data(self, **kwargs):
-        context = super(LastReadComicMixin, self).get_context_data(**kwargs)
-        if self.request.COOKIES.get('last_read_comic') and not self.request.COOKIES.get('hide_resume_link'):
+        context = super(ComicViewMixin, self).get_context_data(**kwargs)
+
+        post = None
+        if kwargs.get('slug'):
+            post = get_object_or_404(
+                Post,
+                slug=self.kwargs['slug'],
+                is_live=True
+            )
+            self.post = post
+
+        self.comic = self.get_comic(post)
+        last_read_comic = self.request.COOKIES.get('last_read_comic')
+        hide_resume_link = self.request.COOKIES.get('hide_resume_link')
+        long_id = self.comic.post.slug if self.comic.post else self.comic.title
+
+        if (
+            last_read_comic and
+            not hide_resume_link and
+            last_read_comic != long_id
+        ):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
+
+        context['disqus_identifier'] = long_id
 
         return context
 
     def render_to_response(self, context, **kwargs):
-        response = super(LastReadComicMixin, self).render_to_response(context, **kwargs)
+        response = super(ComicViewMixin, self).render_to_response(context, **kwargs)
         if response.context_data.get('disqus_identifier'):
             response.set_cookie(
                 'last_read_comic',
@@ -70,19 +89,17 @@ class LastReadComicMixin(object):
         return response
 
 
-class HomeView(LastReadComicMixin, ComicViewMixin, TemplateView):
+class HomeView(ComicViewMixin, TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        comic = self.get_comic()
+        comic = self.comic
         context['comic'] = comic
         if comic.post:
             context['post'] = comic.post
-            context['disqus_identifier'] = comic.post.slug
             context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (comic.post.slug)
         else:
-            context['disqus_identifier'] = comic.title
             context['disqus_url'] = 'http://www.captainquail.com/'
         try:
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
@@ -93,17 +110,16 @@ class HomeView(LastReadComicMixin, ComicViewMixin, TemplateView):
 
         return context
 
-class ComicPostView(LastReadComicMixin, ComicViewMixin, TemplateView):
+class ComicPostView(ComicViewMixin, TemplateView):
     template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):
         context = super(ComicPostView, self).get_context_data(**kwargs)
-        post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
-        comic = self.get_comic(post=post)
+        post = self.post
+        comic = self.comic
 
         context['post'] = post
         context['comic'] = comic
-        context['disqus_identifier'] = post.slug
         context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (post.slug)
 
         try: 
