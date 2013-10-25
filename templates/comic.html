@@ -1,16 +1,18 @@
 <div class="row">
-    <h2 class="col-md-offset-1">
-        <a href="/comic/{{ comic.post.slug }}">{{ comic.title }}</a>
+    <h4 class="col-md-offset-1">
         <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
         {% for tag in comic.tags.all %}
         <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
         {% endfor %}
     </h2>
+
 </div>
 <div class="row">
+    <div>
     <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}" target="_blank">
         <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
     </a>
+    </div>
 </div>
 <div class="row">
     <div class="comic_footer">
@@ -37,9 +39,9 @@
             {% endif %}
         </div>
         <div class="row share_buttons">
-            <fb:like href="http://www.quailcomics.com{{ request.get_full_path }}" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
+            <fb:like href="http://www.facebook.com/quailcomics" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
             <span id="tumblr_button_abc123"></span>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="quailcomics" data-count="none">Tweet</a>
+            <a href="https://twitter.com/quailcomics" class="twitter-follow-button" data-show-count="false">Follow @quailcomics</a>
         </div>
     </div>
 </div>

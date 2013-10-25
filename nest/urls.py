@@ -8,6 +8,7 @@ from comics.views import (
     ProfileView,
     CreateRefCodeView,
     PlaygroundView,
+    StaticPageView,
 )
 
 from comics.urls import comicpatterns, postpatterns
@@ -23,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
+    url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),
     url(r'^page/', include('django.contrib.flatpages.urls')),
     url(r'^refcode/$', CreateRefCodeView.as_view()),
     url(r'^accounts/profile/$', ProfileView.as_view()),

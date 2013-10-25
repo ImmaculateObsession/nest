@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core import management
+from django.core.urlresolvers import reverse
 from django.shortcuts import (
     get_object_or_404,
     redirect,
@@ -70,6 +71,9 @@ class ComicViewMixin(object):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
 
         context['disqus_identifier'] = long_id
+        context['disqus_title'] = self.comic.title
+        context['page_url'] = self.request.build_absolute_uri()
+
 
         return context
 
@@ -106,7 +110,6 @@ class HomeView(ComicViewMixin, TemplateView):
             context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
         except IndexError:
             pass
-        context['disqus_title'] = comic.title
 
         return context
 
@@ -133,7 +136,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
             context['next'] = Comic.published_comics.filter(published__gt=comic.published).order_by('published')[0]
         except IndexError:
             pass
-        context['disqus_title'] = comic.title
+        
         return context
 
 
@@ -260,6 +263,14 @@ class PlaygroundView(TemplateView):
     @method_decorator(staff_member_required)
     def dispatch(self, *args, **kwargs):
         return super(PlaygroundView, self).dispatch(*args, **kwargs)
+
+class StaticPageView(TemplateView):
+    template_name = "base.html"
+
+    def dispatch(self, *args, **kwargs):
+        template = kwargs.get('template')
+        self.template_name = template if template else self.template_name
+        return super(StaticPageView, self).dispatch(*args, **kwargs)
 
 class TagView(ListView):
 

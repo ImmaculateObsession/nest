@@ -12,9 +12,15 @@
     
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="/feed/">Feed <span class="glyphicon glyphicon-list"></span></a></li>
-            <li><a href="https://www.facebook.com/quailcomics">Facebook <span class="glyphicon glyphicon-thumbs-up"></span></a></li>
-            <li><a href="https://twitter.com/quailcomics">Twitter <span class="glyphicon glyphicon-comment"></span></a></li>
+            <li><a href="/feed/">
+                <span class="cq-orange fa fa-rss"></span>
+            </a></li>
+            <li><a href="https://www.facebook.com/quailcomics">
+                <span class="cq-blue fa fa-facebook"></span>
+            </a></li>
+            <li><a href="https://twitter.com/quailcomics">
+                <span class="cq-light-blue fa fa-twitter"></span>
+            </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}

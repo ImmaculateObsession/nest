@@ -1,0 +1,5 @@
+brand-primary: #4F8A8C
+brand-warning: #FFB439
+brand-danger: #FF0404
+
+body-bg: #F7F7F7

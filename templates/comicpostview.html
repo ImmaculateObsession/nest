@@ -2,19 +2,26 @@
 
 {% block title%}Quail Comics - {{ comic.title }}{% endblock %}
 
+{% block fb_tags %}
+<meta property="og:image" content="{{ comic.image_url }}">
+<meta property="og:image:type" content="image/png">
+{% endblock %}
+
 {% block content %}
 {% include "messages.html" %}
 {% include "comic.html" %}
 <div class="row">
-    {% include "sidebar_ad.html" %}
-    <div class="col-md-4">
-        <p class="lead">{{ post.published | date:"DATE_FORMAT" }}</p>
-        {{ post.post | safe }}
+    <div class="row">
+{% if post %}
+    <div class="col-md-8 col-md-offset-2">
+        <p class="lead">{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})    </p>{{ post.post | safe }}
     </div>
-    <div class="col-md-4">
+{% endif %}
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
         {% include "disqus.html" %}
     </div>
-    {% include "sidebar_ad.html" %}
 </div>
 {% endblock %}
 
