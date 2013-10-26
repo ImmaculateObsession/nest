@@ -4,6 +4,8 @@ from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.core.exceptions import ImproperlyConfigured
 from unipath import Path
 
+from .gargoyle_switches import *
+
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
     try:
@@ -126,7 +128,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.flatpages',
     'comics',
     'suit',
     'django.contrib.admin',
