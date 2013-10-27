@@ -1,816 +1,958 @@
 [
 {
-    "pk": 1, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Captain Quail is looking into growing out his neckbeard. The free food is hard to resist.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail1_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 1, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 1", 
-        "characters": [
-            1, 
-            2
-        ], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail1.png", 
-        "published": "2013-07-25T01:12:03Z"
-    }
-},
-{
-    "pk": 2, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "The Quail says: \"Whee!\"", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_002_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 2, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 2 - Split Infinitives", 
+        "published": "2013-07-25T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail1_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Captain Quail is looking into growing out his neckbeard. The free food is hard to resist.", 
+        "post": 1, 
+        "title": "Captain Quail 1", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 1
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_002.png", 
-        "published": "2013-07-28T01:12:03Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Quail used SPEAK against Barista! It was super-effective!", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_003_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 3, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 3", 
+        "published": "2013-07-28T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_002_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "The Quail says: \"Whee!\"", 
+        "post": 2, 
+        "title": "Captain Quail 2 - Split Infinitives", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 2
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_003.png", 
-        "published": "2013-07-31T01:12:03Z"
-    }
-},
-{
-    "pk": 4, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_004_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 4, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 4 - Romance", 
+        "published": "2013-07-31T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_003_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Quail used SPEAK against Barista! It was super-effective!", 
+        "post": 3, 
+        "title": "Captain Quail 3", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 3
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_004.png", 
-        "published": "2013-08-06T01:12:03Z"
-    }
-},
-{
-    "pk": 5, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Leaving a guy for bread is harsh. A double-fudge brownie on the other hand...", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_005_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 5, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 5 - Heartbreak", 
+        "published": "2013-08-06T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_004_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "", 
+        "post": 4, 
+        "title": "Captain Quail 4 - Romance", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 4
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_005.png", 
-        "published": "2013-08-14T01:12:03Z"
-    }
-},
-{
-    "pk": 6, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Fly like a hummingbird, splat like a pigeon.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_006_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 6, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 6 - Humdrive", 
+        "published": "2013-08-14T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_005_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Leaving a guy for bread is harsh. A double-fudge brownie on the other hand...", 
+        "post": 5, 
+        "title": "Captain Quail 5 - Heartbreak", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 5
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_006.png", 
-        "published": "2013-08-16T01:12:03Z"
-    }
-},
-{
-    "pk": 7, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Aisles of smiles for all whom tech beguiles.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_007_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 7, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 7 - Chips", 
+        "published": "2013-08-16T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_006_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Fly like a hummingbird, splat like a pigeon.", 
+        "post": 6, 
+        "title": "Captain Quail 6 - Humdrive", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 6
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_007.png", 
-        "published": "2013-08-20T01:12:03Z"
-    }
-},
-{
-    "pk": 8, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Who knows what darkness lurks in the heart of men's harddrives?", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_008_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 8, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 8 - Exposed", 
+        "published": "2013-08-20T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_007_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Aisles of smiles for all whom tech beguiles.", 
+        "post": 7, 
+        "title": "Captain Quail 7 - Chips", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 7
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_008.png", 
-        "published": "2013-08-23T01:12:03Z"
-    }
-},
-{
-    "pk": 9, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "She canna take any more load, cap'n!", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_009_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 9, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 9 - Skuak", 
+        "published": "2013-08-23T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_008_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Who knows what darkness lurks in the heart of men's harddrives?", 
+        "post": 8, 
+        "title": "Captain Quail 8 - Exposed", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 8
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_009.png", 
-        "published": "2013-08-27T01:12:03Z"
-    }
-},
-{
-    "pk": 10, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Mountain climbers must look really weird from the air.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_010_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 10, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 10 - Rock Climbing", 
+        "published": "2013-08-27T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_009_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "She canna take any more load, cap'n!", 
+        "post": 9, 
+        "title": "Captain Quail 9 - Skuak", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 9
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_010.png", 
-        "published": "2013-08-30T01:12:03Z"
-    }
-},
-{
-    "pk": 11, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Captain Quail is more a lover than a fighter.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_011_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 11, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 11 - Martial Arts", 
+        "published": "2013-08-30T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_010_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Mountain climbers must look really weird from the air.", 
+        "post": 10, 
+        "title": "Captain Quail 10 - Rock Climbing", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 10
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_011.png", 
-        "published": "2013-09-03T01:12:03Z"
-    }
-},
-{
-    "pk": 12, 
-    "model": "comics.comic", 
-    "fields": {
-        "alt_text": "Skauk prefers free-range organic mice.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_012_1000x400.png", 
-        "transcript": "This is a test", 
-        "tags": [], 
-        "post": 12, 
         "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 12 - Fusion", 
+        "published": "2013-09-03T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_011_1000x400.png", 
         "characters": [
             1, 
             2
         ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Captain Quail is more a lover than a fighter.", 
+        "post": 11, 
+        "title": "Captain Quail 11 - Martial Arts", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 11
+},
+{
+    "model": "comics.comic", 
+    "fields": {
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_012.png", 
-        "published": "2013-09-06T01:12:03Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-06T01:12:03Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_012_1000x400.png", 
+        "characters": [
+            1, 
+            2
+        ], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Skauk prefers free-range organic mice.", 
+        "post": 12, 
+        "title": "Captain Quail 12 - Fusion", 
+        "transcript": "This is a test"
+    }, 
+    "pk": 12
 },
 {
-    "pk": 13, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "The Quailship Egg Surprise has very strong parental filters", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_013_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 13, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 13 - Can Has", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_013.png", 
-        "published": "2013-09-13T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-13T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_013_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "The Quailship Egg Surprise has very strong parental filters", 
+        "post": 13, 
+        "title": "Captain Quail 13 - Can Has", 
+        "transcript": ""
+    }, 
+    "pk": 13
 },
 {
-    "pk": 14, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Does Skuak's terminal remind anyone else of a viewmaster?", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_014_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 14, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 14 - Enemies", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_014.png", 
-        "published": "2013-09-13T20:50:27Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-13T20:50:27Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_014_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Does Skuak's terminal remind anyone else of a viewmaster?", 
+        "post": 14, 
+        "title": "Captain Quail 14 - Enemies", 
+        "transcript": ""
+    }, 
+    "pk": 14
 },
 {
-    "pk": 15, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "No one said Earth BIRDS were easy", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_015_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 15, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 15 - Missed Connections", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_015.png", 
-        "published": "2013-09-17T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-17T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_015_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "No one said Earth BIRDS were easy", 
+        "post": 15, 
+        "title": "Captain Quail 15 - Missed Connections", 
+        "transcript": ""
+    }, 
+    "pk": 15
 },
 {
-    "pk": 16, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Robin Redshirt had it coming.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_016_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 16, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 16 - Red Shirt", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_016.png", 
-        "published": "2013-09-20T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-20T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_016_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Robin Redshirt had it coming.", 
+        "post": 16, 
+        "title": "Captain Quail 16 - Red Shirt", 
+        "transcript": ""
+    }, 
+    "pk": 16
 },
 {
-    "pk": 17, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Angry quail is angry. Serious hawk is serious. Science owl is... science?", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_017_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 17, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 17 - Hostilities", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_017.png", 
-        "published": "2013-09-24T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-24T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_017_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Angry quail is angry. Serious hawk is serious. Science owl is... science?", 
+        "post": 17, 
+        "title": "Captain Quail 17 - Hostilities", 
+        "transcript": ""
+    }, 
+    "pk": 17
 },
 {
-    "pk": 18, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "\"Or that time you wanted to use the engine exhaust to heat the ships kitchens...\"", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_018_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 18, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 18 - Diplomacy", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_018.png", 
-        "published": "2013-09-27T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-09-27T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_018_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "\"Or that time you wanted to use the engine exhaust to heat the ships kitchens...\"", 
+        "post": 18, 
+        "title": "Captain Quail 18 - Diplomacy", 
+        "transcript": ""
+    }, 
+    "pk": 18
 },
 {
-    "pk": 19, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Captain Quail just had to say it, didn't he?", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_019_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 19, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 19 - Best Laid Plans", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_019.png", 
-        "published": "2013-10-01T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-01T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_019_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Captain Quail just had to say it, didn't he?", 
+        "post": 19, 
+        "title": "Captain Quail 19 - Best Laid Plans", 
+        "transcript": ""
+    }, 
+    "pk": 19
 },
 {
-    "pk": 20, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "This is like that one Star Trek movie, all over again.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_020_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 20, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 20 - Evasive Action", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_020.png", 
-        "published": "2013-10-04T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-04T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_020_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "This is like that one Star Trek movie, all over again.", 
+        "post": 20, 
+        "title": "Captain Quail 20 - Evasive Action", 
+        "transcript": ""
+    }, 
+    "pk": 20
 },
 {
-    "pk": 21, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Combes is the best, no bones about it.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_021_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 21, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 21 - Combes", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_021.png", 
-        "published": "2013-10-08T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-08T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_021_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Combes is the best, no bones about it.", 
+        "post": 21, 
+        "title": "Captain Quail 21 - Combes", 
+        "transcript": ""
+    }, 
+    "pk": 21
 },
 {
-    "pk": 22, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Unfortunately, she only dates birds who can double as fans.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_022_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 22, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 22 - If At First...", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_022.png", 
-        "published": "2013-10-11T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-11T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_022_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Unfortunately, she only dates birds who can double as fans.", 
+        "post": 22, 
+        "title": "Captain Quail 22 - If At First...", 
+        "transcript": ""
+    }, 
+    "pk": 22
 },
 {
-    "pk": 23, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Even the elephant is confused.", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_023_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 23, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 23 - Reading Comprehension", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_023.png", 
-        "published": "2013-10-15T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-15T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_023_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Even the elephant is confused.", 
+        "post": 23, 
+        "title": "Captain Quail 23 - Reading Comprehension", 
+        "transcript": ""
+    }, 
+    "pk": 23
 },
 {
-    "pk": 24, 
     "model": "comics.comic", 
     "fields": {
-        "alt_text": "Skuak always looks like he is mere seconds from killing something", 
-        "image_url": "http://media.quailcomics.com/comics/captain_quail_024_1000x400.png", 
-        "transcript": "", 
-        "tags": [], 
-        "post": 24, 
-        "is_live": true, 
-        "creator": 1, 
-        "title": "Captain Quail 24 - Discovered", 
-        "characters": [], 
         "image_url_large": "http://media.quailcomics.com/comics/captain_quail_024.png", 
-        "published": "2013-10-18T07:01:00Z"
-    }
+        "is_live": true, 
+        "published": "2013-10-18T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_024_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "Skuak always looks like he is mere seconds from killing something", 
+        "post": 24, 
+        "title": "Captain Quail 24 - Discovered", 
+        "transcript": ""
+    }, 
+    "pk": 24
 },
 {
-    "pk": 1, 
+    "model": "comics.comic", 
+    "fields": {
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_025.png", 
+        "is_live": true, 
+        "published": "2013-10-22T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_025_1000x400.png", 
+        "characters": [], 
+        "creator": 1, 
+        "tags": [], 
+        "alt_text": "\"Can we at least get cable in this aviary?\"", 
+        "post": 25, 
+        "title": "Captain Quail 25 - Deus Ex", 
+        "transcript": ""
+    }, 
+    "pk": 25
+},
+{
+    "model": "comics.comic", 
+    "fields": {
+        "image_url_large": "http://media.quailcomics.com/comics/captain_quail_026.png", 
+        "is_live": true, 
+        "published": "2013-10-25T07:01:00Z", 
+        "image_url": "http://media.quailcomics.com/comics/captain_quail_026_1000x400.png", 
+        "characters": [], 
+        "creator": null, 
+        "tags": [], 
+        "alt_text": "Skuak dares you to judge his eating habits.", 
+        "post": 26, 
+        "title": "Captain Quail 26 - Swoop", 
+        "transcript": ""
+    }, 
+    "pk": 26
+},
+{
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 1", 
+        "is_live": true, 
+        "created": "2013-07-25T01:12:03Z", 
+        "published": "2013-07-25T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Hello! You have stumbled upon the very first Quail Comic - Captain Quail #1. Allison and I are hoping to embark on a grand adventure exploring the all the various things quails can get up to. We hope you enjoy what we have coming.</br></br>Since we both currently work for tech companies, this comic is close to home for the two of us. Engineers in SF have it pretty good these days, but that still doesn't stop many of them from griping about their first world problems. I know I'm guilty of it, and most people at my company are. This is our not-at-all subtle jibe at life in the current tech center of the world.</br></br>Thanks.</br></br>PJJ", 
-        "is_live": true, 
-        "slug": "captain-quail-1", 
-        "created": "2013-07-25T01:12:03Z", 
-        "published": "2013-07-25T01:12:03Z"
-    }
+        "title": "Captain Quail 1", 
+        "slug": "captain-quail-1"
+    }, 
+    "pk": 1
 },
 {
-    "pk": 2, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 2 - Split Infinitives", 
+        "is_live": true, 
+        "created": "2013-07-28T01:12:03Z", 
+        "published": "2013-07-28T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "I got into the Star Trek game kind of late. It floated on the edge of my perception for a real long time, and I knew a lot of the random pop-culture bits from it long before I actually sat down and started watching it. Tribbles. Live long and prosper. KHAAAAAAN!</br></br>It wasn't until college that I started hanging out with real trekkies, and it wasn't until almost the end of college that I started my quest to sit down and watch all of Star Trek. I started with TNG, because while Kirk is a pop culture Olympian, Picard felt more like the kind of guy I would want as my commanding officer.</br></br>True confessions: I have not seen all of Star Trek. I have not even seen all of TNG. This makes me eminently unqualified to talk about Star Trek in any meaningful way, I feel. What I can say is what Star Trek means to me. And the biggest piece of that meaning, the one that I think a lot of fans agree with, is that Star Trek is a vision for the future we hope we get, and would happily work towards. Its the ideal of the world we want to live in.</br></br>Gabriel Quail, Capt., is a representative of his race's better future who must contend with our imperfect present. He's a bird on a mission, a mission we want to share with you.</br></br>Thanks,</br></br>PJJ", 
-        "is_live": true, 
-        "slug": "captain-quail-2-split-infinitives", 
-        "created": "2013-07-28T01:12:03Z", 
-        "published": "2013-07-28T01:12:03Z"
-    }
+        "title": "Captain Quail 2 - Split Infinitives", 
+        "slug": "captain-quail-2-split-infinitives"
+    }, 
+    "pk": 2
 },
 {
-    "pk": 3, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 3", 
+        "is_live": true, 
+        "created": "2013-07-31T01:12:03Z", 
+        "published": "2013-07-31T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Coffee. It powers so much of the Western business world that it would be a tough choice deciding which would have the greater impact: If all the oil in the world were to suddenly disappear, or if there was not a single coffee bean left on Earth. Coffee, like tea and alcohol, can also be a great social elixir. I find myself scheduling coffee meetings more than any other kind of casual encounter, because its a concept almost everyone is familiar with. It makes perfect sense that a quail from beyond the stars would want to see what all the fuss was about, and Captain Gabriel Quail charges straight into the barista's den in today's comic.</br></br>I have almost gotten into a coffee habit at every job I've had, but somehow pulled back right before the edge. This wasn't intentional on my part, something would just interrupt the pattern and I never got back onto it. Posts like <a title=\"A year without caffeine, part one\" href=\"http://bryanalexander.org/2013/01/04/a-year-without-caffeine/\" target=\"_blank\">this</a> and <a title=\"A year without caffeine, part two\" href=\"http://bryanalexander.org/2013/01/06/a-year-without-caffeine-part-2/\" target=\"_blank\">it's sequel</a> make me pretty happy about that. Allison, the better half of this strip, drinks coffee regularly every morning, but is nowhere near extreme about it.</br></br>It would be amusing if Captain Quail had managed to get his hands on a cup of Joe. A hyper-kinetic quail sounds darned amusing, and may appear later in this series. Until then,</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-3", 
-        "created": "2013-07-31T01:12:03Z", 
-        "published": "2013-07-31T01:12:03Z"
-    }
+        "title": "Captain Quail 3", 
+        "slug": "captain-quail-3"
+    }, 
+    "pk": 3
 },
 {
-    "pk": 4, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 4 - Romance", 
+        "is_live": true, 
+        "created": "2013-08-06T01:12:03Z", 
+        "published": "2013-08-06T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "So both Allison and I are pretty big fans of Jim Butcher's <a title=\"The Dresden Files\" href=\"http://www.jim-butcher.com/books/dresden\" target=\"_blank\">Dresden Files</a>. They are really great reads, and I'm in the process of re-reading all of them right now. Well, I say in the process, but I actually just finished going through the run. Its amazing watching the main character, Harry Dresden, change over the course of the books. He gets more powerful, as you would expect a hero to do over time, but his reasons for why he does what he does also change.</br></br>I would argue that Dresden at the beginning of the series acts out of a desire to right the wrongs in the whole world. He has led a hard life already, has seen what the dark side looks like, and decides to use his wizardly might to overcome that darkness. As the series progresses, he continues to save the world, but does so out of an increasing motivation to save the people he loves.</br></br>Love is a powerful force. I'm not going to get much more sappy here, and I think the way Captain Quail is experiencing love in today's comic is a perfect example of one facet of the emotion. What's a space quail to do, alone on a strange planet, but try to mingle with the natives? And isn't it natural for his head to be turned by a smooth beak and gleaming feathers?</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-4-romance", 
-        "created": "2013-08-06T01:12:03Z", 
-        "published": "2013-08-06T01:12:03Z"
-    }
+        "title": "Captain Quail 4 - Romance", 
+        "slug": "captain-quail-4-romance"
+    }, 
+    "pk": 4
 },
 {
-    "pk": 5, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 5 - Heartbreak", 
+        "is_live": true, 
+        "created": "2013-08-14T01:12:03Z", 
+        "published": "2013-08-14T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "I'd like to say the reason that it's been so long since we posted a comic is that we couldn't bear to bring ourselves to showcase the heartbreak Captain Quail goes through in today's panel. In reality, making a comic is hard, and we're busy people. Allison and I work full-time jobs, and I've got more side projects going on than is healthy. (Shameless plug: check out <a title=\"This Is Not That Game\" href=\"http://www.thisisnotthatgame.com\" target=\"_blank\">This Is Not That Game</a>)</br></br>That being said, being passed over for food is still pretty damn stone cold. We've all gone through bad rejections and bad breakups, but I don't know anyone outside the internet who's actually been dumped for a piece of bread. Maybe its a bird thing.</br></br>On an unrelated note, we are possibly the last people on the internet to discover <a title=\"Welcome to Night Vale on iTunes\" href=\"https://itunes.apple.com/us/podcast/welcome-to-night-vale/id536258179\" target=\"_blank\">Welcome to Night Vale</a>. In case we aren't and you've never heard of it, go check it out. It's hilariously creepy so far, and worth a listen if you're into the same things we're into. I mean, you;re here, so you must be, right? In any case, you should give the show a chance, and push yourself past the first episode. Getting used to the format is part of the fun.</br></br>In other unrelated news, today is my birthday! You know what would be an awesome gift? If you were to share Quail Comics with all your friends, neighbors, and random people on the street. Even if you happen to read this post\u00a0<em>not</em> on my birthday, it would still make a great birthday gift. Thanking you in advance.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-5-heartbreak", 
-        "created": "2013-08-14T01:12:03Z", 
-        "published": "2013-08-14T01:12:03Z"
-    }
+        "title": "Captain Quail 5 - Heartbreak", 
+        "slug": "captain-quail-5-heartbreak"
+    }, 
+    "pk": 5
 },
 {
-    "pk": 6, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 6 - Humdrive", 
+        "is_live": true, 
+        "created": "2013-08-16T01:12:03Z", 
+        "published": "2013-08-16T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "We're taking the strip in a pretty heavy Star Trek direction, if that wasn't <a title=\"Captain Quail 2: Split Infinitives\" href=\"http://www.quailcomics.com/comic/captain-quail-2-split-infinitives/\" target=\"_blank\">obvious already</a>, but Allison and I are both well-versed in general pop culture, especially pop culture with a Science Fiction bent. Humdrive is, in my mind, reminiscent of the Spacing Guild Navigators from Dune, but there's probably a bit of TNG's Data in there as well. \u00a0The Spice must flow!\u00a0Humdrive is pretty advanced technology, although she's not quite showing it at the end of today's strip. If I were flying a spaceship full of birds, I would probably have trouble with glass surfaces myself.</br></br>I know I'm way late to the party here, but <a title=\"XCOM: Enemy Unknown\" href=\"http://www.giantbomb.com/xcom-enemy-unknown/3030-37152/\" target=\"_blank\">XCOM: Enemy Unknown</a> is a pretty awesome game. I've always had a soft spot for top-down turn based strategy games, and for single-player squad based games. I thought <a title=\"Dawn of War II - Giant Bomb\" href=\"http://www.giantbomb.com/warhammer-40000-dawn-of-war-ii/3030-21175/\" target=\"_blank\">Dawn of War II</a> was the pinnacle of that type of game, until I played XCOM. Taking a game engine traditionally reserved for first-person shooters (the Unreal engine), and using it for a strategy game is part of the brilliance, and allows for great in-motion cinematics as you command your squad.</br></br>As I've recently come into some birthday money, and some of it is in the form of Amazon gift cards, I've been thinking about what I should get myself for my birthday; being a geek, naturally my thoughts turned to technology. I'm in this weird position though, where there's not any tech that I really want (at least not in the 'ooh, shiny!' sense). So I'm looking instead for tech things that will be actually helpful to my life, and coming up surprisingly short. The <a title=\"Google Chromecast\" href=\"http://www.google.com/intl/en/chrome/devices/chromecast/\" target=\"_blank\">Google Chromecast</a> comes closest, but I already have something that functions pretty well as a set-top box. I'm left in this weird position where I feel like some technological thing could help me in some way, but nothing I see seems good enough to spend my money on. Maybe there's an app for that.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-6-humdrive", 
-        "created": "2013-08-16T01:12:03Z", 
-        "published": "2013-08-16T01:12:03Z"
-    }
+        "title": "Captain Quail 6 - Humdrive", 
+        "slug": "captain-quail-6-humdrive"
+    }, 
+    "pk": 6
 },
 {
-    "pk": 7, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 7 - Chips", 
+        "is_live": true, 
+        "created": "2013-08-20T01:12:03Z", 
+        "published": "2013-08-20T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "In high school, when I reunited with my first mistress technology after a brief stint where I was wholly devoted to my first wife, reading, I was very much into hardware. I loved breaking apart and building up computers and electronics of all types, and would pore over PC Magazine and Maximum PC as though they were holy writ. I barely understood what was going behind the blinkenlights, but I knew I enjoyed making them dance.</br></br>For an impressionable youth with an inclination towards electronics, especially in they lived on the West coast in the 90s and early 2000s, there was a certain store that was Mecca, Shangri-La, a store to which no other store could possibly compare. Glancing at today's comic and <a title=\"Captain Quail 6 \u2013 Humdrive\" href=\"http://www.quailcomics.com/comic/captain-quail-6-humdrive/\" target=\"_blank\">our last post</a>, you may be able to tell which store I'm talking about. Both Allison and I can understand spending way more time than is healthy ogling electronics, even though both of us now work more in software than in hardware. (If you're not certain of the difference, hardware people make the boxes with screens all around us. Software people find pretty, hopefully useful things to put on those screens.)</br></br>Being in software means we're closer than most to the pulse of where main-stream technology is headed. Some of it is magical, some of it is terrifying, some of it is both. Its incredibly possible that we'll do a comic in the future where Captain Quail and his trusty crew have to deal with some of the issues that are getting more and more important in our world: issues like trust, privacy, and security.</br></br>Its also equally possible that we'll just keep trying to create the quail equivalent of this:\u00a0<a href=\"http://www.youtube.com/watch?v=J-ZYzvD1rJ8\" target=\"_blank\">http://www.youtube.com/watch?v=J-ZYzv</a></br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-7-chips", 
-        "created": "2013-08-20T01:12:03Z", 
-        "published": "2013-08-20T01:12:03Z"
-    }
+        "title": "Captain Quail 7 - Chips", 
+        "slug": "captain-quail-7-chips"
+    }, 
+    "pk": 7
 },
 {
-    "pk": 8, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 8 - Exposed", 
+        "is_live": true, 
+        "created": "2013-08-23T01:12:03Z", 
+        "published": "2013-08-23T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "I am unabashedly a huge fan of Futurama. That's not to say I like every episode. Even the most die-hard Trekkies I know have at least one episode they will admit (normally in private, after you get them pretty drunk) is not great. I especially think that the stories Groening and co. created were better when they were still on Fox. The restrictions that I'm sure the the network made them conform to possibly made them more creative. I can't find any great articles (feel free to leave one in the comments), but my experience has been that working with restrictions makes better art.</br></br>That said, there is one episode of the newer Futurama seasons that I find outrageously funny. \"All the Presidents' Heads\"\u00a0sends the Planet Express crew to the time of the American Revolution, and hilarity ensues. This episode also has one of the best running gags in the series, I feel: the people of the past view Bender, a robot from the future, as a piece of technology that can do everything their current technology can do. Bender is, over the course of the episode, referred to as a stove, a crockpot, and a cannon, and despite Bender's insistence that he's none of those things, he can perform all those functions.</br></br>When we expect sufficiently advanced technology to be magic, we also expect it to be able to do everything magically.</br></br>Poor Humdrive probably doesn't think she can serve as a USB stick full of cat pictures. She's hyper-advanced bird technology from beyond the stars! Its also amusing to imagine what a civilization of birds must think about cats.</br></br>Captain Quail and Humdrive will be returning to the final frontier soon enough, so stay tuned!</br></br>Thanks,</br></br>Philip</br></br>(P.S. Take a close look at the second panel today. Humdrive has better USB support than my MacBook.)", 
-        "is_live": true, 
-        "slug": "captain-quail-8-exposed", 
-        "created": "2013-08-23T01:12:03Z", 
-        "published": "2013-08-23T01:12:03Z"
-    }
+        "title": "Captain Quail 8 - Exposed", 
+        "slug": "captain-quail-8-exposed"
+    }, 
+    "pk": 8
 },
 {
-    "pk": 9, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 9 - Skuak", 
+        "is_live": true, 
+        "created": "2013-08-27T01:12:03Z", 
+        "published": "2013-08-27T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Allison and I spend a lot of time on the internet. I think that's possibly a pre-requisite for creating a webcomic. What's surprising to me is that, given how much time I spend on the internet, I find very little content that I think has broad enough appeal to be reposted, either on the various social networks or this comic. Its been a red-letter weekend by that count, because here are two things that I think you should go watch. Preferably now.</br></br><a title=\"Be a MANN\" href=\"http://www.youtube.com/watch?v=z9-QaIvjtBw\" target=\"_blank\">Be a MANN</a></br></br><a title=\"Go!Robins! - Bath Time\" href=\"http://www.youtube.com/watch?v=CFXwU9gtu1A\" target=\"_blank\">Go!Robins! - Bath Time</a></br></br>That first video is awesome because there needs to be more Disney/TF2 Crossover in the world. The second video is awesome because it represents one of the promises of the internet, at least for Quail Comics: You are not alone. A lot of us are attracted to the internet by the promise that there are people and communities who care about what we care about, and do what we want to do. That being said, I never imagined there would be somebody ELSE making genre media homages using small woodland birds. Thank you, Internet. Thank you.</br></br>We saw The World's End last night. I really like Simon Pegg, and Nick Frost, et al. Shaun of the Dead is \u00a0funny, Hot Fuzz is hilarious and The World's End is... well done. I certainly laughed through it, and the action was kicked up yet another notch from Hot Fuzz. But there was something about the movie that rubbed me the wrong way. It may be because of alcoholism in my family, or the sense that we as human beings should aspire to overcome our baser natures rather than being free to indulge in them constantly or... bah. I'm getting crotchety.</br></br>The World's End is a really good film. I don't regret seeing it, and I will probably watch it many more times in the future. But Hot Fuzz is still the best in the trilogy, as far as I'm concerned. If you liked Shaun of the Dead and Hot Fuzz, you should go see it. If you didn't, but like buddy-films with lots of action and laughs, go see it. Simon Pegg is a really cool dude, by all accounts, and I'm happy to watch any movie he's in.</br></br>Administrivia: We're going to really try and post Tuesdays and Fridays regular. Please share with your friends, your followers, and your cat!</br></br>Well, this post is almost as full as Humdrive's bag from today's strip (see? I did link back to the comic), so I'm going to call that a wrap. See you Friday.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-9-skuak", 
-        "created": "2013-08-27T01:12:03Z", 
-        "published": "2013-08-27T01:12:03Z"
-    }
+        "title": "Captain Quail 9 - Skuak", 
+        "slug": "captain-quail-9-skuak"
+    }, 
+    "pk": 9
 },
 {
-    "pk": 10, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 10 - Rock Climbing", 
+        "is_live": true, 
+        "created": "2013-08-30T01:12:03Z", 
+        "published": "2013-08-30T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "There are some mountains you climb because you need to. There are some mountains you climb because they are in your way. There are some mountains you climb just because they're there. And then there's indoor rock climbing.</br></br>I have nothing against indoor rock climbing, per se, but I'm about as good at is Captain Gabriel Quail, and I see the point of it about as much as Skuak. Which isn't to say that I'm not trying to be a fit person. As a household, we're trying to get more fit all the time, although Allison is leading the pack there. I have recently rediscovered the joy of bicycles, and have not yet started riding only fixies and wearing vnecks with scarves despite living in the Bay Area, so that's a plus. If you have no idea on Earth what I'm talking about, congratulations! If I have offended you in some way, oops.</br></br>I have trouble riding a bike now without thinking of the <a href=\"http://www.youtube.com/watch?v=ob_GX50Za6c\" target=\"_blank\">Steve Jobs quote</a>. You should watch the video (its short) for the background, but the relevant soundbite is:</br></br>\"A computer is a bicycle for the mind.\"</br></br>Computers aren't magic, they aren't alien technology. They are a very advanced tool, that lets us create other tools almost as fast as we can think of them. And when we've created those tools, we get to be creative in ways we never dreamed.</br></br>Interesting news! We will probably be changing the look of the site sometime soon. These visual changes will be the cue to you, the reader, that things of changed, but to us, the creators, it will mean a whole new backend that we're building for this site. Hopefully this new architecture will help us do more creative things quickly, and provide more to our dedicated readers.</br></br>Speaking of which, we've received our first piece of <a title=\"Quail Comics Fan Mail 1\" href=\"http://www.quailcomics.com/2013/08/29/quail-comics-fan-mail/\" target=\"_blank\">fan mail</a>! Thank you so much for the kind words, and keep 'em coming!</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-10-rock-climbing", 
-        "created": "2013-08-30T01:12:03Z", 
-        "published": "2013-08-30T01:12:03Z"
-    }
+        "title": "Captain Quail 10 - Rock Climbing", 
+        "slug": "captain-quail-10-rock-climbing"
+    }, 
+    "pk": 10
 },
 {
-    "pk": 11, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 11 - Martial Arts", 
+        "is_live": true, 
+        "created": "2013-09-03T01:12:03Z", 
+        "published": "2013-09-03T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "I have just returned from a trip through the central valley of California, visiting Yosemite and then returning over the course of two whirlwind days. I've made this trip a number of times, as I have family that lives near one of the entrances to Yosemite, but something struck me this trip that I don't think I would have thought had I not started writing regularly: \"Epic stories need epic spaces.\"</br></br>As I rode past miles and miles of mountains and fields, and looked out on a sky that seemed so much bigger than the sky in the sub/urban area where I live, I was struck by a sense of scale that I hadn't ever noticed before. I think the Western Genre draws us in partly because it normally happens in these wide open spaces, where the sheer size of the landscape seems to focus all your attention on the actions of a few characters. Its part of the reason why epic stories that happen in cities don't just happen in any old city. They happen in mega-cities. Metropolis. Gotham. New York. Cities that, real or fictional, operate like gravity wells in a narrative ecosystem, drawing all the action around them into them.</br></br>I also thought a second version of the thought above: \"Epic stories need epic spaces. And there is no more epic space than space.\" When we call space the 'Final Frontier', we aren't just expressing our desire to explore, we're harkening back to the Western stories that seemed bigger than life for generations from a previous century. Every action that happens in space is all the more significant because of the vastness its happening in. A single light in a pitch black room is the center of attention. Even a somewhat-cocky commanding officer getting thrashed in a sparring match with his subordinate feels bigger because its taking place in a tin can hurtling through the void.</br></br>Speaking of genres and tropes, I'm pretty sure the 'Superior officer passing off losing as letting the other guy win' predates written stories. Nobody wants to look foolish, especially Quail captains. Also, Skuak is shaping up to be a pretty excellent foil for Gabriel Quail, and this makes me happy more than I thought it would. Hopefully you share in our joy.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-11-martial-arts", 
-        "created": "2013-09-03T01:12:03Z", 
-        "published": "2013-09-03T01:12:03Z"
-    }
+        "title": "Captain Quail 11 - Martial Arts", 
+        "slug": "captain-quail-11-martial-arts"
+    }, 
+    "pk": 11
 },
 {
-    "pk": 12, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 12 - Fusion", 
+        "is_live": true, 
+        "created": "2013-09-06T01:12:03Z", 
+        "published": "2013-09-06T01:12:03Z", 
         "creator": 1, 
         "tags": [], 
         "post": "There are some stories and worlds that are well-springs of creativity. You dive into them, and you swim through grottoes full of magic, barely believing what you're seeing. Eventually you surface, and you try desperately to remember all you've taken in while you mentally prepare yourself for the next dive. You know that your creativity and imagination has been kicked up a notch just by exposure to these universes, of which there are few. Neil Gaiman's Sandman is one. I would argue the Bioshock series is another. It would be tempting to add Tolkien's work, but that is a universe which has been heavily mined by popular culture, and its hard to feel inspired by it. (Personal opinion here, feel free to disagree in the comments.)</br></br>Then, there's Brian K. Vaughn. I could wax poetical for days about Fables, but its his more recent series that is my current cave of wonders. \u00a0I'm talking about Saga. I tend to read comic series in trade paperback or graphic novel form, even when the original material first came out in single issues, so I have just finished the second Saga trade paperback. The first one blew my mind in terms of discussing social justice and civil rights in a new and novel way. The second book went off the chain, and its not going to come back any time soon.</br></br>This well-spring effect often manifests itself in me as a series of questions, usually uttered in my head in an awed tone of voice. (Yes, my inner voice has tones. I did theater as a child.) Their ship is a what? Magic works by knowing secrets? The planet is actually WHAT? Really? That's a ROBOT? Holy crap, THAT'S HIS EX?\u00a0I hope you pick up the books, and that you too find yourself struck by some of the same questions I had.</br></br>A lot of times, I think creators create by trying to well-spring in reverse; namely, they throw a bunch of things together and see what sticks. This is a perfectly valid way of creating, and is often the best way to try things when you're starting out. Sometimes, though, you get bad fusions. Like Andy Warhol and Stephany Meyer. Garth Brooks and 50 Cent. Japanese-Mexican-Italian. I'm pretty sure only that last one is real, or at least that last one is the only one I've heard about. And, if you particularly hate yourself, you can find that restaurant in the Bay Area, where Allison and I live and work. Maybe its a Quail delicacy.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-12-fusion", 
-        "created": "2013-09-06T01:12:03Z", 
-        "published": "2013-09-06T01:12:03Z"
-    }
+        "title": "Captain Quail 12 - Fusion", 
+        "slug": "captain-quail-12-fusion"
+    }, 
+    "pk": 12
 },
 {
-    "pk": 13, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 13 - Can Has", 
+        "is_live": true, 
+        "created": "2013-09-13T04:37:56.565Z", 
+        "published": "2013-09-12T22:36:34Z", 
         "creator": 1, 
         "tags": [], 
         "post": "The whole lolcats phenomenon is kind of weird. If someone had told me a decade ago that putting captions on pictures of animals would become one of the primary ways the Internet expresses itself, I probably would have refused to believe them. It seems like one of those fads that should have burned out within a year, and has continued on despite expectations.</br></br>Some semantics: pictures with overlaid with text in impact font are memes, but not all memes are pictures overlaid with text in impact font. Meme is just giving a word to something that has existed since there have been humans. I personally like the Reddit-inspired name Advice Animals for these lolcat derivatives, but using the word meme to describe only funny captioned pictures on the internet is kind of missing the point of the word. This paragraph is more of a rant than I intended, but I\u2019m betting there\u2019s a couple people out there who really dig semantics and agree with me.</br></br>I really don\u2019t have a lot for today\u2019s post, I\u2019m sorry to say. We\u2019ve got a lot of cool stuff coming up for the site, hopefully some awesome big changes, and we\u2019re spending most of our free time working on those things.</br></br>Some things you can look forward to, in the future:\r\n</br></br>\r\nEpic battles</br>\r\nMore pop culture references</br>\r\nA whole new site</br>\r\nAnd a whole new comic!</br>\r\n</br></br>We will also be at the Alternative Press Expo in San Francisco October 12-13. We won\u2019t have a booth or anything, we\u2019ll just be there having a good time and seeing all the other awesome stuff people are making. We might even have Captain Quail t-shirts!</br></br>That\u2019s about all that\u2019s in my brain right now, that I can talk about. Exciting stuff ahead, stay tuned.</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-13-can-has", 
-        "created": "2013-09-13T04:37:56.565Z", 
-        "published": "2013-09-12T22:36:34Z"
-    }
+        "title": "Captain Quail 13 - Can Has", 
+        "slug": "captain-quail-13-can-has"
+    }, 
+    "pk": 13
 },
 {
-    "pk": 14, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 14 - Enemies", 
+        "is_live": true, 
+        "created": "2013-09-14T00:44:17.967Z", 
+        "published": "2013-09-14T00:42:20Z", 
         "creator": 1, 
         "tags": [], 
         "post": "</br></br>Its not all bird baths and free seeds in the world of Captain Gabriel Quail. There are enemies that seek to destroy the Avian Federation, who believe in the conquest of all other winged peoples. The Raptor Empire is one such enemy, and Captain Quail knew, just\u00a0<em>knew</em> he would have to face them sooner or later.</br></br>This is the beginning of what will actually be a pretty decent story arc in the Adventures of Captain Quail, and we're just as excited to see where it goes as I hope you are. Since we're just starting out in the world of possibility that surrounds this comic, we haven't quite decided how we're going to subdivide the what we have into logical groupings. Chapters? Seasons? By year? Its not a super important question right now, but we think it would be nice to organize the entire set of comics into chunks that are more digestible.</br></br>Speaking of reorganization, I'm super excited to announce the beta of the new home for The Adventures of Captain Quail: <a title=\"Captain Quail\" href=\"http://www.captainquail.com\" target=\"_blank\">www.captainquail.com</a>. This new site (which is still in beta but getting better all the time) has been built from the ground-up for this comic, but hopefully built in such a way that adding more comics will be easy. By building it ourselves, we get full control over what we can do with it, and hopefully provide some awesome experiences to our readers.</br></br>Please play around with it, and let us know of any problems or suggestions for feedback you might. We're always available at our twitter and facebook pages (see above the comic), and we're hoping to add better reader feedback soon. The new site isn't quite as up-to-date with comics as this current site, but it may be by the time you read this. (Definitely check out my current personal favorite new feature, the <a title=\"All Comics\" href=\"http://www.captainquail.com/comic/all\" target=\"_blank\">All Comics View</a>, where you can see all the comics on one page to help you catch up quickly.)</br></br>Hopefully we'll be moving over to the new site permanently soon, stay tuned!</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-14-enemies", 
-        "created": "2013-09-14T00:44:17.967Z", 
-        "published": "2013-09-14T00:42:20Z"
-    }
+        "title": "Captain Quail 14 - Enemies", 
+        "slug": "captain-quail-14-enemies"
+    }, 
+    "pk": 14
 },
 {
-    "pk": 15, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 15 - Missed Connections", 
+        "is_live": true, 
+        "created": "2013-09-17T03:58:58.781Z", 
+        "published": "2013-09-17T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Greetings fair gentlefolk! Good morrow to thee!</br></br>Allison and I care involved or interested in pretty much all things geeky. This should be fairly self-explanatory as we're both software engineers who make webcomics in our spare time. So it shouldn't be any surprise that us and a gathering of our friends went to the <a title=\"Norcal Renaissance Faire\" href=\"http://www.norcalrenfaire.com/\" target=\"_blank\">Norcal Renaissance Faire</a> this weekend.</br></br>I've gone to a few faires of this type before (Dickens' Faire is great!), and I almost always have a good time after I make the mental shift necessary to really enjoy myself. The people who go and really get into it live in a headspace that has familiar geography to my own, and my brain takes a little time to recognize I'm in a safe space, a space I can let myself go more than usual.</br></br>Its also been my experience that going to historic faires and conventions is more fascinating if you grab all of geek culture by the horns and don't let go. For example, at the faire Allison and I saw someone who I swear was going for elf, but Allison thinks was trying for Romulan. Its amazing to me that two engineers making a webcomic about space opera and quails can be at a Renaissance faire and discuss whether another attendee was aping Star Trek of the Lord of the Rings. The geek community can be abrasive, offensive, and just plain weird, but it can also be magical, inclusive, and transformative.</br></br>Which one or set of the above adjectives apply to this comic is up to you the reader, but we hope you enjoy it and add it to your personal venn diagram of what you're into.</br></br>Thanks,</br></br>Philip</br></br>PS - You should go to the Norcal Ren Faire, especially if you've never been. Its fun. Really, really fun, and costumes are not required.", 
-        "is_live": true, 
-        "slug": "captain-quail-15-missed-connections", 
-        "created": "2013-09-17T03:58:58.781Z", 
-        "published": "2013-09-17T07:01:00Z"
-    }
+        "title": "Captain Quail 15 - Missed Connections", 
+        "slug": "captain-quail-15-missed-connections"
+    }, 
+    "pk": 15
 },
 {
-    "pk": 16, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 16 - Red Shirt", 
+        "is_live": true, 
+        "created": "2013-09-20T05:37:29.383Z", 
+        "published": "2013-09-20T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Kirk, Spock, and a Red Shirt go down to the planet... woops! Wrong show.</br></br>Today's comic allows me to talk about one of my favorite pieces of meta-fiction: John Scalzi's\u00a0<em>Redshirts.</em> Its a Star Trek universe told from the perspective of a lowly crewmember, and that premise alone will probably grab your interest if you're already reading this comic. Its also one of the more convincing pieces of meta-fiction I've read. Well, I say read. I really mean listened to, and the melodious tones of Wesley Crusher himself lend an uber-meta quality to the work when you experience it in audiobook.</br></br>Switching tracks, I had this idea a while back that we would try to highlight a new webcomic every week, because I believe in using this space to help highlight other cool things Allison and I find across the internet. This idea has not materialized yet, but that's all about to change! This week's comic highlight doesn't really need the extra press, but its a comic I've enjoyed in the past which has the same initials as ours! <a title=\"Questionable Content\" href=\"http://questionablecontent.net\" target=\"_blank\">Questionable Content</a> has been going strong for more years than I can remember, and its one of the few comics that I feel has consistently good storylines. Beyond that, they have some of the most original and recognizable shirts I know. How recognizable? I got stopped by someone at Ren Faire who recognized the shirt I was wearing as being a Questionable Content shirt. (Yes, I do like owls). Fair warning: QC is a 'slice-of'life' comic, where the only non-realistic elements are some anthropomorphized computers. If hilarious angsty hipster romance doesn't sound like your thing, you may not enjoy the comic. (I still think you should give it a try, though)</br></br>In site news, this will probably be the last Captain Quail posted to this old site! When you come back Tuesday morning (you do check every Tuesday and Friday, right?) this quailcomics.com will be using the shiny new system we built. Hooray!</br></br>I think that does it for today. Have a great weekend!</br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-16-red-shirt", 
-        "created": "2013-09-20T05:37:29.383Z", 
-        "published": "2013-09-20T07:01:00Z"
-    }
+        "title": "Captain Quail 16 - Red Shirt", 
+        "slug": "captain-quail-16-red-shirt"
+    }, 
+    "pk": 16
 },
 {
-    "pk": 17, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 17 - Hostilities", 
+        "is_live": true, 
+        "created": "2013-09-24T03:50:18.217Z", 
+        "published": "2013-09-24T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "</br></br>It is really hard to get over your prejudices. No matter how much time you spend thinking about social justice and trying to correct your own preconceived notions,  your subconscious can blindside you with some garbage ideas that are just <em>wrong</em>. My experience has been that its the times I think I have a handle on things and am pretty well adjusted that I am closest to being a bigot. </br></br>We are raised in bubbles, and the bubble is thickest when we first enter adulthood. By exposing ourselves to new ideas and other people's bubbles, we stretch our own, making the walls thinner and thinner. I'm not sure if the bubble you grew up in ever pops; I'm still growing. I do know that sometimes it seems like I've just traded one bubble for another. </br></br>There's been a lot of talk recently about the bubble that is Silicon Valley, although its possible that that talk is only being heard from inside the valley's bubble. Many articles and blog posts have lamented that the companies in the valley are only trying to solve the problems of the valley's elite inhabitants. There is, as far as I can see, some truth to this statement. We don't need the majority of the services that most valley startups are trying to create. </br></br>Its easy to fall into the trap of believing that your way is right, especially when most of those around you reflect your opinions. Captain Quail and the crew of the Egg Surprise think they're defending Earth from Raptor aggression, and based on the Raptors' actions they seem to be right. But I hope we get to dive into backstory a bit with some of these cultures, and see that nothing is truly black and white. Its a lesson I need to remind myself of constantly. </br></br>Thanks,</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-17-hostilities", 
-        "created": "2013-09-24T03:50:18.217Z", 
-        "published": "2013-09-24T07:01:00Z"
-    }
+        "title": "Captain Quail 17 - Hostilities", 
+        "slug": "captain-quail-17-hostilities"
+    }, 
+    "pk": 17
 },
 {
-    "pk": 18, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 18 - Diplomacy", 
+        "is_live": true, 
+        "created": "2013-09-27T06:38:12.316Z", 
+        "published": "2013-09-27T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Imagine you are floating. Floating through space and time. No, not floating, flying. Flying on the back of a gigantic bird. Welcome to space. Welcome to the bird. Welcome to... The Advnetures of Captain Quail.</br></br>Yes. We have been listening to far, far too much Welcome to Night Vale. We've also been watching heist movies. Well, me moreso than Allison. I have a deep abiding love for heist movies, the Ocean's 11 series in particular. There's something so deeply satisfying about seeing a plan pulled off flawlessly. </br></br>We here at Quail Comics are deeply excited for a number of reasons. Two of those reasons will become clear in the coming weeks, and we're not going to talk about them quite yet. The source of excitement we will talk about is this: we're doing a pretty good job at keeping a regular posting schedule. Keeping a regular posting schedule for an extended period of time seems to be what makes or breaks a webcomic. Allison and I have both seen comics that got us really excited, and then died mysteriously when their creators just stopped posting. We hope you've been enjoying our regular updates, and that we can keep providing them to you for the foreseeable future. </br></br>Speaking of the world o' webcomics, the series we'd like to highlight this week is <a href=\"http://www.olympusoverdrive.com/\">Olympus Overdrive</a>. We are really big fans of pieces that remix old stories in new ways (like classic space opera stories done with Quails) and Olympus Overdrive hits that button for us. You could describe the comic as the Greek mythos seen through the lens of a modern Alternate Reality Game, but you would really only be scratching the surface. It has some echoes of Digimon and Death Note (at least for me) that make it a really enjoyable read. Also, the creators aren't afraid to break out of the traditional comic medium and mix-in some actual animation, which makes my new-media radar set up and take notice. We enjoy it, and hope you will too. </br></br>Stay tuned next week, where you'll hear about some exciting things we've got going over the next month, as well as the revelation of Captain Quail's master plan to beat the Raptors!</br></br>Good night, sweet listeners. Good night.</br></br>Philip", 
-        "is_live": true, 
-        "slug": "captain-quail-18-diplomacy", 
-        "created": "2013-09-27T06:38:12.316Z", 
-        "published": "2013-09-27T07:01:00Z"
-    }
+        "title": "Captain Quail 18 - Diplomacy", 
+        "slug": "captain-quail-18-diplomacy"
+    }, 
+    "pk": 18
 },
 {
-    "pk": 19, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 19 - Best Laid Plans", 
+        "is_live": true, 
+        "created": "2013-10-01T05:09:32.646Z", 
+        "published": "2013-10-01T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "Imagine you are a dragonfly, iridescent in your flittering flight. You glide through the air, basking in the nighttime warmth radiating from the desert floor. Your life is perfect. </br></br>Welcome to The Adventures of Captain Quail. </br></br>Today marks the beginning of a potentially awesome month for Quail Comics. For one, Friday will mark our 20th comic. Which is amazing. We don't have a goal with how far we're going to take the series, but milestones like this make us just want to keep going. </br></br>We also have two very exciting weekends ahead of us. This weekend, we will be at <a href=\"http://www.krakencon.com/\">Kraken Con</a>! Kraken Con is a new fan con happening just South of San Francisco, and we hope it will take off. We won't have a booth, but we will be wearing official Captain Quail T-Shirts, and handing out free prints from the comic. What do these T-shirts look like? I'm glad you asked, because we're going to be showing pictures of the shirts, as well as telling you how you can win one, in Friday's post.</br></br>It's our plan to have a rollicking good time with our prints and our shirts this weekend at Kraken Con, but no plan survives contact with the enemy. As Captain Quail is soon to discover in today's comic. </br></br>Thanks for reading!</br></br>Philip</br></br>P.S. Here it is, your moment of zen: <a href=\"http://www.youtube.com/watch?v=jofNR_WkoCE\">http://www.youtube.com/watch?v=jofNR_WkoCE</a>\r\n", 
-        "is_live": true, 
-        "slug": "captain-quail-19-best-laid-plans", 
-        "created": "2013-10-01T05:09:32.646Z", 
-        "published": "2013-10-01T07:01:00Z"
-    }
+        "title": "Captain Quail 19 - Best Laid Plans", 
+        "slug": "captain-quail-19-best-laid-plans"
+    }, 
+    "pk": 19
 },
 {
-    "pk": 20, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 20 - Evasive Action", 
+        "is_live": true, 
+        "created": "2013-10-04T03:00:50.882Z", 
+        "published": "2013-10-04T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "I was going to start this post with another story-based non-sequitor, since Allison and I are still way deep in Welcome to Night Vale, but I feel like spacing those out is a good idea. \r\n\r\n</br></br>Exciting news! You can now create a Quail Comics account! See that lovely \"Signup\" button at the top of the page? Nice, isn't it? Why would you want to create an account for a comics site, you ask? So that you can win free stuff! We are beginning a new program, starting today, that will let you get FREE Captain Quail swag. All you have to do is create an account, create a referral code on your profile page, and then pass that link around. The first five people to get one hundred referrals will win a Captain Quail tshirt in their size, absolutely free! We'll even ship it to you. If you aren't one of the first five, still keep sending your codes! We'll be running discounts off Captain Quail merch, and doing giveaways, based on these codes. \r\n\r\n</br></br>What do these shirts look like? I'm glad you asked! Here is the very first Captain Quail Tshirt, a copy of which could be yours!\r\n\r\n</br></br><img class=\"img-responsive\" src=\"http://media.quailcomics.com/images/shirt1_front.JPG\"></img>\r\n</br></br><img class=\"img-responsive\" src=\"http://media.quailcomics.com/images/shirt1_back.JPG\"></img>\r\n\r\n</br></br>We will be having these shirts for sale as well, as soon as we can figure out the best way to sell them. \r\n\r\n</br></br>Also! We will be at <a href=\"http://krakencon.com\">Kraken Con</a> this weekend. If you seem someone in one of these shirts, its probably us!\r\n\r\n</br></br>Since we don't have a lot of extra space this week, but we still want to keep up the \"webcomic-a-week\" series, check out <a href=\"http://penny-arcade.com\">Penny Arcade</a>. I don't think any explanation is needed here.\r\n\r\n</br></br>Thanks everybody! See you next week!\r\n\r\n</br></br>Philip\r\n\r\n</br></br>P.S. A moment of zen appropriate for the US Government shutdown: <a href=\"http://www.youtube.com/watch?v=KaOC9danxNo\">http://www.youtube.com/watch?v=KaOC9danxNo</a>", 
-        "is_live": true, 
-        "slug": "captain-quail-20-evasive-action", 
-        "created": "2013-10-04T03:00:50.882Z", 
-        "published": "2013-10-04T07:01:00Z"
-    }
+        "title": "Captain Quail 20 - Evasive Action", 
+        "slug": "captain-quail-20-evasive-action"
+    }, 
+    "pk": 20
 },
 {
-    "pk": 21, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 21 - Combes", 
+        "is_live": true, 
+        "created": "2013-10-08T00:22:00.078Z", 
+        "published": "2013-10-08T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "As you've probably figured out by now, we really love puns here. Especially Star Trek inspired puns. The last panel of today's comic has been in the back of our minds for a while now, and this story arc gave us the opportunity to introduce the Egg Surprise's medical officer, and use a joke line that has had us cracking up. We hope other people find it funny, but we really don't know. (psst. you can use the comment field below this post to let us know what you think)</br></br>Along with geeky puns, we also love geeky cons. This weekend, this past Saturday to be exact, was KrakenCon, a brand new con that we were very pleased by. KrakenCon has a lot of the potential for fun of FanimeCon, without much of the included drama that has been building in recent years. (Although both cons suffer from sever disorganization of the ticketing and admission lines) Hopefully, KrakenCon will continue to grow, and we will have a stronger presence in the coming years. This year was more exploration for us, and we enjoyed meandering the halls in our tshirts and handing out micro-prints. </br></br>We've had enough requests for shirts that we are definitely looking into getting those available for sale, as well as being giveaways in our referral challenge. If you would like to be first in line when we're doing our first batch for sale, leave a comment or use that handy box to the right to let us know.</br></br>Thanks,</br></br>Philip</br></br>P.S. Here it is your moment of zen: <a href=\"http://www.youtube.com/watch?v=Uj4RBmU-PIo\">http://www.youtube.com/watch?v=Uj4RBmU-PIo</a>", 
-        "is_live": true, 
-        "slug": "captain-quail-21-combes", 
-        "created": "2013-10-08T00:22:00.078Z", 
-        "published": "2013-10-08T07:01:00Z"
-    }
+        "title": "Captain Quail 21 - Combes", 
+        "slug": "captain-quail-21-combes"
+    }, 
+    "pk": 21
 },
 {
-    "pk": 22, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 22 - If At First...", 
+        "is_live": true, 
+        "created": "2013-10-11T05:21:24.712Z", 
+        "published": "2013-10-11T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "<p>The time has, the Walrus said, to talk of many things. Of shoes and ships and sealing wax-- but mostly about <a href=\"http://orteil.dashnet.org/cookieclicker/\" target=\"_blank\">Cookie Clicker</a>. If you haven't discovered this phenomenon, wait until you're done reading this post, and then go play. Why should you wait? Because if you go now, you'll probably never finish this post.&nbsp;</p><p><span style=\"line-height: 1.45em;\">On the outside, Cookie Clicker looks like another Skinner Box online game. Once you dive in, you discover a world of baking madness that you never knew existed. The best creative works out there let you feel like you're taking a peek into the mind of the designers, and the mysterious <a href=\"http://orteil.dashnet.org/\" target=\"_blank\">Orteil</a> has a delightful mind of whimsy and wonder, if Cookie Clicker is any indication. It should be noted that Allison and I hate most online/Facebook games with a passion, but we have both been completely sucked into Cookie Clicker. Start playing after you're done here, and play for a little bit - once you get going you'll see what's so amazing.</span><br></p><p><span style=\"line-height: 1.45em;\">Wait, why I am wasting space talking about games? *flips table* This weekend is <a href=\"http://www.comic-con.org/ape\" target=\"_blank\">APE</a>! The Alternative Press Expo is this weekend in San Francisco, and we're going! Not like, with a booth or anything (that'll be later) but we'll be walking the floor and chatting with all the awesome people there. If you see us in our Captain Quail T-Shirts, stop and say hi!</span></p><p><span style=\"line-height: 1.45em;\">Keeping up with Webcomic of the Week series, this week we think you should check out <a href=\"http://www.casualvillain.com/Unsounded/\" target=\"_blank\">Unsounded</a>. It is, to quote Allison, \"A magical epic about a girl and her attack zombie\". Its a series we both enjoy, and we really want to see where Ashely Cope it. If you like interesting magic systems, bio-steampunk, and generally fantastic fantasy, you'll like unsounded.</span></p><p><span style=\"line-height: 1.45em;\">That wraps up this week. Hope to see you all at APE, and right back here Tuesday for the continuing adventures of Captain Quail!</span></p><p><span style=\"line-height: 1.45em;\">Thanks,</span></p><p><span style=\"line-height: 1.45em;\">Philip</span></p><p><span style=\"line-height: 1.45em;\">P.S. You moment of zen:&nbsp;<a href=\"http://www.youtube.com/watch?v=IU4SDDNXuUA\" target=\"_blank\">http://www.youtube.com/watch?v=IU4SDDNXuUA</a></span></p>\r\n", 
-        "is_live": true, 
-        "slug": "captain-quail-22-if-at-first", 
-        "created": "2013-10-11T05:21:24.712Z", 
-        "published": "2013-10-11T07:01:00Z"
-    }
+        "title": "Captain Quail 22 - If At First...", 
+        "slug": "captain-quail-22-if-at-first"
+    }, 
+    "pk": 22
 },
 {
-    "pk": 23, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 23 - Reading Comprehension", 
+        "is_live": true, 
+        "created": "2013-10-15T02:11:54.931Z", 
+        "published": "2013-10-15T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "<p>This past weekend was <a href=\"http://www.comic-con.org/ape\" target=\"_blank\">APE</a>. I tried to think about how I would describe the simply incredible experience that was this year's Alternative Press Expo, but no description could really do it justice. The closest I can come is to relate a small story.&nbsp;</p><p>Saturday afternoon, as I was getting ready to head home for the day, my face felt sore. I tried to figure out why that could be the case, and I realized that I had been<i> smiling the whole damn day.</i>&nbsp;While I like to think I'm quick to humor, its been a while since I've had the experience of breaking out in smiles for no apparent reason. Allison felt the same way. APE is magical, wonderful, fantastic. It shows off all that is best in creative endeavors, and lets you meet people who see the world through their own unique lenses, like you probably do. Last year, I wrote a <a href=\"http://darlingdork.com/ape_worth_a_thousand_words/\" target=\"_blank\">piece for Darling Dork about APE</a>. Everything I said there still holds true, with the added bonus this year that I got to connect with other creators as a creator.</p><p>APE gave us lots of material for our Webcomic O' the Week, and we're very much looking forward to sharing those on Fridays. The compliments we got on Allison's shirt design also lit a fire under my posterior to try and work out mass-printing and distribution so we can get these shirts in people's hands. We're going to do our very best to return to APE next year, as attendees and (hopefully) exhibitors.</p><p>Thanks for reading, and see you Friday.</p><p>Philip</p>\r\n", 
-        "is_live": true, 
-        "slug": "captain-quail-23-reading-comprehension", 
-        "created": "2013-10-15T02:11:54.931Z", 
-        "published": "2013-10-15T07:01:00Z"
-    }
+        "title": "Captain Quail 23 - Reading Comprehension", 
+        "slug": "captain-quail-23-reading-comprehension"
+    }, 
+    "pk": 23
 },
 {
-    "pk": 24, 
     "model": "comics.post", 
     "fields": {
-        "title": "Captain Quail 24 - Discovered", 
+        "is_live": true, 
+        "created": "2013-10-18T04:04:51.674Z", 
+        "published": "2013-10-18T07:01:00Z", 
         "creator": 1, 
         "tags": [], 
         "post": "<p>We're kind of obsessed with good stories. What makes a good story? That's kind of an ephemeral question, and its going to vary wildly from person to person. Allison and I agree on some aspects, and disagree on others. One criteria, that I think we both agree on, is that a good story must live in a world that draws you in, that seems so self-contained and complete that you spend hours trying to explore every inch of it.</p><p>This is possibly why we give scifi and fantasy more leeway, when it comes to judging stories; its more fun for us to explore imaginary worlds than it is to explore worlds more grounded in reality.</p><p>Of all the webcomics I've read (a list that has really grown since we started Captain Quail) none has a more engaging storyworld than <a href=\"http://www.gunnerkrigg.com/\" target=\"_blank\">Gunnerkrigg Court</a>. Tom Siddell's ongoing story of what happens when you take Hogwarts and <i>really</i>&nbsp;push the envelope hits so many of our buttons. Interesting backgrounds, robots, fairies, dragons, sea monsters, beings of fire and flame; they're all in here, and they don't seem out of place. Nothing feels shoe-horned.&nbsp;</p><p><span style=\"line-height: 1.45em;\">Given that I've been seeing Gunnerkrigg in my peripheral internet vision for years, I don't know how much I need to promote it. If you're also a fan of engrossing stories, I think you owe it to yourself to read Gunnerkrigg. I hope you like it as much as we do.&nbsp;</span></p><p><span style=\"line-height: 1.45em;\">Speaking of stories, we're pretty close to wrapping up this, our first major Captain Quail story arc. I think now that we've seen what we can do, and what can be done with the medium (thank you APE), we're going to start committing to telling the best stories about Birds in Space that we can. We'd love to have you along for the ride.</span></p><p>Thanks,</p><p>Philip</p>", 
+        "title": "Captain Quail 24 - Discovered", 
+        "slug": "captain-quail-24-discovered"
+    }, 
+    "pk": 24
+},
+{
+    "model": "comics.post", 
+    "fields": {
         "is_live": true, 
-        "slug": "captain-quail-24-discovered", 
-        "created": "2013-10-18T04:04:51.674Z", 
-        "published": "2013-10-18T07:01:00Z"
-    }
+        "created": "2013-10-22T04:54:25.100Z", 
+        "published": "2013-10-22T07:01:00Z", 
+        "creator": 1, 
+        "tags": [], 
+        "post": "<p>Today's comic features one of my most and least favorite story devices: Deus Ex Machina. Most people recognize it when they see it, even if they can't name it; its when the story resolves itself because of some seemingly random intervention from a higher power, or magical device, or completely unexplained phenomenon.&nbsp;<span style=\"line-height: 1.45em;\">While its often horribly mishandled, I love the fact that we have Deus Ex Machina in Captain Quail because </span><i style=\"line-height: 1.45em;\">it is so Star Trek</i><span style=\"line-height: 1.45em;\">. How many episodes (and movies!) can you name where the solution just comes out of nowhere and the day is saved. (I'm looking at you, Wesley Crusher).&nbsp;</span></p><p><span style=\"line-height: 1.45em;\">To all of our hopefully new readers from Facebook: Hello! Look around, and don't forget that we're trying to <a href=\"/comic/captain-quail-20-evasive-action/\" target=\"_blank\">give away free t-shirts</a> to a select number of fans. For anyone who didn't realize that we're on Facebook, check the top of this page or <a href=\"http://www.facebook.com/quailcomics\" target=\"_blank\">click here to go to our Facebook page</a>. Allison and I really want to connect with our readers. Hopefully we've made it as simple for you to reach out to us.&nbsp;</span></p><p><span style=\"line-height: 1.45em;\">As we move out of Fall and in towards Winter, we're probably going to spending a lot more time indoors. This is actually a good thing for this site, because it means we'll be putting more effort into doing cool things with Captain Quail. There are a few cons we'll be attending, but most of our energy will be put towards new content, new swag, and new things to do on the Captain Quail site. &nbsp;</span></p><p>Thanks,</p><p>Philip</p>\r\n", 
+        "title": "Captain Quail 25 - Deus Ex", 
+        "slug": "captain-quail-25-deus-ex"
+    }, 
+    "pk": 25
 },
 {
-    "pk": 1, 
+    "model": "comics.post", 
+    "fields": {
+        "is_live": true, 
+        "created": "2013-10-25T04:41:44.979Z", 
+        "published": "2013-10-25T07:01:00Z", 
+        "creator": null, 
+        "tags": [], 
+        "post": "<p>I really wish there was a Costco closer to where we live. This is a total first-world problem, as there are multiple Costcos within driving distance. But they're both far enough way that you feel the teensiest bit wasteful driving out to them, just so you can buy things in bulk. I haven't worked out whether its cost-effective when you compare with gas prices, but I have worked out that Costco free samples are normally tasty. Also, enough of them as you're shopping makes an excellent substitute for lunch. Apparently Skuak has figured that out as well.&nbsp;</p><p>Unrelated, I really like the Fall and the Winter. I prefer cold weather to warm weather to begin with (anyone in Seattle or Vancouver hiring software engineers who write comics?) but the cooler seasons also seem to be the time when I am most productive on the things I really care about. Maybe its a holdover from my school days; a new school year starts in the Fall and I am optimistic about what potential it might have. Yes, I was one of those people who enjoyed school more often than not. Allison and I are also big readers, and cold weather is the perfect excuse to stay inside with a good book. Or stay inside and write. Or draw.&nbsp;</p><p>Speaking of things we write and draw, it would mean a ton to us if you shared this comic with your friends, real and digital. We have all the usual share buttons below the comic, and we'd probably be willing to send you mini-prints if you promise to hand them out. They look nifty!</p><p>Other people we like also write and draw things, and the Webcomic O' the Week for this week is <a href=\"http://www.bitemecomic.com/\" target=\"_blank\">Bite Me!</a> by Dylan Meconis. Dylan's put out a number of works over the years, and we'll probably talk about the others in the future, but Bite Me! is the one I've enjoyed most recently, and its the most appropriate with Halloween on the horizon. The comic follows the story of a revolutionary French tavern-wench who meets a darkly alluring man with very point teeth, and hilarity ensues from there.&nbsp;</p><p>That does it for this week. Have a great weekend, and we'll see you Tuesday!</p><p>Philip</p>\r\n", 
+        "title": "Captain Quail 26 - Swoop", 
+        "slug": "captain-quail-26-swoop"
+    }, 
+    "pk": 26
+},
+{
     "model": "comics.character", 
     "fields": {
-        "name": "Captain Quail", 
+        "description": "Fearless Leader", 
         "profile_pic_url": "http://www.google.com/", 
-        "description": "Fearless Leader"
-    }
+        "name": "Captain Quail"
+    }, 
+    "pk": 1
 },
 {
-    "pk": 2, 
     "model": "comics.character", 
     "fields": {
-        "name": "Skuak", 
+        "description": "Second in command.", 
         "profile_pic_url": "http://www.google.com/", 
-        "description": "Second in command."
-    }
+        "name": "Skuak"
+    }, 
+    "pk": 2
 },
 {
-    "pk": 1, 
     "model": "comics.tag", 
     "fields": {
-        "description": "a comic", 
-        "tag": "comic"
-    }
+        "tag": "comic", 
+        "description": "a comic"
+    }, 
+    "pk": 1
 },
 {
-    "pk": 2, 
     "model": "comics.tag", 
     "fields": {
-        "description": "testing", 
-        "tag": "test"
-    }
+        "tag": "test", 
+        "description": "testing"
+    }, 
+    "pk": 2
+},
+{
+    "model": "comics.referralcode", 
+    "fields": {
+        "user": 3, 
+        "created": "2013-10-03T23:11:25.595Z", 
+        "note": null, 
+        "code": "8ef07a", 
+        "changed": "2013-10-03T23:11:25.595Z", 
+        "campaign": "First Round of Shirts", 
+        "is_active": true
+    }, 
+    "pk": 1
+},
+{
+    "model": "comics.referralcode", 
+    "fields": {
+        "user": 4, 
+        "created": "2013-10-05T02:29:44.644Z", 
+        "note": null, 
+        "code": "289e78", 
+        "changed": "2013-10-05T02:29:44.644Z", 
+        "campaign": "First Round of Shirts", 
+        "is_active": true
+    }, 
+    "pk": 2
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 1, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-03T23:11:31.162Z"
+    }, 
+    "pk": 1
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 2, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-05T02:29:48.245Z"
+    }, 
+    "pk": 2
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 2, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-05T02:40:37.527Z"
+    }, 
+    "pk": 3
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 2, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-05T02:41:14.804Z"
+    }, 
+    "pk": 4
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 2, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-07T22:42:46.529Z"
+    }, 
+    "pk": 5
+},
+{
+    "model": "comics.referralhit", 
+    "fields": {
+        "code": 2, 
+        "ip": "172.17.42.1", 
+        "created": "2013-10-08T17:21:27.954Z"
+    }, 
+    "pk": 6
 }
 ]
