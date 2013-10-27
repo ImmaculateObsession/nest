@@ -10,6 +10,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 
 ALLOWED_HOSTS = [
     '.captainquail.com',
+    '.inkpebble.com',
     '.quailcomics.com',
     '.herokuapp.com',
     'localhost',
