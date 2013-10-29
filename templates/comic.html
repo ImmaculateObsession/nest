@@ -9,9 +9,13 @@
 </div>
 <div class="row">
     <div>
-    <a title="{{ comic.alt_text }}" href="{{ comic.image_url_large }}" target="_blank">
+    {% if next %}
+    <a title="{{ comic.alt_text }}" href="/comic/{{ last_comic.post.slug }}" target="_blank">
         <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
     </a>
+    {% else %}
+        <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+    {% endif %}
     </div>
 </div>
 <div class="row">
