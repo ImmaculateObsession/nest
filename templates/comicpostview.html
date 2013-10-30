@@ -28,5 +28,8 @@
 {% endblock %}
 
 {% block js_defer %}
+{{ block.super }}
 {% include "js_comic_navigation.html" %}
+<script type="text/javascript" src="{{ STATIC_URL }}mixpanel_tracking.js"></script>
+<script>window.MixpanelTracking.init();</script>
 {% endblock %}
