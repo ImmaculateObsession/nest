@@ -1,5 +1,4 @@
 from mixpanel import Mixpanel
-import keen
 
 from django.conf import settings
 from django.contrib.syndication.views import Feed
