@@ -152,9 +152,6 @@ EMAIL_HOST_USER = 'pjj@philipjohnjames.com'
 EMAIL_HOST_PASSWORD = get_env_variable('MANDRILL_KEY')
 DEFAULT_FROM_EMAIL = 'site@quailcomics.com'
 
-KEEN_PROJECT_ID = get_env_variable('KEEN_ID')
-KEEN_WRITE_KEY = get_env_variable('KEEN_WRITE_KEY')
-
 MIXPANEL_KEY = get_env_variable('MIXPANEL_KEY')
 
 # A sample logging configuration. The only tangible logging
