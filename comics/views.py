@@ -2,6 +2,7 @@ import mandrill
 import base64
 import hashlib
 import datetime
+import mixpanel
 
 from django.conf import settings
 from django.contrib import messages
