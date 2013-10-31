@@ -109,7 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
     'allauth.account.context_processors.account',
     'allauth.socialaccount.context_processors.socialaccount',
-    'comics.context_processors.setting_injector',
+    'petroglyphs.context_processors.setting_injector',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'comics',
+    'petroglyphs',
     'suit',
     'django.contrib.admin',
     'suit_redactor',
