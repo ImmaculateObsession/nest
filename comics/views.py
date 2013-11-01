@@ -36,11 +36,11 @@ from comics.models import (
 from comics.forms import ComicPostForm
 
 
-class PreviewView(TemplateView):
+class StaffMixin(object):
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
-        return super(PreviewView, self).dispatch(*args, **kwargs)
+        return super(StaffMixin, self).dispatch(*args, **kwargs)
 
 
 class ComicViewMixin(object):
@@ -152,7 +152,7 @@ class ComicListView(ListView):
     queryset = Comic.published_comics.all()
 
 
-class ComicPreviewView(PreviewView):
+class ComicPreviewView(StaffMixin, TemplateView):
     template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):
@@ -177,7 +177,7 @@ class PostView(TemplateView):
         return context
 
 
-class PostPreviewView(PreviewView):
+class PostPreviewView(StaffMixin, TemplateView):
     template_name = "postview.html"
 
     def get_context_data(self, **kwargs):
@@ -293,7 +293,7 @@ class TagView(ListView):
         return context
 
 
-class ComicAddView(FormView):
+class ComicAddView(StaffMixin, FormView):
 
     form_class = ComicPostForm
     template_name = "add_comic.html"
@@ -306,7 +306,6 @@ class ComicAddView(FormView):
         return context
 
     def form_valid(self, form):
-        import pdb; pdb.set_trace()
         post = Post.objects.create(
             title=form.cleaned_data['title'],
             published=form.cleaned_data['published'],
@@ -332,5 +331,4 @@ class ComicAddView(FormView):
         return super(ComicAddView, self).form_valid(form)
 
     def form_invalid(self, form):
-        import pdb; pdb.set_trace()
         return super(ComicAddView, self).form_invalid(form)
