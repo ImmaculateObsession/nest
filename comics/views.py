@@ -22,6 +22,8 @@ from django.views.generic import (
     ListView,
     View,
     DetailView,
+    FormView,
+    CreateView,
 )
 
 from comics.models import (
@@ -30,6 +32,8 @@ from comics.models import (
     ReferralCode,
     ReferralHit,
 )
+
+from comics.forms import ComicPostForm
 
 
 class PreviewView(TemplateView):
@@ -288,3 +292,45 @@ class TagView(ListView):
 
         return context
 
+
+class ComicAddView(FormView):
+
+    form_class = ComicPostForm
+    template_name = "add_comic.html"
+
+    def get_success_url(self):
+        return '/'
+
+    def get_context_data(self, **kwargs):
+        context = super(ComicAddView, self).get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+        import pdb; pdb.set_trace()
+        post = Post.objects.create(
+            title=form.cleaned_data['title'],
+            published=form.cleaned_data['published'],
+            post=form.cleaned_data['post'],
+            slug=form.cleaned_data['post'],
+            is_live=form.cleaned_data['is_live'],
+        )
+
+        post.save()
+
+        comic = Comic.objects.create(
+            title=form.cleaned_data['title'],
+            published=form.cleaned_data['published'],
+            is_live=form.cleaned_data['is_live'],
+            post=post,
+            alt_text=form.cleaned_data['alt_text'],
+            image_url=form.cleaned_data['image_url'],
+            image_url_large=form.cleaned_data['image_url_large'],
+        )
+
+        comic.save()
+
+        return super(ComicAddView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        import pdb; pdb.set_trace()
+        return super(ComicAddView, self).form_invalid(form)

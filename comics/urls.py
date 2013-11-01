@@ -9,11 +9,13 @@ from comics.views import (
     PostPreviewView,
     ComicBackupView,
     TagView,
+    ComicAddView,
 )
 
 comicpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='comichomeview'),
     url(r'^all/$', ComicListView.as_view(), name='comiclistview'),
+    url(r'^add/$', ComicAddView.as_view(), name='comicaddview'),
     url(r'^backup/$', ComicBackupView.as_view(), name='comicbackupview'),
     url(
         r'^(?P<slug>[\w-]+)/$',

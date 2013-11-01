@@ -1,6 +1,6 @@
 *.pyc
 *.db
-
+static/suit/
 .DS_Store
 
 .Python
