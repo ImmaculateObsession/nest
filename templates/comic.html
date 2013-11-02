@@ -11,7 +11,7 @@
     <div>
     {% if next %}
     <a title="{{ comic.alt_text }}" href="/comic/{{ last_comic.post.slug }}" target="_blank">
-        <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+        <img class="img-responsive comic" src="{{ comic.image_url }}" title="{{ comic.alt_text }}" alt="{{ comic.alt_text }}"></img>
     </a>
     {% else %}
         <img class="img-responsive comic" src="{{ comic.image_url }}" title="{{ comic.alt_text }}" alt="{{ comic.alt_text }}"></img>
