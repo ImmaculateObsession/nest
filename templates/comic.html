@@ -14,7 +14,7 @@
         <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
     </a>
     {% else %}
-        <img class="img-responsive comic" src="{{ comic.image_url }}" alt="{{ comic.alt_text }}"></img>
+        <img class="img-responsive comic" src="{{ comic.image_url }}" title="{{ comic.alt_text }}" alt="{{ comic.alt_text }}"></img>
     {% endif %}
     </div>
 </div>
