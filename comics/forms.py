@@ -39,6 +39,10 @@ class ComicPostForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
+    image = forms.ImageField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={'class':'form-control',}),
+    )
     alt_text = forms.CharField(
         max_length=140,
         required=False,
