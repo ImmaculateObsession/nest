@@ -12,11 +12,17 @@ from comics.views import (
     ComicAddView,
 )
 
+from comics.api import S3SignView
+
 comicpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='comichomeview'),
     url(r'^all/$', ComicListView.as_view(), name='comiclistview'),
     url(r'^add/$', ComicAddView.as_view(), name='comicaddview'),
     url(r'^backup/$', ComicBackupView.as_view(), name='comicbackupview'),
+    url(r'^sign_s3/',
+        S3SignView.as_view(),
+        name='s3signview',
+    ),
     url(
         r'^(?P<slug>[\w-]+)/$',
         ComicPostView.as_view(),

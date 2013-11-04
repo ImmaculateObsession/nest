@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'datetimewidget',
+    'rest_framework',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
