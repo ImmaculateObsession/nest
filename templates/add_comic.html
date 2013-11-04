@@ -6,8 +6,12 @@
 {% endblock %}
 
 {% block content %}
-<input type="file" id="files"  onchange="s3_upload();"/>
-<p id="status">Please select a file</p>
+<div class="row col-md-offset-1">
+    <input type="file" id="files"  onchange="s3_upload();"/>
+    <p id="status">Please select a file</p>
+</div>
+<div class="row" id="preview">
+</div>
 
 <form enctype="multipart/form-data" action="" method="POST">
     {% csrf_token %}
@@ -34,13 +38,6 @@
             {{ form.image_url_large.errors }}
             <span class="label label-default"><label for="id_image_url_large">Large Image Url:</label></span>
             {{ form.image_url_large }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-offset-1 col-md-4">
-            {{ form.image.errors }}
-            <span class="label label-default"><label for="id_image">Image:</label></span>
-            {{ form.image }}
         </div>
     </div>
     <div class="row">
@@ -79,8 +76,8 @@ function s3_upload(){
         },
         onFinishS3Put: function(public_url) { 
             $('#status').html('Upload completed. Uploaded to: '+ public_url);
-            $("#avatar_url").val(public_url);
-            $("#preview").html('<img src="'+public_url+'" style="width:300px;" />');
+            $("#id_image_url").val(public_url);
+            $("#preview").html('<img class="comic img-responsive" src="'+public_url+'" />');
         },
         onError: function(status) {
             $('#status').html('Upload error: ' + status);
