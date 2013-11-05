@@ -17,6 +17,7 @@ from django.shortcuts import (
 )
 from django.utils.decorators import method_decorator
 from django.utils import timezone
+from django.utils.text import slugify
 from django.views.generic import (
     TemplateView,
     ListView,
@@ -299,36 +300,34 @@ class ComicAddView(StaffMixin, FormView):
     template_name = "add_comic.html"
 
     def get_success_url(self):
-        return '/'
+        return reverse('comicpreviewview', kwargs={'slug': self.slug})
 
     def get_context_data(self, **kwargs):
         context = super(ComicAddView, self).get_context_data(**kwargs)
         return context
 
     def form_valid(self, form):
+        slug = form.cleaned_data.get('slug')
+        if slug == '':
+            slug = slugify(form.cleaned_data['title'])
+        self.slug = slug
+
         post = Post.objects.create(
             title=form.cleaned_data['title'],
             published=form.cleaned_data['published'],
             post=form.cleaned_data['post'],
-            slug=form.cleaned_data['post'],
-            is_live=form.cleaned_data['is_live'],
+            slug=self.slug,
+            is_live=form.cleaned_data.get('is_live', False),
         )
-
-        post.save()
 
         comic = Comic.objects.create(
             title=form.cleaned_data['title'],
             published=form.cleaned_data['published'],
-            is_live=form.cleaned_data['is_live'],
+            is_live=form.cleaned_data.get('is_live', False),
             post=post,
-            alt_text=form.cleaned_data['alt_text'],
+            alt_text=form.cleaned_data.get('alt_text', ''),
             image_url=form.cleaned_data['image_url'],
-            image_url_large=form.cleaned_data['image_url_large'],
+            image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
 
-        comic.save()
-
         return super(ComicAddView, self).form_valid(form)
-
-    def form_invalid(self, form):
-        return super(ComicAddView, self).form_invalid(form)

@@ -61,8 +61,8 @@ class ComicPostForm(forms.Form):
         required=False,
         widget=RedactorWidget,
     )
-    # tags = forms.MultipleChoiceField()
     slug = forms.SlugField(
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     post = forms.CharField(
