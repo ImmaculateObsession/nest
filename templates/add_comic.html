@@ -6,42 +6,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="row col-md-offset-1">
-    <input class="btn btn-primary" type="file" id="files" onchange="s3_upload();" value="Choose a file"/>
-    <p id="status">Please select a file</p>
-</div>
-<div class="row" id="preview">
-</div>
-
 <form enctype="multipart/form-data" action="" method="POST">
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="row">
-        <div class="form-group col-md-offset-1 col-md-3">
-            {{ form.published.errors }}
-            <span class="label label-default"><label for="id_published">Published:</label></span>
-            {{ form.published }}
-        </div>
-        <div class="form-group col-md-3">
-            {{ form.is_live.errors }}
-            <span class="label label-default"><label for="id_is_live">Is Live?</label></span>
-            {{ form.is_live }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-offset-1 col-md-3">
-            {{ form.image_url.errors }}
-            <span class="label label-default"><label for="id_image_url">Image Url:</label></span>
-            {{ form.image_url }}
-        </div>
-        <div class="form-group col-md-3">
-            {{ form.image_url_large.errors }}
-            <span class="label label-default"><label for="id_image_url_large">Large Image Url:</label></span>
-            {{ form.image_url_large }}
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group col-md-offset-1 col-md-3">
+           <div class="form-group col-md-offset-1 col-md-3">
             {{ form.title.errors }}
             <span class="label label-default"><label for="id_title">Title:</label></span>
             {{ form.title }}
@@ -51,9 +20,32 @@
             <span class="label label-default"><label for="id_slug">Slug:</label></span>
             {{ form.slug }}
         </div>
+        <div class="form-group col-md-2">
+            {{ form.published.errors }}
+            <span class="label label-default"><label for="id_published">Published:</label></span>
+            {{ form.published }}
+        </div>
+        <div class="form-group col-md-2">
+            {{ form.is_live.errors }}
+            <span class="label label-default"><label for="id_is_live">Is Live?</label></span>
+            {{ form.is_live }}
+        </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-offset-1 col-md-8">
+        <div class="col-md-offset-1 col-md-3">
+            <input type="file" id="files" onchange="s3_upload();" value="Choose a file"/>
+            <p id="status">Please select a file</p>
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.image_url.errors }}
+            <span class="label label-default"><label for="id_image_url">Image Url:</label></span>
+            {{ form.image_url }}
+        </div>
+    </div>
+    <div class="row" id="preview">
+    </div>
+    <div class="row">
+        <div class="form-group col-md-offset-2 col-md-8">
             {{ form.post.errors }}
             <p class="label label-default"><label for="id_post">Post:</label></p>
             {{ form.post }}
@@ -75,7 +67,7 @@ function s3_upload(){
             $('#status').html('Upload progress: ' + percent + '%' + message);
         },
         onFinishS3Put: function(public_url) { 
-            $('#status').html('Upload completed. Uploaded to: '+ public_url);
+            // $('#status').html('Upload completed. Uploaded to: '+ public_url);
             $("#id_image_url").val(public_url);
             $("#preview").html('<img class="comic img-responsive" src="'+public_url+'" />');
         },
