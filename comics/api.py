@@ -33,16 +33,16 @@ class S3SignView(APIView):
             str(object_name) + str(timezone.now())
         ).hexdigest()[:6]
 
-        object_name = "%s_%s" % (hashcode, object_name)
+        resource_name = "comics/%s_%s" % (hashcode, object_name)
 
         expires = int(time.time()+10)
         amz_headers = 'x-amz-acl:public-read'
 
-        put_request = 'PUT\n\n%s\n%d\n%s\n/%s/%s' % (mime_type, expires, amz_headers, S3_BUCKET, object_name)
+        put_request = 'PUT\n\n%s\n%d\n%s\n/%s/%s' % (mime_type, expires, amz_headers, S3_BUCKET, resource_name)
 
         signature = base64.encodestring(hmac.new(AWS_SECRET_KEY, put_request, sha).digest())
         signature = urllib.quote_plus(signature.strip())
-        url = 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, object_name)
+        url = 'https://%s.s3.amazonaws.com/%s' % (S3_BUCKET, resource_name)
 
         data = {
             'signed_request': '%s?AWSAccessKeyId=%s&Expires=%d&Signature=%s' % (url, AWS_ACCESS_KEY, expires, signature),

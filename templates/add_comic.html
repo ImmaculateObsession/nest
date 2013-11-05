@@ -7,7 +7,7 @@
 
 {% block content %}
 <div class="row col-md-offset-1">
-    <input type="file" id="files"  onchange="s3_upload();"/>
+    <input class="btn btn-primary" type="file" id="files" onchange="s3_upload();" value="Choose a file"/>
     <p id="status">Please select a file</p>
 </div>
 <div class="row" id="preview">
@@ -59,7 +59,7 @@
             {{ form.post }}
         </div>
     </div>
-    <input class="btn btn-default col-md-offset-1" type="submit" value="Save" />
+    <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
 </form>
 {% endblock %}
 
