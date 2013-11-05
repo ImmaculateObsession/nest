@@ -4,6 +4,9 @@ import base64
 import hmac
 import sha
 import urllib
+import hashlib
+
+from django.utils import timezone
 
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAdminUser
@@ -22,8 +25,15 @@ class S3SignView(APIView):
         AWS_SECRET_KEY = str(Setting.objects.get(key='aws_secret_key').value)
         S3_BUCKET = str(Setting.objects.get(key='s3_bucket').value)
 
+
         object_name = request.QUERY_PARAMS.get('s3_object_name')
         mime_type = request.QUERY_PARAMS.get('s3_object_type')
+
+        hashcode = hashlib.sha1(
+            str(object_name) + str(timezone.now())
+        ).hexdigest()[:6]
+
+        object_name = "%s_%s" % (hashcode, object_name)
 
         expires = int(time.time()+10)
         amz_headers = 'x-amz-acl:public-read'
@@ -38,5 +48,4 @@ class S3SignView(APIView):
             'signed_request': '%s?AWSAccessKeyId=%s&Expires=%d&Signature=%s' % (url, AWS_ACCESS_KEY, expires, signature),
             'url': url,
         }
-        # import pdb; pdb.set_trace()
         return Response(data)
