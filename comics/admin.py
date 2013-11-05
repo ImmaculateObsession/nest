@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.forms import ModelForm
+import reversion
 from suit_redactor.widgets import RedactorWidget
 from comics.models import (
     Comic,
@@ -18,13 +19,13 @@ class PostForm(ModelForm):
         }
 
 
-class ComicAdmin(admin.ModelAdmin):
+class ComicAdmin(reversion.VersionAdmin):
 
     def queryset(self, request):
         return Comic.objects.all()
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(reversion.VersionAdmin):
 
     form = PostForm
 
