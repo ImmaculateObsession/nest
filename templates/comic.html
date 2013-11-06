@@ -55,13 +55,15 @@
     var tumblr_photo_source = "{{ comic.image_url }}";
     var tumblr_photo_caption = "{{ comic.title }}";
     var tumblr_photo_click_thru = "http://www.quailcomics.com{{ request.get_full_path }}";
+    var tumblr_photo_tags = "webcomics,comics,captain quail";
 </script>
 
 <!-- Put this code at the bottom of your page -->
 <script type="text/javascript">
     var tumblr_button = document.createElement("a");
-    tumblr_button.setAttribute("href", "http://www.tumblr.com/share/photo?source=" + encodeURIComponent(tumblr_photo_source) + "&caption=" + encodeURIComponent(tumblr_photo_caption) + "&clickthru=" + encodeURIComponent(tumblr_photo_click_thru));
+    tumblr_button.setAttribute("href", "http://www.tumblr.com/share/photo?source=" + encodeURIComponent(tumblr_photo_source) + "&caption=" + encodeURIComponent(tumblr_photo_caption) + "&clickthru=" + encodeURIComponent(tumblr_photo_click_thru) + "&tags=" + encodeURIComponent(tumblr_photo_tags));
     tumblr_button.setAttribute("title", "Share on Tumblr");
+    tumblr_button.setAttribute("target", "_blank");
     tumblr_button.setAttribute("style", "display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;");
     document.getElementById("tumblr_button_abc123").appendChild(tumblr_button);
 </script>
