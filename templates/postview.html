@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{{ block.super }}{{ post.title }}{% endblock %}
+
 {% block content %}
 <div class="row">
     <h2 class="col-md-8 col-md-offset-2">{{ post.title }}</h2>

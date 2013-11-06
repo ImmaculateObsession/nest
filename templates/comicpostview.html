@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title%}Quail Comics - {{ comic.title }}{% endblock %}
+{% block title%}{{ block.super }}{{ comic.title }}{% endblock %}
 
 {% block fb_tags %}
 <meta property="og:image" content="{{ comic.image_url }}">
