@@ -32,6 +32,9 @@ class Comic(models.Model):
     def __str__(self):
         return self.title
 
+    def __unicode__(self):
+        return self.title
+
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
@@ -59,6 +62,9 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def __unicode__(self):
+        return self.title
+
     @property
     def comic(self):
         return Comic.objects.filter(post=self)[0]
@@ -72,12 +78,18 @@ class Character(models.Model):
     def __str__(self):
         return self.name
 
+    def __unicode__(self):
+        return self.name
+
 
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
 
     def __str__(self):
+        return self.tag
+
+    def __unicode__(self):
         return self.tag
 
 
@@ -93,6 +105,9 @@ class ReferralCode(models.Model):
     def __str__(self):
         return '%s - %s' % (self.code, self.user)
 
+    def __unicode__(self):
+        return '%s - %s' % (self.code, self.user)
+
     @property
     def hits(self):
         return ReferralHit.objects.filter(code=self).values('ip').distinct().count()
@@ -105,4 +120,7 @@ class ReferralHit(models.Model):
     ip = models.GenericIPAddressField(unpack_ipv4=True, blank=True)
 
     def __str__(self):
-        return '%s (%s)' % (self.code, self.ip, self.created)
+        return '%s (%s)' % (self.code, self.created)
+
+    def __unicode__(self):
+        return '%s (%s)' % (self.code, self.created)

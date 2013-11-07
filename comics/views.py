@@ -2,7 +2,6 @@ import mandrill
 import base64
 import hashlib
 import datetime
-import mixpanel
 
 from django.conf import settings
 from django.contrib import messages
@@ -222,8 +221,6 @@ class ComicBackupView(View):
                 print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
 
         return redirect('/admin', permanent=False)
-
-        return super(RedirectView, self).dispatch(*args, **kwargs)
 
 
 class CreateRefCodeView(View):

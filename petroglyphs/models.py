@@ -11,3 +11,6 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.key
+
+    def __unicode__(self):
+        return self.key
