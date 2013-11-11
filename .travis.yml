@@ -1,10 +1,17 @@
 language: python
 python:
-    - "2.7"
-install: "pip install -r requirements.txt"
+- '2.7'
+install: pip install -r requirements.txt
 env:
-    - SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
-script: "python manage.py test comics --settings=nest.settings.base"
-notifications: 
-  email: 
+- SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
+script: python manage.py test comics --settings=nest.settings.base
+notifications:
+  email:
   - pjj@philipjohnjames.com
+deploy:
+  provider: heroku
+  api_key:
+    secure: KPdJ2AcC5JZYhV+RnqUIzUhYtAoD2I5oXAfm3j0dzifPCzkgF1eBevjVGDfwwj80f6qWSsxBgMeniMsUqWEUTkryM99ifsHS5LlXCzZ9nWkjK1gfFW+3h+X6bog2RkAOp60sdsZmyIiasfFiVo72vuIlDG3km3WO53jMWnrnpD8=
+  app: qc-stage
+  on:
+    repo: ImmaculateObsession/nest
