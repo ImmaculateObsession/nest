@@ -20,27 +20,42 @@
 </div>
 <div class="row">
     <div class="comic_footer">
-        <div class="row btn-group">
-            {% if first_comic %}
-            <a class="btn btn-default" href="/comic/{{ first_comic.post.slug }}" title="first">
-                <span class="glyphicon glyphicon-step-backward"></span>
+        <div class="row">
+            <div class="btn-group">
+                {% if first_comic %}
+                <a class="btn btn-default" href="/comic/{{ first_comic.post.slug }}" title="first">
+                    <span class="glyphicon glyphicon-step-backward"></span>
+                </a>
+                {% endif %}
+                {% if previous %}
+                <a class="btn btn-default" href="/comic/{{ previous.post.slug }}" title="previous">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+                {% endif %}
+            </div>
+            <a href="javascript:void(0);" id="subscribe-btn" class="btn btn-default" data-toggle="popover">
+                <span class="fa fa-plus-square"></span> Subscribe <span id="popover-action" class="caret"></span>
             </a>
-            {% endif %}
-            {% if previous %}
-            <a class="btn btn-default" href="/comic/{{ previous.post.slug }}" title="previous">
-                <span class="glyphicon glyphicon-arrow-left"></span>
-            </a>
-            {% endif %}
-            {% if next %}
-            <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
-                <span class="glyphicon glyphicon-arrow-right"></span>
-            </a>
-            {% endif %}
-            {% if last_comic %}
-            <a class="btn btn-default" href="/comic/{{ last_comic.post.slug }}" title="last">
-                <span class="glyphicon glyphicon-step-forward"></span>
-            </a>
-            {% endif %}
+            <div class="hidden subscribe-popover-content">
+                <form action="http://inkpebble.us3.list-manage1.com/subscribe/post?u=0591f32c13358b969bde9f7c9&amp;id=274876cee0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div class="form-group">
+                <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
+                </div>
+                <input type="submit" value="Get weekly updates!" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default btn-sm">
+                </form>
+            </div>
+            <div class="btn-group">
+                {% if next %}
+                <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
+                {% endif %}
+                {% if last_comic %}
+                <a class="btn btn-default" href="/comic/{{ last_comic.post.slug }}" title="last">
+                    <span class="glyphicon glyphicon-step-forward"></span>
+                </a>
+                {% endif %}
+            </div>  
         </div>
         <div class="row share_buttons">
             <fb:like href="http://www.facebook.com/quailcomics" width="450" layout="button_count" show_faces="true" send="false"></fb:like>

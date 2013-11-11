@@ -11,11 +11,16 @@ window.MixpanelTracking = (function ($) {
         mixpanel.track('Twitter Header Button Clicked');
     }
 
+    function handleSubscribeClick() {
+        mixpanel.track('Subscribe Button Click');
+    }
+
     return {
         init: function() {
             $('#header-rss').on('click', handleRSSClick);
             $('#header-fb').on('click', handleFBClick);
             $('#header-twitter').on('click', handleTwitterClick);
+            $('#subscribe-btn').on('click', handleSubscribeClick);
         }
     };
 }(jQuery));
