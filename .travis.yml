@@ -1,7 +1,7 @@
 language: python
 python:
 - '2.7'
-install: pip install -r requirements/base.txt
+install: pip install -r requirements/local.txt
 env:
 - SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
 script: python manage.py test comics --settings=nest.settings.base

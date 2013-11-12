@@ -1,15 +1,11 @@
 Django==1.5.4
 Unipath==1.0
-dj-database-url==0.2.2
 django-suit==0.2.4
 django-suit-redactor==0.0.2
 django-jsonfield==0.9.3
 django-modeldict==1.4.1
 git+https://github.com/dcramer/nexus.git#egg=nexus
 git+https://github.com/ImmaculateObsession/gargoyle.git#egg=gargoyle
-newrelic==2.0.0.1
-mock==1.0.1
-factory-boy==2.1.2
 mandrill==1.0.51
 django-allauth==0.13.0
 mixpanel-py==3.0.0
