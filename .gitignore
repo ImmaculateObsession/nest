@@ -7,3 +7,4 @@ static/suit/
 bin/
 lib/
 include/
+.sass-cache/

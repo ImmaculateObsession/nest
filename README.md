@@ -13,3 +13,5 @@ To run Nest:
 - run nest dev server (python manage.py runserver --settings=nest.settings.base)
 
 Share and enjoy.
+
+NOTE: Do not use bootstrap's glyphicons. Use the icons from Font Awesome.
