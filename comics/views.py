@@ -80,7 +80,7 @@ class ComicViewMixin(object):
                         ),
                     )
         else:
-            self.comic = Comic.published_comics.latest('published')
+            self.comic = self.get_comic()
             self.post = self.comic.post
 
         return super(ComicViewMixin, self).get(request, *args, **kwargs)
