@@ -58,8 +58,8 @@
 {% endblock %}
 
 {% block js_defer %}
-<script type="text/javascript" src="{% static "lodash.min.js" %}"></script>
-<script type="text/javascript" src="{% static "s3upload.js" %}"></script>
+<script type="text/javascript" src="{% static "sass/javascripts/lodash.min.js" %}"></script>
+<script type="text/javascript" src="{% static "sass/javascripts/s3upload.js" %}"></script>
 <script type="text/javascript">
 function s3_upload(){
     var s3upload = new S3Upload({
