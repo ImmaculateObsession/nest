@@ -14,6 +14,10 @@ from django.shortcuts import (
     get_object_or_404,
     redirect,
 )
+from django.http import (
+    HttpResponsePermanentRedirect,
+    Http404,
+)
 from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.utils.text import slugify
@@ -29,6 +33,7 @@ from django.views.generic import (
 from comics.models import (
     Post,
     Comic,
+    PublishedComicManager,
     ReferralCode,
     ReferralHit,
 )
@@ -51,19 +56,38 @@ class ComicViewMixin(object):
         else:
             return Comic.published_comics.latest('published')
 
+    def get(self, request, *args, **kwargs):
+        slug = kwargs.get('slug')
+        if slug:
+            post = None
+            try:
+                post = Post.published_posts.get(slug=slug)
+            except Post.DoesNotExist:
+                pass
+            if post:
+                self.comic = Comic.published_comics.get(post=post)
+                self.post = post
+            else:
+                try:
+                    comic = Comic.published_comics.get(id=int(slug))
+                except Comic.DoesNotExist:
+                    raise Http404
+                if comic and Post.published_posts.get(slug=slugify(comic.title)):
+                    return HttpResponsePermanentRedirect(
+                        reverse(
+                            'comicpostview',
+                            kwargs={'slug':slugify(comic.title)},
+                        ),
+                    )
+        else:
+            self.comic = Comic.published_comics.latest('published')
+            self.post = self.comic.post
+
+        return super(ComicViewMixin, self).get(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super(ComicViewMixin, self).get_context_data(**kwargs)
-
-        post = None
-        if kwargs.get('slug'):
-            post = get_object_or_404(
-                Post,
-                slug=self.kwargs['slug'],
-                is_live=True
-            )
-            self.post = post
-
-        self.comic = self.get_comic(post)
+        
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
         long_id = self.comic.post.slug if self.comic.post else self.comic.title
