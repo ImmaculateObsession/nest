@@ -1,9 +1,0 @@
-FROM app/quailcomics:latest
-
-VOLUME /tmp/dump/
-
-RUN export HOME=/app
-RUN for file in /app/.profile.d/*; do source $file; done
-RUN hash -r
-RUN cd /app
-RUN python manage.py dumpdata comics --indent=4 --settings=nest.settings.heroku > /tmp/data
