@@ -1,1 +1,1 @@
-web: newrelic-admin run-program gunicorn nest.heroku_wsgi
+web: gunicorn nest.heroku_wsgi
