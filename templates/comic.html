@@ -36,14 +36,6 @@
             <a href="javascript:void(0);" id="subscribe-btn" class="btn btn-default" data-toggle="popover">
                 <span class="fa fa-plus-square"></span> Subscribe <span id="popover-action" class="caret"></span>
             </a>
-            <div class="hidden subscribe-popover-content">
-                <form action="http://inkpebble.us3.list-manage1.com/subscribe/post?u=0591f32c13358b969bde9f7c9&amp;id=274876cee0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                <div class="form-group">
-                <input type="email" value="" name="EMAIL" class="email form-control" id="mce-EMAIL" placeholder="email address" required>
-                </div>
-                <input type="submit" value="Get weekly updates!" name="subscribe" id="mc-embedded-subscribe" class="btn btn-default btn-sm">
-                </form>
-            </div>
             <div class="btn-group">
                 {% if next %}
                 <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
