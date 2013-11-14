@@ -56,6 +56,7 @@ class ComicViewMixin(object):
         else:
             return Comic.published_comics.latest('published')
 
+    # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
         if slug:
@@ -198,6 +199,8 @@ class PostView(TemplateView):
         post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
         context['post'] = post
         context['disqus_identifier'] = post.slug
+        context['disqus_url'] = 'http://captainquail.com/post/%s/' % (post.slug)
+        context['disqus_title'] = post.title
         return context
 
 

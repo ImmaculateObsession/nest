@@ -4,14 +4,21 @@
 
 {% block content %}
 <div class="row">
-    <h2 class="col-md-8 col-md-offset-2">{{ post.title }}</h2>
-</div>
-<div class="row">
-    <p class="col-md-8 col-md-offset-2">{{ post.post | safe }}</p>
+    <div class="col-md-8 col-md-offset-2">
+        <p class="lead">{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})</p>
+        {{ post.post | safe }}
+    </div>
 </div>
 <div class="row">
     <div class="col-md-8 col-md-offset-2">
-        {% include "disqus.html" %}
+        {{ post.post | safe }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2 panel panel-default">
+        <div class="panel-body">
+            {% include "disqus.html" %}
+        </div>
     </div>
 </div>
 {% endblock %}
