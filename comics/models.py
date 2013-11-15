@@ -67,7 +67,11 @@ class Post(models.Model):
 
     @property
     def comic(self):
-        return Comic.objects.filter(post=self)[0]
+        try: 
+            comic = Comic.objects.filter(post=self)[0]
+        except IndexError:
+            comic = None
+        return comic
 
 
 class Character(models.Model):
