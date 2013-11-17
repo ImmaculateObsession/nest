@@ -4,17 +4,22 @@ from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from comics.models import Post
+from petroglyphs.models import Setting
 
 mp = Mixpanel(settings.MIXPANEL_KEY)
-
+mp_id_set = Setting.objects.filter(key='mixpanel_id')
 
 class LatestPostFeed(Feed):
     link = "/feed/"
-    description = "The Quail Comics Feed"
     description_template = "postfeed.html"
 
+    def description(self):
+        feed_description = Setting.objects.filter(key='feed_description')
+        return feed_description[0] if feed_description else 'Site Feed'
+
     def title(self):
-        return "The Adventures of Captain Quail"
+        feed_title = Setting.objects.filter(key='feed_title')
+        return feed_title[0] if feed_title else 'Site Feed'
 
     def items(self):
         return Post.published_posts.order_by('-published')[:5]
@@ -32,9 +37,10 @@ class LatestPostFeed(Feed):
 
     def get_feed(self, obj, request):
         feed = super(LatestPostFeed, self).get_feed(obj, request)
-        mp.track('quailcomics', 'rss_hit', {
-            'user_agent': request.META.get('HTTP_USER_AGENT', 'none'),
-            'remote_addr': request.META.get('REMOTE_ADDR', 'none'),
-            'http_host': request.META.get('HTTP_HOST', 'none'),
-            })
+        if mp_id_set:
+            mp.track(mp_id_set[0], 'rss_hit', {
+                'user_agent': request.META.get('HTTP_USER_AGENT', 'none'),
+                'remote_addr': request.META.get('REMOTE_ADDR', 'none'),
+                'http_host': request.META.get('HTTP_HOST', 'none'),
+                })
         return feed

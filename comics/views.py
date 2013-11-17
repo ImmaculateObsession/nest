@@ -40,6 +40,8 @@ from comics.models import (
 
 from comics.forms import ComicPostForm
 
+from comics import settings as site_settings
+
 
 class StaffMixin(object):
 
@@ -132,9 +134,12 @@ class HomeView(ComicViewMixin, TemplateView):
         context['comic'] = comic
         if comic.post:
             context['post'] = comic.post
-            context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (comic.post.slug)
+            context['disqus_url'] = '%s/comic/%s/' % (
+                site_settings.site_url(),
+                comic.post.slug
+            )
         else:
-            context['disqus_url'] = 'http://www.captainquail.com/'
+            context['disqus_url'] = site_settings.site_url()
         try:
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
             context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
@@ -153,7 +158,10 @@ class ComicPostView(ComicViewMixin, TemplateView):
 
         context['post'] = post
         context['comic'] = comic
-        context['disqus_url'] = 'http://captainquail.com/comic/%s/' % (post.slug)
+        context['disqus_url'] = '%s/comic/%s/' % (
+            site_settings.site_url(),
+            post.slug
+        )
 
         try: 
             context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
@@ -199,7 +207,10 @@ class PostView(TemplateView):
         post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
         context['post'] = post
         context['disqus_identifier'] = post.slug
-        context['disqus_url'] = 'http://captainquail.com/post/%s/' % (post.slug)
+        context['disqus_url'] = '%s/post/%s/' % (
+            site_settings.site_url(),
+            post.slug
+        )
         context['disqus_title'] = post.title
         return context
 
@@ -235,9 +246,9 @@ class ComicBackupView(View):
                     'auto_html': None,
                     'auto_text': None,
                     'from_email': 'site@quailcomics.com',
-                    'from_name': 'Quail Comics Site',
+                    'from_name': site_settings.site_title(),
                     'html': "Here's the backup",
-                    'subject': 'Backup of quailcomics.com',
+                    'subject': 'Backup of %s' % (site_settings.site_url()),
                     'to': [{'email': settings.ADMINS[0][1], 'name': settings.ADMINS[0][0]}],
                 }
                 result = mandrill_client.messages.send(message=message, async=False)

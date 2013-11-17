@@ -9,7 +9,7 @@ class UserFactory(factory.Factory):
 
     first_name = "Testy"
     last_name = "McTesterson"
-    email = "test@immaculateobsession.com"
+    email = "test@example.com"
 
 
 class PostFactory(factory.Factory):
@@ -25,7 +25,7 @@ class ComicFactory(factory.Factory):
     FACTORY_FOR = models.Comic
 
     title = factory.Sequence(lambda n: 'Test Comic %d' % n) 
-    image_url = "http://media.quailcomics.com/comics"
+    image_url = "http://media.examples.com/test.png"
     creator = factory.SubFactory(UserFactory)
     post = factory.SubFactory(PostFactory)
 
