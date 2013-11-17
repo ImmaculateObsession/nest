@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}Posts{% endblock %}
+{% block meta-desc %}All blog posts for The Adventures of Captain Quail{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <h2 class="col-md-offset-1">All Posts</h2>
+</div>
+
+{% for post in object_list %}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <p class="lead"><a href="/post/{{ post.slug }}">{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})</a></p>
+        {{ post.post | safe }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
