@@ -128,3 +128,30 @@ class ReferralHit(models.Model):
 
     def __unicode__(self):
         return '%s (%s)' % (self.code, self.created)
+
+class SocialPost(models.Model):
+    FACEBOOK = 'facebook'
+    TWITTER = 'twitter'
+    REDDIT = 'reddit'
+    TUMBLR = 'tumblr'
+    SOCIAL_NETWORK_CHOICES = (
+        (FACEBOOK, FACEBOOK),
+        (TWITTER, TWITTER),
+    )
+
+    user = models.ForeignKey(User)
+    post = models.ForeignKey('Post', blank=True, null=True)
+    comic = models.ForeignKey('Comic', blank=True, null=True)
+    time_to_post = models.DateTimeField(default=timezone.now())
+    posted = models.BooleanField(default=False)
+    message = models.TextField(blank=True, null=True)
+    social_network = models.CharField(
+        max_length='20',
+        choices=SOCIAL_NETWORK_CHOICES,
+        default=FACEBOOK,
+    )
+
+    def __str__(self):
+        return '%s on %s' % (self.social_network, self.time_to_post)
+
+

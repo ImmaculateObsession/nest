@@ -139,6 +139,8 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.twitter',
     'datetimewidget',
     'rest_framework',
     'reversion',
@@ -149,6 +151,14 @@ MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 #ALLAUTH SETTINGS
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True
+
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email', 'publish_actions', 'publish_stream', 'manage_pages',],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+    }
+}
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.mandrillapp.com'

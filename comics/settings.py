@@ -15,3 +15,11 @@ def site_url():
 
     return url
 
+def facebook_page_id():
+    try:
+        page_id = Setting.objects.get(key='facebook_page_id').value
+    except Setting.DoesNotExist:
+        page_id = ''
+
+    return page_id
+

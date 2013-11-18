@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 
 {% block title %}{{ block.super}}User Profile{% endblock %}
 
@@ -13,6 +14,9 @@
 {% if not codes %}
 <div class="row">
 <a href='/refcode/' class='btn btn-default'>Create a ref code</a>
+{% if user.is_staff %}
+<a href="{% provider_login_url "facebook" process="connect" %}" class='btn btn-primary'>Connect to Facebook</a>
+{% endif %}
 </div>
 {% endif %}
 <div class="row">
