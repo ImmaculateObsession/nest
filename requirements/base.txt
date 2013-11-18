@@ -13,3 +13,4 @@ django-datetime-widget==0.6
 djangorestframework==2.3.8
 django-reversion==1.7.1
 git+https://github.com/phildini/petroglyphs.git#egg=petroglyphs
+facepy==0.8.4
