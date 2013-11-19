@@ -154,7 +154,7 @@ ACCOUNT_UNIQUE_EMAIL=True
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'SCOPE': ['email', 'publish_actions', 'publish_stream', 'manage_pages',],
+        'SCOPE': ['email', 'publish_actions', 'publish_stream', 'manage_pages', ],
         'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
         'METHOD': 'oauth2',
     }
@@ -166,6 +166,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pjj@philipjohnjames.com'
 EMAIL_HOST_PASSWORD = get_env_variable('MANDRILL_KEY')
 DEFAULT_FROM_EMAIL = 'site@quailcomics.com'
+SERVER_EMAIL = 'site@quailcomics.com'
 
 MIXPANEL_KEY = get_env_variable('MIXPANEL_KEY')
 
@@ -177,17 +178,31 @@ MIXPANEL_KEY = get_env_variable('MIXPANEL_KEY')
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
-        }
+        },
     },
     'handlers': {
         'mail_admins': {
             'level': 'ERROR',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler'
-        }
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'verbose',
+            'filters': ['require_debug_false',],
+        },
+        'mail_error': {
+            'level': 'INFO',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django.request': {
@@ -195,5 +210,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-    }
+        'post_to_social': {
+            'handlers': ['mail_error'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
 }
