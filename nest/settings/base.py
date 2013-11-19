@@ -185,6 +185,9 @@ LOGGING = {
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
+        'loggly': {
+            'format':'loggly: %(message)s',
+        },
     },
     'filters': {
         'require_debug_false': {
