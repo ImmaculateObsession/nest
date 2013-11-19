@@ -16,6 +16,7 @@
 <a href='/refcode/' class='btn btn-default'>Create a ref code</a>
 {% if user.is_staff %}
 <a href="{% provider_login_url "facebook" process="connect" %}" class='btn btn-primary'>Connect to Facebook</a>
+<a href="{% provider_login_url "twitter" process="connect" %}" class='btn btn-info'>Connect to Twitter</a>
 {% endif %}
 </div>
 {% endif %}
