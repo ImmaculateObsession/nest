@@ -144,6 +144,7 @@ INSTALLED_APPS = (
     'datetimewidget',
     'rest_framework',
     'reversion',
+    'saltpeter',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

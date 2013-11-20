@@ -21,9 +21,9 @@ class Comic(models.Model):
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
-    post = models.ForeignKey('Post', blank=True, null=True)
+    post = models.ForeignKey('Post', blank=True, null=True, on_delete=models.DO_NOTHING)
     characters = models.ManyToManyField('Character', blank=True, null=True)
-    creator = models.ForeignKey(User, blank=True, null=True)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
 
     objects = models.Manager()
 
@@ -53,7 +53,7 @@ class Post(models.Model):
     published = models.DateTimeField(default=timezone.now())
     is_live = models.BooleanField(default=False)
     tags = models.ManyToManyField('Tag', blank=True)
-    creator = models.ForeignKey(User, blank=True, null=True)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
 
     objects = models.Manager()
 
@@ -102,7 +102,7 @@ class ReferralCode(models.Model):
     note = models.TextField(blank=True, null=True)
     changed = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     is_active = models.BooleanField(default=True)
     campaign = models.CharField(max_length=140, blank=True, null=True)
 
@@ -119,7 +119,7 @@ class ReferralCode(models.Model):
 
 
 class ReferralHit(models.Model):
-    code = models.ForeignKey('ReferralCode')
+    code = models.ForeignKey('ReferralCode', on_delete=models.DO_NOTHING)
     created = models.DateTimeField(auto_now_add=True)
     ip = models.GenericIPAddressField(unpack_ipv4=True, blank=True)
 
@@ -128,30 +128,3 @@ class ReferralHit(models.Model):
 
     def __unicode__(self):
         return '%s (%s)' % (self.code, self.created)
-
-class SocialPost(models.Model):
-    FACEBOOK = 'facebook'
-    TWITTER = 'twitter'
-    REDDIT = 'reddit'
-    TUMBLR = 'tumblr'
-    SOCIAL_NETWORK_CHOICES = (
-        (FACEBOOK, FACEBOOK),
-        (TWITTER, TWITTER),
-    )
-
-    user = models.ForeignKey(User)
-    post = models.ForeignKey('Post', blank=True, null=True)
-    comic = models.ForeignKey('Comic', blank=True, null=True)
-    time_to_post = models.DateTimeField(default=timezone.now())
-    posted = models.BooleanField(default=False)
-    message = models.TextField(blank=True, null=True)
-    social_network = models.CharField(
-        max_length='20',
-        choices=SOCIAL_NETWORK_CHOICES,
-        default=FACEBOOK,
-    )
-
-    def __str__(self):
-        return '%s on %s' % (self.social_network, self.time_to_post)
-
-

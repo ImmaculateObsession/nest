@@ -9,7 +9,6 @@ from comics.models import (
     Tag,
     ReferralCode,
     ReferralHit,
-    SocialPost,
 )
 
 class PostForm(ModelForm):
@@ -39,4 +38,3 @@ admin.site.register(Character)
 admin.site.register(Tag)
 admin.site.register(ReferralCode)
 admin.site.register(ReferralHit)
-admin.site.register(SocialPost)
