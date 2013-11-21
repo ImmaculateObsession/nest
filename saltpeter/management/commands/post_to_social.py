@@ -39,10 +39,11 @@ class Command(BaseCommand):
                         graph.post(
                             path='%s/links' % (site_settings.facebook_page_id()),
                             link=post.url,
-                            message='Hello there Joshua %s' % (post.url),
+                            message='%s %s' % (post.message, post.url),
                         )
                         post.is_posted = True
                         post.save()
+                        logger.info('[%s] Post to %s successful' % (site_settings.site_url(), post.social_network,))
                     except:
                         logger.exception('[%s] Post to %s failed' % (site_settings.site_url(), post.social_network,))
             if post.social_network == 'twitter':
@@ -62,7 +63,6 @@ class Command(BaseCommand):
                         api.update_status('%s %s' % (post.message, post.url))
                         post.is_posted = True
                         post.save()
+                        logger.info('[%s] Post to %s successful' % (site_settings.site_url(), post.social_network,))
                     except:
                         logger.exception('[%s] Post to %s failed' % (site_settings.site_url(), post.social_network,))
-            logger.info('[%s] Post to %s successful' % (site_settings.site_url(), post.social_network,))
-

@@ -37,10 +37,10 @@ from comics.models import (
     ReferralCode,
     ReferralHit,
 )
-
 from comics.forms import ComicPostForm
-
 from comics import settings as site_settings
+
+from saltpeter.models import SocialPost
 
 
 class StaffMixin(object):
@@ -364,5 +364,28 @@ class ComicAddView(StaffMixin, FormView):
             image_url=form.cleaned_data['image_url'],
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
+
+        facebook_post = SocialPost.objects.create(
+            user=self.request.user,
+            url='%s%s' % (
+                site_settings.site_url(),
+                reverse('comicpostview', kwargs={'slug': self.slug}),
+            ),
+            message=form.cleaned_data.get('social_post_message'),
+            time_to_post=form.cleaned_data.get('social_post_time'),
+            social_network=SocialPost.FACEBOOK,
+        )
+
+        twitter_post = SocialPost.objects.create(
+            user=self.request.user,
+            url='%s%s' % (
+                site_settings.site_url(),
+                reverse('comicpostview', kwargs={'slug':self.slug}),
+            ),
+            message=form.cleaned_data.get('social_post_message'),
+            time_to_post=form.cleaned_data.get('social_post_time'),
+            social_network=SocialPost.TWITTER,
+        )
+
 
         return super(ComicAddView, self).form_valid(form)
