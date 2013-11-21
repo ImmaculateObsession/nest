@@ -42,6 +42,7 @@ class Command(BaseCommand):
                             message='%s %s' % (post.message, post.url),
                         )
                         post.is_posted = True
+                        post.posted_on = timezone.now()
                         post.save()
                         logger.info('[%s] Post to %s successful' % (site_settings.site_url(), post.social_network,))
                     except:
@@ -62,6 +63,7 @@ class Command(BaseCommand):
                         api = tweepy.API(auth)
                         api.update_status('%s %s' % (post.message, post.url))
                         post.is_posted = True
+                        post.posted_on = timezone.now()
                         post.save()
                         logger.info('[%s] Post to %s successful' % (site_settings.site_url(), post.social_network,))
                     except:

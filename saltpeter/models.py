@@ -27,5 +27,8 @@ class SocialPost(models.Model):
 
     def __str__(self):
         if self.is_posted:
-            return 'POSTED to %s' % (self.social_network)
+            return 'POSTED to %s on %s' % (
+                self.social_network,
+                self.posted_on
+            )
         return '%s on %s' % (self.social_network, self.time_to_post)

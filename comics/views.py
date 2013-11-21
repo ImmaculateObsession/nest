@@ -344,7 +344,13 @@ class ComicAddView(StaffMixin, FormView):
     def form_valid(self, form):
         slug = form.cleaned_data.get('slug')
         if slug == '':
-            slug = slugify(form.cleaned_data['title'])
+            if Post.objects.filter(slug=slug).exists():
+                slug = '%s-%s' % (
+                    slugify(form.cleaned_data['title']),
+                    timezone.now().strftime('%Y%m%d'),
+                )
+            else: 
+                slug = slugify(form.cleaned_data['title'])
         self.slug = slug
 
         post = Post.objects.create(
@@ -365,27 +371,28 @@ class ComicAddView(StaffMixin, FormView):
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
 
-        facebook_post = SocialPost.objects.create(
-            user=self.request.user,
-            url='%s%s' % (
-                site_settings.site_url(),
-                reverse('comicpostview', kwargs={'slug': self.slug}),
-            ),
-            message=form.cleaned_data.get('social_post_message'),
-            time_to_post=form.cleaned_data.get('social_post_time'),
-            social_network=SocialPost.FACEBOOK,
-        )
+        if form.cleaned_data.get('post_to_social'):
+            facebook_post = SocialPost.objects.create(
+                user=self.request.user,
+                url='%s%s' % (
+                    site_settings.site_url(),
+                    reverse('comicpostview', kwargs={'slug': self.slug}),
+                ),
+                message=form.cleaned_data.get('social_post_message'),
+                time_to_post=form.cleaned_data.get('social_post_time'),
+                social_network=SocialPost.FACEBOOK,
+            )
 
-        twitter_post = SocialPost.objects.create(
-            user=self.request.user,
-            url='%s%s' % (
-                site_settings.site_url(),
-                reverse('comicpostview', kwargs={'slug':self.slug}),
-            ),
-            message=form.cleaned_data.get('social_post_message'),
-            time_to_post=form.cleaned_data.get('social_post_time'),
-            social_network=SocialPost.TWITTER,
-        )
+            twitter_post = SocialPost.objects.create(
+                user=self.request.user,
+                url='%s%s' % (
+                    site_settings.site_url(),
+                    reverse('comicpostview', kwargs={'slug':self.slug}),
+                ),
+                message=form.cleaned_data.get('social_post_message'),
+                time_to_post=form.cleaned_data.get('social_post_time'),
+                social_network=SocialPost.TWITTER,
+            )
 
 
         return super(ComicAddView, self).form_valid(form)
