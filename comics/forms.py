@@ -77,9 +77,12 @@ class ComicPostForm(forms.Form):
             options=date_time_options,
         ),
     )
-    social_post_message = forms.CharField(
-        max_length=140,
+    facebook_post_message = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={'class':'form-control',}),
+        widget=forms.Textarea(attrs={'class':'form-control',}),
+    )
+    twitter_post_message = forms.CharField(
+        required=False,
+        widget=forms.Textarea(attrs={'class':'form-control',}),
     )
 

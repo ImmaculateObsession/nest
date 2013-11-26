@@ -378,7 +378,7 @@ class ComicAddView(StaffMixin, FormView):
                     site_settings.site_url(),
                     reverse('comicpostview', kwargs={'slug': self.slug}),
                 ),
-                message=form.cleaned_data.get('social_post_message'),
+                message=form.cleaned_data.get('facebook_post_message'),
                 time_to_post=form.cleaned_data.get('social_post_time'),
                 social_network=SocialPost.FACEBOOK,
             )
@@ -389,7 +389,7 @@ class ComicAddView(StaffMixin, FormView):
                     site_settings.site_url(),
                     reverse('comicpostview', kwargs={'slug':self.slug}),
                 ),
-                message=form.cleaned_data.get('social_post_message'),
+                message=form.cleaned_data.get('twitter_post_message'),
                 time_to_post=form.cleaned_data.get('social_post_time'),
                 social_network=SocialPost.TWITTER,
             )

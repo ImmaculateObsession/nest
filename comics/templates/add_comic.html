@@ -59,20 +59,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-md-offset-2 col-md-2">
-            {{ form.post_to_social.errors }}
-            <p class="label label-default"><label for="id_post_to_social">Post to Social Networks?</label></p>
-            {{ form.post_to_social}}
+        <div class="col-md-offset-2 col-md-2">
+            <div class="form-group">
+                {{ form.post_to_social.errors }}
+                <p class="label label-default"><label for="id_post_to_social">Post to Social Networks?</label></p>
+                {{ form.post_to_social}}
+            </div>
+            <div class="form-group">
+                {{ form.social_post_time.errors }}
+                <span class="label label-default"><label for="id_social_post_time">Social Post Time</label></span>
+                {{ form.social_post_time }}
+            </div>
         </div>
         <div class="form-group col-md-3">
-            {{ form.social_post_time.errors }}
-            <span class="label label-default"><label for="id_social_post_time">Social Post Time</label></span>
-            {{ form.social_post_time }}
+            {{ form.facebook_post_message.errors }}
+            <span class="label label-default"><label for="id_facebook_post_message">Facebook Post Message</label></span>
+            {{ form.facebook_post_message }}
+            <p id="facebook-count">Characters:</p>
         </div>
         <div class="form-group col-md-3">
-            {{ form.social_post_message.errors }}
-            <span class="label label-default"><label for="id_social_post_message">Social Post Message</label></span>
-            {{ form.social_post_message }}
+            {{ form.twitter_post_message.errors }}
+            <span class="label label-default"><label for="id_twitter_post_message">Twitter Post Message</label></span>
+            {{ form.twitter_post_message }}
+            <p id="twitter-count">Characters Left: 120</p>
         </div>
     </div>
     <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
@@ -80,8 +89,12 @@
 {% endblock %}
 
 {% block js_defer %}
+<script type="text/javascript" src="{% static "sass/javascripts/add_comic.js" %}"></script>
 <script type="text/javascript" src="{% static "sass/javascripts/lodash.min.js" %}"></script>
 <script type="text/javascript" src="{% static "sass/javascripts/s3upload.js" %}"></script>
+<script type="text/javascript">
+    window.AddComic.init()
+</script>
 <script type="text/javascript">
 function s3_upload(){
     var s3upload = new S3Upload({
