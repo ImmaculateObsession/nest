@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.utils import timezone
 
 
@@ -24,6 +25,7 @@ class Comic(models.Model):
     post = models.ForeignKey('Post', blank=True, null=True, on_delete=models.DO_NOTHING)
     characters = models.ManyToManyField('Character', blank=True, null=True)
     creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
+    sites = models.ManyToManyField(Site, blank=True)
 
     objects = models.Manager()
 
@@ -54,6 +56,7 @@ class Post(models.Model):
     is_live = models.BooleanField(default=False)
     tags = models.ManyToManyField('Tag', blank=True)
     creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
+    sites = models.ManyToManyField(Site, blank=True)
 
     objects = models.Manager()
 
@@ -78,6 +81,7 @@ class Character(models.Model):
     name = models.CharField(max_length=140)
     description = models.TextField(blank=True)
     profile_pic_url = models.URLField(blank=True)
+    sites = models.ManyToManyField(Site, blank=True)
 
     def __str__(self):
         return self.name
@@ -89,6 +93,7 @@ class Character(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
+    sites = models.ManyToManyField(Site, blank=True)
 
     def __str__(self):
         return self.tag

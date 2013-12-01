@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'reversion',
     'saltpeter',
-    'south',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
