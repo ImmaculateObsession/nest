@@ -15,3 +15,4 @@ django-reversion==1.7.1
 git+https://github.com/phildini/petroglyphs.git#egg=petroglyphs
 facepy==0.8.4
 tweepy==2.1
+South==0.8.4
