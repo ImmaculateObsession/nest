@@ -30,7 +30,6 @@
         </script>
     </head>
     <body>
-        <div id="fb-root"></div>
         {% block body %}
             {% include "header.html" %}
             <div class="container">
@@ -55,22 +54,6 @@
           tab_inverted: false
         }]);
         </script>
-
-        <!-- facebook share below -->
-        <script>
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        </script>
-
-        <!-- twitter share below -->
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
-        </script>
-
 
         <!-- disqus js below -->
         {% if disqus_identifier %}

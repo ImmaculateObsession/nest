@@ -1,5 +1,5 @@
 <div class="row">
-    <h4 class="col-md-offset-1">
+    <h4>
         <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
         {% for tag in comic.tags.all %}
         <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
@@ -36,6 +36,9 @@
             <a href="javascript:void(0);" id="subscribe-btn" class="btn btn-default" data-toggle="popover">
                 <span class="fa fa-plus-square"></span> Subscribe <span id="popover-action" class="caret"></span>
             </a>
+            <a href="/share/" id="share-btn" class="btn btn-default">
+                Share <span class="fa fa-share"></span>
+            </a>
             <div class="btn-group">
                 {% if next %}
                 <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
@@ -49,28 +52,5 @@
                 {% endif %}
             </div>  
         </div>
-        <div class="row share_buttons">
-            <fb:like href="http://www.facebook.com/quailcomics" width="450" layout="button_count" show_faces="true" send="false"></fb:like>
-            <span id="tumblr_button_abc123"></span>
-            <a href="https://twitter.com/quailcomics" class="twitter-follow-button" data-show-count="false">Follow @quailcomics</a>
-        </div>
     </div>
 </div>
-
-<!-- Todo: Firgure out some way to move this outside this file -->
-<script type="text/javascript">
-    var tumblr_photo_source = "{{ comic.image_url }}";
-    var tumblr_photo_caption = "{{ comic.title }}";
-    var tumblr_photo_click_thru = "http://www.quailcomics.com{{ request.get_full_path }}";
-    var tumblr_photo_tags = "webcomics,comics,captain quail";
-</script>
-
-<!-- Put this code at the bottom of your page -->
-<script type="text/javascript">
-    var tumblr_button = document.createElement("a");
-    tumblr_button.setAttribute("href", "http://www.tumblr.com/share/photo?source=" + encodeURIComponent(tumblr_photo_source) + "&caption=" + encodeURIComponent(tumblr_photo_caption) + "&clickthru=" + encodeURIComponent(tumblr_photo_click_thru) + "&tags=" + encodeURIComponent(tumblr_photo_tags));
-    tumblr_button.setAttribute("title", "Share on Tumblr");
-    tumblr_button.setAttribute("target", "_blank");
-    tumblr_button.setAttribute("style", "display:inline-block; text-indent:-9999px; overflow:hidden; width:81px; height:20px; background:url('http://platform.tumblr.com/v1/share_1.png') top left no-repeat transparent;");
-    document.getElementById("tumblr_button_abc123").appendChild(tumblr_button);
-</script>

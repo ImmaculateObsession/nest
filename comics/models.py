@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.utils import timezone
-
+from django.utils.text import slugify
 
 class PublishedComicManager(models.Manager):
     def get_query_set(self):
@@ -36,6 +36,12 @@ class Comic(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    @property
+    def slug(self):
+        if self.post:
+            return self.post.slug
+        return slugify(self.title)
 
 
 class PublishedPostManager(models.Manager):

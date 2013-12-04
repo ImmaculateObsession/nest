@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.sites.models import get_current_site
 from django.core import management
 from django.core.urlresolvers import reverse
 from django.shortcuts import (
@@ -396,3 +397,44 @@ class ComicAddView(StaffMixin, FormView):
 
 
         return super(ComicAddView, self).form_valid(form)
+
+
+class ShareView(TemplateView):
+    template_name = "share.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ShareView, self).get_context_data(**kwargs)
+
+        current_site = get_current_site(self.request)
+
+        slug = self.request.COOKIES.get('last_read_comic')
+        if slug:
+            try: 
+                post = Post.published_posts.filter(slug=slug)[0]
+            except IndexError:
+                pass
+            try:
+                comic = Comic.published_comics.get(post=post)
+            except Comic.DoesNotExist:
+                pass
+
+            if comic:
+                context['url_to_share'] = '%s%s/comic/%s' % ('http://', current_site.domain, comic.post.slug)
+                context['image_url'] = comic.image_url
+                context['title'] = comic.title
+
+        else:
+            comic = Comic.published_comics.latest()
+            context['url_to_share'] = '%s%s' % ('http://', current_site.domain)
+            context['image_url'] = comic.image_url
+            context['title'] = comic.title
+
+        context.update({
+            'site_name': site_settings.site_title()
+            })
+
+        return context
+
+
+
+
