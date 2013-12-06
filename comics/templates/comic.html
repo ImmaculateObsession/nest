@@ -1,6 +1,5 @@
 <div class="row">
     <h4>
-        <small>{{ comic.published | date:"DATE_FORMAT" }}</small>
         {% for tag in comic.tags.all %}
         <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
         {% endfor %}
