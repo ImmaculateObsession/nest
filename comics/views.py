@@ -424,7 +424,7 @@ class ShareView(TemplateView):
                 context['title'] = comic.title
 
         else:
-            comic = Comic.published_comics.latest()
+            comic = Comic.published_comics.latest('published')
             context['url_to_share'] = '%s%s' % ('http://', current_site.domain)
             context['image_url'] = comic.image_url
             context['title'] = comic.title
