@@ -13,7 +13,7 @@
 <div class="row">
 {% if post %}
     <div class="col-md-8 col-md-offset-2">
-        <p class="lead">{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})</p>
+        <h2>{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})</h2>
         {{ post.post | safe }}
     </div>
 {% endif %}
