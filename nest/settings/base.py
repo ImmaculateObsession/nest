@@ -100,7 +100,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'comics.middleware.ReferralMiddleware',
+    'pebbles.middleware.PebbleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'reversion',
     'saltpeter',
+    'pebbles',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

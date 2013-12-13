@@ -35,8 +35,6 @@ from comics.models import (
     Post,
     Comic,
     PublishedComicManager,
-    ReferralCode,
-    ReferralHit,
 )
 from comics.forms import ComicPostForm
 from comics import settings as site_settings
@@ -53,30 +51,28 @@ class StaffMixin(object):
 
 class ComicViewMixin(object):
 
-    def get_comic(self, post=None):
-        if post: 
-            return Comic.published_comics.get(post=post)
-        else:
-            return Comic.published_comics.latest('published')
-
     # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
+        pebble = self.request.pebble
         if slug:
             post = None
             try:
-                post = Post.published_posts.get(slug=slug)
+                post = Post.published_posts.get(
+                    pebbles=pebble,
+                    slug=slug
+                )
             except Post.DoesNotExist:
                 pass
             if post:
-                self.comic = Comic.published_comics.get(post=post)
+                self.comic = Comic.published_comics.get(pebbles=pebble, post=post)
                 self.post = post
             else:
                 try:
-                    comic = Comic.published_comics.get(id=int(slug))
+                    comic = Comic.published_comics.get(pebbles=pebble, id=int(slug))
                 except Comic.DoesNotExist:
                     raise Http404
-                if comic and Post.published_posts.get(slug=slugify(comic.title)):
+                if comic and Post.published_posts.get(pebbles=pebble, slug=slugify(comic.title)):
                     return HttpResponsePermanentRedirect(
                         reverse(
                             'comicpostview',
@@ -84,7 +80,7 @@ class ComicViewMixin(object):
                         ),
                     )
         else:
-            self.comic = self.get_comic()
+            self.comic = Comic.published_comics.latest('published')
             self.post = self.comic.post
 
         return super(ComicViewMixin, self).get(request, *args, **kwargs)
@@ -131,6 +127,8 @@ class HomeView(ComicViewMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+
+        pebble=self.request.pebble
         comic = self.comic
         context['comic'] = comic
         if comic.post:
@@ -142,8 +140,14 @@ class HomeView(ComicViewMixin, TemplateView):
         else:
             context['disqus_url'] = site_settings.site_url()
         try:
-            context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
-            context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
+            context['first_comic'] = Comic.published_comics.filter(
+                pebbles=pebble,
+                published__lt=comic.published,
+            ).order_by('published')[0]
+            context['previous'] = Comic.published_comics.filter(
+                pebbles=pebble,
+                published__lt=comic.published,
+            ).order_by('-published')[0]
         except IndexError:
             pass
 
@@ -154,6 +158,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ComicPostView, self).get_context_data(**kwargs)
+        pebble = self.request.pebble
         post = self.post
         comic = self.comic
 
@@ -165,8 +170,14 @@ class ComicPostView(ComicViewMixin, TemplateView):
         )
 
         try: 
-            context['first_comic'] = Comic.published_comics.filter(published__lt=comic.published).order_by('published')[0]
-            context['previous'] = Comic.published_comics.filter(published__lt=comic.published).order_by('-published')[0]
+            context['first_comic'] = Comic.published_comics.filter(
+                pebbles=pebble,
+                published__lt=comic.published,
+            ).order_by('published')[0]
+            context['previous'] = Comic.published_comics.filter(
+                pebbles=pebble,
+                published__lt=comic.published,
+            ).order_by('-published')[0]
         except IndexError:
             pass
 
@@ -205,7 +216,8 @@ class PostView(TemplateView):
 
     def get_context_data (self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
-        post = get_object_or_404(Post, slug=self.kwargs['slug'], is_live=True)
+        pebble = self.request.pebble
+        post = get_object_or_404(Post, pebbles=pebble, slug=self.kwargs['slug'], is_live=True)
         context['post'] = post
         context['disqus_identifier'] = post.slug
         context['disqus_url'] = '%s/post/%s/' % (

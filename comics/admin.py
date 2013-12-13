@@ -7,8 +7,6 @@ from comics.models import (
     Post,
     Character,
     Tag,
-    ReferralCode,
-    ReferralHit,
 )
 
 class PostForm(ModelForm):
@@ -36,5 +34,3 @@ admin.site.register(Comic, ComicAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Character)
 admin.site.register(Tag)
-admin.site.register(ReferralCode)
-admin.site.register(ReferralHit)

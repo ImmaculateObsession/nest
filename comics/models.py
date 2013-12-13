@@ -4,6 +4,8 @@ from django.contrib.sites.models import Site
 from django.utils import timezone
 from django.utils.text import slugify
 
+from pebbles.models import Pebble
+
 class PublishedComicManager(models.Manager):
     def get_query_set(self):
         return super(PublishedComicManager, self).get_query_set().filter(
@@ -22,10 +24,10 @@ class Comic(models.Model):
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
     tags = models.ManyToManyField('Tag', blank=True)
-    post = models.ForeignKey('Post', blank=True, null=True, on_delete=models.DO_NOTHING)
+    post = models.ForeignKey('Post', blank=True, null=True, on_delete=models.SET_NULL)
     characters = models.ManyToManyField('Character', blank=True, null=True)
-    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
-    sites = models.ManyToManyField(Site, blank=True)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
 
     objects = models.Manager()
 
@@ -61,8 +63,8 @@ class Post(models.Model):
     published = models.DateTimeField(default=timezone.now())
     is_live = models.BooleanField(default=False)
     tags = models.ManyToManyField('Tag', blank=True)
-    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.DO_NOTHING)
-    sites = models.ManyToManyField(Site, blank=True)
+    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
 
     objects = models.Manager()
 
@@ -87,7 +89,7 @@ class Character(models.Model):
     name = models.CharField(max_length=140)
     description = models.TextField(blank=True)
     profile_pic_url = models.URLField(blank=True)
-    sites = models.ManyToManyField(Site, blank=True)
+    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -99,7 +101,7 @@ class Character(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
-    sites = models.ManyToManyField(Site, blank=True)
+    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
 
     def __str__(self):
         return self.tag
@@ -108,34 +110,3 @@ class Tag(models.Model):
         return self.tag
 
 
-class ReferralCode(models.Model):
-    code = models.CharField(max_length=10)
-    note = models.TextField(blank=True, null=True)
-    changed = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    is_active = models.BooleanField(default=True)
-    campaign = models.CharField(max_length=140, blank=True, null=True)
-
-    def __str__(self):
-        return '%s - %s' % (self.code, self.user)
-
-    def __unicode__(self):
-        return '%s - %s' % (self.code, self.user)
-
-    @property
-    def hits(self):
-        return ReferralHit.objects.filter(code=self).values('ip').distinct().count()
-
-
-
-class ReferralHit(models.Model):
-    code = models.ForeignKey('ReferralCode', on_delete=models.DO_NOTHING)
-    created = models.DateTimeField(auto_now_add=True)
-    ip = models.GenericIPAddressField(unpack_ipv4=True, blank=True)
-
-    def __str__(self):
-        return '%s (%s)' % (self.code, self.created)
-
-    def __unicode__(self):
-        return '%s (%s)' % (self.code, self.created)
