@@ -23,11 +23,33 @@ class Comic(models.Model):
     published = models.DateTimeField(default=timezone.now(), blank=True)
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
-    tags = models.ManyToManyField('Tag', blank=True)
-    post = models.ForeignKey('Post', blank=True, null=True, on_delete=models.SET_NULL)
-    characters = models.ManyToManyField('Character', blank=True, null=True)
-    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
-    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, db_constraint=False)
+    post = models.ForeignKey(
+        'Post',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        db_constraint=False,
+    )
+    characters = models.ManyToManyField(
+        'Character',
+        blank=True,
+        null=True,
+        db_constraint=False,
+    )
+    creator = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        db_constraint=False
+    )
+    pebbles = models.ManyToManyField(
+        Pebble,
+        blank=True,
+        null=True,
+        db_constraint=False,
+    )
 
     objects = models.Manager()
 
@@ -63,8 +85,19 @@ class Post(models.Model):
     published = models.DateTimeField(default=timezone.now())
     is_live = models.BooleanField(default=False)
     tags = models.ManyToManyField('Tag', blank=True)
-    creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
-    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
+    creator = models.ForeignKey(
+        User,
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+        db_constraint=False,
+    )
+    pebbles = models.ManyToManyField(
+        Pebble,
+        blank=True,
+        null=True,
+        db_constraint=False,
+    )
 
     objects = models.Manager()
 
@@ -89,7 +122,12 @@ class Character(models.Model):
     name = models.CharField(max_length=140)
     description = models.TextField(blank=True)
     profile_pic_url = models.URLField(blank=True)
-    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
+    pebbles = models.ManyToManyField(
+        Pebble,
+        blank=True,
+        null=True,
+        db_constraint=False,
+    )
 
     def __str__(self):
         return self.name
@@ -101,12 +139,15 @@ class Character(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
-    pebbles = models.ManyToManyField(Pebble, blank=True, null=True)
+    pebbles = models.ManyToManyField(
+        Pebble,
+        blank=True,
+        null=True,
+        db_constraint=False,
+    )
 
     def __str__(self):
         return self.tag
 
     def __unicode__(self):
         return self.tag
-
-

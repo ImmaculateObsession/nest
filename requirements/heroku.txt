@@ -3,4 +3,4 @@
 gunicorn==18.0
 psycopg2==2.5.1
 dj-database-url==0.2.2
-newrelic==2.0.0.1
+newrelic==2.8.0.7

@@ -1,4 +1,4 @@
-import nexus
+# import nexus
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
@@ -20,7 +20,7 @@ from comics.feeds import LatestPostFeed
 
 
 admin.autodiscover()
-nexus.autodiscover()
+# nexus.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', HomeRedirectView.as_view(), name='home'),
@@ -29,9 +29,10 @@ urlpatterns = patterns('',
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),
     url(r'^refcode/$', CreateRefCodeView.as_view()),
+     url(r'^accounts/profile', ProfileView.as_view()),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^nexus/', include(nexus.site.urls)),
+    # url(r'^nexus/', include(nexus.site.urls)),
     url(r'^playground/$', PlaygroundView.as_view()),
     url(r'^share/$', ShareView.as_view()),
 )
