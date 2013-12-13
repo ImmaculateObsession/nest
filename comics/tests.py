@@ -14,6 +14,8 @@ from mock import MagicMock
 from comics import factories
 from comics.views import HomeView
 
+from pebbles.factories import PebbleFactory
+
 
 class SimpleTest(TestCase):
     def test_basic_addition(self):
@@ -31,8 +33,11 @@ class HomeViewTests(TestCase):
             published=timezone.now(),
             creator=self.user
         )
+        self.pebble = PebbleFactory.create(creator=self.user)
         self.request_factory = RequestFactory()
         self.request = self.request_factory.get(reverse('comichomeview'))
+        self.request.pebble = self.pebble
+
 
     def test_home_view_response_200(self):
         HomeView.get_comic = MagicMock(return_value=self.comic)

@@ -51,11 +51,19 @@ class StaffMixin(object):
 
 class ComicViewMixin(object):
 
+    def get_comic(self):
+        """
+        This function exists to be mocked by testing. There must be a
+        better way to do this.
+        """
+        return Comic.published_comics.latest('published')
+
     # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
-        pebble = self.request.pebble
+        
         if slug:
+            pebble = self.request.pebble
             post = None
             try:
                 post = Post.published_posts.get(
@@ -80,7 +88,7 @@ class ComicViewMixin(object):
                         ),
                     )
         else:
-            self.comic = Comic.published_comics.latest('published')
+            self.comic = self.get_comic()
             self.post = self.comic.post
 
         return super(ComicViewMixin, self).get(request, *args, **kwargs)
