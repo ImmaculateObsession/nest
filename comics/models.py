@@ -84,7 +84,7 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     published = models.DateTimeField(default=timezone.now())
     is_live = models.BooleanField(default=False)
-    tags = models.ManyToManyField('Tag', blank=True)
+    tags = models.ManyToManyField('Tag', blank=True, db_constraint=False)
     creator = models.ForeignKey(
         User,
         blank=True,
