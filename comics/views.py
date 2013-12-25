@@ -379,6 +379,7 @@ class ComicAddView(StaffMixin, FormView):
             slug=self.slug,
             is_live=form.cleaned_data.get('is_live', False),
         )
+        post.pebbles.add(self.request.pebble)
 
         comic = Comic.objects.create(
             title=form.cleaned_data['title'],
@@ -389,6 +390,7 @@ class ComicAddView(StaffMixin, FormView):
             image_url=form.cleaned_data['image_url'],
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
+        comic.pebbles.add(self.request.pebble)
 
         if form.cleaned_data.get('post_to_social'):
             facebook_post = SocialPost.objects.create(
