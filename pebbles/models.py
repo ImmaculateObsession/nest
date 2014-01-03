@@ -19,6 +19,6 @@ class Domain(models.Model):
         return '%s: %s' % (self.url, self.pebble)
 
 
-class PebbleSettings(model.Model):
+class PebbleSettings(models.Model):
     pebble = models.ForeignKey('Pebble', null=True, on_delete=models.SET_NULL)
     settings = JSONField()
