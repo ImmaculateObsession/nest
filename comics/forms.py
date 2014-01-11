@@ -66,9 +66,13 @@ class ComicPostForm(forms.Form):
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     post = forms.CharField(
+        required=False,
         widget=RedactorWidget,
     )
-    post_to_social = forms.BooleanField(initial=True)
+    post_to_social = forms.BooleanField(
+        required=False,
+        initial=True,
+    )
     social_post_time = forms.DateTimeField(
         initial=timezone.now(),
         required=False,

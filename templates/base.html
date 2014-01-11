@@ -7,13 +7,19 @@
         <meta name="description" content="{% block meta-desc %}Mighty hawks! Fearless quails! Horrible puns! A free webcomic about Birds! In! Spaaaace!{% endblock %}">
         {% block fb_tags %}{% endblock %}
         <link rel="icon" href="{% static "favicon.ico" %}">
-        <link rel="stylesheet" href="{% static "sass/stylesheets/captainquail.css" %}">
+        {% if pebble_settings.css_name %}
+        {% with "sass/stylesheets/"|add:pebble_settings.css_name|add:".css" as site_stylesheet %}
+            <link rel="stylesheet" href="{% static site_stylesheet %}">
+        {% endwith %}
+        {% else %}
+            <link rel="stylesheet" href="{% static "sass/stylesheets/styles.css" %}">
+        {% endif %}
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static "sass/stylesheets/comic.css" %}">
-        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="//use.typekit.net/tud6pwy.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        {% if pebble_settings.use_typekit%}
+            <script type="text/javascript" src="//use.typekit.net/tud6pwy.js"></script>
+            <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        {% endif %}
         {% block extra_head %}
         {% endblock %}
 
@@ -42,6 +48,8 @@
             {% include "footer.html" %}
         {% endblock %}
 
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
         <!-- JS for Support Widget -->
         <script>
         UserVoice = window.UserVoice || [];

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load socialaccount %}
+
+{% block title %}{{ block.super }}User Profile{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if user.first_name and user.last_name %}
+    <h2>{{user.first_name}} {{user.last_name}}</2>
+    {% else %}
+    <h2>{{ user.email }}</h2>
+    {% endif %}
+</div>
+{% if not codes %}
+<div class="row">
+{% if user.is_staff %}
+<a href="{% provider_login_url "facebook" process="connect" %}" class='btn btn-primary'>Connect to Facebook</a>
+<a href="{% provider_login_url "twitter" process="connect" %}" class='btn btn-info'>Connect to Twitter</a>
+{% endif %}
+</div>
+{% endif %}
+
+{% endblock %}
