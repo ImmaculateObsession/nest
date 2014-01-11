@@ -15,6 +15,6 @@ class PebbleMiddleware(object):
         try:
             pebble = Domain.objects.get(url=domain).pebble
         except Domain.DoesNotExist:
-            raise Http404
+            pebble = None
 
         request.pebble = pebble

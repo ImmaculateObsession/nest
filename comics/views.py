@@ -98,9 +98,12 @@ class ComicViewMixin(object):
     def get_context_data(self, **kwargs):
         context = super(ComicViewMixin, self).get_context_data(**kwargs)
 
-        pebble_settings = PebbleSettings.objects.get(
-            pebble=self.request.pebble
-        ).settings
+        try:
+            pebble_settings = PebbleSettings.objects.get(
+                pebble=self.request.pebble
+            ).settings
+        except PebbleSettings.DoesNotExist:
+            pebble_settings = None
         
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
