@@ -20,15 +20,21 @@
     
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
+            {% if pebble_settings.show_rss %}
             <li><a id="header-rss" href="/feed/" target="_blank">
                 <span class="cq-orange fa fa-rss"></span>
             </a></li>
-            <li><a id="header-fb" href="https://www.facebook.com/quailcomics" target="_blank">
+            {% endif %}
+            {% if pebble_settings.facebook_page %}
+            <li><a id="header-fb" href="https://www.facebook.com/{{ pebble_settings.facebook_page }}" target="_blank">
                 <span class="cq-blue fa fa-facebook"></span>
             </a></li>
-            <li><a id="header-twitter" href="https://twitter.com/quailcomics" target="_blank">
+            {% endif %}
+            {% if pebble_settings.twitter_page %}
+            <li><a id="header-twitter" href="https://twitter.com/{{ pebble_settings.twitter_page }}" target="_blank">
                 <span class="cq-light-blue fa fa-twitter"></span>
             </a></li>
+            {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
@@ -40,8 +46,8 @@
                 </ul>
             </li>
             {% else %}
-            <li><a href="/accounts/signup/">Signup</a></li>
-            <li><a href="/accounts/login/">Login</a></li>
+            <!-- <li><a href="/accounts/signup/">Signup</a></li> -->
+            <!-- <li><a href="/accounts/login/">Login</a></li> -->
             {% endif %}
         </ul>
     </div>

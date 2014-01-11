@@ -1,10 +1,17 @@
 <div class="row footer">
-    <p><small>Copyright 2013 QuailComics.com and Immaculate Obsession</small></p>
+    {% if pebble_settings.copyright %}
+    <p><small>{{ pebble_settings.copyright }}</small></p>
+    {% else %}
+    <p><small>Copyright 2014</small></p>
+    {% endif %}
     <p>
         <small>
-        <a href="mailto:quailcomics@immaculateobsession.com">quailcomics@immaculateobsession.com</a> | 
-        <a href="http://twitter.com/quailcomics">@quailcomics</a> | 
-        <a href="https://www.facebook.com/quailcomics">Quail Comics on Facebook</a>
+        {% if pebble_settings.twitter_page %} 
+        <a href="http://twitter.com/{{ pebble_settings.twitter_page }}">@{{ pebble_settings.twitter_page }}</a> |
+        {% endif %}
+        {% if pebble_settings.facebook_page %}
+        <a href="https://www.facebook.com/{{ pebble_settings.facebook_page }}">Find us on Facebook</a>
+        {% endif %}
         </small>
     </p>
 </div>
