@@ -90,3 +90,13 @@ class ComicPostForm(forms.Form):
         widget=forms.Textarea(attrs={'class':'form-control',}),
     )
 
+    # def __init__(self, *args, **kwargs):
+    #     pebbles = kwargs.pop('pebbles')
+    #     super(ComicPostForm, self).__init__(*args, **kwargs)
+    #     choices = [(pebble.id, pebble.title) for pebble in pebbles]
+
+    #     self.fields['pebble'] = forms.ChoiceField(
+    #         choices=choices,
+    #         widget=forms.Select(attrs={'class':'form-control',}),
+    #     )
+

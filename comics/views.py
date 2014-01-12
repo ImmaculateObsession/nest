@@ -39,7 +39,10 @@ from comics.models import (
 from comics.forms import ComicPostForm
 from comics import settings as site_settings
 
-from pebbles.models import PebbleSettings
+from pebbles.models import (
+    Pebble,
+    PebbleSettings,
+)
 
 from saltpeter.models import SocialPost
 
@@ -58,7 +61,9 @@ class ComicViewMixin(object):
         This function exists to be mocked by testing. There must be a
         better way to do this.
         """
-        return Comic.published_comics.latest('published')
+        return Comic.published_comics.filter(
+            pebbles=self.request.pebble
+            ).latest('published')
 
     # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
@@ -90,8 +95,11 @@ class ComicViewMixin(object):
                         ),
                     )
         else:
-            self.comic = self.get_comic()
-            self.post = self.comic.post
+            try:
+                self.comic = self.get_comic()
+                self.post = self.comic.post
+            except Comic.DoesNotExist:
+                self.empty = True
 
         return super(ComicViewMixin, self).get(request, *args, **kwargs)
 
@@ -104,6 +112,11 @@ class ComicViewMixin(object):
             ).settings
         except PebbleSettings.DoesNotExist:
             pebble_settings = None
+
+        context['pebble_settings'] = pebble_settings
+
+        if self.empty:
+            return context
         
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
@@ -119,7 +132,6 @@ class ComicViewMixin(object):
         context['disqus_identifier'] = long_id
         context['disqus_title'] = self.comic.title
         context['page_url'] = self.request.build_absolute_uri()
-        context['pebble_settings'] = pebble_settings
 
         return context
 
@@ -144,6 +156,9 @@ class HomeView(ComicViewMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
+        if self.empty:
+            self.template_name ="empty.html"
+            return context
 
         pebble=self.request.pebble
         comic = self.comic
@@ -367,7 +382,24 @@ class ComicAddView(StaffMixin, FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ComicAddView, self).get_context_data(**kwargs)
+
+        try:
+            pebble_settings = PebbleSettings.objects.get(
+                pebble=self.request.pebble
+            ).settings
+        except PebbleSettings.DoesNotExist:
+            pebble_settings = None
+
+        context['pebble_settings'] = pebble_settings
+
         return context
+
+    # def get_form_kwargs(self):
+    #     kwargs = super(ComicAddView, self).get_form_kwargs()
+    #     pebbles = Pebble.objects.filter(creator=self.request.user)
+    #     kwargs['pebbles'] = pebbles
+
+    #     return kwargs
 
     def form_valid(self, form):
         slug = form.cleaned_data.get('slug')
@@ -380,6 +412,8 @@ class ComicAddView(StaffMixin, FormView):
             else: 
                 slug = slugify(form.cleaned_data['title'])
         self.slug = slug
+
+        # pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
 
         post = Post.objects.create(
             title=form.cleaned_data['title'],
@@ -463,7 +497,3 @@ class ShareView(TemplateView):
             })
 
         return context
-
-
-
-
