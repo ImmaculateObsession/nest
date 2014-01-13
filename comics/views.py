@@ -118,7 +118,7 @@ class ComicViewMixin(object):
 
         context['pebble_settings'] = pebble_settings
 
-        if self.empty:
+        if hasattr(self, 'empty'):
             return context
         
         last_read_comic = self.request.COOKIES.get('last_read_comic')
@@ -159,7 +159,7 @@ class HomeView(ComicViewMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
-        if self.empty:
+        if hasattr(self, 'empty'):
             self.template_name ="empty.html"
             return context
 
