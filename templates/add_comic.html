@@ -12,6 +12,13 @@
     {% csrf_token %}
     {{ form.non_field_errors }}
     <div class="row">
+        <div class="form-group col-md-offset-1 col-md-3">
+            {{ form.pebble.errors }}
+            <span class="label label-default"><label for="id_pebble">Post To</label></span>
+            {{ form.pebble }}
+        </div>
+    </div>
+    <div class="row">
            <div class="form-group col-md-offset-1 col-md-3">
             {{ form.title.errors }}
             <span class="label label-default"><label for="id_title">Title</label></span>

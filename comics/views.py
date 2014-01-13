@@ -40,9 +40,12 @@ from comics.forms import ComicPostForm
 from comics import settings as site_settings
 
 from pebbles.models import (
+    Domain,
     Pebble,
     PebbleSettings,
 )
+
+from petroglyphs.models import Setting
 
 from saltpeter.models import SocialPost
 
@@ -377,29 +380,24 @@ class ComicAddView(StaffMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
 
+    def get(self, request, *args, **kwargs):
+
+        if request.pebble:
+            main_domain = Setting.objects.get(key='site_url').value
+            url = '%s%s' % (main_domain, reverse('comicaddview'))
+            return HttpResponsePermanentRedirect(url)
+
+        return super(ComicAddView, self).get(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse('comicpreviewview', kwargs={'slug': self.slug})
 
-    def get_context_data(self, **kwargs):
-        context = super(ComicAddView, self).get_context_data(**kwargs)
+    def get_form_kwargs(self):
+        kwargs = super(ComicAddView, self).get_form_kwargs()
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        kwargs['pebbles'] = pebbles
 
-        try:
-            pebble_settings = PebbleSettings.objects.get(
-                pebble=self.request.pebble
-            ).settings
-        except PebbleSettings.DoesNotExist:
-            pebble_settings = None
-
-        context['pebble_settings'] = pebble_settings
-
-        return context
-
-    # def get_form_kwargs(self):
-    #     kwargs = super(ComicAddView, self).get_form_kwargs()
-    #     pebbles = Pebble.objects.filter(creator=self.request.user)
-    #     kwargs['pebbles'] = pebbles
-
-    #     return kwargs
+        return kwargs
 
     def form_valid(self, form):
         slug = form.cleaned_data.get('slug')
@@ -413,7 +411,8 @@ class ComicAddView(StaffMixin, FormView):
                 slug = slugify(form.cleaned_data['title'])
         self.slug = slug
 
-        # pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        domain = Domain.objects.filter(pebble=pebble)[0]
 
         post = Post.objects.create(
             title=form.cleaned_data['title'],
@@ -422,7 +421,7 @@ class ComicAddView(StaffMixin, FormView):
             slug=self.slug,
             is_live=form.cleaned_data.get('is_live', False),
         )
-        post.pebbles.add(self.request.pebble)
+        post.pebbles.add(pebble)
 
         comic = Comic.objects.create(
             title=form.cleaned_data['title'],
@@ -433,31 +432,32 @@ class ComicAddView(StaffMixin, FormView):
             image_url=form.cleaned_data['image_url'],
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
-        comic.pebbles.add(self.request.pebble)
+        comic.pebbles.add(pebble)
 
         if form.cleaned_data.get('post_to_social'):
-            facebook_post = SocialPost.objects.create(
-                user=self.request.user,
-                url='%s%s' % (
-                    site_settings.site_url(),
-                    reverse('comicpostview', kwargs={'slug': self.slug}),
-                ),
-                message=form.cleaned_data.get('facebook_post_message'),
-                time_to_post=form.cleaned_data.get('social_post_time'),
-                social_network=SocialPost.FACEBOOK,
-            )
+            if form.cleaned_data('facebook_post_message'):
+                facebook_post = SocialPost.objects.create(
+                    user=self.request.user,
+                    url='%s%s' % (
+                        domain.url,
+                        reverse('comicpostview', kwargs={'slug': self.slug}),
+                    ),
+                    message=form.cleaned_data.get('facebook_post_message'),
+                    time_to_post=form.cleaned_data.get('social_post_time'),
+                    social_network=SocialPost.FACEBOOK,
+                )
 
-            twitter_post = SocialPost.objects.create(
-                user=self.request.user,
-                url='%s%s' % (
-                    site_settings.site_url(),
-                    reverse('comicpostview', kwargs={'slug':self.slug}),
-                ),
-                message=form.cleaned_data.get('twitter_post_message'),
-                time_to_post=form.cleaned_data.get('social_post_time'),
-                social_network=SocialPost.TWITTER,
-            )
-
+            if form.cleaned_data('twitter_post_message'):
+                twitter_post = SocialPost.objects.create(
+                    user=self.request.user,
+                    url='%s%s' % (
+                        domain.url,
+                        reverse('comicpostview', kwargs={'slug':self.slug}),
+                    ),
+                    message=form.cleaned_data.get('twitter_post_message'),
+                    time_to_post=form.cleaned_data.get('social_post_time'),
+                    social_network=SocialPost.TWITTER,
+                )
 
         return super(ComicAddView, self).form_valid(form)
 

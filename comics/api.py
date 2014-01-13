@@ -8,16 +8,21 @@ import hashlib
 from django.utils import timezone
 
 from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import (
+    IsAdminUser,
+    IsAuthenticated,
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
+
+from pebbles.models import PebbleSettings
 
 from petroglyphs.models import Setting
 
 
 class S3SignView(APIView):
     authentication_classes = (SessionAuthentication,)
-    permission_classes = (IsAdminUser,)
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request, format=None):
         AWS_ACCESS_KEY = str(Setting.objects.get(key='aws_access_key').value)
@@ -32,7 +37,9 @@ class S3SignView(APIView):
             str(object_name) + str(timezone.now())
         ).hexdigest()[:6]
 
-        resource_name = "comics/%s_%s" % (hashcode, object_name)
+        folder_name = request.user.username
+
+        resource_name = "%s/%s_%s" % (folder_name, hashcode, object_name)
 
         expires = int(time.time()+10)
         amz_headers = 'x-amz-acl:public-read'
