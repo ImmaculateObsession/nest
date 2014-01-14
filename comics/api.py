@@ -39,7 +39,7 @@ class S3SignView(APIView):
 
         folder_name = request.user.username
 
-        resource_name = "%s/%s_%s" % (folder_name, hashcode, object_name)
+        resource_name = "comics/%s/%s_%s" % (folder_name, hashcode, object_name)
 
         expires = int(time.time()+10)
         amz_headers = 'x-amz-acl:public-read'

@@ -17,7 +17,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1'
 ]
 
-STATIC_URL = 'http://quailcomics.s3.amazonaws.com/assets/'
+STATIC_URL = 'http://inkpebble.s3.amazonaws.com/assets/'
 
 INSTALLED_APPS += (
     'gunicorn',
