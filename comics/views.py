@@ -385,6 +385,7 @@ class ComicAddView(StaffMixin, FormView):
         main_domain = Setting.objects.get(key='site_url').value
         url = 'http://%s%s' % (main_domain, reverse('comicaddview'))
 
+
         if request.META.get('HTTP_HOST') != main_domain:
             return HttpResponsePermanentRedirect(url)
 
@@ -436,7 +437,7 @@ class ComicAddView(StaffMixin, FormView):
         comic.pebbles.add(pebble)
 
         if form.cleaned_data.get('post_to_social'):
-            if form.cleaned_data('facebook_post_message'):
+            if form.cleaned_data.get('facebook_post_message'):
                 facebook_post = SocialPost.objects.create(
                     user=self.request.user,
                     url='%s%s' % (
@@ -448,7 +449,7 @@ class ComicAddView(StaffMixin, FormView):
                     social_network=SocialPost.FACEBOOK,
                 )
 
-            if form.cleaned_data('twitter_post_message'):
+            if form.cleaned_data.get('twitter_post_message'):
                 twitter_post = SocialPost.objects.create(
                     user=self.request.user,
                     url='%s%s' % (
