@@ -382,9 +382,10 @@ class ComicAddView(StaffMixin, FormView):
 
     def get(self, request, *args, **kwargs):
 
-        if request.pebble:
-            main_domain = Setting.objects.get(key='site_url').value
-            url = '%s%s' % (main_domain, reverse('comicaddview'))
+        main_domain = Setting.objects.get(key='site_url').value
+        url = 'http://%s%s' % (main_domain, reverse('comicaddview'))
+
+        if request.META.get('HTTP_HOST') != main_domain:
             return HttpResponsePermanentRedirect(url)
 
         return super(ComicAddView, self).get(request, *args, **kwargs)
