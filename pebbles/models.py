@@ -22,3 +22,6 @@ class Domain(models.Model):
 class PebbleSettings(models.Model):
     pebble = models.ForeignKey('Pebble', null=True, on_delete=models.SET_NULL)
     settings = JSONField()
+
+    def __str__(self):
+        return '"%s" Settings' % (self.pebble.title)

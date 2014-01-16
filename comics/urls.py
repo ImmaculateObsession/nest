@@ -29,7 +29,7 @@ comicpatterns = patterns('',
         name='comicpostview'
     ),
     url(
-        r'^(?P<slug>[\w-]+)/preview/$',
+        r'^(?P<id>\d+)/preview/$',
         ComicPreviewView.as_view(),
         name='comicpreviewview'
     ),

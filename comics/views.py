@@ -233,12 +233,12 @@ class ComicListView(ListView):
 
 
 class ComicPreviewView(StaffMixin, TemplateView):
-    template_name = "comicpostview.html"
+    template_name = "comicpreview.html"
 
     def get_context_data(self, **kwargs):
         context = super(ComicPreviewView, self).get_context_data(**kwargs)
-        post = get_object_or_404(Post, slug=self.kwargs['slug'])
-        comic = Comic.objects.get(post=post)
+        comic = get_object_or_404(Comic, id=self.kwargs['id'])
+        post = comic.post
 
         context['post'] = post
         context['comic'] = comic
@@ -380,19 +380,18 @@ class ComicAddView(StaffMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
 
-    def get(self, request, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
 
         main_domain = Setting.objects.get(key='site_url').value
         url = 'http://%s%s' % (main_domain, reverse('comicaddview'))
 
-
         if request.META.get('HTTP_HOST') != main_domain:
             return HttpResponsePermanentRedirect(url)
 
-        return super(ComicAddView, self).get(request, *args, **kwargs)
+        return super(ComicAddView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
-        return reverse('comicpreviewview', kwargs={'slug': self.slug})
+        return reverse('comicpreviewview', kwargs={'id': self.comic_id})
 
     def get_form_kwargs(self):
         kwargs = super(ComicAddView, self).get_form_kwargs()
@@ -415,6 +414,7 @@ class ComicAddView(StaffMixin, FormView):
 
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
         domain = Domain.objects.filter(pebble=pebble)[0]
+        self.domain = domain
 
         post = Post.objects.create(
             title=form.cleaned_data['title'],
@@ -435,6 +435,8 @@ class ComicAddView(StaffMixin, FormView):
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
         comic.pebbles.add(pebble)
+
+        self.comic_id = comic.id
 
         if form.cleaned_data.get('post_to_social'):
             if form.cleaned_data.get('facebook_post_message'):
@@ -472,30 +474,32 @@ class ShareView(TemplateView):
 
         current_site = get_current_site(self.request)
 
+        pebble = self.request.pebble
+        pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
+
         slug = self.request.COOKIES.get('last_read_comic')
         if slug:
-            try: 
-                post = Post.published_posts.filter(slug=slug)[0]
-            except IndexError:
-                pass
             try:
-                comic = Comic.published_comics.get(post=post)
+                comic = Comic.published_comics.get(
+                    pebbles=pebble,
+                    post__slug=slug,
+                )
             except Comic.DoesNotExist:
-                pass
+                comic = None
 
             if comic:
-                context['url_to_share'] = '%s%s/comic/%s' % ('http://', current_site.domain, comic.post.slug)
+                context['url_to_share'] = '%s%s/comic/%s' % ('http://', pebble_settings.get('default_domain'), comic.post.slug)
                 context['image_url'] = comic.image_url
                 context['title'] = comic.title
 
         else:
             comic = Comic.published_comics.latest('published')
-            context['url_to_share'] = '%s%s' % ('http://', current_site.domain)
+            context['url_to_share'] = '%s%s' % ('http://', pebble_settings.get('default_domain'))
             context['image_url'] = comic.image_url
             context['title'] = comic.title
 
         context.update({
-            'site_name': site_settings.site_title()
+            'pebble_settings': pebble_settings
             })
 
         return context

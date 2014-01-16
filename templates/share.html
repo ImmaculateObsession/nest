@@ -2,7 +2,7 @@
 
 {% block fb_tags %}
 <meta property="og:image" content="{{ image_url }}">
-<meta property="og:site_name" content="{{ site_name }}">
+<meta property="og:site_name" content="{{ pebble_settings.site_title }}">
 <meta property="og:url" content="{{ url_to_share }}">
 <meta property="og:type" content="comic">
 {% endblock %}
@@ -26,7 +26,7 @@
 
 {% block content %}
 <div id="fb-root"></div>
-<h2>Share Captain Quail<h2>
+<h2>Share Captain Quail</h2>
 
 <div class="row">
     <div class="col-md-2">
@@ -37,12 +37,20 @@
             <span id="tumblr_button_abc123"></span>
         </div>
         <div>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url_to_share }}" data-via="quailcomics" data-size="large" data-count="none" data-text="{{ title }}">Tweet</a>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="{{ url_to_share }}" data-via="inkpebble" data-size="large" data-count="none" data-text="{{ title }}">Tweet</a>
         </div>
     </div>
     <div class="col-md-8">
         <h4><small>You are sharing:</small></h4>
         <img class="img-responsive comic" src="{{ image_url }}" title="{{ title }}"></img>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <h4>Why are the share buttons on a different page?</h4>
+    </div>
+    <div class="col-md-8">
+        <div class="well well-lg">We value your identity and your privacy. Most social networks use their sharing services to keep track of what pages you visit. Some people don't want to be tracked, so we only activate those services on this page.</div>
     </div>
 </div>
 
@@ -51,7 +59,7 @@
     var tumblr_photo_source = "{{ image_url }}";
     var tumblr_photo_caption = "{{ title }}";
     var tumblr_photo_click_thru = "{{ url_to_share }}";
-    var tumblr_photo_tags = "webcomics,comics,captain quail";
+    var tumblr_photo_tags = "webcomics,comics";
 </script>
 
 <!-- Put this code at the bottom of your page -->
