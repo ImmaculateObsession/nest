@@ -12,7 +12,9 @@
         {% endif %}
         {% endblock %}
         </title>
+        {% if pebble_settings.description %}
         <meta name="description" content="{% block meta-desc %}Mighty hawks! Fearless quails! Horrible puns! A free webcomic about Birds! In! Spaaaace!{% endblock %}">
+        {% endif %}
         {% block fb_tags %}{% endblock %}
         {% if pebble_settings.favicon %}
         <link rel="icon" href="{% static "favicon.ico" %}">

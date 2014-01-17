@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block title %}The Adventures of Captain Quail - A comic about birds, scifi, and terrible puns.{% endblock %}
+<!-- Add better title stuff! -->
+
+{% block title %}{{ block.super }} Home{% endblock %}
 
 {% block fb_tags %}
 <meta property="og:image" content="{{ comic.image_url }}">
