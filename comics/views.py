@@ -235,7 +235,10 @@ class ComicPostView(ComicViewMixin, TemplateView):
 
 class ComicListView(ListView):
     template_name = "comic_list.html"
-    queryset = Comic.published_comics.filter(pebbles=self.request.pebble)
+
+    def get_queryset(self):
+
+        return Comic.published_comics.filter(pebble=self.request.pebble)
 
 
 class ComicPreviewView(StaffMixin, TemplateView):
