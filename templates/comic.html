@@ -35,9 +35,11 @@
                 <span class="fa fa-plus-square"></span> Subscribe <span id="popover-action" class="caret"></span>
             </a>
             {% endif %}
+            {% if not hide_share %}
             <a href="/share/" id="share-btn" class="btn btn-default">
                 Share <span class="fa fa-share"></span>
             </a>
+            {% endif %}
             {% if next %}
             <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
                 <span class="fa fa-arrow-right"></span>

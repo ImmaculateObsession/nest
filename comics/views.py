@@ -245,6 +245,7 @@ class ComicPreviewView(StaffMixin, TemplateView):
 
         context['post'] = post
         context['comic'] = comic
+        context['hide_share'] = True
 
         return context
 

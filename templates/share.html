@@ -26,7 +26,11 @@
 
 {% block content %}
 <div id="fb-root"></div>
-<h2>Share Captain Quail</h2>
+{% if pebble_settings.site_title %}
+<h2>Share {{ pebble_settings.site_title }}</h2>
+{% else %}
+<h2>Share Comic</h2>
+{% endif %}
 
 <div class="row">
     <div class="col-md-2">
