@@ -5,6 +5,7 @@ from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from comics.models import Post
 from petroglyphs.models import Setting
+from pebbles.models import Pebble
 
 mp = Mixpanel(settings.MIXPANEL_KEY)
 mp_id_set = Setting.objects.filter(key='mixpanel_id')
@@ -19,10 +20,10 @@ class LatestPostFeed(Feed):
 
     def title(self):
         feed_title = Setting.objects.filter(key='feed_title')
-        return feed_title[0] if feed_title else 'Site Feed'
+        return feed_title[0].value if feed_title else 'Site Feed'
 
     def items(self):
-        return Post.published_posts.order_by('-published')[:5]
+        return Post.published_posts.filter(pebbles=Pebble.objects.get(id=1)).order_by('-published')[:5]
 
     def item_title(self, item):
         return item.title

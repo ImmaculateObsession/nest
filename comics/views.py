@@ -522,7 +522,7 @@ class ShareView(TemplateView):
                 context['title'] = comic.title
 
         else:
-            comic = Comic.published_comics.latest('published')
+            comic = Comic.published_comics.filter(pebbles=pebble).latest('published')
             context['url_to_share'] = '%s%s' % ('http://', pebble_settings.get('default_domain'))
             context['image_url'] = comic.image_url
             context['title'] = comic.title
