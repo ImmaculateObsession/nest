@@ -71,7 +71,7 @@ class ComicPostForm(forms.Form):
     )
     post_to_social = forms.BooleanField(
         required=False,
-        initial=True,
+        initial=False,
     )
     social_post_time = forms.DateTimeField(
         initial=timezone.now(),

@@ -65,6 +65,7 @@
             {{ form.post }}
         </div>
     </div>
+    {% if fb_token or tw_token %}
     <div class="row">
         <div class="col-md-offset-2 col-md-2">
             <div class="form-group">
@@ -78,19 +79,24 @@
                 {{ form.social_post_time }}
             </div>
         </div>
+        {% if fb_token %}
         <div class="form-group col-md-3">
             {{ form.facebook_post_message.errors }}
             <span class="label label-default"><label for="id_facebook_post_message">Facebook Post Message</label></span>
             {{ form.facebook_post_message }}
             <p id="facebook-count">Characters:</p>
         </div>
+        {% endif %}
+        {% if tw_token %}
         <div class="form-group col-md-3">
             {{ form.twitter_post_message.errors }}
             <span class="label label-default"><label for="id_twitter_post_message">Twitter Post Message</label></span>
             {{ form.twitter_post_message }}
             <p id="twitter-count">Characters Left: 120</p>
         </div>
+        {% endif %}
     </div>
+    {% endif %}
     <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
 </form>
 {% endblock %}

@@ -3,6 +3,8 @@ import base64
 import hashlib
 import datetime
 
+from allauth.socialaccount.models import SocialToken
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -399,6 +401,31 @@ class ComicAddView(StaffMixin, FormView):
         kwargs['pebbles'] = pebbles
 
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(ComicAddView, self).get_context_data(**kwargs)
+
+        try:
+            fb_token = SocialToken.objects.get(
+                account__user=self.request.user,
+                app__provider='facebook'
+            ).token
+        except: 
+            fb_token = None
+
+        try:
+            tw_token = SocialToken.objects.get(
+                account__user=self.request.user,
+                app__provider='twitter'
+            )
+        except:
+            tw_token = None
+
+        context['fb_token'] = fb_token
+        context['tw_token'] = tw_token
+
+        return context
+
 
     def form_valid(self, form):
         slug = form.cleaned_data.get('slug')
