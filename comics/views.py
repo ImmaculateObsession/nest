@@ -238,7 +238,7 @@ class ComicListView(ListView):
 
     def get_queryset(self):
 
-        return Comic.published_comics.filter(pebble=self.request.pebble)
+        return Comic.published_comics.filter(pebbles=self.request.pebble)
 
 
 class ComicPreviewView(StaffMixin, TemplateView):
