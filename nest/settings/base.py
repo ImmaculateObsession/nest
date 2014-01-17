@@ -149,6 +149,8 @@ INSTALLED_APPS = (
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+LOGIN_REDIRECT_URL = '/pebbles'
+
 #ALLAUTH SETTINGS
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True

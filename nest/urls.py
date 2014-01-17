@@ -18,6 +18,7 @@ from comics.urls import comicpatterns, postpatterns
 
 from comics.feeds import LatestPostFeed
 
+from pebbles.views import DashboardView
 
 admin.autodiscover()
 # nexus.autodiscover()
@@ -27,6 +28,7 @@ urlpatterns = patterns('',
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
+    url(r'^pebbles/$', DashboardView.as_view(), name='dashview'),
     url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),
     # url(r'^refcode/$', CreateRefCodeView.as_view()),
      url(r'^profile/', ProfileView.as_view()),

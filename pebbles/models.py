@@ -7,6 +7,11 @@ class Pebble(models.Model):
     title = models.CharField(max_length=140, unique=True)
     creator = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
 
+    def comics(self):
+        # prevent circular import. icky
+        from comics.models import Comic
+        return Comic.objects.filter(pebbles=self)
+
     def __str__(self):
         return self.title
 
