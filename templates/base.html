@@ -3,7 +3,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block title %}Captain Quail - {% endblock %}</title>
+        <title>
+        {% block title %}
+        {% if pebble_settings.site_title %}
+        {{ pebble_settings.site_title }} - 
+        {% else %}
+        Inkpebble - 
+        {% endif %}
+        {% endblock %}
+        </title>
         <meta name="description" content="{% block meta-desc %}Mighty hawks! Fearless quails! Horrible puns! A free webcomic about Birds! In! Spaaaace!{% endblock %}">
         {% block fb_tags %}{% endblock %}
         {% if pebble_settings.favicon %}
