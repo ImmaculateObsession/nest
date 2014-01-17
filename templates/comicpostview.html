@@ -21,6 +21,7 @@
     </div>
 {% endif %}
 </div>
+{% if disqus_identifier %}
 <div class="row">
     <div class="col-md-8 col-md-offset-2 panel panel-default">
         <div class="panel-body">
@@ -28,6 +29,7 @@
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block js_defer %}

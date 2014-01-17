@@ -6,7 +6,9 @@
         <title>{% block title %}Captain Quail - {% endblock %}</title>
         <meta name="description" content="{% block meta-desc %}Mighty hawks! Fearless quails! Horrible puns! A free webcomic about Birds! In! Spaaaace!{% endblock %}">
         {% block fb_tags %}{% endblock %}
+        {% if pebble_settings.favicon %}
         <link rel="icon" href="{% static "favicon.ico" %}">
+        {% endif %}
         {% if pebble_settings.css_name %}
         {% with "sass/stylesheets/"|add:pebble_settings.css_name|add:".css" as site_stylesheet %}
             <link rel="stylesheet" href="{% static site_stylesheet %}">

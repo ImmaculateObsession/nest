@@ -168,8 +168,8 @@ EMAIL_HOST = 'smtp.mandrillapp.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'pjj@philipjohnjames.com'
 EMAIL_HOST_PASSWORD = get_env_variable('MANDRILL_KEY')
-DEFAULT_FROM_EMAIL = 'site@quailcomics.com'
-SERVER_EMAIL = 'site@quailcomics.com'
+DEFAULT_FROM_EMAIL = 'site@inkpebble.com'
+SERVER_EMAIL = 'site@inkpebble.com'
 
 MIXPANEL_KEY = get_env_variable('MIXPANEL_KEY')
 

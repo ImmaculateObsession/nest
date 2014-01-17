@@ -134,8 +134,9 @@ class ComicViewMixin(object):
         ):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
 
-        context['disqus_identifier'] = long_id
-        context['disqus_title'] = self.comic.title
+        if pebble_settings and pebble_settings.get('show_disqus'):
+            context['disqus_identifier'] = long_id
+            context['disqus_title'] = self.comic.title
         context['page_url'] = self.request.build_absolute_uri()
 
         return context
