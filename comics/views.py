@@ -220,7 +220,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
             pass
 
         try:
-            last_comic = Comic.published_comics.latest('published')
+            last_comic = Comic.published_comics.filter(pebbles=pebble).latest('published')
             if last_comic != self.comic:
                 context['last_comic'] = last_comic
             context['next'] = Comic.published_comics.filter(
@@ -235,7 +235,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
 
 class ComicListView(ListView):
     template_name = "comic_list.html"
-    queryset = Comic.published_comics.all()
+    queryset = Comic.published_comics.filter(pebbles=self.request.pebble)
 
 
 class ComicPreviewView(StaffMixin, TemplateView):
