@@ -14,6 +14,7 @@ from rest_framework.permissions import (
 )
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.renderers import JSONRenderer
 
 from pebbles.models import PebbleSettings
 
@@ -23,6 +24,7 @@ from petroglyphs.models import Setting
 class S3SignView(APIView):
     authentication_classes = (SessionAuthentication,)
     permission_classes = (IsAuthenticated,)
+    renderer_classes = (JSONRenderer,)
 
     def get(self, request, format=None):
         AWS_ACCESS_KEY = str(Setting.objects.get(key='aws_access_key').value)
