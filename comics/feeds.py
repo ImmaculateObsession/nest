@@ -23,7 +23,7 @@ class LatestPostFeed(Feed):
         return feed_title[0].value if feed_title else 'Site Feed'
 
     def items(self):
-        return Post.published_posts.filter(pebbles=Pebble.objects.get(id=1)).order_by('-published')[:5]
+        return Post.published_posts.filter(pebbles=self.request.pebble).order_by('-published')[:5]
 
     def item_title(self, item):
         return item.title
@@ -37,6 +37,7 @@ class LatestPostFeed(Feed):
         return item.published
 
     def get_feed(self, obj, request):
+        self.request = request
         feed = super(LatestPostFeed, self).get_feed(obj, request)
         if mp_id_set:
             mp.track(mp_id_set[0], 'rss_hit', {

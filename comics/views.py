@@ -223,7 +223,10 @@ class ComicPostView(ComicViewMixin, TemplateView):
             last_comic = Comic.published_comics.latest('published')
             if last_comic != self.comic:
                 context['last_comic'] = last_comic
-            context['next'] = Comic.published_comics.filter(published__gt=comic.published).order_by('published')[0]
+            context['next'] = Comic.published_comics.filter(
+                pebbles=pebble,
+                published__gt=comic.published
+            ).order_by('published')[0]
         except IndexError:
             pass
         
