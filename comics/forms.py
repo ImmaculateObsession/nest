@@ -91,12 +91,18 @@ class ComicPostForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
+        selected_pebble = None
+        if kwargs.get('selected_pebble'):
+            selected_pebble = kwargs.pop('selected_pebble')
         pebbles = kwargs.pop('pebbles')
         super(ComicPostForm, self).__init__(*args, **kwargs)
         choices = [(pebble.id, pebble.title) for pebble in pebbles]
+        if not selected_pebble:
+            selected_pebble = choices[0][0]
 
         self.fields['pebble'] = forms.ChoiceField(
             choices=choices,
+            initial=selected_pebble,
             widget=forms.Select(attrs={'class':'form-control',}),
         )
 

@@ -355,14 +355,6 @@ class ProfileView(DetailView):
         return context
 
 
-class PlaygroundView(TemplateView):
-
-    template_name = "playground.html"
-
-    @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        return super(PlaygroundView, self).dispatch(*args, **kwargs)
-
 class StaticPageView(TemplateView):
     template_name = "base.html"
 
@@ -434,20 +426,15 @@ class ComicAddView(StaffMixin, FormView):
 
         return context
 
-
     def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
         slug = form.cleaned_data.get('slug')
         if slug == '':
-            if Post.objects.filter(slug=slug).exists():
-                slug = '%s-%s' % (
-                    slugify(form.cleaned_data['title']),
-                    timezone.now().strftime('%Y%m%d'),
-                )
-            else: 
-                slug = slugify(form.cleaned_data['title'])
+            slug = slugify(form.cleaned_data['title'])
+        if Post.objects.filter(pebbles=pebble, slug=slug).exists():
+            slug = '%s-%s' % (slug, timezone.now().strftime('%Y%m%d'))
         self.slug = slug
 
-        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
         domain = Domain.objects.filter(pebble=pebble)[0]
         self.domain = domain
 
@@ -499,6 +486,84 @@ class ComicAddView(StaffMixin, FormView):
                 )
 
         return super(ComicAddView, self).form_valid(form)
+
+class ComicEditView(StaffMixin, FormView):
+    form_class = ComicPostForm
+    template_name = 'add_comic.html'
+
+    def get_success_url(self):
+        return reverse('comiceditview', kwargs={'id': self.kwargs.get('id')})
+
+    def get_initial(self):
+        comic = self.comic
+        post = comic.post
+
+        initial = {
+            'title': post.title,
+            'image_url': comic.image_url,
+            'alt_text': comic.alt_text,
+            'published': comic.published,
+            'is_live': comic.is_live,
+            'slug': post.slug,
+            'post': post.post,
+            'pebble': comic.pebbles.all()[0].id
+        }
+
+        return initial
+
+    def get_form_kwargs(self):
+        self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
+        kwargs = super(ComicEditView, self).get_form_kwargs()
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        kwargs['pebbles'] = pebbles
+        kwargs['selected_pebble'] = self.comic.pebbles.all()[0].id
+
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
+        pebbles = self.comic.pebbles.all()
+        for pebble in pebbles:
+            if pebble.creator != self.request.user:
+                return Http404
+
+        return super(ComicEditView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        slug = form.cleaned_data.get('slug')
+        if slug == '':
+            slug = slugify(form.cleaned_data['title'])
+        if Post.objects.filter(pebbles=pebble, slug=slug).exists():
+            if Post.objects.get(pebbles=pebble, slug=slug) != self.comic.post:
+                slug = '%s-%s' % (slug, timezone.now().strftime('%Y%m%d'))
+        self.slug = slug
+
+        comic = self.comic
+        post = comic.post
+
+        post.title = form.cleaned_data['title']
+        post.published = form.cleaned_data['published']
+        post.post = form.cleaned_data['post']
+        post.slug = self.slug
+        post.is_live = form.cleaned_data.get('is_live', False)
+        post.save()
+
+        if pebble not in post.pebbles.all():
+            post.pebbles.add(pebble)
+
+        comic.title=form.cleaned_data['title']
+        comic.published=form.cleaned_data['published']
+        comic.is_live=form.cleaned_data.get('is_live', False)
+        comic.alt_text=form.cleaned_data.get('alt_text', '')
+        comic.image_url=form.cleaned_data['image_url']
+        comic.image_url_large=form.cleaned_data.get('image_url_large', '')
+        comic.save()
+
+        if pebble not in comic.pebbles.all():
+            comic.pebbles.add(pebble)
+
+        return super(ComicEditView, self).form_valid(form)
 
 
 class ShareView(TemplateView):

@@ -9,7 +9,6 @@ from comics.views import (
     HomeView,
     ProfileView,
     CreateRefCodeView,
-    PlaygroundView,
     StaticPageView,
     ShareView,
 )
@@ -35,6 +34,5 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^nexus/', include(nexus.site.urls)),
-    url(r'^playground/$', PlaygroundView.as_view()),
     url(r'^share/$', ShareView.as_view()),
 )

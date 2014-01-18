@@ -5,7 +5,9 @@
 {% for pebble in pebbles %}
     <h1>{{ pebble.title }}</h1>
         {% for comic in pebble.comics %}
-        <p><span class="h3">{{ comic.title }}</span> <a href="{% url "comicpreviewview" comic.id %}">Preview</a></p>
+        <p><span class="h3">{{ comic.title }}</span>
+            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> <a href="{% url "comiceditview" comic.id %}">Edit</a>
+        </p>
         {% endfor %}
 {% endfor %}
 

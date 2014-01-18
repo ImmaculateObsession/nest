@@ -10,6 +10,7 @@ from comics.views import (
     ComicBackupView,
     TagView,
     ComicAddView,
+    ComicEditView,
 )
 
 from comics.api import S3SignView
@@ -36,6 +37,10 @@ comicpatterns = patterns('',
     url(r'^tag/(?P<tag>[\w-]+)/$',
         TagView.as_view(),
         name='tagview',
+    ),
+    url(r'^(?P<id>\d+)/edit/$',
+        ComicEditView.as_view(),
+        name='comiceditview',
     ),
 )
 
