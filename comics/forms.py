@@ -94,9 +94,9 @@ class ComicPostForm(forms.Form):
         selected_pebble = None
         if kwargs.get('selected_pebble'):
             selected_pebble = kwargs.pop('selected_pebble')
-        pebbles = kwargs.pop('pebbles')
+        self.pebbles = kwargs.pop('pebbles')
         super(ComicPostForm, self).__init__(*args, **kwargs)
-        choices = [(pebble.id, pebble.title) for pebble in pebbles]
+        choices = [(pebble.id, pebble.title) for pebble in self.pebbles]
         if not selected_pebble:
             selected_pebble = choices[0][0]
 
@@ -105,4 +105,3 @@ class ComicPostForm(forms.Form):
             initial=selected_pebble,
             widget=forms.Select(attrs={'class':'form-control',}),
         )
-

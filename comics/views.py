@@ -246,7 +246,8 @@ class ComicPreviewView(StaffMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ComicPreviewView, self).get_context_data(**kwargs)
-        comic = get_object_or_404(Comic, id=self.kwargs['id'])
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        comic = get_object_or_404(Comic, id=self.kwargs['id'], pebbles__in=pebbles)
         post = comic.post
 
         context['post'] = post
@@ -535,7 +536,7 @@ class ComicEditView(StaffMixin, FormView):
         if slug == '':
             slug = slugify(form.cleaned_data['title'])
         if Post.objects.filter(pebbles=pebble, slug=slug).exists():
-            if Post.objects.get(pebbles=pebble, slug=slug) != self.comic.post:
+            if self.comic.post not in Post.objects.filter(pebbles=pebble, slug=slug):
                 slug = '%s-%s' % (slug, timezone.now().strftime('%Y%m%d'))
         self.slug = slug
 
