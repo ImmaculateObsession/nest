@@ -38,7 +38,10 @@ from comics.models import (
     Comic,
     PublishedComicManager,
 )
-from comics.forms import ComicPostForm
+from comics.forms import (
+    ComicPostForm,
+    ComicDeleteForm,
+)
 from comics import settings as site_settings
 
 from pebbles.models import (
@@ -604,3 +607,40 @@ class ShareView(TemplateView):
             })
 
         return context
+
+
+class DeleteView(StaffMixin, FormView):
+    template_name = "delete_comic.html"
+    form_class = ComicDeleteForm
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(DeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(DeleteView, self).post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(DeleteView, self).get_context_data(**kwargs)
+        context['comic'] = self.comic
+
+        return context
+
+    def form_valid(self, form):
+        really_delete = form.cleaned_data.get('really_delete')
+
+        if really_delete == 'yes':
+            pebbles = self.comic.pebbles.all()
+            for pebble in pebbles:
+                self.comic.pebbles.remove(pebble)
+                self.comic.post.pebbles.remove(pebble)
+
+        return super(DeleteView, self).form_valid(form)

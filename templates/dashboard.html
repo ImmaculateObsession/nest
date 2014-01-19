@@ -6,7 +6,9 @@
     <h1>{{ pebble.title }}</h1>
         {% for comic in pebble.comics %}
         <p><span class="h3">{{ comic.title }}</span>
-            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> <a href="{% url "comiceditview" comic.id %}">Edit</a>
+            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
+            <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
+            <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
         </p>
         {% endfor %}
 {% endfor %}

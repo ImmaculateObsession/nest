@@ -105,3 +105,11 @@ class ComicPostForm(forms.Form):
             initial=selected_pebble,
             widget=forms.Select(attrs={'class':'form-control',}),
         )
+
+
+class ComicDeleteForm(forms.Form):
+    really_delete = forms.ChoiceField(
+        widget=forms.RadioSelect,
+        required=True,
+        choices=[('yes', 'yes'), ('no', 'no')],
+    )
