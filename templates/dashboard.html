@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{{ block.super }} Pebbles {% endblock %}
+
 {% block content %}
 <a href="{% url "comicaddview" %}" class="btn btn-large btn-success">Add Comic</a>
 {% for pebble in pebbles %}

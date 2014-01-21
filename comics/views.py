@@ -524,6 +524,30 @@ class ComicEditView(StaffMixin, FormView):
 
         return kwargs
 
+        def get_context_data(self, **kwargs):
+        context = super(ComicAddView, self).get_context_data(**kwargs)
+
+        try:
+            fb_token = SocialToken.objects.get(
+                account__user=self.request.user,
+                app__provider='facebook'
+            ).token
+        except: 
+            fb_token = None
+
+        try:
+            tw_token = SocialToken.objects.get(
+                account__user=self.request.user,
+                app__provider='twitter'
+            )
+        except:
+            tw_token = None
+
+        context['fb_token'] = fb_token
+        context['tw_token'] = tw_token
+
+        return context
+
     def get(self, request, *args, **kwargs):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
         pebbles = self.comic.pebbles.all()
