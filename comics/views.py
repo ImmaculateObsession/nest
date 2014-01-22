@@ -83,33 +83,13 @@ class ComicViewMixin(object):
 
     # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
+
+        self.pebble = self.request.pebble
         slug = kwargs.get('slug')
         
         if slug:
-            pebble = self.request.pebble
-            post = None
-            try:
-                post = Post.published_posts.get(
-                    pebbles=pebble,
-                    slug=slug
-                )
-            except Post.DoesNotExist:
-                pass
-            if post:
-                self.comic = Comic.published_comics.get(pebbles=pebble, post=post)
-                self.post = post
-            else:
-                try:
-                    comic = Comic.published_comics.get(pebbles=pebble, id=int(slug))
-                except Comic.DoesNotExist:
-                    raise Http404()
-                if comic and Post.published_posts.get(pebbles=pebble, slug=slugify(comic.title)):
-                    return HttpResponsePermanentRedirect(
-                        reverse(
-                            'comicpostview',
-                            kwargs={'slug':slugify(comic.title)},
-                        ),
-                    )
+            self.post = get_object_or_404(Post, pebbles=self.pebble, slug=slug)
+            self.comic = get_object_or_404(Comic, pebbles=self.pebble, post=self.post)
         else:
             try:
                 self.comic = self.get_comic()
