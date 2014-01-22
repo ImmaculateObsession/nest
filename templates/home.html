@@ -1,43 +1,5 @@
-{% extends "base.html" %}
+{% extends "comicpostview.html" %}
 
-<!-- Add better title stuff! -->
+{# Add better title stuff! #}
 
-{% block title %}{{ block.super }} Home{% endblock %}
-
-{% block fb_tags %}
-<meta property="og:image" content="{{ comic.image_url }}">
-<meta property="og:image:type" content="image/png">
-{% endblock %}
-
-{% block content %}
-{% include "messages.html" %}
-{% include "comic.html" %}
-<div class="row">
-{% if post %}
-    <div class="col-md-8 col-md-offset-2">
-        <h2>{{ post.title }} ({{ post.published | date:"DATE_FORMAT" }})</h2>
-        {{ post.post | safe }}
-    </div>
-{% endif %}
-</div>
-{% if disqus_identifier %}
-<div class="row">
-    <div class="col-md-8 col-md-offset-2 panel panel-default">
-        <div class="panel-body">
-        {% include "disqus.html" %}
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endblock %}
-
-{% block js_defer %}
-<script type="text/javascript" src="{{ STATIC_URL }}sass/javascripts/subscribe_popover.js"></script>
-<script>window.SubscribePopover.init();</script>
-
-{{ block.super }}
-
-{% include "js_comic_navigation.html" %}
-<script type="text/javascript" src="{{ STATIC_URL }}sass/javascripts/mixpanel_tracking.js"></script>
-<script>window.MixpanelTracking.init();</script>
-{% endblock %}
+{% block title %}{{ pebble_settings.site_title }} - Home{% endblock %}
