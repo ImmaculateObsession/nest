@@ -58,8 +58,16 @@ from saltpeter.models import SocialPost
 class StaffMixin(object):
 
     @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super(StaffMixin, self).dispatch(*args, **kwargs)
+    def dispatch(self, request, *args, **kwargs):
+        return super(StaffMixin, self).dispatch(request, *args, **kwargs)
+
+class NeedsPebbleMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.pebble:
+            raise Http404()
+        return super(NeedsPebbleMixin, self).dispatch(request, *args, **kwargs)
+
 
 
 class ComicViewMixin(object):
@@ -94,7 +102,7 @@ class ComicViewMixin(object):
                 try:
                     comic = Comic.published_comics.get(pebbles=pebble, id=int(slug))
                 except Comic.DoesNotExist:
-                    raise Http404
+                    raise Http404()
                 if comic and Post.published_posts.get(pebbles=pebble, slug=slugify(comic.title)):
                     return HttpResponsePermanentRedirect(
                         reverse(
@@ -160,7 +168,7 @@ class ComicViewMixin(object):
         return response
 
 
-class HomeView(ComicViewMixin, TemplateView):
+class HomeView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
     template_name = "home.html"
 
     def get_context_data(self, **kwargs):
@@ -194,7 +202,7 @@ class HomeView(ComicViewMixin, TemplateView):
 
         return context
 
-class ComicPostView(ComicViewMixin, TemplateView):
+class ComicPostView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
     template_name = "comicpostview.html"
 
     def get_context_data(self, **kwargs):
@@ -236,7 +244,7 @@ class ComicPostView(ComicViewMixin, TemplateView):
         return context
 
 
-class ComicListView(ListView):
+class ComicListView(NeedsPebbleMixin, ListView):
     template_name = "comic_list.html"
 
     def get_queryset(self):
@@ -260,7 +268,7 @@ class ComicPreviewView(StaffMixin, TemplateView):
         return context
 
 
-class PostView(TemplateView):
+class PostView(NeedsPebbleMixin, TemplateView):
     template_name = "postview.html"
 
     def get_context_data (self, **kwargs):
@@ -553,7 +561,7 @@ class ComicEditView(StaffMixin, FormView):
         pebbles = self.comic.pebbles.all()
         for pebble in pebbles:
             if pebble.creator != self.request.user:
-                return Http404
+                raise Http404()
 
         return super(ComicEditView, self).get(request, *args, **kwargs)
 
