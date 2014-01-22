@@ -337,34 +337,23 @@ class TagView(ListView):
 
         return context
 
-
-class ComicAddView(StaffMixin, FormView):
-
+class ComicEditBaseView(StaffMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
+    url_name = 'dashview'
 
     def dispatch(self, request, *args, **kwargs):
 
         main_domain = Setting.objects.get(key='site_url').value
-        url = 'http://%s%s' % (main_domain, reverse('comicaddview'))
+        url = 'http://%s%s' % (main_domain, reverse(self.url_name))
 
         if request.META.get('HTTP_HOST') != main_domain:
             return HttpResponsePermanentRedirect(url)
 
-        return super(ComicAddView, self).dispatch(request, *args, **kwargs)
-
-    def get_success_url(self):
-        return reverse('comicpreviewview', kwargs={'id': self.comic_id})
-
-    def get_form_kwargs(self):
-        kwargs = super(ComicAddView, self).get_form_kwargs()
-        pebbles = Pebble.objects.filter(creator=self.request.user)
-        kwargs['pebbles'] = pebbles
-
-        return kwargs
+        return super(ComicEditBaseView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(ComicAddView, self).get_context_data(**kwargs)
+        context = super(ComicEditBaseView, self).get_context_data(**kwargs)
 
         try:
             fb_token = SocialToken.objects.get(
@@ -386,6 +375,19 @@ class ComicAddView(StaffMixin, FormView):
         context['tw_token'] = tw_token
 
         return context
+
+class ComicAddView(ComicEditBaseView):
+    url_name = 'comicaddview'
+
+    def get_success_url(self):
+        return reverse('comicpreviewview', kwargs={'id': self.comic_id})
+
+    def get_form_kwargs(self):
+        kwargs = super(ComicAddView, self).get_form_kwargs()
+        pebbles = Pebble.objects.filter(creator=self.request.user)
+        kwargs['pebbles'] = pebbles
+
+        return kwargs
 
     def form_valid(self, form):
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
@@ -425,7 +427,7 @@ class ComicAddView(StaffMixin, FormView):
             if form.cleaned_data.get('facebook_post_message'):
                 facebook_post = SocialPost.objects.create(
                     user=self.request.user,
-                    url='%s%s' % (
+                    url='http://%s%s' % (
                         domain.url,
                         reverse('comicpostview', kwargs={'slug': self.slug}),
                     ),
@@ -437,7 +439,7 @@ class ComicAddView(StaffMixin, FormView):
             if form.cleaned_data.get('twitter_post_message'):
                 twitter_post = SocialPost.objects.create(
                     user=self.request.user,
-                    url='%s%s' % (
+                    url='http://%s%s' % (
                         domain.url,
                         reverse('comicpostview', kwargs={'slug':self.slug}),
                     ),
@@ -448,9 +450,7 @@ class ComicAddView(StaffMixin, FormView):
 
         return super(ComicAddView, self).form_valid(form)
 
-class ComicEditView(StaffMixin, FormView):
-    form_class = ComicPostForm
-    template_name = 'add_comic.html'
+class ComicEditView(ComicEditBaseView):
 
     def get_success_url(self):
         return reverse('comiceditview', kwargs={'id': self.kwargs.get('id')})
@@ -480,30 +480,6 @@ class ComicEditView(StaffMixin, FormView):
         kwargs['selected_pebble'] = self.comic.pebbles.all()[0].id
 
         return kwargs
-
-        def get_context_data(self, **kwargs):
-            context = super(ComicAddView, self).get_context_data(**kwargs)
-
-            try:
-                fb_token = SocialToken.objects.get(
-                    account__user=self.request.user,
-                    app__provider='facebook'
-                ).token
-            except: 
-                fb_token = None
-
-            try:
-                tw_token = SocialToken.objects.get(
-                    account__user=self.request.user,
-                    app__provider='twitter'
-                )
-            except:
-                tw_token = None
-
-            context['fb_token'] = fb_token
-            context['tw_token'] = tw_token
-
-            return context
 
     def get(self, request, *args, **kwargs):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
