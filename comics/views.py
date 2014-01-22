@@ -101,10 +101,10 @@ class ComicViewMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super(ComicViewMixin, self).get_context_data(**kwargs)
-
+        pebble=self.request.pebble
         try:
             pebble_settings = PebbleSettings.objects.get(
-                pebble=self.request.pebble
+                pebble=pebble
             ).settings
         except PebbleSettings.DoesNotExist:
             pebble_settings = None
@@ -116,7 +116,7 @@ class ComicViewMixin(object):
         
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
-        long_id = self.comic.post.slug if self.comic.post else self.comic.title
+        long_id = self.comic.post.slug
 
         if (
             last_read_comic and
@@ -128,66 +128,7 @@ class ComicViewMixin(object):
         if pebble_settings and pebble_settings.get('show_disqus'):
             context['disqus_identifier'] = long_id
             context['disqus_title'] = self.comic.title
-        context['page_url'] = self.request.build_absolute_uri()
 
-        return context
-
-    def render_to_response(self, context, **kwargs):
-        response = super(ComicViewMixin, self).render_to_response(context, **kwargs)
-        if response.context_data.get('disqus_identifier'):
-            response.set_cookie(
-                'last_read_comic',
-                value=response.context_data.get('disqus_identifier'),
-                expires=timezone.now() + datetime.timedelta(days=7),
-            )
-            response.set_cookie(
-                'hide_resume_link',
-                value='true',
-                max_age=3600,
-            )
-        return response
-
-
-class HomeView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
-    template_name = "home.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(HomeView, self).get_context_data(**kwargs)
-        if hasattr(self, 'empty'):
-            self.template_name ="empty.html"
-            return context
-
-        pebble=self.request.pebble
-        comic = self.comic
-        context['comic'] = comic
-        if comic.post:
-            context['post'] = comic.post
-            context['disqus_url'] = '%s/comic/%s/' % (
-                site_settings.site_url(),
-                comic.post.slug
-            )
-        else:
-            context['disqus_url'] = site_settings.site_url()
-        try:
-            context['first_comic'] = Comic.published_comics.filter(
-                pebbles=pebble,
-                published__lt=comic.published,
-            ).order_by('published')[0]
-            context['previous'] = Comic.published_comics.filter(
-                pebbles=pebble,
-                published__lt=comic.published,
-            ).order_by('-published')[0]
-        except IndexError:
-            pass
-
-        return context
-
-class ComicPostView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
-    template_name = "comicpostview.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(ComicPostView, self).get_context_data(**kwargs)
-        pebble = self.request.pebble
         post = self.post
         comic = self.comic
 
@@ -220,8 +161,36 @@ class ComicPostView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
             ).order_by('published')[0]
         except IndexError:
             pass
-        
+
         return context
+
+    def render_to_response(self, context, **kwargs):
+        response = super(ComicViewMixin, self).render_to_response(context, **kwargs)
+        if response.context_data.get('disqus_identifier'):
+            response.set_cookie(
+                'last_read_comic',
+                value=response.context_data.get('disqus_identifier'),
+                expires=timezone.now() + datetime.timedelta(days=7),
+            )
+            response.set_cookie(
+                'hide_resume_link',
+                value='true',
+                max_age=3600,
+            )
+        return response
+
+
+class HomeView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
+    template_name = "home.html"
+
+    def get_template_names(self):
+        if hasattr(self,'empty'):
+            return ['empty.html']
+        return [self.template_name]
+
+
+class ComicPostView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
+    template_name = "comicpostview.html"
 
 
 class ComicListView(NeedsPebbleMixin, ListView):
