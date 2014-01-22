@@ -155,6 +155,9 @@ class ComicViewMixin(object):
             last_comic = Comic.published_comics.filter(pebbles=pebble).latest('published')
             if last_comic != self.comic:
                 context['last_comic'] = last_comic
+        except Comic.DoesNotExist:
+            pass
+        try:            
             context['next'] = Comic.published_comics.filter(
                 pebbles=pebble,
                 published__gt=comic.published
