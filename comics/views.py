@@ -81,7 +81,6 @@ class ComicViewMixin(object):
             pebbles=self.request.pebble
             ).latest('published')
 
-    # TODO: Pull this logic into a more testable function
     def get(self, request, *args, **kwargs):
 
         self.pebble = self.request.pebble
@@ -116,22 +115,23 @@ class ComicViewMixin(object):
         
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
-        long_id = self.comic.post.slug
+        slug = self.comic.post.slug
 
         if (
             last_read_comic and
             not hide_resume_link and
-            last_read_comic != long_id
+            last_read_comic != slug
         ):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
 
         if pebble_settings and pebble_settings.get('show_disqus'):
-            context['disqus_identifier'] = long_id
+            context['disqus_identifier'] = slug
             context['disqus_title'] = self.comic.title
 
         post = self.post
         comic = self.comic
 
+        context['slug'] = slug
         context['post'] = post
         context['comic'] = comic
         context['disqus_url'] = '%s/comic/%s/' % (
@@ -169,10 +169,10 @@ class ComicViewMixin(object):
 
     def render_to_response(self, context, **kwargs):
         response = super(ComicViewMixin, self).render_to_response(context, **kwargs)
-        if response.context_data.get('disqus_identifier'):
+        if response.context_data.get('slug'):
             response.set_cookie(
                 'last_read_comic',
-                value=response.context_data.get('disqus_identifier'),
+                value=response.context_data.get('slug'),
                 expires=timezone.now() + datetime.timedelta(days=7),
             )
             response.set_cookie(
