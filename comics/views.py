@@ -637,6 +637,7 @@ class DeleteView(StaffMixin, FormView):
                 self.comic.pebbles.remove(pebble)
                 self.comic.post.pebbles.remove(pebble)
 
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
         mp.people_set(self.request.user.id, {
             'username': self.request.user.username,
             '$first_name': self.request.user.first_name,
