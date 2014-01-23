@@ -56,8 +56,6 @@ from petroglyphs.models import Setting
 
 from saltpeter.models import SocialPost
 
-mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-
 
 class StaffMixin(object):
 
@@ -454,6 +452,7 @@ class ComicAddView(ComicEditBaseView):
                     time_to_post=form.cleaned_data.get('social_post_time'),
                     social_network=SocialPost.TWITTER,
                 )
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
         mp.people_set(self.request.user.id, {
             'username': self.request.user.username,
             '$first_name': self.request.user.first_name,
@@ -542,6 +541,7 @@ class ComicEditView(ComicEditBaseView):
 
         if pebble not in comic.pebbles.all():
             comic.pebbles.add(pebble)
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
         mp.people_set(self.request.user.id, {
             'username': self.request.user.username,
             '$first_name': self.request.user.first_name,
