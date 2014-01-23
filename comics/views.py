@@ -645,8 +645,7 @@ class DeleteView(StaffMixin, FormView):
             '$email': self.request.user.email,
         })
         mp.track(self.request.user.id, 'Comic Deleted', {
-            'pebble_id': pebble.id,
-            'comic_id': comic.id,
+            'comic_id': self.comic.id,
             'is_live': form.cleaned_data.get('is_live', False),
         })
 
