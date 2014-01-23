@@ -7,9 +7,6 @@ from comics.models import Post
 from petroglyphs.models import Setting
 from pebbles.models import Pebble
 
-mp = Mixpanel(settings.MIXPANEL_KEY)
-mp_id_set = Setting.objects.filter(key='mixpanel_id')
-
 class LatestPostFeed(Feed):
     link = "/feed/"
     description_template = "postfeed.html"
@@ -39,10 +36,5 @@ class LatestPostFeed(Feed):
     def get_feed(self, obj, request):
         self.request = request
         feed = super(LatestPostFeed, self).get_feed(obj, request)
-        if mp_id_set:
-            mp.track(mp_id_set[0], 'rss_hit', {
-                'user_agent': request.META.get('HTTP_USER_AGENT', 'none'),
-                'remote_addr': request.META.get('REMOTE_ADDR', 'none'),
-                'http_host': request.META.get('HTTP_HOST', 'none'),
-                })
+
         return feed

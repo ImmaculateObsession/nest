@@ -5,6 +5,8 @@ import datetime
 
 from allauth.socialaccount.models import SocialToken
 
+from mixpanel import Mixpanel
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -53,6 +55,8 @@ from pebbles.models import (
 from petroglyphs.models import Setting
 
 from saltpeter.models import SocialPost
+
+mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
 
 
 class StaffMixin(object):
@@ -395,7 +399,7 @@ class ComicAddView(ComicEditBaseView):
     def form_valid(self, form):
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
         slug = form.cleaned_data.get('slug')
-        if slug == '':
+        if not slug or slug == '':
             slug = slugify(form.cleaned_data['title'])
         if Post.objects.filter(pebbles=pebble, slug=slug).exists():
             slug = '%s-%s' % (slug, timezone.now().strftime('%Y%m%d'))
@@ -450,7 +454,19 @@ class ComicAddView(ComicEditBaseView):
                     time_to_post=form.cleaned_data.get('social_post_time'),
                     social_network=SocialPost.TWITTER,
                 )
-
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Comic Added', {
+            'pebble_id': pebble.id,
+            'comic_id': comic.id,
+            'posted_to_facebook': bool(form.cleaned_data.get('facebook_post_message')),
+            'posted_to_twitter': bool(form.cleaned_data.get('twitter_post_message')),
+            'is_live': form.cleaned_data.get('is_live', False),
+        })
         return super(ComicAddView, self).form_valid(form)
 
 class ComicEditView(ComicEditBaseView):
@@ -496,7 +512,7 @@ class ComicEditView(ComicEditBaseView):
     def form_valid(self, form):
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
         slug = form.cleaned_data.get('slug')
-        if slug == '':
+        if not slug or slug == '':
             slug = slugify(form.cleaned_data['title'])
         if Post.objects.filter(pebbles=pebble, slug=slug).exists():
             if self.comic.post not in Post.objects.filter(pebbles=pebble, slug=slug):
@@ -526,6 +542,17 @@ class ComicEditView(ComicEditBaseView):
 
         if pebble not in comic.pebbles.all():
             comic.pebbles.add(pebble)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Comic Edited', {
+            'pebble_id': pebble.id,
+            'comic_id': comic.id,
+            'is_live': form.cleaned_data.get('is_live', False),
+        })
 
         return super(ComicEditView, self).form_valid(form)
 
