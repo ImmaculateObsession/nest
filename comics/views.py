@@ -637,4 +637,16 @@ class DeleteView(StaffMixin, FormView):
                 self.comic.pebbles.remove(pebble)
                 self.comic.post.pebbles.remove(pebble)
 
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Comic Deleted', {
+            'pebble_id': pebble.id,
+            'comic_id': comic.id,
+            'is_live': form.cleaned_data.get('is_live', False),
+        })
+
         return super(DeleteView, self).form_valid(form)
