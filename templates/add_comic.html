@@ -98,6 +98,9 @@
     </div>
     {% endif %}
     <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
+    {% if is_editing %}
+    <a class="btn btn-primary" href="{% url 'comicpreviewview' comic_id %}">Preview</a>
+    {% endif %}
 </form>
 {% endblock %}
 

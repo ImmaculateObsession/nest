@@ -473,6 +473,13 @@ class ComicEditView(ComicEditBaseView):
     def get_success_url(self):
         return reverse('comiceditview', kwargs={'id': self.kwargs.get('id')})
 
+    def get_context_data(self, **kwargs):
+        context = super(ComicEditView, self).get_context_data(**kwargs)
+        context['is_editing'] = True
+        context['comic_id'] = self.comic.id
+
+        return context
+
     def get_initial(self):
         comic = self.comic
         post = comic.post

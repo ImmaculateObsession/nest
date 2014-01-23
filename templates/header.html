@@ -38,6 +38,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
+            <li><a href="{% url 'dashview' %}">Pebbles</a></li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.email }} <b class="caret"></b></a>
                 <ul class="dropdown-menu">

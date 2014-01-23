@@ -1,10 +1,14 @@
 {% extends "comicpostview.html" %}
 
 {% block messages %}
-<div class="row row-message">
-    <div class="col-md-6 col-md-offset-3 alert alert-info alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <span>This is a preview of how your comic will look. This is not the actual page.</span>
+<div>
+    <div class="col-md-8 col-md-offset-2 navbar navbar-default">
+        <ul class="nav navbar-nav">
+            <li><p class="navbar-text">This is a preview of how your comic will look. This is not the actual page.</p></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'comiceditview' comic.id %}"><span class="label label-default">Edit</span></a></li>
+        </ul>
     </div>
 </div>
 {% endblock %}
