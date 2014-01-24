@@ -10,7 +10,7 @@ from comics.models import (
 )
 
 date_time_options = {
-    'format': 'mm/dd/yyyy hh:ii',
+    'format': 'mm/dd/yyyy hh:ii:ss',
     'todayBtn': 'true',
     'todayHighlight': 'true',
     'minuteStep': '1',
@@ -49,7 +49,7 @@ class ComicPostForm(forms.Form):
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     published = forms.DateTimeField(
-        initial=timezone.now(),
+        initial=timezone.now,
         required=True,
         widget=DateTimeWidget(
             attrs={'class': 'form-control',},
@@ -74,7 +74,7 @@ class ComicPostForm(forms.Form):
         initial=False,
     )
     social_post_time = forms.DateTimeField(
-        initial=timezone.now(),
+        initial=timezone.now,
         required=False,
         widget=DateTimeWidget(
             attrs={'class': 'form-control',},

@@ -11,7 +11,7 @@ class PublishedComicManager(models.Manager):
         return super(PublishedComicManager, self).get_query_set().filter(
                 is_live=True
             ).filter(
-                published__lte=timezone.now()
+                published__lte=timezone.now
             )
 
 
@@ -20,7 +20,7 @@ class Comic(models.Model):
     image_url = models.URLField()
     image_url_large = models.URLField(blank=True)
     alt_text = models.CharField(max_length=200, blank=True) 
-    published = models.DateTimeField(default=timezone.now(), blank=True)
+    published = models.DateTimeField(default=timezone.now, blank=True)
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
     tags = models.ManyToManyField('Tag', blank=True, db_constraint=False)
@@ -73,7 +73,7 @@ class PublishedPostManager(models.Manager):
         return super(PublishedPostManager, self).get_query_set().filter(
                 is_live=True
             ).filter(
-                published__lte=timezone.now()
+                published__lte=timezone.now
             )
 
 
@@ -82,7 +82,7 @@ class Post(models.Model):
     post = models.TextField(blank=True)
     slug = models.SlugField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
-    published = models.DateTimeField(default=timezone.now())
+    published = models.DateTimeField(default=timezone.now)
     is_live = models.BooleanField(default=False)
     tags = models.ManyToManyField('Tag', blank=True, db_constraint=False)
     creator = models.ForeignKey(
