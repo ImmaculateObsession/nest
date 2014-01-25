@@ -5,22 +5,20 @@ from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
 from comics.models import Post
 from petroglyphs.models import Setting
-from pebbles.models import Pebble
+from pebbles.models import Pebble, PebbleSettings
 
 class LatestPostFeed(Feed):
     link = "/feed/"
     description_template = "postfeed.html"
 
     def description(self):
-        feed_description = Setting.objects.filter(key='feed_description')
-        return feed_description[0] if feed_description else 'Site Feed'
+        return self.pebble_settings.get('feed_description')
 
     def title(self):
-        feed_title = Setting.objects.filter(key='feed_title')
-        return feed_title[0].value if feed_title else 'Site Feed'
+        return self.pebble_settings.get('feed_title')
 
     def items(self):
-        return Post.published_posts.filter(pebbles=self.request.pebble).order_by('-published')[:5]
+        return Post.published_posts.filter(pebbles=self.pebble).order_by('-published')[:5]
 
     def item_title(self, item):
         return item.title
@@ -35,6 +33,8 @@ class LatestPostFeed(Feed):
 
     def get_feed(self, obj, request):
         self.request = request
+        self.pebble = self.request.pebble
+        self.pebble_settings = PebbleSettings.objects.get(pebble=self.pebble).settings
         feed = super(LatestPostFeed, self).get_feed(obj, request)
         mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
         mp.track('rss', 'rss_hit', {
