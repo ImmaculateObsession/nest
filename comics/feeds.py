@@ -39,8 +39,8 @@ class LatestPostFeed(Feed):
         mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
         mp.track('rss', 'rss_hit', {
             'pebble_id': self.request.pebble.id,
-            'user_agent': request.META.get('HTTP_USER_AGENT', 'none'),
-            'remote_addr': request.META.get('REMOTE_ADDR', 'none'),
-            'http_host': request.META.get('HTTP_HOST', 'none'),
+            'user_agent': request.META.get('HTTP_USER_AGENT'),
+            'remote_addr': request.META.get('REMOTE_ADDR'),
+            'http_host': request.META.get('HTTP_HOST'),
         })
         return feed
