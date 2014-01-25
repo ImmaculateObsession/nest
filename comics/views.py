@@ -87,10 +87,17 @@ class ComicViewMixin(object):
 
         self.pebble = self.request.pebble
         slug = kwargs.get('slug')
+        comic_id = kwargs.get('id')
         
         if slug:
             self.post = get_object_or_404(Post, pebbles=self.pebble, slug=slug)
             self.comic = get_object_or_404(Comic, pebbles=self.pebble, post=self.post)
+        elif comic_id:
+            try:
+                self.comic = Comic.published_comics.filter(pebbles=self.pebble).order_by('published')[int(comic_id) - 1]
+                self.post = self.comic.post
+            except IndexError:
+                raise Http404()
         else:
             try:
                 self.comic = self.get_comic()

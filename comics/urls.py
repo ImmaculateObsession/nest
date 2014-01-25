@@ -25,6 +25,7 @@ comicpatterns = patterns('',
         S3SignView.as_view(),
         name='s3signview',
     ),
+    url(r'^(?P<id>\d+)/$', ComicPostView.as_view()),
     url(
         r'^(?P<slug>[\w-]+)/$',
         ComicPostView.as_view(),
