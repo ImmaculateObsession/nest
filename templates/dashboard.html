@@ -8,6 +8,11 @@
     <h1>{{ pebble.title }}</h1>
         {% for comic in pebble.comics %}
         <p><span class="h3">{{ comic.title }}</span>
+            {% if comic.is_live %}
+                <span class="label label-success">Live!</span>
+            {% else %}
+                <span class="label label-default">Draft</span>
+            {% endif %}
             <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
             <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
             <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
