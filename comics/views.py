@@ -39,6 +39,7 @@ from comics.models import (
     Post,
     Comic,
     PublishedComicManager,
+    PublishedPostManager,
 )
 from comics.forms import (
     ComicPostForm,
@@ -90,8 +91,8 @@ class ComicViewMixin(object):
         comic_id = kwargs.get('id')
         
         if slug:
-            self.post = get_object_or_404(Post, pebbles=self.pebble, slug=slug)
-            self.comic = get_object_or_404(Comic, pebbles=self.pebble, post=self.post)
+            self.post = get_object_or_404(Post.published_posts, pebbles=self.pebble, slug=slug)
+            self.comic = get_object_or_404(Comic.published_comics, pebbles=self.pebble, post=self.post)
         elif comic_id:
             try:
                 self.comic = Comic.published_comics.filter(pebbles=self.pebble).order_by('published')[int(comic_id) - 1]
@@ -162,7 +163,7 @@ class ComicViewMixin(object):
 
         try:
             last_comic = Comic.published_comics.filter(pebbles=pebble).latest('published')
-            if last_comic != self.comic:
+            if last_comic != comic:
                 context['last_comic'] = last_comic
         except Comic.DoesNotExist:
             pass
@@ -209,8 +210,13 @@ class ComicListView(NeedsPebbleMixin, ListView):
     template_name = "comic_list.html"
 
     def get_queryset(self):
-
         return Comic.published_comics.filter(pebbles=self.request.pebble)
+
+    def get_context_data(self, **kwargs):
+        context = super(ComicListView, self).get_context_data(**kwargs)
+        context['pebble_settings'] = PebbleSettings.objects.get(pebble=self.request.pebble).settings
+
+        return context
 
 
 class ComicPreviewView(StaffMixin, TemplateView):
@@ -235,14 +241,46 @@ class PostView(NeedsPebbleMixin, TemplateView):
     def get_context_data (self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
         pebble = self.request.pebble
-        post = get_object_or_404(Post, pebbles=pebble, slug=self.kwargs['slug'], is_live=True)
+        post = get_object_or_404(Post.published_posts, pebbles=pebble, slug=self.kwargs['slug'])
         context['post'] = post
-        context['disqus_identifier'] = post.slug
-        context['disqus_url'] = '%s/post/%s/' % (
-            site_settings.site_url(),
-            post.slug
-        )
-        context['disqus_title'] = post.title
+
+        pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
+        context['pebble_settings'] = pebble_settings
+        
+        if pebble_settings.get('show_disqus'):
+            context['disqus_identifier'] = post.slug
+            context['disqus_url'] = '%s/post/%s/' % (
+                site_settings.site_url(),
+                post.slug
+            )
+            context['disqus_title'] = post.title
+
+        try: 
+            context['first_post'] = Post.published_posts.filter(
+                pebbles=pebble,
+                published__lt=post.published,
+            ).order_by('published')[0]
+            context['previous'] = Post.published_posts.filter(
+                pebbles=pebble,
+                published__lt=post.published,
+            ).order_by('-published')[0]
+        except IndexError:
+            pass
+
+        try:
+            last_post = Post.published_posts.filter(pebbles=pebble).latest('published')
+            if last_post != post:
+                context['last_post'] = last_post
+        except Comic.DoesNotExist:
+            pass
+        try:            
+            context['next'] = Post.published_posts.filter(
+                pebbles=pebble,
+                published__gt=post.published
+            ).order_by('published')[0]
+        except IndexError:
+            pass
+
         return context
 
 

@@ -10,10 +10,38 @@
     </div>
 </div>
 <div class="row">
+    <div class="comic_footer">
+        <div class="row">
+            {% if first_post %}
+            <a class="btn btn-default" href="/post/{{ first_post.slug }}" title="first">
+                <span class="fa fa-step-backward"></span>
+            </a>
+            {% endif %}
+            {% if previous %}
+            <a class="btn btn-default" href="/post/{{ previous.slug }}" title="previous">
+                <span class="fa fa-arrow-left"></span>
+            </a>
+            {% endif %}
+            {% if next %}
+            <a class="btn btn-default" href="/post/{{ next.slug }}" title="next">
+                <span class="fa fa-arrow-right"></span>
+            </a>
+            {% endif %}
+            {% if last_post %}
+            <a class="btn btn-default" href="/post/{{ last_post.slug }}" title="last">
+                <span class="fa fa-step-forward"></span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if disqus_identifier %}
+<div class="row">
     <div class="col-md-8 col-md-offset-2 panel panel-default">
         <div class="panel-body">
             {% include "disqus.html" %}
         </div>
     </div>
 </div>
+{% endif %}
 {% endblock %}
