@@ -75,6 +75,15 @@ class NeedsPebbleMixin(object):
 
 class ComicViewMixin(object):
 
+    def dispatch(self, request, *args, **kwargs):
+        if not hasattr(self, 'pebble_settings'):
+            self.pebble_settings = PebbleSettings.objects.get(pebble=request.pebble).settings
+        if self.pebble_settings.get('is_blog'):
+            slug = Post.published_posts.latest('published').slug
+            kwargs['slug'] = slug
+            return PostView.as_view()(request, *args, **kwargs)
+        return super(ComicViewMixin, self).dispatch(request, *args, **kwargs)
+
     def get_comic(self):
         """
         This function exists to be mocked by testing. There must be a
