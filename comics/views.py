@@ -58,11 +58,11 @@ from petroglyphs.models import Setting
 from saltpeter.models import SocialPost
 
 
-class StaffMixin(object):
+class NeedsLoginMixin(object):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
-        return super(StaffMixin, self).dispatch(request, *args, **kwargs)
+        return super(NeedsLoginMixin, self).dispatch(request, *args, **kwargs)
 
 class NeedsPebbleMixin(object):
 
@@ -228,7 +228,7 @@ class ComicListView(NeedsPebbleMixin, ListView):
         return context
 
 
-class ComicPreviewView(StaffMixin, TemplateView):
+class ComicPreviewView(NeedsLoginMixin, TemplateView):
     template_name = "comicpreview.html"
 
     def get_context_data(self, **kwargs):
@@ -293,7 +293,7 @@ class PostView(NeedsPebbleMixin, TemplateView):
         return context
 
 
-class PostPreviewView(StaffMixin, TemplateView):
+class PostPreviewView(NeedsLoginMixin, TemplateView):
     template_name = "postview.html"
 
     def get_context_data(self, **kwargs):
@@ -396,7 +396,7 @@ class TagView(ListView):
 
         return context
 
-class ComicEditBaseView(StaffMixin, FormView):
+class ComicEditBaseView(NeedsLoginMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
     url_name = 'dashview'
@@ -521,6 +521,7 @@ class ComicAddView(ComicEditBaseView):
             'is_live': form.cleaned_data.get('is_live', False),
         })
         return super(ComicAddView, self).form_valid(form)
+
 
 class ComicEditView(ComicEditBaseView):
 
@@ -657,7 +658,7 @@ class ShareView(TemplateView):
         return context
 
 
-class DeleteView(StaffMixin, FormView):
+class DeleteView(NeedsLoginMixin, FormView):
     template_name = "delete_comic.html"
     form_class = ComicDeleteForm
 
@@ -700,7 +701,7 @@ class DeleteView(StaffMixin, FormView):
         })
         mp.track(self.request.user.id, 'Comic Deleted', {
             'comic_id': self.comic.id,
-            'is_live': form.cleaned_data.get('is_live', False),
+            'is_live': self.comic.is_live,
         })
 
         return super(DeleteView, self).form_valid(form)

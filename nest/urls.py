@@ -17,7 +17,10 @@ from comics.urls import comicpatterns, postpatterns
 
 from comics.feeds import LatestPostFeed
 
-from pebbles.views import DashboardView
+from pebbles.urls import pagepatterns
+from pebbles.views import (
+    DashboardView,
+)
 
 admin.autodiscover()
 # nexus.autodiscover()
@@ -35,4 +38,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^nexus/', include(nexus.site.urls)),
     url(r'^share/$', ShareView.as_view()),
+    url(r'^p/', include(pagepatterns)),
 )

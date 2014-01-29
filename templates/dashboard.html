@@ -4,20 +4,54 @@
 
 {% block content %}
 <a href="{% url "comicaddview" %}" class="btn btn-large btn-success">Add Comic</a>
+<a href="{% url "addpageview" %}" class="btn btn-large btn-success">Add Page</a>
 {% for pebble in pebbles %}
     <h1>{{ pebble.title }}</h1>
-        {% for comic in pebble.comics %}
-        <p><span class="h3">{{ comic.title }}</span>
-            {% if comic.is_live %}
-                <span class="label label-success">Live!</span>
-            {% else %}
-                <span class="label label-default">Draft</span>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="panel-title">Comics</p>
+                    </div>
+                    <div class="panel-body">
+                        {% for comic in pebble.comics %}
+                        <p><span class="h4">{{ comic.title }}</span>
+                            {% if comic.is_live %}
+                                <span class="label label-success">Live!</span>
+                            {% else %}
+                                <span class="label label-default">Draft</span>
+                            {% endif %}
+                            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
+                            <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
+                            <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% if pebble.pages %}
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="panel-title">Pages</p>
+                    </div>
+                    <div class="panel-body">
+                        {% for page in pebble.pages %}
+                        <p><span class="h4">{{ page.title }}</span>
+                            {% if page.is_live %}
+                                <span class="label label-success">Live!</span>
+                            {% else %}
+                                <span class="label label-default">Draft</span>
+                            {% endif %}
+                            <a href="{% url "editpageview" page.id %}">Edit</a> | 
+                            <a href="{% url "deletepageview" page.id %}">Delete</a>
+                        </p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
             {% endif %}
-            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
-            <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
-            <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
-        </p>
-        {% endfor %}
+        </div>
 {% endfor %}
 
 

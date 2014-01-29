@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Deleting "{{ page.title }}"</h2>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row form_group">
+        {{ form.really_delete.errors }}
+        <label for="id_really_delete">Are you sure you want to delete?</label>
+        {{ form.really_delete }}
+    </div>
+    <input class="btn btn-success" type="submit" value="Submit" />
+</form>
+{% endblock %}
