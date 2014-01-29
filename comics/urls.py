@@ -17,7 +17,7 @@ from comics.views import (
 from comics.api import S3SignView
 
 comicpatterns = patterns('',
-    url(r'^$', HomeView.as_view(), name='comichomeview'),
+    url(r'^$', ComicPostView.as_view(), name='comichomeview'),
     url(r'^all/$', ComicListView.as_view(), name='comiclistview'),
     url(r'^add/$', ComicAddView.as_view(), name='comicaddview'),
     url(r'^backup/$', ComicBackupView.as_view(), name='comicbackupview'),
