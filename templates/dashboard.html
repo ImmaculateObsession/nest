@@ -8,6 +8,7 @@
 {% for pebble in pebbles %}
     <h1>{{ pebble.title }}</h1>
         <div class="row">
+            {% if pebble.comics %}
             <div class="col-md-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -15,25 +16,26 @@
                     </div>
                     <div class="panel-body">
                         {% for comic in pebble.comics_by_published %}
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <span class="h4">{{ comic.title }}</span>
+                            <div class="row">
+                                <div class="col-md-7">
+                                <p class="h4 text-shortened">{{ comic.title }}</p>
+                                </div>
+                                <div class="col-md-5">
                                 {% if comic.is_live %}
                                     <span class="label label-success">Live!</span>
                                 {% else %}
                                     <span class="label label-default">Draft</span>
                                 {% endif %}
-                            </div>
-                            <div class="panel-body">
                                 <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
                                 <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
                                 <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
+                                </div>
                             </div>
-                        </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% if pebble.pages %}
             <div class="col-md-6">
                 <div class="panel panel-default">
@@ -42,18 +44,18 @@
                     </div>
                     <div class="panel-body">
                         {% for page in pebble.pages_by_published %}
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <span class="h4">{{ page.title }}</span>
-                                {% if page.is_live %}
-                                    <span class="label label-success">Live!</span>
-                                {% else %}
-                                    <span class="label label-default">Draft</span>
-                                {% endif %}
+                        <div class="row">
+                            <div class="col-md-7">
+                            <p class="h4 text-shortened">{{ page.title }}</p>
                             </div>
-                            <div class="panel-body">
-                                <a href="{% url "editpageview" page.id %}">Edit</a> | 
-                                <a href="{% url "deletepageview" page.id %}">Delete</a>
+                            <div class="col-md-5">
+                            {% if comic.is_live %}
+                                <span class="label label-success">Live!</span>
+                            {% else %}
+                                <span class="label label-default">Draft</span>
+                            {% endif %}
+                            <a href="{% url "editpageview" page.id %}">Edit</a> | 
+                            <a href="{% url "deletepageview" page.id %}">Delete</a>
                             </div>
                         </div>
                         {% endfor %}
