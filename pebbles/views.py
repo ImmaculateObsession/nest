@@ -2,7 +2,7 @@ from mixpanel import Mixpanel
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponsePermanentRedirect
+from django.http import Http404, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import (
@@ -133,6 +133,13 @@ class EditPageView(NeedsLoginMixin, FormView):
         kwargs['selected_pebble'] = self.page.pebble.id
 
         return kwargs
+
+    def get(self, request, *args, **kwargs):
+        page = get_object_or_404(PebblePage, id=self.kwargs.get('id'))
+        if not page.pebble or page.pebble.creator != self.request.user:
+            raise Http404()
+
+        return super(EditPageView, self).get(request, *args, **kwargs)
 
     def get_initial(self):
         page = self.page

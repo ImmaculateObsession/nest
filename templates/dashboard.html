@@ -15,16 +15,21 @@
                     </div>
                     <div class="panel-body">
                         {% for comic in pebble.comics %}
-                        <p><span class="h4">{{ comic.title }}</span>
-                            {% if comic.is_live %}
-                                <span class="label label-success">Live!</span>
-                            {% else %}
-                                <span class="label label-default">Draft</span>
-                            {% endif %}
-                            <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
-                            <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
-                            <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
-                        </p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="h4">{{ comic.title }}</span>
+                                {% if comic.is_live %}
+                                    <span class="label label-success">Live!</span>
+                                {% else %}
+                                    <span class="label label-default">Draft</span>
+                                {% endif %}
+                            </div>
+                            <div class="panel-body">
+                                <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
+                                <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
+                                <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
+                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
@@ -37,15 +42,20 @@
                     </div>
                     <div class="panel-body">
                         {% for page in pebble.pages %}
-                        <p><span class="h4">{{ page.title }}</span>
-                            {% if page.is_live %}
-                                <span class="label label-success">Live!</span>
-                            {% else %}
-                                <span class="label label-default">Draft</span>
-                            {% endif %}
-                            <a href="{% url "editpageview" page.id %}">Edit</a> | 
-                            <a href="{% url "deletepageview" page.id %}">Delete</a>
-                        </p>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <span class="h4">{{ page.title }}</span>
+                                {% if page.is_live %}
+                                    <span class="label label-success">Live!</span>
+                                {% else %}
+                                    <span class="label label-default">Draft</span>
+                                {% endif %}
+                            </div>
+                            <div class="panel-body">
+                                <a href="{% url "editpageview" page.id %}">Edit</a> | 
+                                <a href="{% url "deletepageview" page.id %}">Delete</a>
+                            </div>
+                        </div>
                         {% endfor %}
                     </div>
                 </div>
