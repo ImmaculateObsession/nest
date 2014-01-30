@@ -12,8 +12,14 @@ class Pebble(models.Model):
         from comics.models import Comic
         return Comic.objects.filter(pebbles=self)
 
+    def comics_by_published(self):
+        return self.comics().order_by('-id')
+
     def pages(self):
         return PebblePage.objects.filter(pebble=self)
+
+    def pages_by_published(self):
+        return self.pages().order_by('-id')
 
     def __str__(self):
         return self.title
