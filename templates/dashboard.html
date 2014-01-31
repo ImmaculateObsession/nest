@@ -16,7 +16,7 @@
                     </div>
                     <div class="panel-body">
                         {% for comic in pebble.comics_by_published %}
-                            <div class="row">
+                            <div class="row-message">
                                 <div class="col-md-7">
                                 <p class="h4 text-shortened">{{ comic.title }}</p>
                                 </div>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="panel-body">
                         {% for page in pebble.pages_by_published %}
-                        <div class="row">
+                        <div class="row-message">
                             <div class="col-md-7">
                             <p class="h4 text-shortened">{{ page.title }}</p>
                             </div>
