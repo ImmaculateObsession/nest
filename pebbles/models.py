@@ -35,6 +35,11 @@ class Domain(models.Model):
 
 class PebbleSettings(models.Model):
     pebble = models.ForeignKey('Pebble', null=True, on_delete=models.SET_NULL)
+    primary_domain = models.ForeignKey('Domain',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
     settings = JSONField()
 
     def __str__(self):
