@@ -233,7 +233,7 @@ class ComicPreviewView(NeedsLoginMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ComicPreviewView, self).get_context_data(**kwargs)
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         comic = get_object_or_404(Comic, id=self.kwargs['id'], pebbles__in=pebbles)
         post = comic.post
 
@@ -443,7 +443,7 @@ class ComicAddView(ComicEditBaseView):
 
     def get_form_kwargs(self):
         kwargs = super(ComicAddView, self).get_form_kwargs()
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         kwargs['pebbles'] = pebbles
 
         return kwargs
@@ -555,7 +555,7 @@ class ComicEditView(ComicEditBaseView):
     def get_form_kwargs(self):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
         kwargs = super(ComicEditView, self).get_form_kwargs()
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         kwargs['pebbles'] = pebbles
         kwargs['selected_pebble'] = self.comic.pebbles.all()[0].id
 
@@ -565,7 +565,7 @@ class ComicEditView(ComicEditBaseView):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
         pebbles = self.comic.pebbles.all()
         for pebble in pebbles:
-            if pebble.creator != self.request.user:
+            if not pebble.can_edit(self.request.user):
                 raise Http404()
 
         return super(ComicEditView, self).get(request, *args, **kwargs)
@@ -666,13 +666,13 @@ class DeleteView(NeedsLoginMixin, FormView):
         return reverse('dashview')
 
     def get(self, request, *args, **kwargs):
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
 
         return super(DeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
 
         return super(DeleteView, self).post(request, *args, **kwargs)

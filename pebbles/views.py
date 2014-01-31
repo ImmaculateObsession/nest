@@ -44,7 +44,7 @@ class DashboardView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(DashboardView, self).get_context_data(**kwargs)
 
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
 
         comic_dict = {}
         for pebble in pebbles:
@@ -79,7 +79,7 @@ class AddPageView(NeedsLoginMixin, FormView):
 
     def get_form_kwargs(self):
         kwargs = super(AddPageView, self).get_form_kwargs()
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         kwargs['pebbles'] = pebbles
 
         return kwargs
@@ -128,7 +128,7 @@ class EditPageView(NeedsLoginMixin, FormView):
     def get_form_kwargs(self):
         self.page = get_object_or_404(PebblePage, id=self.kwargs.get('id'))
         kwargs = super(EditPageView, self).get_form_kwargs()
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         kwargs['pebbles'] = pebbles
         kwargs['selected_pebble'] = self.page.pebble.id
 
@@ -136,7 +136,7 @@ class EditPageView(NeedsLoginMixin, FormView):
 
     def get(self, request, *args, **kwargs):
         page = get_object_or_404(PebblePage, id=self.kwargs.get('id'))
-        if not page.pebble or page.pebble.creator != self.request.user:
+        if not page.pebble or not page.pebble.can_edit(self.request.user):
             raise Http404()
 
         return super(EditPageView, self).get(request, *args, **kwargs)
@@ -190,13 +190,13 @@ class DeleteView(NeedsLoginMixin, FormView):
         return reverse('dashview')
 
     def get(self, request, *args, **kwargs):
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.page = get_object_or_404(PebblePage, id=self.kwargs.get('id'), pebble__in=pebbles)
 
         return super(DeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        pebbles = Pebble.objects.filter(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(creator=self.request.user)
         self.page = get_object_or_404(PebblePage, id=self.kwargs.get('id'), pebble__in=pebbles)
 
         return super(DeleteView, self).post(request, *args, **kwargs)

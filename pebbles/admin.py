@@ -7,6 +7,7 @@ from pebbles.models import (
     Domain,
     PebbleSettings,
     PebblePage,
+    PebbleUser,
 )
 
 
@@ -27,3 +28,4 @@ admin.site.register(Pebble)
 admin.site.register(Domain)
 admin.site.register(PebbleSettings)
 admin.site.register(PebblePage, PebblePageAdmin)
+admin.site.register(PebbleUser)
