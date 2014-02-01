@@ -41,7 +41,7 @@
 
 .text-shortened {
     white-space: nowrap;
-    overflow: auto;
+    overflow: hidden;
     text-overflow: ellipsis;
     line-height: normal;
 }
