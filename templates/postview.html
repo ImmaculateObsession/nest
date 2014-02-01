@@ -2,6 +2,15 @@
 
 {% block title %}{{ block.super }}{{ post.title }}{% endblock %}
 
+{% block social_tags %}
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:description" content="{{ post.post }}">
+{% if pebble_settings.twitter_page %}
+<meta name="twitter:site" content="@{{ pebble_settings.twitter_page }}">
+{% endif %}
+{% endblock %}
+
 {% block content %}
 <div class="row">
     <div class="col-md-8 col-md-offset-2">

@@ -2,9 +2,16 @@
 
 {% block title%}{{ block.super }}{{ comic.title }}{% endblock %}
 
-{% block fb_tags %}
+{% block social_tags %}
 <meta property="og:image" content="{{ comic.image_url }}">
 <meta property="og:image:type" content="image/png">
+<meta name="twitter:card" content="summary_large_image">
+{% if pebble_settings.twitter_page %}
+<meta name="twitter:site" content="@{{ pebble_settings.twitter_page }}">
+{% endif %}
+<meta name="twitter:title" content="{{ post.title }}">
+<meta name="twitter:image:src" content="{{ comic.image_url }}">
+<meta name="twitter:description" content="{{ post.post }}">
 {% endblock %}
 
 {% block content %}

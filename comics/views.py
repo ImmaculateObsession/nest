@@ -12,7 +12,6 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.sites.models import get_current_site
 from django.core import management
 from django.core.urlresolvers import reverse
 from django.shortcuts import (
@@ -624,8 +623,6 @@ class ShareView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(ShareView, self).get_context_data(**kwargs)
-
-        current_site = get_current_site(self.request)
 
         pebble = self.request.pebble
         pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
