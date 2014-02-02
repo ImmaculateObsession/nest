@@ -3,8 +3,15 @@
 {% block title %}{{ block.super }} Pebbles {% endblock %}
 
 {% block content %}
-<a href="{% url "comicaddview" %}" class="btn btn-large btn-success">Add Comic</a>
-<a href="{% url "addpageview" %}" class="btn btn-large btn-success">Add Page</a>
+<a href="{% url "comicaddview" %}" class="btn btn-large btn-success">
+    <span class="fa fa-th-large"></span> Add Comic
+</a>
+<a href="{% url "addpageview" %}" class="btn btn-large btn-success">
+    <span class="fa fa-file-text"></span> Add Page
+</a>
+<a href="{% url "characteraddview" %}" class="btn btn-large btn-success">
+    <span class="fa fa-group"></span> Add Character
+</a>
 {% for pebble in pebbles %}
     <h1>{{ pebble.title }}</h1>
         <div class="row">
@@ -36,33 +43,57 @@
                 </div>
             </div>
             {% endif %}
-            {% if pebble.pages %}
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <p class="panel-title">Pages</p>
-                    </div>
-                    <div class="panel-body">
-                        {% for page in pebble.pages_by_published %}
-                        <div class="row-message">
-                            <div class="col-md-7">
-                            <p class="h4 text-shortened">{{ page.title }}</p>
-                            </div>
-                            <div class="col-md-5">
-                            {% if comic.is_live %}
-                                <span class="label label-success">Live!</span>
-                            {% else %}
-                                <span class="label label-default">Draft</span>
-                            {% endif %}
-                            <a href="{% url "editpageview" page.id %}">Edit</a> | 
-                            <a href="{% url "deletepageview" page.id %}">Delete</a>
-                            </div>
+                {% if pebble.pages %}
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p class="panel-title">Pages</p>
                         </div>
-                        {% endfor %}
+                        <div class="panel-body">
+                            {% for page in pebble.pages_by_published %}
+                            <div class="row-message">
+                                <div class="col-md-7">
+                                <p class="h4 text-shortened">{{ page.title }}</p>
+                                </div>
+                                <div class="col-md-5">
+                                {% if page.is_live %}
+                                    <span class="label label-success">Live!</span>
+                                {% else %}
+                                    <span class="label label-default">Draft</span>
+                                {% endif %}
+                                <a href="{% url "editpageview" page.id %}">Edit</a> | 
+                                <a href="{% url "deletepageview" page.id %}">Delete</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
+                {% endif %}
+                {% if pebble.characters %}
+                <div class="row">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <p class="panel-title">Characters</p>
+                        </div>
+                        <div class="panel-body">
+                            {% for character in pebble.characters %}
+                            <div class="row-message">
+                                <div class="col-md-7">
+                                    <p class="h4 text-shortened">{{ character.name }}</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <a href="{% url "charactereditview" character.id %}">Edit</a> | 
+                                    <a href="{% url "characterdeleteview" character.id %}">Delete</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
 {% endfor %}
 

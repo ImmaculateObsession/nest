@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ block.super }}
+    {% if is_editing %}
+        Edit Character
+    {% else %}
+        Add Character
+    {% endif %}
+{% endblock %}
+
+{% block extra_head %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+<form enctype="multipart/form_data" action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            {% if is_editing %}
+            <h2>Edit Character</h2>
+            {% else %}
+            <h2>Add Character</h2>
+            {% endif %}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.pebble.errors }}
+            <span class="label label-default"><label for="id_pebble">Character for</label></span>
+            {{ form.pebble }}
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.name.errors }}
+            <span class="label label-default"><label for="id_name">Name</label></span>
+            {{ form.name }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            <input type="file" id="files" onchange="s3_upload();" value="Choose an image"/>
+            <p id="status">Please select an image</p>
+        </div>
+        <div class="form-group col-md-3">
+            {{ form.image_url.errors }}
+            <span class="label label-default"><label for="id_profile_pic_url">Character Portrait URL</label></span>
+            {{ form.profile_pic_url }}
+        </div>
+    </div>
+    <div class="row" id="preview">
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-10">
+            {{ form.post.errors }}
+            <p class="label label-default"><label for="id_description">Description</label></p>
+            {{ form.description }}
+        </div>
+    </div>
+    <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
+</form>
+{% endblock %}
+
+{% block js_defer %}
+<script type="text/javascript" src="{% static "sass/javascripts/lodash.min.js" %}"></script>
+<script type="text/javascript" src="{% static "sass/javascripts/s3upload.js" %}"></script>
+<script type="text/javascript">
+function s3_upload(){
+    var s3upload = new S3Upload({
+        file_dom_selector: '#files',
+        s3_sign_put_url: '/comic/sign_s3/',
+        onProgress: function(percent, message) {
+            $('#status').html('Upload progress: ' + percent + '%' + message);
+        },
+        onFinishS3Put: function(public_url) { 
+            // $('#status').html('Upload completed. Uploaded to: '+ public_url);
+            $("#id_profile_pic_url").val(public_url);
+            $("#preview").html('<img class="img-responsive" src="'+public_url+'" />');
+        },
+        onError: function(status) {
+            $('#status').html('Upload error: ' + status);
+        }
+    });
+}
+</script>
+{% endblock %}
+{% endblock }

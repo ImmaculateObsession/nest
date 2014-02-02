@@ -11,7 +11,11 @@ from comics.views import (
     TagView,
     ComicAddView,
     ComicEditView,
-    DeleteView,
+    ComicDeleteView,
+    CharacterAddView,
+    CharacterEditView,
+    CharacterView,
+    CharacterDeleteView,
 )
 
 from comics.api import S3SignView
@@ -45,7 +49,7 @@ comicpatterns = patterns('',
         name='comiceditview',
     ),
     url(r'^(?P<id>\d+)/delete/$',
-        DeleteView.as_view(),
+        ComicDeleteView.as_view(),
         name='comicdeleteview',
     ),
 )
@@ -61,5 +65,20 @@ postpatterns = patterns('',
         PostPreviewView.as_view(),
         name='postpreviewview'
     ),
+)
+
+characterpatterns = patterns('',
+    url(r'^add/$', CharacterAddView.as_view(), name='characteraddview'),
+    url(
+        r'^(?P<id>\d+)/edit/$',
+        CharacterEditView.as_view(),
+        name='charactereditview',
+    ),
+    url(
+        r'^(?P<id>\d+)/delete/$',
+        CharacterDeleteView.as_view(),
+        name='characterdeleteview',
+    ),
+    url(r'^(?P<id>\d+)/$', CharacterView.as_view(), name="characterview"),
 )
     

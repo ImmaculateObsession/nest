@@ -32,6 +32,10 @@ class Pebble(models.Model):
     def pages_by_published(self):
         return self.pages().order_by('-id')
 
+    def characters(self):
+        from comics.models import Character
+        return Character.objects.filter(pebbles=self)
+
     def can_edit(self, user):
         if user == self.creator:
             return True

@@ -39,10 +39,12 @@ from comics.models import (
     Comic,
     PublishedComicManager,
     PublishedPostManager,
+    Character,
 )
 from comics.forms import (
     ComicPostForm,
     ComicDeleteForm,
+    CharacterForm,
 )
 from comics import settings as site_settings
 
@@ -355,7 +357,6 @@ class CreateRefCodeView(View):
         return redirect('/accounts/profile/')
 
 
-
 class ProfileView(DetailView):
     template_name="profile.html"
     model = User
@@ -655,7 +656,7 @@ class ShareView(TemplateView):
         return context
 
 
-class DeleteView(NeedsLoginMixin, FormView):
+class ComicDeleteView(NeedsLoginMixin, FormView):
     template_name = "delete_comic.html"
     form_class = ComicDeleteForm
 
@@ -666,16 +667,16 @@ class DeleteView(NeedsLoginMixin, FormView):
         pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
 
-        return super(DeleteView, self).get(request, *args, **kwargs)
+        return super(ComicDeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'), pebbles__in=pebbles)
 
-        return super(DeleteView, self).post(request, *args, **kwargs)
+        return super(ComicDeleteView, self).post(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(DeleteView, self).get_context_data(**kwargs)
+        context = super(ComicDeleteView, self).get_context_data(**kwargs)
         context['comic'] = self.comic
 
         return context
@@ -701,4 +702,195 @@ class DeleteView(NeedsLoginMixin, FormView):
             'is_live': self.comic.is_live,
         })
 
-        return super(DeleteView, self).form_valid(form)
+        return super(ComicDeleteView, self).form_valid(form)
+
+
+class CharacterAddView(NeedsLoginMixin, FormView):
+    form_class = CharacterForm
+    template_name = "edit_character.html"
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_form_kwargs(self):
+        kwargs = super(CharacterAddView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+
+        return kwargs
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        character = Character.objects.create(
+            name=form.cleaned_data.get('name'),
+            description=form.cleaned_data.get('description'),
+            profile_pic_url=form.cleaned_data.get('profile_pic_url'),
+        )
+        character.pebbles.add(pebble)
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Character Added', {
+            'pebble_id': pebble.id,
+            'character_id': character.id,
+        })
+
+        return super(CharacterAddView, self).form_valid(form)
+
+
+class CharacterEditView(NeedsLoginMixin, FormView):
+    form_class = CharacterForm
+    template_name = "edit_character.html"
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_context_data(self, **kwargs):
+        context = super(CharacterEditView, self).get_context_data(**kwargs)
+        context['is_editing'] = True
+
+        return context
+
+    def get(self, request, *args, **kwargs):
+        self.character = get_object_or_404(Character, id=self.kwargs.get('id'))
+        pebbles = self.character.pebbles.all()
+        for pebble in pebbles:
+            if not pebble.can_edit(self.request.user):
+                raise Http404()
+
+        return super(CharacterEditView, self).get(request, *args, **kwargs)
+
+    def get_initial(self):
+        character = self.character
+
+        initial = {
+            'name': character.name,
+            'description': character.description,
+            'profile_pic_url': character.profile_pic_url,
+        }
+
+        return initial
+
+    def get_form_kwargs(self):
+        self.character = get_object_or_404(Character, id=self.kwargs.get('id'))
+        kwargs = super(CharacterEditView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+        kwargs['selected_pebble'] = self.character.pebbles.all()[0].id
+
+        return kwargs
+
+    def get(self, request, *args, **kwargs):
+        self.character = get_object_or_404(Character, id=self.kwargs.get('id'))
+        pebbles = self.character.pebbles.all()
+        for pebble in pebbles:
+            if not pebble.can_edit(self.request.user):
+                raise Http404()
+
+        return super(CharacterEditView, self).get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+
+        character = self.character
+
+        character.name = form.cleaned_data.get('name')
+        character.description = form.cleaned_data.get('description')
+        character.profile_pic_url = form.cleaned_data.get('profile_pic_url')
+        character.save()
+
+        if pebble not in character.pebbles.all():
+            character.pebbles.add(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Character Edited', {
+            'pebble_id': pebble.id,
+            'character_id': character.id,
+        })
+
+        return super(CharacterEditView, self).form_valid(form)
+
+
+class CharacterView(NeedsPebbleMixin, TemplateView):
+    template_name = "characterview.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CharacterView, self).get_context_data(**kwargs)
+        pebble = self.request.pebble
+        character = get_object_or_404(Character, pebbles=pebble, id=self.kwargs['id'])
+        context['character'] = character
+        pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
+        context['pebble_settings'] = pebble_settings
+        return context
+
+class CharacterListView(NeedsPebbleMixin, TemplateView):
+    template_name = "characterlist.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CharacterListView, self).get_context_data(**kwargs)
+        pebble = self.request.pebble
+        characters = pebble.characters()
+        context['characters'] = characters
+        pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
+        context['pebble_settings'] = pebble_settings
+        return context
+
+
+class CharacterDeleteView(NeedsLoginMixin, FormView):
+    template_name = 'character_delete.html'
+    form_class = ComicDeleteForm
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        self.character = get_object_or_404(Character, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(CharacterDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        self.character = get_object_or_404(Character, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(CharacterDeleteView, self).post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CharacterDeleteView, self).get_context_data(**kwargs)
+        context['character'] = self.character
+
+        return context
+
+    def form_valid(self, form):
+        really_delete = form.cleaned_data.get('really_delete')
+
+        if really_delete == 'yes':
+            pebbles = self.character.pebbles.all()
+            for pebble in pebbles:
+                self.character.pebbles.remove(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Character Deleted', {
+            'character_id': self.character.id,
+        })
+
+        return super(CharacterDeleteView, self).form_valid(form)
+
+
+

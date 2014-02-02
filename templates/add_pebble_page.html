@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ block.super }}Add Page{% endblock %}
+{% block title %}
+    {{ block.super }}
+    {% if is_editing %}
+        Edit Page
+    {% else %}
+        Add Page
+    {% endif %}
+{% endblock %}
 
 {% block extra_head %}
 {{ form.media }}

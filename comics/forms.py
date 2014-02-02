@@ -16,6 +16,24 @@ date_time_options = {
     'minuteStep': '1',
 }
 
+class NeedsPebbleForm(forms.Form):
+
+    def __init__(self, *args, **kwargs):
+        selected_pebble = None
+        if kwargs.get('selected_pebble'):
+            selected_pebble = kwargs.pop('selected_pebble')
+        self.pebbles = kwargs.pop('pebbles')
+        super(NeedsPebbleForm, self).__init__(*args, **kwargs)
+        choices = [(pebble.id, pebble.title) for pebble in self.pebbles]
+        if not selected_pebble:
+            selected_pebble = choices[0][0]
+
+        self.fields['pebble'] = forms.ChoiceField(
+            choices=choices,
+            initial=selected_pebble,
+            widget=forms.Select(attrs={'class':'form-control',}),
+        )
+
 class ComicForm(forms.ModelForm):
     class Meta:
         model = Comic
@@ -25,7 +43,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
 
-class ComicPostForm(forms.Form):
+class ComicPostForm(NeedsPebbleForm):
     title = forms.CharField(
         max_length=140,
         required=True, 
@@ -90,26 +108,26 @@ class ComicPostForm(forms.Form):
         widget=forms.Textarea(attrs={'class':'form-control',}),
     )
 
-    def __init__(self, *args, **kwargs):
-        selected_pebble = None
-        if kwargs.get('selected_pebble'):
-            selected_pebble = kwargs.pop('selected_pebble')
-        self.pebbles = kwargs.pop('pebbles')
-        super(ComicPostForm, self).__init__(*args, **kwargs)
-        choices = [(pebble.id, pebble.title) for pebble in self.pebbles]
-        if not selected_pebble:
-            selected_pebble = choices[0][0]
-
-        self.fields['pebble'] = forms.ChoiceField(
-            choices=choices,
-            initial=selected_pebble,
-            widget=forms.Select(attrs={'class':'form-control',}),
-        )
-
 
 class ComicDeleteForm(forms.Form):
     really_delete = forms.ChoiceField(
         widget=forms.RadioSelect,
         required=True,
         choices=[('yes', 'yes'), ('no', 'no')],
+    )
+
+
+class CharacterForm(NeedsPebbleForm):
+    name = forms.CharField(
+        max_length=140,
+        required=True,
+        widget=forms.TextInput(attrs={'class':'form-control',})
+    )
+    description = forms.CharField(
+        required=False,
+        widget=RedactorWidget,
+    )
+    profile_pic_url = forms.URLField(
+        required=False,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
     )

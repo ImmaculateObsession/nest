@@ -11,9 +11,14 @@ from comics.views import (
     CreateRefCodeView,
     StaticPageView,
     ShareView,
+    CharacterListView,
 )
 
-from comics.urls import comicpatterns, postpatterns
+from comics.urls import (
+    comicpatterns,
+    postpatterns,
+    characterpatterns,
+)
 
 from comics.feeds import LatestPostFeed
 
@@ -38,5 +43,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^nexus/', include(nexus.site.urls)),
     url(r'^share/$', ShareView.as_view()),
+    url(r'^characters/$', CharacterListView.as_view(), name='characterlistview'),
+    url(r'^character/', include(characterpatterns)),
     url(r'^p/', include(pagepatterns)),
 )

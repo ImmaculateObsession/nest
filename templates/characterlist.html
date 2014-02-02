@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ pebble_settings.site_title }} Characters</h2>
+<div class="row">
+    {% for character in characters %}
+    <div class="col-md-6">
+        {% include "character.html" %}
+    </div>
+    {% if forloop.counter|divisibleby:"2" %}
+</div>
+<div class="row">
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}
