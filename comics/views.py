@@ -66,13 +66,13 @@ class NeedsLoginMixin(object):
     def dispatch(self, request, *args, **kwargs):
         return super(NeedsLoginMixin, self).dispatch(request, *args, **kwargs)
 
+
 class NeedsPebbleMixin(object):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.pebble:
             raise Http404()
         return super(NeedsPebbleMixin, self).dispatch(request, *args, **kwargs)
-
 
 
 class ComicViewMixin(object):
