@@ -196,7 +196,7 @@ class DeleteView(NeedsLoginMixin, FormView):
         return super(DeleteView, self).get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        pebbles = Pebble.objects.get_pebbles_for_user(creator=self.request.user)
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
         self.page = get_object_or_404(PebblePage, id=self.kwargs.get('id'), pebble__in=pebbles)
 
         return super(DeleteView, self).post(request, *args, **kwargs)

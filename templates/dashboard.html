@@ -12,11 +12,14 @@
 <a href="{% url "characteraddview" %}" class="btn btn-large btn-success">
     <span class="fa fa-group"></span> Add Character
 </a>
+<a href="{% url "postaddview" %}" class="btn btn-large btn-success">
+    <span class="fa fa-edit"></span> Add Post
+</a>
 {% for pebble in pebbles %}
     <h1>{{ pebble.title }}</h1>
         <div class="row">
-            {% if pebble.comics %}
             <div class="col-md-6">
+                {% if pebble.comics %}
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <p class="panel-title">Comics</p>
@@ -41,11 +44,36 @@
                         {% endfor %}
                     </div>
                 </div>
+                {% endif %}
+                {% if pebble.posts %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p class="panel-title">Posts</p>
+                    </div>
+                    <div class="panel-body">
+                        {% for post in pebble.posts %}
+                            <div class="row-message">
+                                <div class="col-md-7">
+                                <p class="h4 text-shortened">{{ post.title }}</p>
+                                </div>
+                                <div class="col-md-5">
+                                {% if post.is_live %}
+                                    <span class="label label-success">Live!</span>
+                                {% else %}
+                                    <span class="label label-default">Draft</span>
+                                {% endif %}
+                                <a href="{% url "postpreviewview" post.id %}">Preview</a> | 
+                                <a href="{% url "posteditview" post.id %}">Edit</a> | 
+                                <a href="{% url "postdeleteview" post.id %}">Delete</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
             </div>
-            {% endif %}
             <div class="col-md-6">
                 {% if pebble.pages %}
-                <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <p class="panel-title">Pages</p>
@@ -69,10 +97,8 @@
                             {% endfor %}
                         </div>
                     </div>
-                </div>
                 {% endif %}
                 {% if pebble.characters %}
-                <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <p class="panel-title">Characters</p>
@@ -91,7 +117,6 @@
                             {% endfor %}
                         </div>
                     </div>
-                </div>
                 {% endif %}
             </div>
         </div>

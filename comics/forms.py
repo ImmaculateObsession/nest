@@ -1,5 +1,7 @@
 from django import forms
 from django.utils import timezone
+from django.utils.text import slugify
+
 
 from datetimewidget.widgets import DateTimeWidget
 from suit_redactor.widgets import RedactorWidget
@@ -8,6 +10,8 @@ from comics.models import (
     Comic,
     Post,
 )
+
+from pebbles.models import Pebble
 
 date_time_options = {
     'format': 'mm/dd/yyyy hh:ii:ss',
@@ -39,9 +43,47 @@ class ComicForm(forms.ModelForm):
         model = Comic
 
 
-class PostForm(forms.ModelForm):
-    class Meta:
-        model = Post
+class PostForm(NeedsPebbleForm):
+    title = forms.CharField(
+        max_length=140,
+        required=True, 
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+    published = forms.DateTimeField(
+        initial=timezone.now,
+        required=True,
+        widget=DateTimeWidget(
+            attrs={'class': 'form-control',},
+            options=date_time_options,
+        )
+    )
+    is_live = forms.BooleanField(initial=False, required=False)
+    slug = forms.SlugField(
+        required=False,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+    post = forms.CharField(
+        required=False,
+        widget=RedactorWidget,
+    )
+
+    def clean_slug(self):
+        slug = self.cleaned_data.get('slug')
+        if not slug or slug == '':
+            slug = slugify(self.cleaned_data['title'])
+
+        return slug
+
+    def clean(self):
+        cleaned_data = self.cleaned_data
+        slug = cleaned_data.get('slug')
+        pebble = Pebble.objects.get(id=cleaned_data.get('pebble'))
+        import pdb; pdb.set_trace()
+        if slug != self.initial.get('slug') and Post.objects.filter(pebbles=pebble, slug=slug).exists():
+            raise forms.ValidationError("Slug matches an existing post")
+
+        return cleaned_data
+
 
 class ComicPostForm(NeedsPebbleForm):
     title = forms.CharField(

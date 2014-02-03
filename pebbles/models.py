@@ -36,6 +36,12 @@ class Pebble(models.Model):
         from comics.models import Character
         return Character.objects.filter(pebbles=self)
 
+    def posts(self):
+        from comics.models import Post
+        posts = Post.objects.filter(pebbles=self)
+        posts = [post for post in posts if not post.comic]
+        return posts
+
     def can_edit(self, user):
         if user == self.creator:
             return True

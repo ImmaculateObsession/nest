@@ -45,6 +45,7 @@ from comics.forms import (
     ComicPostForm,
     ComicDeleteForm,
     CharacterForm,
+    PostForm,
 )
 from comics import settings as site_settings
 
@@ -299,7 +300,7 @@ class PostPreviewView(NeedsLoginMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PostPreviewView, self).get_context_data(**kwargs)
-        post = get_object_or_404(Post, slug=self.kwargs['slug'])
+        post = get_object_or_404(Post, id=self.kwargs['id'])
         context['post'] = post
         return context
 
@@ -383,6 +384,7 @@ class StaticPageView(TemplateView):
         self.template_name = template if template else self.template_name
         return super(StaticPageView, self).dispatch(*args, **kwargs)
 
+
 class TagView(ListView):
 
     template_name = "tag_list.html"
@@ -395,6 +397,7 @@ class TagView(ListView):
         context['tag'] = self.kwargs['tag']
 
         return context
+
 
 class ComicEditBaseView(NeedsLoginMixin, FormView):
     form_class = ComicPostForm
@@ -434,6 +437,7 @@ class ComicEditBaseView(NeedsLoginMixin, FormView):
         context['tw_token'] = tw_token
 
         return context
+
 
 class ComicAddView(ComicEditBaseView):
     url_name = 'comicaddview'
@@ -833,6 +837,7 @@ class CharacterView(NeedsPebbleMixin, TemplateView):
         context['pebble_settings'] = pebble_settings
         return context
 
+
 class CharacterListView(NeedsPebbleMixin, TemplateView):
     template_name = "characterlist.html"
 
@@ -892,5 +897,165 @@ class CharacterDeleteView(NeedsLoginMixin, FormView):
 
         return super(CharacterDeleteView, self).form_valid(form)
 
+
+class PostAddView(NeedsLoginMixin, FormView):
+    template_name = "post_edit.html"
+    form_class = PostForm
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_form_kwargs(self):
+        kwargs = super(PostAddView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+
+        return kwargs
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        post = Post.objects.create(
+            title=form.cleaned_data.get('title'),
+            slug=form.cleaned_data.get('slug'),
+            published=form.cleaned_data.get('published'),
+            is_live=form.cleaned_data.get('is_live'),
+            post=form.cleaned_data.get('post'),
+            creator = self.request.user,
+        )
+        post.pebbles.add(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Post Added', {
+            'pebble_id': pebble.id,
+            'post_id': post.id,
+            'is_live': post.is_live,
+        })
+
+        return super(PostAddView, self).form_valid(form)
+
+
+class PostEditView(NeedsLoginMixin, FormView):
+    template_name = "post_edit.html"
+    form_class = PostForm
+
+    def get(self, request, *args, **kwargs):
+        self.thispost = get_object_or_404(Post, id=self.kwargs.get('id'))
+        pebbles = self.thispost.pebbles.all()
+        for pebble in pebbles:
+            if not pebble.can_edit(self.request.user):
+                raise Http404()
+
+        return super(PostEditView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        self.thispost = get_object_or_404(Post, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(PostEditView, self).post(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_form_kwargs(self):
+        kwargs = super(PostEditView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+
+        return kwargs
+
+    def get_initial(self):
+        post = self.thispost
+
+        initial = {
+            'title': post.title,
+            'slug': post.slug,
+            'post': post.post,
+            'is_live': post.is_live,
+            'publised': post.published,
+        }
+
+        return initial
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+
+        post = self.thispost
+        post.title = form.cleaned_data.get('title')
+        post.slug = form.cleaned_data.get('slug')
+        post.post = form.cleaned_data.get('post')
+        post.is_live = form.cleaned_data.get('is_live')
+        post.published = form.cleaned_data.get('published')
+        post.save()
+
+        if pebble not in post.pebbles.all():
+            post.pebbles.add(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Post Edited', {
+            'pebble_id': pebble.id,
+            'post_id': post.id,
+            'is_live': post.is_live,
+        })
+
+        return super(PostEditView, self).form_valid(form)
+
+
+class PostDeleteView(NeedsLoginMixin, FormView):
+    template_name = "post_delete.html"
+    form_class = ComicDeleteForm
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        self.thispost = get_object_or_404(Post, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(PostDeleteView, self).get(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        self.thispost = get_object_or_404(Post, id=self.kwargs.get('id'), pebbles__in=pebbles)
+
+        return super(PostDeleteView, self).post(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDeleteView, self).get_context_data(**kwargs)
+        context['post'] = self.thispost
+
+        return context
+
+    def form_valid(self, form):
+        really_delete = form.cleaned_data.get('really_delete')
+
+        if really_delete == 'yes':
+            pebbles = self.thispost.pebbles.all()
+            for pebble in pebbles:
+                self.thispost.pebbles.remove(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Post Deleted', {
+            'post_id': self.thispost.id,
+        })
+
+        return super(PostDeleteView, self).form_valid(form)
 
 

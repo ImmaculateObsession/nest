@@ -16,6 +16,9 @@ from comics.views import (
     CharacterEditView,
     CharacterView,
     CharacterDeleteView,
+    PostEditView,
+    PostAddView,
+    PostDeleteView,
 )
 
 from comics.api import S3SignView
@@ -55,15 +58,26 @@ comicpatterns = patterns('',
 )
 
 postpatterns = patterns('',
+    url(r'^add/$', PostAddView.as_view(), name='postaddview'),
     url(
         r'^(?P<slug>[\w-]+)/$',
         PostView.as_view(),
         name='postview'
     ),
     url(
-        r'^(?P<slug>[\w-]+)/preview/$',
+        r'^(?P<id>\d+)/preview/$',
         PostPreviewView.as_view(),
         name='postpreviewview'
+    ),
+    url(
+        r'^(?P<id>\d+)/edit/$',
+        PostEditView.as_view(),
+        name="posteditview",
+    ),
+    url(
+        r'^(?P<id>\d+)/delete/$',
+        PostDeleteView.as_view(),
+        name="postdeleteview",
     ),
 )
 
