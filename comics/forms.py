@@ -78,7 +78,6 @@ class PostForm(NeedsPebbleForm):
         cleaned_data = self.cleaned_data
         slug = cleaned_data.get('slug')
         pebble = Pebble.objects.get(id=cleaned_data.get('pebble'))
-        import pdb; pdb.set_trace()
         if slug != self.initial.get('slug') and Post.objects.filter(pebbles=pebble, slug=slug).exists():
             raise forms.ValidationError("Slug matches an existing post")
 
