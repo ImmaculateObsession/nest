@@ -221,7 +221,7 @@ class ComicListView(NeedsPebbleMixin, ListView):
     template_name = "comic_list.html"
 
     def get_queryset(self):
-        return Comic.published_comics.filter(pebbles=self.request.pebble)
+        return Comic.published_comics.filter(pebbles=self.request.pebble).order_by('published')
 
     def get_context_data(self, **kwargs):
         context = super(ComicListView, self).get_context_data(**kwargs)
