@@ -30,7 +30,7 @@ class Pebble(models.Model):
         return PebblePage.objects.filter(pebble=self)
 
     def pages_by_published(self):
-        return self.pages().order_by('-published')
+        return self.pages().order_by('-id')
 
     def characters(self):
         from comics.models import Character
