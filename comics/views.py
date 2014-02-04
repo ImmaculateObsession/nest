@@ -146,7 +146,7 @@ class ComicViewMixin(object):
             if pebble_settings.settings.get('show_disqus'):
                 context['disqus_identifier'] = slug
                 context['disqus_title'] = self.comic.title
-                context['disqus_url'] = '%s/comic/%s/' % (
+                context['disqus_url'] = 'http://%s/comic/%s/' % (
                     pebble_settings.primary_domain.url,
                     post.slug
                 )
