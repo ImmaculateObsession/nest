@@ -134,21 +134,23 @@ class ComicViewMixin(object):
         ):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
 
-        context['pebble_settings'] = pebble_settings.settings
-        if pebble_settings and pebble_settings.settings.get('show_disqus'):
-            context['disqus_identifier'] = slug
-            context['disqus_title'] = self.comic.title
-
         post = self.post
         comic = self.comic
 
         context['slug'] = slug
         context['post'] = post
         context['comic'] = comic
-        context['disqus_url'] = '%s/comic/%s/' % (
-            pebble_settings.primary_domain.url,
-            post.slug
-        )
+
+        if hasattr(pebble_settings, 'settings'):
+            context['pebble_settings'] = pebble_settings.settings
+            if pebble_settings.settings.get('show_disqus'):
+                context['disqus_identifier'] = slug
+                context['disqus_title'] = self.comic.title
+                context['disqus_url'] = '%s/comic/%s/' % (
+                    pebble_settings.primary_domain.url,
+                    post.slug
+                )
+        
         try: 
             context['first_comic'] = Comic.published_comics.filter(
                 pebbles=pebble,
