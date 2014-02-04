@@ -116,11 +116,9 @@ class ComicViewMixin(object):
         try:
             pebble_settings = PebbleSettings.objects.get(
                 pebble=pebble
-            ).settings
+            )
         except PebbleSettings.DoesNotExist:
             pebble_settings = None
-
-        context['pebble_settings'] = pebble_settings
 
         if hasattr(self, 'empty'):
             return context
@@ -136,7 +134,8 @@ class ComicViewMixin(object):
         ):
             context['last_read_comic'] = self.request.COOKIES.get('last_read_comic')
 
-        if pebble_settings and pebble_settings.get('show_disqus'):
+        context['pebble_settings'] = pebble_settings.settings
+        if pebble_settings and pebble_settings.settings.get('show_disqus'):
             context['disqus_identifier'] = slug
             context['disqus_title'] = self.comic.title
 
@@ -147,10 +146,9 @@ class ComicViewMixin(object):
         context['post'] = post
         context['comic'] = comic
         context['disqus_url'] = '%s/comic/%s/' % (
-            site_settings.site_url(),
+            pebble_settings.primary_domain.url,
             post.slug
         )
-
         try: 
             context['first_comic'] = Comic.published_comics.filter(
                 pebbles=pebble,
