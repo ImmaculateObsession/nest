@@ -21,17 +21,17 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             {% if pebble_settings.show_rss %}
-            <li><a id="header-rss" href="/feed/" target="_blank">
+            <li><a id="header-rss" href="/feed/">
                 <span class="cq-orange fa fa-rss"></span>
             </a></li>
             {% endif %}
             {% if pebble_settings.facebook_page %}
-            <li><a id="header-fb" href="https://www.facebook.com/{{ pebble_settings.facebook_page }}" target="_blank">
+            <li><a id="header-fb" href="https://www.facebook.com/{{ pebble_settings.facebook_page }}">
                 <span class="cq-blue fa fa-facebook"></span>
             </a></li>
             {% endif %}
             {% if pebble_settings.twitter_page %}
-            <li><a id="header-twitter" href="https://twitter.com/{{ pebble_settings.twitter_page }}" target="_blank">
+            <li><a id="header-twitter" href="https://twitter.com/{{ pebble_settings.twitter_page }}">
                 <span class="cq-light-blue fa fa-twitter"></span>
             </a></li>
             {% endif %}
