@@ -21,7 +21,7 @@ class PebbleMiddleware(object):
         except Domain.DoesNotExist:
             pebble = None
 
-        if not pebble and not request.is_secure and not settings.DEBUG:
+        if not any([pebble, request.is_secure(), settings.DEBUG, request.META.get("HTTP_X_FORWARDED_PROTO", "") == 'https']):
             url = request.build_absolute_uri(request.get_full_path())
             secure_url = url.replace("http://", "https://")
             return HttpResponseRedirect(secure_url)
