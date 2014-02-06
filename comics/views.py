@@ -63,7 +63,7 @@ from saltpeter.models import SocialPost
 class SecureRequiredMixin(object):
 
     def dispatch(self, request, *args, **kwargs):
-        if not request.is_secure and settings.DEBUG == False:
+        if not request.is_secure() and not settings.DEBUG:
             request_url = request.build_absolute_uri(request.get_full_path())
             request_url = request_url.replace('http://', 'https://')
             return HttpResponsePermanentRedirect(request_url)
