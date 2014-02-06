@@ -72,7 +72,7 @@ class PebblePageView(NeedsPebbleMixin, TemplateView):
 
         return context
 
-class AddPageView(NeedsLoginMixin, FormView):
+class AddPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "add_pebble_page.html"
     form_class = PebblePageForm
 
@@ -114,7 +114,7 @@ class AddPageView(NeedsLoginMixin, FormView):
         return super(AddPageView, self).form_valid(form)
 
 
-class EditPageView(NeedsLoginMixin, FormView):
+class EditPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "add_pebble_page.html"
     form_class = PebblePageForm
 
@@ -184,7 +184,7 @@ class EditPageView(NeedsLoginMixin, FormView):
         return super(EditPageView, self).form_valid(form)
 
 
-class DeleteView(NeedsLoginMixin, FormView):
+class DeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "delete_page.html"
     form_class = ComicDeleteForm
 

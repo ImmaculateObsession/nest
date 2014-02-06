@@ -70,7 +70,7 @@ class SecureRequiredMixin(object):
         return super(SecureRequiredMixin, self).dispatch(request, *args, **kwargs)
 
 
-class NeedsLoginMixin(SecureRequiredMixin):
+class NeedsLoginMixin(object):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -240,7 +240,7 @@ class ComicListView(NeedsPebbleMixin, ListView):
         return context
 
 
-class ComicPreviewView(NeedsLoginMixin, TemplateView):
+class ComicPreviewView(SecureRequiredMixin, NeedsLoginMixin, TemplateView):
     template_name = "comicpreview.html"
 
     def get_context_data(self, **kwargs):
@@ -305,7 +305,7 @@ class PostView(NeedsPebbleMixin, TemplateView):
         return context
 
 
-class PostPreviewView(NeedsLoginMixin, TemplateView):
+class PostPreviewView(SecureRequiredMixin, NeedsLoginMixin, TemplateView):
     template_name = "postview.html"
 
     def get_context_data(self, **kwargs):
@@ -409,7 +409,7 @@ class TagView(ListView):
         return context
 
 
-class ComicEditBaseView(NeedsLoginMixin, FormView):
+class ComicEditBaseView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
     url_name = 'dashview'
@@ -670,7 +670,7 @@ class ShareView(TemplateView):
         return context
 
 
-class ComicDeleteView(NeedsLoginMixin, FormView):
+class ComicDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "delete_comic.html"
     form_class = ComicDeleteForm
 
@@ -719,7 +719,7 @@ class ComicDeleteView(NeedsLoginMixin, FormView):
         return super(ComicDeleteView, self).form_valid(form)
 
 
-class CharacterAddView(NeedsLoginMixin, FormView):
+class CharacterAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     form_class = CharacterForm
     template_name = "edit_character.html"
 
@@ -756,7 +756,7 @@ class CharacterAddView(NeedsLoginMixin, FormView):
         return super(CharacterAddView, self).form_valid(form)
 
 
-class CharacterEditView(NeedsLoginMixin, FormView):
+class CharacterEditView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     form_class = CharacterForm
     template_name = "edit_character.html"
 
@@ -861,7 +861,7 @@ class CharacterListView(NeedsPebbleMixin, TemplateView):
         return context
 
 
-class CharacterDeleteView(NeedsLoginMixin, FormView):
+class CharacterDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = 'character_delete.html'
     form_class = ComicDeleteForm
 
@@ -908,7 +908,7 @@ class CharacterDeleteView(NeedsLoginMixin, FormView):
         return super(CharacterDeleteView, self).form_valid(form)
 
 
-class PostAddView(NeedsLoginMixin, FormView):
+class PostAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "post_edit.html"
     form_class = PostForm
 
@@ -950,7 +950,7 @@ class PostAddView(NeedsLoginMixin, FormView):
         return super(PostAddView, self).form_valid(form)
 
 
-class PostEditView(NeedsLoginMixin, FormView):
+class PostEditView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "post_edit.html"
     form_class = PostForm
 
@@ -1022,7 +1022,7 @@ class PostEditView(NeedsLoginMixin, FormView):
         return super(PostEditView, self).form_valid(form)
 
 
-class PostDeleteView(NeedsLoginMixin, FormView):
+class PostDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
     template_name = "post_delete.html"
     form_class = ComicDeleteForm
 
