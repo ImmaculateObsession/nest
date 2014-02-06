@@ -1,5 +1,6 @@
 from mixpanel import Mixpanel
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponsePermanentRedirect
@@ -16,6 +17,7 @@ from comics.models import Comic
 from comics.views import (
     NeedsLoginMixin,
     NeedsPebbleMixin,
+    SecureRequiredMixin,
 )
 
 from pebbles.forms import PebblePageForm
@@ -30,11 +32,11 @@ from pebbles.models import (
 from petroglyphs.models import Setting
 
 
-class HomeView(TemplateView):
+class HomeView(SecureRequiredMixin, TemplateView):
     template_name = 'main_home.html'
 
 
-class DashboardView(TemplateView):
+class DashboardView(SecureRequiredMixin, TemplateView):
     template_name = "dashboard.html"
 
     @method_decorator(login_required)

@@ -60,7 +60,17 @@ from petroglyphs.models import Setting
 from saltpeter.models import SocialPost
 
 
-class NeedsLoginMixin(object):
+class SecureRequiredMixin(object):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.is_secure and not settings.DEBUG:
+            request_url = request.build_absolute_uri(request.get_full_path())
+            request_url = request_url.replace('http://', 'https://')
+            return HttpResponsePermanentRedirect(request_url)
+        return super(SecureRequiredMixin, self).dispatch(request, *args, **kwargs)
+
+
+class NeedsLoginMixin(SecureRequiredMixin):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
