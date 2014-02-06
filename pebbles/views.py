@@ -17,7 +17,6 @@ from comics.models import Comic
 from comics.views import (
     NeedsLoginMixin,
     NeedsPebbleMixin,
-    SecureRequiredMixin,
 )
 
 from pebbles.forms import PebblePageForm
@@ -32,11 +31,11 @@ from pebbles.models import (
 from petroglyphs.models import Setting
 
 
-class HomeView(SecureRequiredMixin, TemplateView):
+class HomeView(TemplateView):
     template_name = 'main_home.html'
 
 
-class DashboardView(SecureRequiredMixin, TemplateView):
+class DashboardView(TemplateView):
     template_name = "dashboard.html"
 
     @method_decorator(login_required)
@@ -72,7 +71,7 @@ class PebblePageView(NeedsPebbleMixin, TemplateView):
 
         return context
 
-class AddPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class AddPageView(NeedsLoginMixin, FormView):
     template_name = "add_pebble_page.html"
     form_class = PebblePageForm
 
@@ -114,7 +113,7 @@ class AddPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(AddPageView, self).form_valid(form)
 
 
-class EditPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class EditPageView(NeedsLoginMixin, FormView):
     template_name = "add_pebble_page.html"
     form_class = PebblePageForm
 
@@ -184,7 +183,7 @@ class EditPageView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(EditPageView, self).form_valid(form)
 
 
-class DeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class DeleteView(NeedsLoginMixin, FormView):
     template_name = "delete_page.html"
     form_class = ComicDeleteForm
 

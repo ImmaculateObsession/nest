@@ -60,16 +60,6 @@ from petroglyphs.models import Setting
 from saltpeter.models import SocialPost
 
 
-class SecureRequiredMixin(object):
-    pass
-    # def dispatch(self, request, *args, **kwargs):
-    #     if not request.is_secure() and not settings.DEBUG:
-    #         request_url = request.build_absolute_uri(request.get_full_path())
-    #         request_url = request_url.replace('http://', 'https://')
-    #         return HttpResponsePermanentRedirect(request_url)
-    #     return super(SecureRequiredMixin, self).dispatch(request, *args, **kwargs)
-
-
 class NeedsLoginMixin(object):
 
     @method_decorator(login_required)
@@ -124,11 +114,16 @@ class ComicViewMixin(object):
         context = super(ComicViewMixin, self).get_context_data(**kwargs)
         pebble=self.request.pebble
         try:
-            pebble_settings = PebbleSettings.objects.get(
-                pebble=pebble
+            pebble_settings_obj = PebbleSettings.objects.get(
+                pebble=pebble,
             )
-        except PebbleSettings.DoesNotExist:
+            pebble_settings = pebble_settings_obj.settings
+            primary_url = pebble_settings_obj.primary_domain.url
+        except (PebbleSettings.DoesNotExist, AttributeError):
             pebble_settings = None
+            primary_url = None
+
+        context['pebble_settings'] = pebble_settings
 
         if hasattr(self, 'empty'):
             return context
@@ -151,15 +146,13 @@ class ComicViewMixin(object):
         context['post'] = post
         context['comic'] = comic
 
-        if hasattr(pebble_settings, 'settings'):
-            context['pebble_settings'] = pebble_settings.settings
-            if pebble_settings.settings.get('show_disqus'):
-                context['disqus_identifier'] = slug
-                context['disqus_title'] = self.comic.title
-                context['disqus_url'] = 'http://%s/comic/%s/' % (
-                    pebble_settings.primary_domain.url,
-                    post.slug
-                )
+        if pebble_settings.get('show_disqus'):
+            context['disqus_identifier'] = slug
+            context['disqus_title'] = self.comic.title
+            context['disqus_url'] = 'http://%s/comic/%s/' % (
+                primary_url,
+                post.slug,
+            )
         
         try: 
             context['first_comic'] = Comic.published_comics.filter(
@@ -240,7 +233,7 @@ class ComicListView(NeedsPebbleMixin, ListView):
         return context
 
 
-class ComicPreviewView(SecureRequiredMixin, NeedsLoginMixin, TemplateView):
+class ComicPreviewView(NeedsLoginMixin, TemplateView):
     template_name = "comicpreview.html"
 
     def get_context_data(self, **kwargs):
@@ -305,7 +298,7 @@ class PostView(NeedsPebbleMixin, TemplateView):
         return context
 
 
-class PostPreviewView(SecureRequiredMixin, NeedsLoginMixin, TemplateView):
+class PostPreviewView(NeedsLoginMixin, TemplateView):
     template_name = "postview.html"
 
     def get_context_data(self, **kwargs):
@@ -409,7 +402,7 @@ class TagView(ListView):
         return context
 
 
-class ComicEditBaseView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class ComicEditBaseView(NeedsLoginMixin, FormView):
     form_class = ComicPostForm
     template_name = "add_comic.html"
     url_name = 'dashview'
@@ -670,7 +663,7 @@ class ShareView(TemplateView):
         return context
 
 
-class ComicDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class ComicDeleteView(NeedsLoginMixin, FormView):
     template_name = "delete_comic.html"
     form_class = ComicDeleteForm
 
@@ -719,7 +712,7 @@ class ComicDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(ComicDeleteView, self).form_valid(form)
 
 
-class CharacterAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class CharacterAddView(NeedsLoginMixin, FormView):
     form_class = CharacterForm
     template_name = "edit_character.html"
 
@@ -756,7 +749,7 @@ class CharacterAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(CharacterAddView, self).form_valid(form)
 
 
-class CharacterEditView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class CharacterEditView(NeedsLoginMixin, FormView):
     form_class = CharacterForm
     template_name = "edit_character.html"
 
@@ -861,7 +854,7 @@ class CharacterListView(NeedsPebbleMixin, TemplateView):
         return context
 
 
-class CharacterDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class CharacterDeleteView(NeedsLoginMixin, FormView):
     template_name = 'character_delete.html'
     form_class = ComicDeleteForm
 
@@ -908,7 +901,7 @@ class CharacterDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(CharacterDeleteView, self).form_valid(form)
 
 
-class PostAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class PostAddView(NeedsLoginMixin, FormView):
     template_name = "post_edit.html"
     form_class = PostForm
 
@@ -950,7 +943,7 @@ class PostAddView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(PostAddView, self).form_valid(form)
 
 
-class PostEditView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class PostEditView(NeedsLoginMixin, FormView):
     template_name = "post_edit.html"
     form_class = PostForm
 
@@ -1022,7 +1015,7 @@ class PostEditView(SecureRequiredMixin, NeedsLoginMixin, FormView):
         return super(PostEditView, self).form_valid(form)
 
 
-class PostDeleteView(SecureRequiredMixin, NeedsLoginMixin, FormView):
+class PostDeleteView(NeedsLoginMixin, FormView):
     template_name = "post_delete.html"
     form_class = ComicDeleteForm
 
