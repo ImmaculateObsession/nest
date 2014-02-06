@@ -1,4 +1,8 @@
-from django.http import Http404
+from django.conf import settings
+from django.http import (
+    Http404,
+    HttpResponseRedirect,
+)
 
 from pebbles.models import (
     Pebble,
@@ -16,5 +20,10 @@ class PebbleMiddleware(object):
             pebble = Domain.objects.get(url=domain).pebble
         except Domain.DoesNotExist:
             pebble = None
+
+        if not any([pebble, request.is_secure(),settings.DEBUG, request.META.get("HTTP_X_FORWARDED_PROTO", "") == 'https']):
+            url = request.build_absolute_uri(request.get_full_path())
+            secure_url = url.replace("http://", "https://")
+            return HttpResponseRedirect(secure_url)
 
         request.pebble = pebble
