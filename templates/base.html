@@ -66,7 +66,7 @@
         <!-- disqus js below -->
         {% if disqus_identifier %}
         <script type="text/javascript">
-            var disqus_shortname = 'quailcomics';
+            var disqus_shortname = '{{ pebble_settings.disqus_sitename }}';
             var disqus_identifier = '{{ disqus_identifier }}';
 
             {% if disqus_url %}
