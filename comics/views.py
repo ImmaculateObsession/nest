@@ -965,6 +965,12 @@ class PostEditView(NeedsLoginMixin, FormView):
     def get_success_url(self):
         return reverse('dashview')
 
+    def get_context_data(self, **kwargs):
+        context = super(PostEditView, self).get_context_data(**kwargs)
+        context['is_editing'] = True
+
+        return context
+
     def get_form_kwargs(self):
         kwargs = super(PostEditView, self).get_form_kwargs()
         pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)

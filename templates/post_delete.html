@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}{{ block.super }}Delete Post{% endblock %}
+
 {% block content %}
 <h2>Deleting "{{ post.title }}"</h2>
 <form action="" method="POST">

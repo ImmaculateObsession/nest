@@ -1,5 +1,7 @@
 {% extends "comicpostview.html" %}
 
+{% block title %}{{ block.title }}Preview {{ comic.title }}{% endblock %}
+
 {% block messages %}
 <div>
     <div class="col-md-8 col-md-offset-2 navbar navbar-default">

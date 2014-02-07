@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block title %}{{ block.super }}Add Comic{% endblock %}
+{% block title %}
+    {{ block.super }}
+    {% if is_editing %}
+        Edit Comic
+    {% else %}
+        Add Comic
+    {% endif %}
+{% endblock %}
 
 {% block extra_head %}
 {{ form.media }}

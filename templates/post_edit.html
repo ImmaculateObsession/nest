@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block title %}
+    {{ block.super }}
+    {% if is_editing %}
+        Edit Post
+    {% else %}
+        Add Post
+    {% endif %}
+{% endblock %}
+
 {% block extra_head %}
 {{ form.media }}
 {% endblock %}
