@@ -163,11 +163,11 @@ INSTALLED_APPS = (
     'rest_framework',
     'saltpeter',
     'pebbles',
-    'mezzanine.boot',
+    # 'mezzanine.boot',
     # 'mezzanine.conf',
-    'mezzanine.core',
-    'mezzanine.generic',
-    'mezzanine.accounts',
+    # 'mezzanine.core',
+    # 'mezzanine.generic',
+    # 'mezzanine.accounts',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -255,9 +255,9 @@ LOGGING = {
     },
 }
 
-try:
-    from mezzanine.utils.conf import set_dynamic_settings
-except ImportError:
-    pass
-else:
-    set_dynamic_settings(globals())
+# try:
+#     from mezzanine.utils.conf import set_dynamic_settings
+# except ImportError:
+#     pass
+# else:
+#     set_dynamic_settings(globals())
