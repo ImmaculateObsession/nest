@@ -100,9 +100,26 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'pebbles.middleware.PebbleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+MIDDLEWARE_CLASSES = (
+    "mezzanine.core.middleware.UpdateCacheMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "mezzanine.core.request.CurrentRequestMiddleware",
+    "mezzanine.core.middleware.RedirectFallbackMiddleware",
+    "mezzanine.core.middleware.TemplateForDeviceMiddleware",
+    "mezzanine.core.middleware.TemplateForHostMiddleware",
+    "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
+    "mezzanine.core.middleware.SitePermissionMiddleware",
+    'pebbles.middleware.PebbleMiddleware',
+    "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
@@ -126,6 +143,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.redirects',
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -145,11 +163,24 @@ INSTALLED_APPS = (
     'rest_framework',
     'saltpeter',
     'pebbles',
+    'mezzanine.boot',
+    # 'mezzanine.conf',
+    'mezzanine.core',
+    'mezzanine.generic',
+    'mezzanine.accounts',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 LOGIN_REDIRECT_URL = '/pebbles'
+
+PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
+PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
+
+COMMENTS_USE_RATINGS = True
+COMMENTS_ACCOUNT_REQUIRED = True
+RATINGS_ACCOUNT_REQUIRED = True
+RATINGS_RANGE = (-1, 1)
 
 #ALLAUTH SETTINGS
 ACCOUNT_EMAIL_REQUIRED=True
@@ -223,3 +254,10 @@ LOGGING = {
         },
     },
 }
+
+try:
+    from mezzanine.utils.conf import set_dynamic_settings
+except ImportError:
+    pass
+else:
+    set_dynamic_settings(globals())

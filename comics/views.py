@@ -464,8 +464,7 @@ class ComicAddView(ComicEditBaseView):
             slug = '%s-%s' % (slug, timezone.now().strftime('%Y%m%d'))
         self.slug = slug
 
-        domain = Domain.objects.filter(pebble=pebble)[0]
-        self.domain = domain
+        domain = PebbleSettings.objects.get(pebble=pebble).primary_domain
 
         post = Post.objects.create(
             title=form.cleaned_data['title'],
