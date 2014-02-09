@@ -100,26 +100,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'pebbles.middleware.PebbleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
-
-MIDDLEWARE_CLASSES = (
-    "mezzanine.core.middleware.UpdateCacheMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.locale.LocaleMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "mezzanine.core.request.CurrentRequestMiddleware",
-    "mezzanine.core.middleware.RedirectFallbackMiddleware",
-    "mezzanine.core.middleware.TemplateForDeviceMiddleware",
-    "mezzanine.core.middleware.TemplateForHostMiddleware",
-    "mezzanine.core.middleware.AdminLoginInterfaceSelectorMiddleware",
-    "mezzanine.core.middleware.SitePermissionMiddleware",
-    'pebbles.middleware.PebbleMiddleware',
-    "mezzanine.core.middleware.FetchFromCacheMiddleware",
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
