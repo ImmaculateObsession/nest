@@ -42,6 +42,18 @@ class Pebble(models.Model):
         posts = [post for post in posts if not post.comic]
         return posts
 
+    def about_page(self):
+        #XXX: This is a hack to display a link to the about page. Better strategy needed.
+        try:
+            page = PebblePage.objects.get(
+                pebble=self,
+                title__in=['About', 'about'],
+                is_live=True,
+            )
+        except PebblePage.DoesNotExist:
+            page = None
+        return page
+
     def can_edit(self, user):
         if user == self.creator:
             return True

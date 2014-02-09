@@ -74,6 +74,13 @@ class NeedsPebbleMixin(object):
             raise Http404()
         return super(NeedsPebbleMixin, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(NeedsPebbleMixin, self).get_context_data(**kwargs)
+        context['pebble_characters'] = self.request.pebble.characters()
+        context['about_page'] = self.request.pebble.about_page()
+
+        return context
+
 
 class ComicViewMixin(object):
 

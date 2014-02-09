@@ -63,7 +63,12 @@ class PebblePageView(NeedsPebbleMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(PebblePageView, self).get_context_data(**kwargs)
-        context['page'] = get_object_or_404(PebblePage, slug=kwargs['slug'])
+        context['page'] = get_object_or_404(
+            PebblePage,
+            slug=kwargs['slug'],
+            is_live=True,
+            pebble=self.request.pebble,
+        )
         context['pebble_settings'] = get_object_or_404(
             PebbleSettings,
             pebble=self.request.pebble,

@@ -35,6 +35,12 @@
                 <span class="cq-light-blue fa fa-twitter"></span>
             </a></li>
             {% endif %}
+            {% if about_page %}
+            <li><a href="{% url 'pebblepageview' slug=about_page.slug %}">About</a></li>
+            {% endif %}
+            {% if pebble_characters %}
+            <li><a href="{% url 'characterlistview' %}">Characters</a></li>
+            {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
