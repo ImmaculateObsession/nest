@@ -40,6 +40,7 @@ from comics.models import (
     PublishedComicManager,
     PublishedPostManager,
     Character,
+    Contributor,
 )
 from comics.forms import (
     ComicPostForm,
@@ -152,6 +153,8 @@ class ComicViewMixin(object):
         context['slug'] = slug
         context['post'] = post
         context['comic'] = comic
+        context['writers'] = comic.writers()
+        context['artists'] = comic.artists()
 
         if pebble_settings and pebble_settings.get('show_disqus'):
             context['disqus_identifier'] = slug

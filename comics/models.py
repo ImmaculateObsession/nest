@@ -67,6 +67,12 @@ class Comic(models.Model):
             return self.post.slug
         return slugify(self.title)
 
+    def writers(self):
+        return Contributor.objects.filter(post=self.post, role=Contributor.WRITER)
+
+    def artists(self):
+        return Contributor.objects.filter(post=self.post, role=Contributor.ARTIST)
+
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
@@ -151,3 +157,23 @@ class Tag(models.Model):
 
     def __unicode__(self):
         return self.tag
+
+
+class Contributor(models.Model):
+    ARTIST = 0
+    WRITER = 1
+    ROLE_CHOICES = (
+        (ARTIST, 'Artist'),
+        (WRITER, 'Writer'),
+    )
+
+    post = models.ForeignKey('Post')
+    contributor = models.ForeignKey(User)
+    role = models.IntegerField(choices=ROLE_CHOICES)
+
+    def __str__(self):
+        return "%s:%s:%s" % (
+            self.contributor,
+            self.ROLE_CHOICES[self.role][1],
+            self.post.title,
+        )

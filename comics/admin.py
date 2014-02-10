@@ -6,6 +6,7 @@ from comics.models import (
     Post,
     Character,
     Tag,
+    Contributor,
 )
 
 class PostForm(ModelForm):
@@ -33,3 +34,4 @@ admin.site.register(Comic, ComicAdmin)
 admin.site.register(Post, PostAdmin)
 admin.site.register(Character)
 admin.site.register(Tag)
+admin.site.register(Contributor)
