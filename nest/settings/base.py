@@ -119,6 +119,8 @@ AUTHENTICATION_BACKENDS = (
 
 ROOT_URLCONF = 'nest.urls'
 
+TESTING = False
+
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'nest.wsgi.application'
 
@@ -146,24 +148,11 @@ INSTALLED_APPS = (
     'rest_framework',
     'saltpeter',
     'pebbles',
-    # 'mezzanine.boot',
-    # 'mezzanine.conf',
-    # 'mezzanine.core',
-    # 'mezzanine.generic',
-    # 'mezzanine.accounts',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 LOGIN_REDIRECT_URL = '/pebbles'
-
-PACKAGE_NAME_FILEBROWSER = "filebrowser_safe"
-PACKAGE_NAME_GRAPPELLI = "grappelli_safe"
-
-COMMENTS_USE_RATINGS = True
-COMMENTS_ACCOUNT_REQUIRED = True
-RATINGS_ACCOUNT_REQUIRED = True
-RATINGS_RANGE = (-1, 1)
 
 #ALLAUTH SETTINGS
 ACCOUNT_EMAIL_REQUIRED=True
