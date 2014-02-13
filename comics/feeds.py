@@ -3,6 +3,7 @@ from mixpanel import Mixpanel
 from django.conf import settings
 from django.contrib.syndication.views import Feed
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from comics.models import Post
 from petroglyphs.models import Setting
 from pebbles.models import Pebble, PebbleSettings
@@ -34,6 +35,8 @@ class LatestPostFeed(Feed):
     def get_feed(self, obj, request):
         self.request = request
         self.pebble = self.request.pebble
+        if not self.pebble:
+            raise Http404()
         self.pebble_settings = PebbleSettings.objects.get(pebble=self.pebble).settings
         feed = super(LatestPostFeed, self).get_feed(obj, request)
         mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
