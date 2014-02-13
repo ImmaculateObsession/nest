@@ -372,7 +372,7 @@ html {
 
 /* line 22, ../../../../../../../Library/Ruby/Gems/1.8/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets/bootstrap/_scaffolding.scss */
 body {
-  font-family: "ff-nuvo-web-pro";
+  font-family: "ff-nuvo-web-pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
@@ -465,7 +465,7 @@ hr {
 /* line 10, ../../../../../../../Library/Ruby/Gems/1.8/gems/bootstrap-sass-3.0.3.0/vendor/assets/stylesheets/bootstrap/_type.scss */
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "cubano";
+  font-family: "cubano", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color: inherit;
