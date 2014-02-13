@@ -7,8 +7,6 @@ from nest.views import HomeRedirectView
 
 from comics.views import (
     HomeView,
-    ProfileView,
-    CreateRefCodeView,
     StaticPageView,
     ShareView,
     CharacterListView,
@@ -27,6 +25,8 @@ from pebbles.views import (
     DashboardView,
 )
 
+from profiles.urls import profilepatterns
+
 admin.autodiscover()
 # nexus.autodiscover()
 
@@ -37,8 +37,7 @@ urlpatterns = patterns('',
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     url(r'^pebbles/$', DashboardView.as_view(), name='dashview'),
     url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),
-    # url(r'^refcode/$', CreateRefCodeView.as_view()),
-     url(r'^profile/', ProfileView.as_view()),
+    url(r'^profile/', include(profilepatterns)),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     # url(r'^nexus/', include(nexus.site.urls)),

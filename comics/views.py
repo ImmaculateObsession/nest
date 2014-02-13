@@ -371,24 +371,6 @@ class CreateRefCodeView(View):
         return redirect('/accounts/profile/')
 
 
-class ProfileView(DetailView):
-    template_name="profile.html"
-    model = User
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        self.user = self.request.user
-        return super(ProfileView, self).dispatch(*args, **kwargs)
-
-    def get_object(self):
-        return self.user
-
-    def get_context_data(self, **kwargs):
-        context = super(ProfileView, self).get_context_data(**kwargs)
-
-        return context
-
-
 class StaticPageView(TemplateView):
     template_name = "base.html"
 

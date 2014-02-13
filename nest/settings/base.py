@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'saltpeter',
     'pebbles',
+    'profiles',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

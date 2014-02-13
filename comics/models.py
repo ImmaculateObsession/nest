@@ -162,9 +162,11 @@ class Tag(models.Model):
 class Contributor(models.Model):
     ARTIST = 0
     WRITER = 1
+    CREATOR = 2
     ROLE_CHOICES = (
         (ARTIST, 'Artist'),
         (WRITER, 'Writer'),
+        (CREATOR, 'Creator'),
     )
 
     post = models.ForeignKey('Post')
