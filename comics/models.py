@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 
@@ -73,6 +74,16 @@ class Comic(models.Model):
     def artists(self):
         return Contributor.objects.filter(post=self.post, role=Contributor.ARTIST)
 
+    def get_comic_url(self):
+        pebbles = self.pebbles.all()
+        if not pebbles:
+            return None
+        else:
+            return "http://%s%s" % (
+                pebbles[0].settings().primary_domain.url,
+                reverse('comicpostview', args=(self.post.slug,)),
+            )
+
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
@@ -122,6 +133,16 @@ class Post(models.Model):
         except IndexError:
             comic = None
         return comic
+
+    def get_post_url(self):
+        pebbles = self.pebbles.all()
+        if not pebbles:
+            return None
+        else:
+            return "http://%s%s" % (
+                pebbles[0].settings.primary_domain.url,
+                reverse('postview', args=(self.slug,)),
+            )
 
 
 class Character(models.Model):

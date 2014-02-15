@@ -61,6 +61,9 @@ class Pebble(models.Model):
             return True
         return False
 
+    def settings(self):
+        return PebbleSettings.objects.get(pebble=self)
+
     def __str__(self):
         return self.title
 

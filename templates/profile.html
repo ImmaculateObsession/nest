@@ -5,19 +5,42 @@
 
 {% block content %}
 <div class="row">
-    {% if user.first_name and user.last_name %}
-    <h2>{{user.first_name}} {{user.last_name}}</2>
-    {% else %}
-    <h2>{{ user.email }}</h2>
+    <div class="col-md-4">
+        <h2>{{ user.username }}</h2>
+        {% if user.is_authenticated %}
+        <a href="{% provider_login_url "facebook" process="connect" %}" class='btn btn-primary'>Connect to Facebook</a>
+        <a href="{% provider_login_url "twitter" process="connect" %}" class='btn btn-info'>Connect to Twitter</a>
+        {% endif %}
+    </div>
+    {% if comics %}
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p class="panel-title">Comics</p>
+            </div>
+            <div class="panel-body">
+                {% for comic in comics %}
+                <p><a href="{{ comic.get_comic_url }}">{{ comic.title }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if posts %}
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p class="panel-title">Posts</p>
+            </div>
+            <div class="panel-body">
+                {% for post in posts %}
+                <p><a href="{{ post.get_post_url }}">{{ post.title }}</a></p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
     {% endif %}
 </div>
-{% if not codes %}
-<div class="row">
-{% if user.is_staff %}
-<a href="{% provider_login_url "facebook" process="connect" %}" class='btn btn-primary'>Connect to Facebook</a>
-<a href="{% provider_login_url "twitter" process="connect" %}" class='btn btn-info'>Connect to Twitter</a>
-{% endif %}
-</div>
-{% endif %}
+
 
 {% endblock %}

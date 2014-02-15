@@ -12,12 +12,18 @@ from pebbles.models import (
 class PebbleMiddleware(object):
 
     def process_request(self, request):
-        domain = request.META.get('HTTP_HOST').split(':')[0]
-
+        domain = request.META.get('HTTP_HOST')
         try:
             pebble = Domain.objects.get(url=domain).pebble
         except Domain.DoesNotExist:
             pebble = None
+
+        if not pebble:
+            domain = request.META.get('HTTP_HOST').split(':')[0]
+            try:
+                pebble = Domain.objects.get(url=domain).pebble
+            except Domain.DoesNotExist:
+                pebble = None
 
         if not any([pebble, request.is_secure(), settings.DEBUG, request.META.get("HTTP_X_FORWARDED_PROTO", "") == 'https']):
             url = request.build_absolute_uri(request.get_full_path())
