@@ -34,9 +34,15 @@ class ProfileView(DetailView):
 
         contributions = Contributor.objects.filter(contributor=self.user)
 
-        comics = Comic.published_comics.filter(post__contributor__in=contributions)
+        comics = Comic.published_comics.filter(
+            post__contributor__in=contributions
+        ).order_by('-published')
 
-        posts = Post.published_posts.filter(contributor__in=contributions).exclude(id__in=comics.values_list('post'))
+        posts = Post.published_posts.filter(
+            contributor__in=contributions
+        ).exclude(
+            id__in=comics.values_list('post')
+        ).order_by('-published')
 
         context['posts'] = posts
         context['comics'] = comics
