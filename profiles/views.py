@@ -44,6 +44,7 @@ class ProfileView(DetailView):
             id__in=comics.values_list('post')
         ).order_by('-published')
 
+        context['display_user'] = self.user
         context['posts'] = posts
         context['comics'] = comics
 
