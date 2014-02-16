@@ -25,9 +25,9 @@
                 Written by 
                 {% for writer in writers %}
                     {% if forloop.last %}
-                        {{ writer.contributor.first_name }}.
+                        <a href="{{ writer.contributor.userprofile.profile_url }}">{{ writer.contributor.first_name }}</a>.
                     {% else %}
-                        {{ writer.contributor.first_name }}, 
+                        <a href="{{ writer.contributor.userprofile.profile_url }}">{{ writer.contributor.first_name }}</a>, 
                     {% endif %}
                 {% endfor %}
                 {% endif %}
