@@ -35,9 +35,9 @@
                 Art by 
                 {% for artist in artists %}
                     {% if forloop.last %}
-                        {{ artist.contributor.first_name }}.
+                        <a href="{{ artist.contributor.userprofile.profile_url }}">{{ artist.contributor.first_name }}</a>.
                     {% else %}
-                        {{ artist.contributor.first_name}}, 
+                        <a href="{{ artist.contributor.userprofile.profile_url }}">{{ artist.contributor.first_name }}</a>, 
                     {% endif %}
                 {% endfor %}
                 {% endif %}
