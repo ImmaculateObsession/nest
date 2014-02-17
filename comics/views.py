@@ -155,6 +155,7 @@ class ComicViewMixin(object):
         context['comic'] = comic
         context['writers'] = comic.writers()
         context['artists'] = comic.artists()
+        context['creators'] = comic.creators()
 
         if pebble_settings and pebble_settings.get('show_disqus'):
             context['disqus_identifier'] = slug

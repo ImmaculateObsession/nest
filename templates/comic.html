@@ -41,6 +41,15 @@
                     {% endif %}
                 {% endfor %}
                 {% endif %}
+                {% if creators %}
+                Created by 
+                {% for creator in creators %}
+                    {% if forloop.last %}
+                        <a href="{{ creator.contributor.userprofile.profile_url }}">{{ creator.contributor.first_name }}</a>.
+                    {% else %}
+                        <a href="{{ creator.contributor.userprofile.profile_url }}">{{ creator.contributor.first_name }}</a>, 
+                    {% endif %}
+                {% endif %}
             </small>
         </div>
         <div class="row">

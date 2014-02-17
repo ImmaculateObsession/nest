@@ -74,6 +74,9 @@ class Comic(models.Model):
     def artists(self):
         return Contributor.objects.filter(post=self.post, role=Contributor.ARTIST)
 
+    def creators(self):
+        return Contributor.objects.filter(post=self.post, role=Contributor.CREATOR)
+
     def get_comic_url(self):
         pebbles = self.pebbles.all()
         if not pebbles:
