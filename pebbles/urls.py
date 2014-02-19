@@ -5,6 +5,7 @@ from pebbles.views import (
     AddPageView,
     EditPageView,
     DeleteView,
+    EditPebbleView,
 )
 
 pagepatterns = patterns('',
@@ -18,4 +19,11 @@ pagepatterns = patterns('',
     ),
     url(r'^add/$', AddPageView.as_view(), name='addpageview'),
     url(r'^(?P<slug>[\w-]+)/$', PebblePageView.as_view(), name='pebblepageview'),
+)
+
+pebblepatterns = patterns('',
+    url(r'^(?P<id>\d+)/edit/$',
+        EditPebbleView.as_view(),
+        name='editpebbleview',
+    )
 )

@@ -20,7 +20,10 @@ from comics.urls import (
 
 from comics.feeds import LatestPostFeed
 
-from pebbles.urls import pagepatterns
+from pebbles.urls import (
+    pagepatterns,
+    pebblepatterns,
+)
 from pebbles.views import (
     DashboardView,
 )
@@ -36,6 +39,7 @@ urlpatterns = patterns('',
     url(r'^post/', include(postpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     url(r'^pebbles/$', DashboardView.as_view(), name='dashview'),
+    url(r'^pebble/', include(pebblepatterns)),
     url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),
     url(r'^profile/', include(profilepatterns)),
     url(r'^accounts/', include('allauth.urls')),

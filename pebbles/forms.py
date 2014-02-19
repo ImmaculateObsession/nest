@@ -62,38 +62,38 @@ class PebblePageForm(forms.Form):
 class PebbleSettingsForm(forms.Form):
     site_title = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     facebook_page = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     twitter_page = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     tagline = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     show_rss = forms.BooleanField()
     copyright = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     feed_description = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     feed_title = forms.CharField(
         max_length=140,
-        required=True,
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
     

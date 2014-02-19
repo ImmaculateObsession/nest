@@ -3,20 +3,22 @@
 {% block title %}{{ block.super }} Pebbles{% endblock %}
 
 {% block content %}
+<div class="well">
 <a href="{% url "comicaddview" %}" class="btn btn-large btn-success">
     <span class="fa fa-th-large"></span> Add Comic
 </a>
-<a href="{% url "addpageview" %}" class="btn btn-large btn-success">
+<a href="{% url "addpageview" %}" class="btn btn-large btn-default">
     <span class="fa fa-file-text"></span> Add Page
 </a>
-<a href="{% url "characteraddview" %}" class="btn btn-large btn-success">
+<a href="{% url "characteraddview" %}" class="btn btn-large btn-default">
     <span class="fa fa-group"></span> Add Character
 </a>
-<a href="{% url "postaddview" %}" class="btn btn-large btn-success">
+<a href="{% url "postaddview" %}" class="btn btn-large btn-default">
     <span class="fa fa-edit"></span> Add Post
 </a>
+</div>
 {% for pebble in pebbles %}
-    <h1>{{ pebble.title }}</h1>
+    <h2>{{ pebble.title }} <a href="{% url "editpebbleview" pebble.id %}" class="btn btn-xs btn-default">Edit</a></h2>
         <div class="row">
             <div class="col-md-6">
                 {% if pebble.comics %}
@@ -25,8 +27,10 @@
                         <p class="panel-title">Comics</p>
                     </div>
                     <div class="panel-body">
+                        <ul class="list-group list-group-panel">
                         {% for comic in pebble.comics_by_published %}
-                            <div class="row-message">
+                            <li class="list-group-item">
+                            <div class="row">
                                 <div class="col-md-7">
                                 <p class="h4 text-shortened">{{ comic.title }}</p>
                                 </div>
@@ -41,6 +45,7 @@
                                 <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
                                 </div>
                             </div>
+                            </li>
                         {% endfor %}
                     </div>
                 </div>
@@ -51,8 +56,10 @@
                         <p class="panel-title">Posts</p>
                     </div>
                     <div class="panel-body">
+                        <ul class="list-group list-group-panel">
                         {% for post in pebble.posts %}
-                            <div class="row-message">
+                            <li class="list-group-item">
+                            <div class="row">
                                 <div class="col-md-7">
                                 <p class="h4 text-shortened">{{ post.title }}</p>
                                 </div>
@@ -67,7 +74,9 @@
                                 <a href="{% url "postdeleteview" post.id %}">Delete</a>
                                 </div>
                             </div>
+                            </li>
                         {% endfor %}
+                        </ul>
                     </div>
                 </div>
                 {% endif %}
@@ -79,8 +88,10 @@
                             <p class="panel-title">Pages</p>
                         </div>
                         <div class="panel-body">
+                            <ul class="list-group list-group-panel">
                             {% for page in pebble.pages_by_published %}
-                            <div class="row-message">
+                            <li class="list-group-item">
+                            <div class="row">
                                 <div class="col-md-7">
                                 <p class="h4 text-shortened">{{ page.title }}</p>
                                 </div>
@@ -94,7 +105,9 @@
                                 <a href="{% url "deletepageview" page.id %}">Delete</a>
                                 </div>
                             </div>
+                            </li>
                             {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 {% endif %}
@@ -104,8 +117,10 @@
                             <p class="panel-title">Characters</p>
                         </div>
                         <div class="panel-body">
+                            <ul class="list-group list-group-panel">
                             {% for character in pebble.characters %}
-                            <div class="row-message">
+                            <li class="list-group-item">
+                            <div class="row">
                                 <div class="col-md-7">
                                     <p class="h4 text-shortened">{{ character.name }}</p>
                                 </div>
@@ -114,7 +129,9 @@
                                     <a href="{% url "characterdeleteview" character.id %}">Delete</a>
                                 </div>
                             </div>
+                            </li>
                             {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 {% endif %}

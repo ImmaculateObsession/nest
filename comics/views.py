@@ -783,15 +783,6 @@ class CharacterEditView(NeedsLoginMixin, FormView):
 
         return kwargs
 
-    def get(self, request, *args, **kwargs):
-        self.character = get_object_or_404(Character, id=self.kwargs.get('id'))
-        pebbles = self.character.pebbles.all()
-        for pebble in pebbles:
-            if not pebble.can_edit(self.request.user):
-                raise Http404()
-
-        return super(CharacterEditView, self).get(request, *args, **kwargs)
-
     def form_valid(self, form):
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
 

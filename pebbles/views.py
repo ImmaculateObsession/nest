@@ -19,7 +19,10 @@ from comics.views import (
     NeedsPebbleMixin,
 )
 
-from pebbles.forms import PebblePageForm
+from pebbles.forms import (
+    PebblePageForm,
+    PebbleSettingsForm,
+)
 
 from pebbles.models import (
     Pebble,
@@ -234,4 +237,55 @@ class DeleteView(NeedsLoginMixin, FormView):
 
         return super(DeleteView, self).form_valid(form)
 
+
+class EditPebbleView(NeedsLoginMixin, FormView):
+    template_name = "pebble_edit.html"
+    form_class = PebbleSettingsForm
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get(self, request, *args, **kwargs):
+        self.pebble_settings = get_object_or_404(PebbleSettings, id=self.kwargs.get('id'))
+        if not self.pebble_settings.pebble.can_edit(self.request.user):
+            raise Http404()
+
+        return super(EditPebbleView, self).get(request, *args, **kwargs)
+
+    def get_initial(self):
+        settings = self.pebble_settings.settings
+
+        initial = {
+            'site_title': settings.get('site_title'),
+            'facebook_page': settings.get('facebook_page'),
+            'twitter_page': settings.get('twitter_page'),
+            'tagline': settings.get('tagline'),
+            'show_rss': settings.get('show_rss'),
+            'copyright': settings.get('copyright'),
+            'feed_description': settings.get('feed_description'),
+            'feed_title': settings.get('feed_title'),
+        }
+
+        return initial
+
+    def get_form_kwargs(self):
+        self.pebble_settings = get_object_or_404(PebbleSettings, id=self.kwargs.get('id'))
+        return super(EditPebbleView, self).get_form_kwargs()
+
+    def form_valid(self, form):
+        settings = self.pebble_settings.settings
+
+        settings['site_title'] = form.cleaned_data.get('site_title')
+        settings['facebook_page'] = form.cleaned_data.get('facebook_page')
+        settings['twitter_page'] = form.cleaned_data.get('twitter_page')
+        settings['tagline'] = form.cleaned_data.get('tagline')
+        settings['show_rss'] = form.cleaned_data.get('show_rss')
+        settings['copyright'] = form.cleaned_data.get('copyright')
+        settings['feed_description'] = form.cleaned_data.get('feed_description')
+        settings['feed_title'] = form.cleaned_data.get('feed_title')
+
+        self.pebble_settings.settings = settings
+        self.pebble_settings.save()
+
+        return super(EditPebbleView, self).form_valid(form)
 

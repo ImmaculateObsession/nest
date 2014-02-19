@@ -72,7 +72,7 @@
     </div>
     <div class="row" id="preview">
     </div>
-    <div class="row">
+    <div class="row row-padded">
         <div class="form-group col-md-offset-2 col-md-8">
             {{ form.post.errors }}
             <p class="label label-default"><label for="id_post">Post</label></p>
@@ -80,7 +80,7 @@
         </div>
     </div>
     {% if fb_token or tw_token %}
-    <div class="row">
+    <div class="row row-padded">
         <div class="col-md-offset-2 col-md-2">
             <div class="form-group">
                 {{ form.post_to_social.errors }}

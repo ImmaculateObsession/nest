@@ -7,12 +7,8 @@
     text-align: center;
 }
 
-.row {
+.row-padded {
     margin-bottom: 10px;
-}
-
-.row-message {
-    margin-bottom: 0px;
 }
 
 .footer {
@@ -39,10 +35,15 @@
     color: #2f6ae3;
 }
 
+.list-group-panel {
+    margin-bottom: 0;
+}
+
 .text-shortened {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: normal;
+    margin-bottom: 0;
 }
 
