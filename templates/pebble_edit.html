@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ block.super }}
+    Edit Pebble
+{% endblock %}
+
+{% block extra_head %}
+{{ form.media }}
+{% endblock %}
+
+{% block content %}
+<form enctype="multipart/form_data" action="" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.errors }}
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            <h2>Edit Pebble</h2>
+        </div>
+        <div class="col-md-3">
+            {{ form.site_title.errors }}
+            <span class="label label-default"><label for="id_site_title">Title</label></span>
+            {{ form.site_title }}
+        </div>
+        <div class="col-md-3">
+            {{ form.tagline.errors }}
+            <span class="label label-default"><label for="id_tagline">Tagline</label></span>
+            {{ form.tagline }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-1 col-md-3">
+            {{ form.show_rss.errors }}
+            <span class="label label-default"><label for="id_show_rss">Show link to feed?</label></span>
+            {{ form.show_rss }}
+        </div>
+        <div class="col-md-3">
+            {{ form.feed_title.errors }}
+            <span class="label label-default"><label for="id_feed_title">Feed Title</label></span>
+            {{ form.feed_title }}
+        </div>
+        <div class="col-md-3">
+            {{ form.feed_description.errors }}
+            <span class="label label-default"><label for="id_feed_description">Feed Description</label></span>
+            {{ form.feed_description }}
+        </div>
+    </div>
+    <div class="row row-padded">
+        <div class="col-md-offset-1 col-md-3">
+            {{ form.facebook_page.errors }}
+            <span class="label label-default"><label for="id_facebook_page">Facebook Page</label></span>
+            {{ form.facebook_page }}
+        </div>
+        <div class="col-md-3">
+            {{ form.twitter_page.errors }}
+            <span class="label label-default"><label for="id_twitter_page">Twitter</label></span>
+            {{ form.twitter_page }}
+        </div>
+    </div>
+    <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
+</form>
+{% endblock %}
