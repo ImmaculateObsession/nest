@@ -23,10 +23,10 @@
             <div class="col-md-6">
                 {% if pebble.comics %}
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-target="#comics-list">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#comics-list-{{ pebble.id }}">
                         <p class="panel-title">Comics</p>
                     </div>
-                    <div id="comics-list" class="panel-body collapse in">
+                    <div id="comics-list-{{ pebble.id }}" class="panel-body collapse in">
                         <ul class="list-group list-group-panel dashboard-list">
                         {% for comic in pebble.comics_by_published %}
                             <li class="list-group-item">
@@ -52,10 +52,10 @@
                 {% endif %}
                 {% if pebble.posts %}
                 <div class="panel panel-default">
-                    <div class="panel-heading" data-toggle="collapse" data-target="#post-list">
+                    <div class="panel-heading" data-toggle="collapse" data-target="#post-list-{{ pebble.id }}">
                         <p class="panel-title">Posts</p>
                     </div>
-                    <div id="post-list" class="panel-body collapse in">
+                    <div id="post-list-{{ pebble.id }}" class="panel-body collapse in">
                         <ul class="list-group list-group-panel">
                         {% for post in pebble.posts %}
                             <li class="list-group-item">
@@ -84,10 +84,10 @@
             <div class="col-md-6">
                 {% if pebble.pages %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#page-list">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#page-list-{{ pebble.id }}">
                             <p class="panel-title">Pages</p>
                         </div>
-                        <div id="page-list" class="panel-body collapse in">
+                        <div id="page-list-{{ pebble.id }}" class="panel-body collapse in">
                             <ul class="list-group list-group-panel">
                             {% for page in pebble.pages_by_published %}
                             <li class="list-group-item">
@@ -113,10 +113,10 @@
                 {% endif %}
                 {% if pebble.characters %}
                     <div class="panel panel-default">
-                        <div class="panel-heading" data-toggle="collapse" data-target="#character-list">
+                        <div class="panel-heading" data-toggle="collapse" data-target="#character-list-{{ pebble.id }}">
                             <p class="panel-title">Characters</p>
                         </div>
-                        <div id="character-list" class="panel-body collapse in">
+                        <div id="character-list-{{ pebble.id }}" class="panel-body collapse in">
                             <ul class="list-group list-group-panel">
                             {% for character in pebble.characters %}
                             <li class="list-group-item">
