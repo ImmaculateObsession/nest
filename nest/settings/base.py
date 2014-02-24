@@ -2,6 +2,7 @@
 import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.core.exceptions import ImproperlyConfigured
+from django.core.urlresolvers import reverse
 from unipath import Path
 
 # from .gargoyle_switches import *
@@ -143,6 +144,8 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    # TODO: tumblr support in the next verstion, maybe?
+    # 'allauth.socialaccount.providers.tumblr',
     'allauth.socialaccount.providers.twitter',
     'datetimewidget',
     'rest_framework',
@@ -153,11 +156,11 @@ INSTALLED_APPS = (
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-LOGIN_REDIRECT_URL = '/pebbles'
-
 #ALLAUTH SETTINGS
+LOGIN_REDIRECT_URL = reverse('dashview')
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True
+ACCOUNT_EMAIL_SUBJECT_PREFIX="[Inkpebble]"
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
