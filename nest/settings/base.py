@@ -157,7 +157,7 @@ INSTALLED_APPS = (
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 #ALLAUTH SETTINGS
-LOGIN_REDIRECT_URL = reverse('dashview')
+LOGIN_REDIRECT_URL = '/pebbles/'
 ACCOUNT_EMAIL_REQUIRED=True
 ACCOUNT_UNIQUE_EMAIL=True
 ACCOUNT_EMAIL_SUBJECT_PREFIX="[Inkpebble]"
