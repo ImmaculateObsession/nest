@@ -3,6 +3,7 @@
 {% block title %}{{ block.super }} Pebbles{% endblock %}
 
 {% block content %}
+{% if pebbles %}
 <div class="well">
 <a href="{% url "comicaddview" %}" class="btn btn-large btn-success">
     <span class="fa fa-th-large"></span> Add Comic
@@ -138,6 +139,8 @@
             </div>
         </div>
 {% endfor %}
+{% else %}
+{% include "empty_dash.html" %}
 
 
 {% endblock %}
