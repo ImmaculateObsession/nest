@@ -13,10 +13,10 @@ class LatestPostFeed(Feed):
     description_template = "postfeed.html"
 
     def description(self):
-        return self.pebble_settings.get('feed_description')
+        return self.pebble_settings.get('feed_description', 'Comic Feed')
 
     def title(self):
-        return self.pebble_settings.get('feed_title')
+        return self.pebble_settings.get('feed_title', self.pebble.title)
 
     def items(self):
         return Post.published_posts.filter(pebbles=self.pebble).order_by('-published')[:5]
