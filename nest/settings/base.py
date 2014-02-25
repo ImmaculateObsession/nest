@@ -165,7 +165,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX="[Inkpebble]"
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
         'SCOPE': ['email'],
-        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'AUTH_PARAMS': {'auth_type': 'https'},
         'METHOD': 'oauth2',
     }
 }
