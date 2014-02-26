@@ -87,6 +87,11 @@ class Comic(models.Model):
                 reverse('comicpostview', args=(self.post.slug,)),
             )
 
+    def is_published(self):
+        if self.is_live and self.published < timezone.now():
+            return True
+        return False
+
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):
@@ -146,6 +151,11 @@ class Post(models.Model):
                 pebbles[0].settings.primary_domain.url,
                 reverse('postview', args=(self.slug,)),
             )
+
+    def is_published(self):
+        if self.is_live and self.published < timezone.now():
+            return True
+        return False
 
 
 class Character(models.Model):

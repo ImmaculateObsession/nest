@@ -32,15 +32,19 @@
                         {% for comic in pebble.comics_by_published %}
                             <li class="list-group-item">
                             <div class="row">
-                                <div class="col-md-7">
-                                <p class="h4 text-shortened">{{ comic.title }}</p>
+                                <div class="col-md-6">
+                                <a href="{{ comic.get_comic_url }}"><p class="lead text-shortened"><small>{{ comic.title }}</small></p></a>
                                 </div>
-                                <div class="col-md-5">
-                                {% if comic.is_live %}
+                                <div class="col-md-2">
+                                {% if comic.is_published %}
                                     <span class="label label-success">Live!</span>
+                                {% elif comic.is_live %}
+                                    <span class="label label-info">Scheduled</span>
                                 {% else %}
                                     <span class="label label-default">Draft</span>
                                 {% endif %}
+                                </div>
+                                <div class="col-md-4">
                                 <a href="{% url "comicpreviewview" comic.id %}">Preview</a> | 
                                 <a href="{% url "comiceditview" comic.id %}">Edit</a> | 
                                 <a href="{% url "comicdeleteview" comic.id %}">Delete</a>
@@ -61,15 +65,19 @@
                         {% for post in pebble.posts %}
                             <li class="list-group-item">
                             <div class="row">
-                                <div class="col-md-7">
-                                <p class="h4 text-shortened">{{ post.title }}</p>
+                                <div class="col-md-6">
+                                <p class="lead text-shortened"><small>{{ post.title }}</small></p>
                                 </div>
-                                <div class="col-md-5">
-                                {% if post.is_live %}
+                                <div class="col-md-2">
+                                {% if post.is_published %}
                                     <span class="label label-success">Live!</span>
+                                {% elif post.is_live %}
+                                    <span class="label label-info">Scheduled</span>
                                 {% else %}
                                     <span class="label label-default">Draft</span>
                                 {% endif %}
+                                </div>
+                                <div class="col-md-4">
                                 <a href="{% url "postpreviewview" post.id %}">Preview</a> | 
                                 <a href="{% url "posteditview" post.id %}">Edit</a> | 
                                 <a href="{% url "postdeleteview" post.id %}">Delete</a>
@@ -94,14 +102,16 @@
                             <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-7">
-                                <p class="h4 text-shortened">{{ page.title }}</p>
+                                <p class="lead text-shortened"><small>{{ page.title }}</small></p>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                 {% if page.is_live %}
                                     <span class="label label-success">Live!</span>
                                 {% else %}
                                     <span class="label label-default">Draft</span>
                                 {% endif %}
+                                </div>
+                                <div class="col-md-3">
                                 <a href="{% url "editpageview" page.id %}">Edit</a> | 
                                 <a href="{% url "deletepageview" page.id %}">Delete</a>
                                 </div>
@@ -123,7 +133,7 @@
                             <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-7">
-                                    <p class="h4 text-shortened">{{ character.name }}</p>
+                                    <p class="lead text-shortened"><small>{{ character.name }}</small></p>
                                 </div>
                                 <div class="col-md-5">
                                     <a href="{% url "charactereditview" character.id %}">Edit</a> | 
