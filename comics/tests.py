@@ -12,7 +12,10 @@ from django.utils import timezone
 from mock import MagicMock
 
 from comics import factories
-from comics.views import HomeView
+from comics.views import (
+    HomeView,
+    ComicPostView,
+)
 
 from pebbles.factories import (
     PebbleFactory,
@@ -48,3 +51,28 @@ class HomeViewTests(TestCase):
         HomeView.pebble_settings = self.pebble_settings.settings
         response = HomeView.as_view()(self.request)
         self.assertEqual(response.status_code, 200)
+
+
+class ComicViewTests(TestCase):
+
+    def setUp(self):
+        user = factories.UserFactory()
+        self.comic = factories.ComicFactory.create(
+            is_live=True,
+            published=timezone.now(),
+            creator=user
+        )
+        self.pebble = PebbleFactory.create(creator=user)
+        self.pebble_settings = PebbleSettingsFactory.create(pebble=self.pebble)
+        self.request_factory = RequestFactory()
+        self.request = self.request_factory.get(
+            reverse('comicpostview', args=(self.comic.post.slug,))
+        )
+        self.request.pebble = self.pebble
+
+    def test_comic_view_response_200(self):
+        ComicPostView.get_comic = MagicMock(return_value=self.comic)
+        ComicPostView.pebble_settings = self.pebble_settings.settings
+        response = ComicPostView.as_view()(self.request)
+        self.assertEqual(response.status_code, 200)
+

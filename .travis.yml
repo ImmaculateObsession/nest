@@ -4,7 +4,7 @@ python:
 install: pip install -r requirements/local.txt
 env:
 - SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
-script: python manage.py test comics --settings=nest.settings.base
+script: python manage.py test comics pebbles profiles --settings=nest.settings.base
 notifications:
   email:
   - pjj@philipjohnjames.com

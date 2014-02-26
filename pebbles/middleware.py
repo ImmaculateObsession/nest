@@ -19,10 +19,10 @@ class PebbleMiddleware(object):
             pebble = None
 
         if not pebble:
-            domain = request.META.get('HTTP_HOST').split(':')[0]
             try:
+                domain = request.META.get('HTTP_HOST').split(':')[0]
                 pebble = Domain.objects.get(url=domain).pebble
-            except Domain.DoesNotExist:
+            except:
                 pebble = None
 
         if not any([pebble, request.is_secure(), settings.DEBUG, request.META.get("HTTP_X_FORWARDED_PROTO", "") == 'https']):

@@ -10,6 +10,7 @@ class UserFactory(factory.Factory):
     first_name = "Testy"
     last_name = "McTesterson"
     email = "test@example.com"
+    password = "12345"
 
 
 class PostFactory(factory.Factory):
