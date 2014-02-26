@@ -9,3 +9,9 @@
     </a></p>
 </div>
 {% endblock %}
+
+{% block js_defer %}
+<script>
+    mixpanel.track('404 Page Hit', {"location": window.location.href });
+</script>
+{% endblock %}
