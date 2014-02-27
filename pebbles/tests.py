@@ -13,7 +13,10 @@ from django.test.client import RequestFactory
 
 from comics import factories
 
-from pebbles.views import DashboardView
+from pebbles.views import (
+    DashboardView,
+    HomeView,
+)
 
 
 class DashboardTest(TestCase):
@@ -33,4 +36,18 @@ class DashboardTest(TestCase):
         self.request.user = self.user
         response = DashboardView.as_view()(self.request)
         response.render()
+
+
+class HomeTests(TestCase):
+
+    def setUp(self):
+        request_factory = RequestFactory()
+        request = request_factory.get(reverse('home'))
+        self.response = HomeView.as_view()(request)
+
+    def test_home_response_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_home_render_success(self):
+        self.response.render()
 
