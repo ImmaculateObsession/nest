@@ -23,7 +23,14 @@ class DashboardTest(TestCase):
         request_factory = RequestFactory()
         self.request = request_factory.get(reverse('dashview'))
 
-    def test_home_view_logged_in(self):
+    def test_dashboard_view_logged_in(self):
         self.request.user = self.user
         response = DashboardView.as_view()(self.request)
         self.assertEqual(response.status_code, 200)
+        response.render()
+
+    def test_dashboard_view_render_success(self):
+        self.request.user = self.user
+        response = DashboardView.as_view()(self.request)
+        response.render()
+

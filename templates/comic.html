@@ -1,9 +1,11 @@
 <div class="row">
+    {% if tags %}
     <h4>
-        {% for tag in comic.tags.all %}
+        {% for tag in tags %}
         <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
         {% endfor %}
     </h2>
+    {% endif %}
 
 </div>
 <div class="row">

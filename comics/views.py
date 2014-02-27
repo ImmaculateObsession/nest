@@ -150,6 +150,11 @@ class ComicViewMixin(object):
         post = self.post
         comic = self.comic
 
+        try:
+            context['tags'] = comic.tags.all()
+        except ValueError:
+            pass
+
         context['slug'] = slug
         context['post'] = post
         context['comic'] = comic

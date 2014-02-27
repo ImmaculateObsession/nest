@@ -33,46 +33,52 @@ class SimpleTest(TestCase):
 class HomeViewTests(TestCase):
 
     def setUp(self):
-        self.user = factories.UserFactory()
-        self.comic = factories.ComicFactory.create(
+        user = factories.UserFactory()
+        comic = factories.ComicFactory.create(
             is_live=True,
             published=timezone.now(),
-            creator=self.user
+            creator=user
         )
-        self.pebble = PebbleFactory.create(creator=self.user)
-        self.pebble_settings = PebbleSettingsFactory.create(pebble=self.pebble)
-        self.request_factory = RequestFactory()
-        self.request = self.request_factory.get(reverse('comichomeview'))
-        self.request.pebble = self.pebble
+        pebble = PebbleFactory.create(creator=user)
+        pebble_settings = PebbleSettingsFactory.create(pebble=pebble)
+        request_factory = RequestFactory()
+        request = request_factory.get(reverse('comichomeview'))
+        request.pebble = pebble
+        HomeView.get_comic = MagicMock(return_value=comic)
+        HomeView.pebble_settings = pebble_settings.settings
+        self.response = HomeView.as_view()(request)
 
 
     def test_home_view_response_200(self):
-        HomeView.get_comic = MagicMock(return_value=self.comic)
-        HomeView.pebble_settings = self.pebble_settings.settings
-        response = HomeView.as_view()(self.request)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_home_view_render_success(self):
+        self.response.render()
 
 
 class ComicViewTests(TestCase):
 
     def setUp(self):
         user = factories.UserFactory()
-        self.comic = factories.ComicFactory.create(
+        comic = factories.ComicFactory.create(
             is_live=True,
             published=timezone.now(),
             creator=user
         )
-        self.pebble = PebbleFactory.create(creator=user)
-        self.pebble_settings = PebbleSettingsFactory.create(pebble=self.pebble)
-        self.request_factory = RequestFactory()
-        self.request = self.request_factory.get(
-            reverse('comicpostview', args=(self.comic.post.slug,))
+        pebble = PebbleFactory.create(creator=user)
+        pebble_settings = PebbleSettingsFactory.create(pebble=pebble)
+        request_factory = RequestFactory()
+        request = request_factory.get(
+            reverse('comicpostview', args=(comic.post.slug,))
         )
-        self.request.pebble = self.pebble
+        request.pebble = pebble
+        ComicPostView.get_comic = MagicMock(return_value=comic)
+        ComicPostView.pebble_settings = pebble_settings.settings
+        self.response = ComicPostView.as_view()(request)
 
     def test_comic_view_response_200(self):
-        ComicPostView.get_comic = MagicMock(return_value=self.comic)
-        ComicPostView.pebble_settings = self.pebble_settings.settings
-        response = ComicPostView.as_view()(self.request)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.response.status_code, 200)
+        
+    def test_comic_view_render_success(self):
+        self.response.render()
 
