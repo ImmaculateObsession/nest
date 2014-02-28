@@ -48,7 +48,7 @@ class HomeViewTests(TestCase):
             published=timezone.now(),
             creator=user
         )
-        pebble = PebbleFactory.create(creator=user)
+        pebble = PebbleFactory(creator=user)
         pebble_settings = PebbleSettingsFactory(pebble=pebble)
         request_factory = RequestFactory()
         request = request_factory.get(reverse('comichomeview'))

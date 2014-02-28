@@ -361,6 +361,8 @@ class ComicBackupView(View):
 
 
 class CreateRefCodeView(View):
+    """
+    Not being used currently
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -375,6 +377,8 @@ class CreateRefCodeView(View):
         )
 
         return redirect('/accounts/profile/')
+    """
+    pass
 
 
 class StaticPageView(TemplateView):

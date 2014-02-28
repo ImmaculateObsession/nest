@@ -6,6 +6,9 @@ from comics.models import (
 )
 
 class ReferralMiddleware(object):
+    """
+    Not currently using this, but it stands as an example if we ever
+    get and actual referral systme in place.
 
     def process_response(self, request, response):
 
@@ -27,3 +30,6 @@ class ReferralMiddleware(object):
                     pass
 
         return response
+
+    """
+    pass
