@@ -18,6 +18,7 @@ from comics.views import (
     ComicPostView,
     ComicAddView,
     ComicEditView,
+    CharacterAddView,
 )
 from comics.models import Comic
 
@@ -41,13 +42,13 @@ class HomeViewTests(TestCase):
 
     def setUp(self):
         user = factories.UserFactory()
-        comic = factories.ComicFactory.create(
+        comic = factories.ComicFactory(
             is_live=True,
             published=timezone.now(),
             creator=user
         )
         pebble = PebbleFactory.create(creator=user)
-        pebble_settings = PebbleSettingsFactory.create(pebble=pebble)
+        pebble_settings = PebbleSettingsFactory(pebble=pebble)
         request_factory = RequestFactory()
         request = request_factory.get(reverse('comichomeview'))
         request.pebble = pebble
@@ -67,13 +68,13 @@ class ComicViewTests(TestCase):
 
     def setUp(self):
         user = factories.UserFactory()
-        comic = factories.ComicFactory.create(
+        comic = factories.ComicFactory(
             is_live=True,
             published=timezone.now(),
             creator=user
         )
-        pebble = PebbleFactory.create(creator=user)
-        pebble_settings = PebbleSettingsFactory.create(pebble=pebble)
+        pebble = PebbleFactory(creator=user)
+        pebble_settings = PebbleSettingsFactory(pebble=pebble)
         request_factory = RequestFactory()
         request = request_factory.get(
             reverse('comicpostview', args=(comic.post.slug,))
@@ -147,3 +148,20 @@ class ComicEditTests(TestCase):
     """
     pass
 
+
+class CharacterAddTests(TestCase):
+
+    def setUp(self):
+        self.user = factories.UserFactory()
+        request_factory = RequestFactory()
+        self.request = request_factory.get(reverse('characteraddview'))
+
+    def test_character_add_response_200(self):
+        self.request.user = self.user
+        response = CharacterAddView.as_view()(self.request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_character_add_render_success(self):
+        self.request.user = self.user
+        response = CharacterAddView.as_view()(self.request)
+        response.render()
