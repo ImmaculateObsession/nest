@@ -92,6 +92,9 @@ class Comic(models.Model):
             return True
         return False
 
+    # def can_edit(self, user):
+    #     if self.pebbles
+
 
 class PublishedPostManager(models.Manager):
     def get_query_set(self):

@@ -29,7 +29,7 @@ class NeedsPebbleForm(forms.Form):
         self.pebbles = kwargs.pop('pebbles')
         super(NeedsPebbleForm, self).__init__(*args, **kwargs)
         choices = [(pebble.id, pebble.title) for pebble in self.pebbles]
-        if not selected_pebble:
+        if choices and not selected_pebble:
             selected_pebble = choices[0][0]
 
         self.fields['pebble'] = forms.ChoiceField(
