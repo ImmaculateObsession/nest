@@ -16,6 +16,7 @@ from comics import factories
 from pebbles.views import (
     DashboardView,
     HomeView,
+    AddPageView,
 )
 
 
@@ -50,3 +51,20 @@ class HomeTests(TestCase):
     def test_home_render_success(self):
         self.response.render()
 
+
+class AddPageTests(TestCase):
+
+    def setUp(self):
+        self.user = factories.UserFactory()
+        request_factory = RequestFactory()
+        self.request = request_factory.get(reverse('addpageview'))
+
+    def test_add_page_response_200(self):
+        self.request.user = self.user
+        response = AddPageView.as_view()(self.request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_add_page_render_success(self):
+        self.request.user = self.user
+        response = AddPageView.as_view()(self.request)
+        response.render()
