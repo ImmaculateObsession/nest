@@ -10,7 +10,7 @@ from django.test.client import RequestFactory
 from django.utils import timezone
 from django import shortcuts
 
-from mock import MagicMock
+from mock import MagicMock, patch
 
 from comics import factories
 from comics.views import (
@@ -19,6 +19,7 @@ from comics.views import (
     ComicAddView,
     ComicEditView,
     CharacterAddView,
+    CharacterListView,
 )
 from comics.models import Comic
 
@@ -164,4 +165,40 @@ class CharacterAddTests(TestCase):
     def test_character_add_render_success(self):
         self.request.user = self.user
         response = CharacterAddView.as_view()(self.request)
+        response.render()
+
+class CharacterListViewTests(TestCase):
+
+    def setUp(self):
+        pebble = PebbleFactory()
+        request_factory = RequestFactory()
+        self.request = request_factory.get(reverse('characterlistview'))
+        self.request.pebble = pebble
+
+    @patch('pebbles.models.PebbleSettings.objects.get')
+    def test_character_list_empty_response_200(self, MagicMock):
+        self.request.pebble.characters = MagicMock(return_value=[])
+        response = CharacterListView.as_view()(self.request)
+        self.assertEqual(response.status_code, 200)
+
+    @patch('pebbles.models.PebbleSettings.objects.get')
+    def test_character_list_empty_redner_success(self, MagicMock):
+        self.request.pebble.characters = MagicMock(return_value=[])
+        response = CharacterListView.as_view()(self.request)
+        response.render()
+
+    @patch('pebbles.models.PebbleSettings.objects.get')
+    def test_character_list_with_character_response_200(self, MagicMock):
+        self.request.pebble.characters = MagicMock(
+            return_value=[factories.CharacterFactory()],
+        )
+        response = CharacterListView.as_view()(self.request)
+        self.assertEqual(response.status_code, 200)
+
+    @patch('pebbles.models.PebbleSettings.objects.get')
+    def test_character_list_with_character_render_success(self, MagicMock):
+        self.request.pebble.characters = MagicMock(
+            return_value=[factories.CharacterFactory()],
+        )
+        response = CharacterListView.as_view()(self.request)
         response.render()

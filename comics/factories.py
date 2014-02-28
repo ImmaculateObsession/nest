@@ -30,7 +30,11 @@ class ComicFactory(factory.Factory):
     creator = factory.SubFactory(UserFactory)
     post = factory.SubFactory(PostFactory)
 
+class CharacterFactory(factory.Factory):
+    FACTORY_FOR = models.Character
 
+    name = 'Captain Quail'
+    
 
 
 
