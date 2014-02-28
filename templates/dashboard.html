@@ -33,7 +33,11 @@
                             <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">
+                                {% if comic.is_published %}
                                 <a href="{{ comic.get_comic_url }}"><p class="lead text-shortened"><small>{{ comic.title }}</small></p></a>
+                                {% else %}
+                                <p class="lead text-shortened"><small>{{ comic.title }}</small></p>
+                                {% endif %}
                                 </div>
                                 <div class="col-md-2">
                                 {% if comic.is_published %}
