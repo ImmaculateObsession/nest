@@ -1,13 +1,11 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
 from comics.views import (
-    HomeView,
     ComicPostView,
     ComicPreviewView,
     ComicListView,
     PostView,
     PostPreviewView,
-    ComicBackupView,
     TagView,
     ComicAddView,
     ComicEditView,
@@ -27,7 +25,6 @@ comicpatterns = patterns('',
     url(r'^$', ComicPostView.as_view(), name='comichomeview'),
     url(r'^all/$', ComicListView.as_view(), name='comiclistview'),
     url(r'^add/$', ComicAddView.as_view(), name='comicaddview'),
-    url(r'^backup/$', ComicBackupView.as_view(), name='comicbackupview'),
     url(r'^sign_s3/',
         S3SignView.as_view(),
         name='s3signview',
@@ -95,4 +92,3 @@ characterpatterns = patterns('',
     ),
     url(r'^(?P<id>\d+)/$', CharacterView.as_view(), name="characterview"),
 )
-    

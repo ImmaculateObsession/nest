@@ -1,22 +1,16 @@
-import mandrill
 import base64
-import hashlib
 import datetime
 
 from allauth.socialaccount.models import SocialToken
 
 from mixpanel import Mixpanel
 
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
-from django.core import management
 from django.core.urlresolvers import reverse
 from django.shortcuts import (
     get_object_or_404,
-    redirect,
 )
 from django.http import (
     HttpResponsePermanentRedirect,
@@ -28,17 +22,12 @@ from django.utils.text import slugify
 from django.views.generic import (
     TemplateView,
     ListView,
-    View,
-    DetailView,
     FormView,
-    CreateView,
 )
 
 from comics.models import (
     Post,
     Comic,
-    PublishedComicManager,
-    PublishedPostManager,
     Character,
     Contributor,
 )
@@ -51,7 +40,6 @@ from comics.forms import (
 from comics import settings as site_settings
 
 from pebbles.models import (
-    Domain,
     Pebble,
     PebbleSettings,
 )
@@ -92,14 +80,14 @@ class ComicViewMixin(object):
         """
         return Comic.published_comics.filter(
             pebbles=self.request.pebble
-            ).latest('published')
+        ).latest('published')
 
     def get(self, request, *args, **kwargs):
 
         self.pebble = self.request.pebble
         slug = kwargs.get('slug')
         comic_id = kwargs.get('id')
-        
+
         if slug:
             self.post = get_object_or_404(Post.published_posts, pebbles=self.pebble, slug=slug)
             self.comic = get_object_or_404(Comic.published_comics, pebbles=self.pebble, post=self.post)
@@ -120,7 +108,7 @@ class ComicViewMixin(object):
 
     def get_context_data(self, **kwargs):
         context = super(ComicViewMixin, self).get_context_data(**kwargs)
-        pebble=self.request.pebble
+        pebble = self.request.pebble
         try:
             pebble_settings_obj = PebbleSettings.objects.get(
                 pebble=pebble,
@@ -135,7 +123,7 @@ class ComicViewMixin(object):
 
         if hasattr(self, 'empty'):
             return context
-        
+
         last_read_comic = self.request.COOKIES.get('last_read_comic')
         hide_resume_link = self.request.COOKIES.get('hide_resume_link')
         slug = self.comic.post.slug
@@ -169,8 +157,8 @@ class ComicViewMixin(object):
                 primary_url,
                 post.slug,
             )
-        
-        try: 
+
+        try:
             context['first_comic'] = Comic.published_comics.filter(
                 pebbles=pebble,
                 published__lt=comic.published,
@@ -188,7 +176,7 @@ class ComicViewMixin(object):
                 context['last_comic'] = last_comic
         except Comic.DoesNotExist:
             pass
-        try:            
+        try:
             context['next'] = Comic.published_comics.filter(
                 pebbles=pebble,
                 published__gt=comic.published
@@ -227,7 +215,7 @@ class HomeView(NeedsPebbleMixin, ComicViewMixin, TemplateView):
         return super(HomeView, self).dispatch(request, *args, **kwargs)
 
     def get_template_names(self):
-        if hasattr(self,'empty'):
+        if hasattr(self, 'empty'):
             return ['empty.html']
         return [self.template_name]
 
@@ -268,7 +256,7 @@ class ComicPreviewView(NeedsLoginMixin, TemplateView):
 class PostView(NeedsPebbleMixin, TemplateView):
     template_name = "postview.html"
 
-    def get_context_data (self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super(PostView, self).get_context_data(**kwargs)
         pebble = self.request.pebble
         post = get_object_or_404(Post.published_posts, pebbles=pebble, slug=self.kwargs['slug'])
@@ -276,7 +264,7 @@ class PostView(NeedsPebbleMixin, TemplateView):
 
         pebble_settings = PebbleSettings.objects.get(pebble=pebble).settings
         context['pebble_settings'] = pebble_settings
-        
+
         if pebble_settings.get('show_disqus'):
             context['disqus_identifier'] = post.slug
             context['disqus_url'] = '%s/post/%s/' % (
@@ -285,7 +273,7 @@ class PostView(NeedsPebbleMixin, TemplateView):
             )
             context['disqus_title'] = post.title
 
-        try: 
+        try:
             context['first_post'] = Post.published_posts.filter(
                 pebbles=pebble,
                 published__lt=post.published,
@@ -322,63 +310,6 @@ class PostPreviewView(NeedsLoginMixin, TemplateView):
         post = get_object_or_404(Post, id=self.kwargs['id'])
         context['post'] = post
         return context
-
-
-class ComicBackupView(View):
-
-    @method_decorator(staff_member_required)
-    def dispatch(self, *args, **kwargs):
-        with open(str(settings.PROJECT_ROOT) + '/dump.json', 'w') as f:
-            management.call_command('dumpdata', 'comics', indent=4, stdout=f)
-            
-        with open(str(settings.PROJECT_ROOT) + '/dump.json', 'r') as f: 
-            data = base64.b64encode(f.read())
-
-            try:
-                mandrill_client = mandrill.Mandrill(settings.EMAIL_HOST_PASSWORD)
-                message = {
-                    'attachments': [{
-                        'content': data,
-                        'name': 'dump.json',
-                        'type': 'application/json'
-                    }],
-                    'auto_html': None,
-                    'auto_text': None,
-                    'from_email': 'site@quailcomics.com',
-                    'from_name': site_settings.site_title(),
-                    'html': "Here's the backup",
-                    'subject': 'Backup of %s' % (site_settings.site_url()),
-                    'to': [{'email': settings.ADMINS[0][1], 'name': settings.ADMINS[0][0]}],
-                }
-                result = mandrill_client.messages.send(message=message, async=False)
-
-                messages.add_message(self.request, messages.SUCCESS, 'Backup emailed.')
-
-            except mandrill.Error, e:
-                print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
-
-        return redirect('/admin', permanent=False)
-
-
-class CreateRefCodeView(View):
-    """
-    Not being used currently
-
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        user = self.request.user
-        referral_code = ReferralCode.objects.create(
-            code=hashlib.sha1(
-                str(user) + str(timezone.now())
-            ).hexdigest()[:6],
-            user=self.request.user,
-            is_active=True,
-            campaign='First Round of Shirts',
-        )
-
-        return redirect('/accounts/profile/')
-    """
-    pass
 
 
 class StaticPageView(TemplateView):
@@ -1058,5 +989,6 @@ class PostDeleteView(NeedsLoginMixin, FormView):
         })
 
         return super(PostDeleteView, self).form_valid(form)
+
 
 
