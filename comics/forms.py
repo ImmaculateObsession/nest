@@ -148,6 +148,11 @@ class ComicPostForm(NeedsPebbleForm):
         required=False,
         widget=forms.Textarea(attrs={'class':'form-control',}),
     )
+    # disabling for now while I get some other things worked out.
+    # tags = forms.ChoiceField(
+    #     required=False,
+    #     widget=forms.SelectMultiple(attrs={'class':'form-control',}),
+    # )
 
 
 class ComicDeleteForm(forms.Form):
