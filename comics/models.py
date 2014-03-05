@@ -182,7 +182,7 @@ class Character(models.Model):
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
-    header_image = models.URLField(blank=True)
+    header_image = models.URLField(blank=True, null=True)
     pebbles = models.ManyToManyField(
         Pebble,
         blank=True,
