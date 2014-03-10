@@ -17,6 +17,9 @@
 <a href="{% url "postaddview" %}" class="btn btn-large btn-default">
     <span class="fa fa-edit"></span> Add Post
 </a>
+<a href="{% url "tagaddview" %}" class="btn btn-large btn-default">
+    <span class="fa fa-tag"></span> Add Tag
+</a>
 </div>
 {% for pebble in pebbles %}
     <h2>{{ pebble.title }} <a href="{% url "editpebbleview" pebble.id %}" class="btn btn-xs btn-default">Edit</a></h2>

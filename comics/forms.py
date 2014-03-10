@@ -38,6 +38,12 @@ class NeedsPebbleForm(forms.Form):
             widget=forms.Select(attrs={'class':'form-control',}),
         )
 
+
+class HasTagsForm(forms.Form):
+
+    pass
+
+
 class ComicForm(forms.ModelForm):
     class Meta:
         model = Comic
@@ -148,11 +154,10 @@ class ComicPostForm(NeedsPebbleForm):
         required=False,
         widget=forms.Textarea(attrs={'class':'form-control',}),
     )
-    # disabling for now while I get some other things worked out.
-    # tags = forms.ChoiceField(
-    #     required=False,
-    #     widget=forms.SelectMultiple(attrs={'class':'form-control',}),
-    # )
+    tags = forms.ChoiceField(
+        required=False,
+        widget=forms.SelectMultiple(attrs={'class':'form-control',}),
+    )
 
 
 class ComicDeleteForm(forms.Form):
@@ -174,6 +179,22 @@ class CharacterForm(NeedsPebbleForm):
         widget=RedactorWidget,
     )
     profile_pic_url = forms.URLField(
+        required=False,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+
+
+class TagForm(NeedsPebbleForm):
+    tag = forms.CharField(
+        max_length=140,
+        required=True,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+    description = forms.CharField(
+        required=False,
+        widget=RedactorWidget,
+    )
+    header_image = forms.URLField(
         required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
