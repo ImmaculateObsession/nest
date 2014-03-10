@@ -38,6 +38,24 @@ class NeedsPebbleForm(forms.Form):
             widget=forms.Select(attrs={'class':'form-control',}),
         )
 
+
+class HasTagsForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        selected_tags = None
+        if kwargs.get('selected_tags'):
+            selected_tags = [tag.id for tag in kwargs.pop('selected_tags')]
+        self.tags = kwargs.pop('tags')
+        super(HasTagsForm, self).__init__(*args, **kwargs)
+        choices = [(tag.id, tag.tag) for tag in self.tags]
+
+        self.fields['tags'] = forms.MultipleChoiceField(
+            required=False,
+            choices=choices,
+            initial=selected_tags,
+            widget=forms.SelectMultiple(attrs={'class':'form-control',}),
+        )
+
+
 class ComicForm(forms.ModelForm):
     class Meta:
         model = Comic
@@ -84,7 +102,7 @@ class PostForm(NeedsPebbleForm):
         return cleaned_data
 
 
-class ComicPostForm(NeedsPebbleForm):
+class ComicPostForm(NeedsPebbleForm, HasTagsForm):
     title = forms.CharField(
         max_length=140,
         required=True, 
@@ -148,12 +166,6 @@ class ComicPostForm(NeedsPebbleForm):
         required=False,
         widget=forms.Textarea(attrs={'class':'form-control',}),
     )
-    # disabling for now while I get some other things worked out.
-    # tags = forms.ChoiceField(
-    #     required=False,
-    #     widget=forms.SelectMultiple(attrs={'class':'form-control',}),
-    # )
-
 
 class ComicDeleteForm(forms.Form):
     really_delete = forms.ChoiceField(
@@ -177,3 +189,20 @@ class CharacterForm(NeedsPebbleForm):
         required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
+
+
+class TagForm(NeedsPebbleForm):
+    tag = forms.CharField(
+        max_length=140,
+        required=True,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+    description = forms.CharField(
+        required=False,
+        widget=RedactorWidget,
+    )
+    header_image = forms.URLField(
+        required=False,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
+

@@ -22,6 +22,7 @@ from comics.urls import (
     comicpatterns,
     postpatterns,
     characterpatterns,
+    tagpatterns,
 )
 
 from comics.feeds import LatestPostFeed
@@ -43,6 +44,7 @@ urlpatterns = patterns('',
     url(r'^$', HomeRedirectView.as_view(), name='home'),
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),
+    url(r'^tag/', include(tagpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
     url(r'^pebbles/$', DashboardView.as_view(), name='dashview'),
     url(r'^pebble/', include(pebblepatterns)),

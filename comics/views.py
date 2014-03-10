@@ -27,12 +27,14 @@ from comics.models import (
     Comic,
     Character,
     Contributor,
+    Tag,
 )
 from comics.forms import (
     ComicPostForm,
     ComicDeleteForm,
     CharacterForm,
     PostForm,
+    TagForm,
 )
 from comics import settings as site_settings
 
@@ -369,19 +371,20 @@ class ComicEditBaseView(NeedsLoginMixin, FormView):
 
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(ComicEditBaseView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+        tags = Tag.objects.filter(pebbles__in=pebbles)
+        kwargs['tags'] = tags
+        return kwargs
+
 
 class ComicAddView(ComicEditBaseView):
     url_name = 'comicaddview'
 
     def get_success_url(self):
         return reverse('comicpreviewview', kwargs={'id': self.comic_id})
-
-    def get_form_kwargs(self):
-        kwargs = super(ComicAddView, self).get_form_kwargs()
-        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
-        kwargs['pebbles'] = pebbles
-
-        return kwargs
 
     def form_valid(self, form):
         pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
@@ -413,6 +416,11 @@ class ComicAddView(ComicEditBaseView):
             image_url_large=form.cleaned_data.get('image_url_large', ''),
         )
         comic.pebbles.add(pebble)
+
+        tags = Tag.objects.filter(id__in=form.cleaned_data.get('tags'))
+        for tag in tags:
+            post.tags.add(tag)
+            comic.tags.add(tag)
 
         self.comic_id = comic.id
 
@@ -489,9 +497,8 @@ class ComicEditView(ComicEditBaseView):
     def get_form_kwargs(self):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
         kwargs = super(ComicEditView, self).get_form_kwargs()
-        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
-        kwargs['pebbles'] = pebbles
         kwargs['selected_pebble'] = self.comic.pebbles.all()[0].id
+        kwargs['selected_tags'] = self.comic.tags.all()
 
         return kwargs
 
@@ -534,6 +541,11 @@ class ComicEditView(ComicEditBaseView):
         comic.image_url=form.cleaned_data['image_url']
         comic.image_url_large=form.cleaned_data.get('image_url_large', '')
         comic.save()
+
+        tags = Tag.objects.filter(id__in=form.cleaned_data.get('tags'))
+        for tag in tags:
+            post.tags.add(tag)
+            comic.tags.add(tag)
 
         if pebble not in comic.pebbles.all():
             comic.pebbles.add(pebble)
@@ -988,3 +1000,107 @@ class PostDeleteView(NeedsLoginMixin, FormView):
 
 class LiveComicView(TemplateView):
     template_name="main_home.html"
+
+
+class TagAddView(NeedsLoginMixin, FormView):
+    form_class = TagForm
+    template_name = "tag_edit.html"
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_form_kwargs(self):
+        kwargs = super(TagAddView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+        return kwargs
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        tag = Tag.objects.create(
+            tag=form.cleaned_data.get('tag'),
+            description=form.cleaned_data.get('description'),
+            header_image=form.cleaned_data.get('header_image'),
+        )
+        tag.pebbles.add(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Tag Added', {
+            'pebble_id': pebble.id,
+            'tag_id': tag.id,
+        })
+
+        return super(TagAddView, self).form_valid(form)
+
+
+class TagEditView(NeedsLoginMixin, FormView):
+    form_class = TagForm
+    template_name = "tag_edit.html"
+
+    def get_success_url(self):
+        return reverse('dashview')
+
+    def get_context_data(self, **kwargs):
+        context = super(TagEditView, self).get_context_data(**kwargs)
+        context['is_editing'] = True
+        return context
+
+    def get(self,request, *args, **kwargs):
+        self.tag = get_object_or_404(Tag, id=self.kwargs.get('id'))
+        pebbles = self.tag.pebbles.all()
+        for pebble in pebbles:
+            if not pebble.can_edit(self.request.user):
+                raise Http404()
+
+        return super(TagEditView, self).get(request, *args, **kwargs)
+
+    def get_initial(self):
+        tag = self.tag
+
+        initial = {
+            'tag': tag.tag,
+            'description': tag.description,
+            'header_image': tag.header_image,
+        }
+        return initial
+
+    def get_form_kwargs(self):
+        self.tag = get_object_or_404(Tag, id=self.kwargs.get('id'))
+        kwargs = super(TagEditView, self).get_form_kwargs()
+        pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        kwargs['pebbles'] = pebbles
+        kwargs['selected_pebble'] = self.tag.pebbles.all()[0].id
+
+        return kwargs
+
+    def form_valid(self, form):
+        pebble = Pebble.objects.get(id=form.cleaned_data.get('pebble'))
+        tag = self.tag
+        tag.tag = form.cleaned_data.get('tag')
+        tag.description = form.cleaned_data.get('description')
+        tag.header_image = form.cleaned_date.get('header_image')
+        tag.save()
+
+        if pebble not in tag.pebbles.all():
+            tag.pebbles.add(pebble)
+
+        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
+        mp.people_set(self.request.user.id, {
+            'username': self.request.user.username,
+            '$first_name': self.request.user.first_name,
+            '$last_name': self.request.user.last_name,
+            '$email': self.request.user.email,
+        })
+        mp.track(self.request.user.id, 'Tag Edited', {
+            'pebble_id': pebble.id,
+            'tag_id': tag.id,
+        })
+
+        return super(TagEditView, self).form_valid(form)
+

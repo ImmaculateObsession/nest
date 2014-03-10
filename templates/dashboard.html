@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load gargoyle_tags %}
 
 {% block title %}{{ block.super }} Pebbles{% endblock %}
 
@@ -17,6 +18,11 @@
 <a href="{% url "postaddview" %}" class="btn btn-large btn-default">
     <span class="fa fa-edit"></span> Add Post
 </a>
+{% ifswitch comic_tagging %}
+<a href="{% url "tagaddview" %}" class="btn btn-large btn-default">
+    <span class="fa fa-tag"></span> Add Tag
+</a>
+{% endifswitch %}
 </div>
 {% for pebble in pebbles %}
     <h2>{{ pebble.title }} <a href="{% url "editpebbleview" pebble.id %}" class="btn btn-xs btn-default">Edit</a></h2>
