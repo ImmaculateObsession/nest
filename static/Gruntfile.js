@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     // set up grunt
     grunt.initConfig({
         jshint: {
-            src: ['Gruntfile.js', 'static/sass/javascripts/*.js'],
+            src: ['Gruntfile.js', 'sass/javascripts/*.js'],
             options: {
                 curly: true,
                 eqeqeq: false,

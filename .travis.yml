@@ -3,9 +3,14 @@ python:
 - '2.7'
 before_install: npm install -g grunt-cli
 install: 
+- cd static
 - npm install
+- cd ..
 - pip install -r requirements/local.txt
-before_script: grunt
+before_script: 
+- cd static
+- grunt
+- cd ..
 env:
 - SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
 script: coverage run --source='comics,pebbles,profiles,saltpeter,nest' --omit='*migrations*,*tests*,*settings*,*urls*,*wsgi*' manage.py test comics pebbles profiles saltpeter nest --settings=nest.settings.base && coverage report

@@ -3,7 +3,7 @@
 	[
 		{
 			"path": "/Users/phildini/Repos/nest",
-            "folder_exclude_patterns": ["lib","share","bin","include","build"]
+            "folder_exclude_patterns": ["lib","share","bin","include","build", "node_modules"]
 		}
 	]
 }
