@@ -178,8 +178,6 @@ EMAIL_HOST_PASSWORD = get_env_variable('MANDRILL_KEY')
 DEFAULT_FROM_EMAIL = 'site@inkpebble.com'
 SERVER_EMAIL = 'site@inkpebble.com'
 
-MIXPANEL_KEY = get_env_variable('MIXPANEL_KEY')
-
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
