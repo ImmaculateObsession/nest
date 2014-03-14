@@ -1,4 +1,8 @@
-[![Build Status](https://travis-ci.org/ImmaculateObsession/nest.png?branch=master)](https://travis-ci.org/ImmaculateObsession/nest)
+Getting Started
+===============
+
+This doc should guide developers through getting a development environment
+set up to work on the Inkpebble main site.
 
 1. Install virtualbox (https://www.virtualbox.org/)
 2. Pull the 'nest' repo (nest is the name of the project on github)
@@ -14,5 +18,3 @@ A common workflow looks like this:
 4. Commit your changes
 5. Check for new changes from git ('git pull --rebase')
 6. Push your changes to git ('git push origin master')
-
-NOTE: Do not use bootstrap's glyphicons. Use the icons from Font Awesome.

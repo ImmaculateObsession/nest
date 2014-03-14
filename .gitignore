@@ -11,3 +11,4 @@ include/
 .sass-cache/
 node_modules/
 share/
+docs/_build/
