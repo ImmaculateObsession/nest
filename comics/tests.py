@@ -8,7 +8,6 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.utils import timezone
-from django import shortcuts
 
 from mock import MagicMock, patch
 
@@ -17,17 +16,14 @@ from comics.views import (
     HomeView,
     ComicPostView,
     ComicAddView,
-    ComicEditView,
     CharacterAddView,
     CharacterListView,
 )
-from comics.models import Comic
 
 from pebbles.factories import (
     PebbleFactory,
     PebbleSettingsFactory,
 )
-from pebbles.models import Pebble
 
 from petroglyphs.models import Setting
 

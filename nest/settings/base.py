@@ -2,10 +2,9 @@
 import os
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 from django.core.exceptions import ImproperlyConfigured
-from django.core.urlresolvers import reverse
 from unipath import Path
 
-# from .gargoyle_switches import *
+from .gargoyle_switches import *
 
 def get_env_variable(var_name):
     """ Get the environment variable or return exception """
@@ -138,8 +137,8 @@ INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
     'suit_redactor',
-    # 'nexus',
-    # 'gargoyle',
+    'nexus',
+    'gargoyle',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

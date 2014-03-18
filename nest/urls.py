@@ -1,4 +1,4 @@
-# import nexus
+import nexus
 
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
@@ -37,7 +37,7 @@ from pebbles.views import (
 from profiles.urls import profilepatterns
 
 admin.autodiscover()
-# nexus.autodiscover()
+nexus.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', HomeRedirectView.as_view(), name='home'),
@@ -50,7 +50,7 @@ urlpatterns = patterns('',
     url(r'^profile/', include(profilepatterns)),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    # url(r'^nexus/', include(nexus.site.urls)),
+    url(r'^nexus/', include(nexus.site.urls)),
     url(r'^share/$', ShareView.as_view()),
     url(r'^characters/$', CharacterListView.as_view(), name='characterlistview'),
     url(r'^character/', include(characterpatterns)),
