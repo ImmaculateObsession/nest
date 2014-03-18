@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'suit_redactor',
     'nexus',
     'gargoyle',
+    'utils',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

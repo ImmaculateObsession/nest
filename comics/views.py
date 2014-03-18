@@ -1,13 +1,10 @@
-import base64
 import datetime
 
 from allauth.socialaccount.models import SocialToken
 
 from mixpanel import Mixpanel
 
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.admin.views.decorators import staff_member_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import (
     get_object_or_404,
@@ -45,9 +42,7 @@ from pebbles.models import (
 )
 
 from petroglyphs.models import Setting
-
 from saltpeter.models import SocialPost
-
 
 class NeedsLoginMixin(object):
 
@@ -991,4 +986,5 @@ class PostDeleteView(NeedsLoginMixin, FormView):
         return super(PostDeleteView, self).form_valid(form)
 
 
-
+class LiveComicView(TemplateView):
+    template_name="main_home.html"

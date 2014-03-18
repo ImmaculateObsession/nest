@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, url
+from django.conf import settings
+from gargoyle.decorators import switch_is_active
 
 from comics.views import (
     ComicPostView,
@@ -17,6 +19,7 @@ from comics.views import (
     PostEditView,
     PostAddView,
     PostDeleteView,
+    LiveComicView,
 )
 
 from comics.api import S3SignView
@@ -28,6 +31,11 @@ comicpatterns = patterns('',
     url(r'^sign_s3/',
         S3SignView.as_view(),
         name='s3signview',
+    ),
+    url(
+        r'^live/$',
+        switch_is_active(settings.LIVE_COMIC_VIEW)(LiveComicView.as_view()),
+        name='livecomicview',
     ),
     url(r'^(?P<id>\d+)/$', ComicPostView.as_view()),
     url(
