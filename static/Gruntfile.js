@@ -33,13 +33,22 @@ module.exports = function(grunt) {
         watch: {
             files: '<%= jshint.src %>',
             tasks: ['jshint']
+        },
+        cssmin: {
+            css: {
+                expand: true,
+                cwd: 'sass/stylesheets/',
+                src: ['*.css'],
+                dest: 'compiled/'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', ['jshint', 'compliment']);
+    grunt.registerTask('default', ['jshint', 'cssmin:css', 'compliment']);
     grunt.registerTask('compliment', function() {
         grunt.log.writeln('You look nice today!');
     });

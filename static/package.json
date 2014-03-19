@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "grunt-contrib-jshint": "latest",
-    "grunt": "latest"
+    "grunt": "latest",
+    "grunt-contrib-cssmin": "^0.9.0"
   }
 }
