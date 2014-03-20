@@ -4,7 +4,7 @@ cd /home/vagrant/
 rm -rf /home/vagrant/.bash_profile
 ln -s /vagrant/config/bash_profile.sh /home/vagrant/.bash_profile
 sudo apt-get update
-sudo apt-get install python-pip git curl make sqlite3 --yes
+sudo apt-get install python-pip git curl make sqlite3 postgresql postgresql-server-dev-9.1 libpq-dev python-dev --yes
 sudo pip install virtualenv
 virtualenv ip
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
