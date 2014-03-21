@@ -15,8 +15,6 @@ env:
 - SECRET_KEY="shhthisisasecret" MANDRILL_KEY="notreallyneeded" MIXPANEL_KEY="alsonotneeded"
 script: coverage run --source='comics,pebbles,profiles,saltpeter,nest' --omit='*migrations*,*tests*,*settings*,*urls*,*wsgi*' manage.py test comics pebbles profiles saltpeter nest --settings=nest.settings.base && coverage report
 notifications:
-  email:
-  - pjj@philipjohnjames.com
   slack: inkpebble:E4ZgOJD6kJyY8JTl0Rrnyhno
 deploy:
   provider: heroku
