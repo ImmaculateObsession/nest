@@ -17,6 +17,7 @@ script: coverage run --source='comics,pebbles,profiles,saltpeter,nest' --omit='*
 notifications:
   email:
   - pjj@philipjohnjames.com
+  slack: inkpebble:E4ZgOJD6kJyY8JTl0Rrnyhno
 deploy:
   provider: heroku
   api_key:

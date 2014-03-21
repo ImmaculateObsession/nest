@@ -82,7 +82,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   puppet.manifest_file  = "site.pp"
   # end
 
-  config.vm.provision "shell", path: "config/bootstrap.sh", privileged: false
+  config.vm.provision "shell", path: "config/bootstrap.sh", privileged: false, keep_color: true
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.playbook = "config/playbook.yml"
+  # end
 
   # Enable provisioning with chef solo, specifying a cookbooks path, roles
   # path, and data_bags path (all relative to this Vagrantfile), and adding
