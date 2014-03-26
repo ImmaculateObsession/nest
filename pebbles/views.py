@@ -259,6 +259,7 @@ class EditPebbleView(NeedsLoginMixin, FormView):
             'site_title': settings.get('site_title'),
             'facebook_page': settings.get('facebook_page'),
             'twitter_page': settings.get('twitter_page'),
+            'youtube_channel': settings.get('youtube_channel'),
             'tagline': settings.get('tagline'),
             'show_rss': settings.get('show_rss'),
             'copyright': settings.get('copyright'),
@@ -278,6 +279,7 @@ class EditPebbleView(NeedsLoginMixin, FormView):
         settings['site_title'] = form.cleaned_data.get('site_title')
         settings['facebook_page'] = form.cleaned_data.get('facebook_page')
         settings['twitter_page'] = form.cleaned_data.get('twitter_page')
+        settings['youtube_channel'] = form.cleaned_data.get('youtube_channel')
         settings['tagline'] = form.cleaned_data.get('tagline')
         settings['show_rss'] = form.cleaned_data.get('show_rss')
         settings['copyright'] = form.cleaned_data.get('copyright')

@@ -58,6 +58,11 @@
             <span class="label label-default"><label for="id_twitter_page">Twitter</label></span>
             {{ form.twitter_page }}
         </div>
+        <div class="col-md-3">
+            {{ form.youtube_channel.errors }}
+            <span class="label label-default"><label for="id_youtube_channel">Youtube</label></span>
+            {{ form.youtube_channel }}
+        </div>
     </div>
     <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
 </form>

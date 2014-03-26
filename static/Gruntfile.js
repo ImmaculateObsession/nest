@@ -41,12 +41,20 @@ module.exports = function(grunt) {
                 src: ['*.css'],
                 dest: 'compiled/'
             }
+        },
+        compass: {
+            dev: {
+                options: {
+                    sassDir: 'sass',
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-compass');
 
     grunt.registerTask('default', ['jshint', 'cssmin:css', 'compliment']);
     grunt.registerTask('compliment', function() {

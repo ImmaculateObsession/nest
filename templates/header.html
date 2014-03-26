@@ -35,6 +35,11 @@
                 <span class="cq-light-blue fa fa-twitter"></span>
             </a></li>
             {% endif %}
+            {% if pebble_settings.youtube_channel %}
+            <li><a id="header-youtube" href="https://www.youtube.com/channel/{{ pebble_settings.youtube_channel }}">
+                <span class="cq-red fa fa-youtube-play"></span>
+            </a></li>
+            {% endif %}
             {% if about_page %}
             <li><a href="{% url 'pebblepageview' slug=about_page.slug %}">About</a></li>
             {% endif %}

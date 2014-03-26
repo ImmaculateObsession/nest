@@ -75,6 +75,11 @@ class PebbleSettingsForm(forms.Form):
         required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
+    youtube_channel = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={'class':'form-control',}),
+    )
     tagline = forms.CharField(
         max_length=140,
         required=False,

@@ -5,7 +5,8 @@
   "devDependencies": {
     "grunt": "latest",
     "grunt-contrib-jshint": "latest",
-    "grunt-contrib-watch": "latest"
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-compass": "^0.7.2"
   },
   "dependencies": {
     "grunt-contrib-jshint": "latest",
