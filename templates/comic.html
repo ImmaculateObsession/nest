@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <div class="row">
     {% if tags %}
     <h4>
@@ -57,12 +59,12 @@
         </div>
         <div class="row">
             {% if first_comic %}
-            <a class="btn btn-default" href="/comic/{{ first_comic.post.slug }}" title="first">
+            <a style="background-image: url({% static 'img/thumb1.png' %})" class="btn btn-default comic-nav-button" href="/comic/{{ first_comic.post.slug }}" title="first">
                 <span class="fa fa-step-backward"></span>
             </a>
             {% endif %}
             {% if previous %}
-            <a class="btn btn-default" href="/comic/{{ previous.post.slug }}" title="previous">
+            <a class="btn btn-default comic-nav-button" href="/comic/{{ previous.post.slug }}" title="previous">
                 <span class="fa fa-arrow-left"></span>
             </a>
             {% endif %}
@@ -77,12 +79,12 @@
             </a>
             {% endif %}
             {% if next %}
-            <a class="btn btn-default" href="/comic/{{ next.post.slug }}" title="next">
+            <a class="btn btn-default comic-nav-button" href="/comic/{{ next.post.slug }}" title="next">
                 <span class="fa fa-arrow-right"></span>
             </a>
             {% endif %}
             {% if last_comic %}
-            <a class="btn btn-default" href="/comic/{{ last_comic.post.slug }}" title="last">
+            <a class="btn btn-default comic-nav-button" href="/comic/{{ last_comic.post.slug }}" title="last">
                 <span class="fa fa-step-forward"></span>
             </a>
             {% endif %}
