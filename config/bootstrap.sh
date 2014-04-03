@@ -10,6 +10,10 @@ sudo apt-get install python-pip git curl make sqlite3 postgresql postgresql-serv
 sudo gem update --system
 sudo gem install compass
 sudo pip install virtualenv
+echo "==================== SETUP DB ===================="
+sudo su postgres -c "createuser -s vagrant"
+psql -c "ALTER USER vagrant PASSWORD 'vagrant';"
+createdb nest
 echo "==================== SETUP VIRTUALENV ===================="
 virtualenv ip
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
