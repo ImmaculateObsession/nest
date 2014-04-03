@@ -5,7 +5,7 @@
     {% if tags %}
     <h4>
         {% for tag in tags %}
-        <a href="/comic/tag/{{ tag.tag }}"><span class="badge">{{ tag.tag }}</span></a>
+        <a href="/comic/tag/{{ tag.id }}"><span class="badge">{{ tag.tag }}</span></a>
         {% endfor %}
     </h2>
     {% endif %}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{ block.super }}"{{ tag }}" Comics{% endblock %}
+{% block title %}{{ block.super }}"{{ tag.tag }}" Comics{% endblock %}
 
 {% block content %}
 
 <div class="row">
-    <h2 class="col-md-offset-1">{{ tag }}</h2>
+    <h2 class="col-md-offset-1">{{ tag.tag }}</h2>
 </div>
 
 {% include "list.html" %}

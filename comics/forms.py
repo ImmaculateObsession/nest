@@ -205,4 +205,8 @@ class TagForm(NeedsPebbleForm):
         required=False,
         widget=forms.TextInput(attrs={'class':'form-control',}),
     )
+    is_story = forms.BooleanField(
+        required=False,
+        initial=False,
+    )
 

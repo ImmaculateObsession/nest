@@ -20,6 +20,7 @@ from django.views.generic import (
     TemplateView,
     ListView,
     FormView,
+    DetailView,
 )
 
 from comics.models import (
@@ -318,18 +319,37 @@ class StaticPageView(TemplateView):
         return super(StaticPageView, self).dispatch(*args, **kwargs)
 
 
-class TagView(ListView):
+class TaggedComicView(ListView):
 
     template_name = "tag_list.html"
 
+
     def get_queryset(self):
-        return Comic.objects.filter(tags__tag__in=[self.kwargs['tag']])
+        self.tag = get_object_or_404(
+            Tag,
+            id=self.kwargs['id'],
+            pebbles__in=[self.request.pebble],
+        )
+        return Comic.objects.filter(
+            tags__in=[self.tag],
+            pebbles__in=[self.request.pebble],
+        )
 
     def get_context_data(self, **kwargs):
-        context = super(TagView, self).get_context_data(**kwargs)
-        context['tag'] = self.kwargs['tag']
+        context = super(TaggedComicView, self).get_context_data(**kwargs)
+        context['tag'] = self.tag
+        pebble_settings = PebbleSettings.objects.get(pebble=self.request.pebble).settings
+        context['pebble_settings'] = pebble_settings
 
         return context
+
+# class TagDetailView(DetailView):
+
+#     template_name = "tag_detail.html"
+
+#     def get_object(self):
+#         return Tag.objects.filter()
+
 
 
 class ComicEditBaseView(NeedsLoginMixin, FormView):
@@ -498,7 +518,9 @@ class ComicEditView(ComicEditBaseView):
         self.comic = get_object_or_404(Comic, id=self.kwargs.get('id'))
         kwargs = super(ComicEditView, self).get_form_kwargs()
         kwargs['selected_pebble'] = self.comic.pebbles.all()[0].id
-        kwargs['selected_tags'] = self.comic.tags.all()
+        tags = self.comic.tags.all()
+        if tags:
+            kwargs['selected_tags'] = tags
 
         return kwargs
 
