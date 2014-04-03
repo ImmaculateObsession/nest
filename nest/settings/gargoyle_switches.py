@@ -1,6 +1,7 @@
 SHOW_ADS = 'show_ads'
 LIVE_COMIC_VIEW = 'live_comic_view'
 COMIC_TAGGING = 'comic_tagging'
+IMAGE_COMIC_NAV_BUTTONS = 'image_nav_buttons'
 
 GARGOYLE_SWITCH_DEFAULTS = {
     SHOW_ADS: {
@@ -17,5 +18,10 @@ GARGOYLE_SWITCH_DEFAULTS = {
         'is_active': False,
         'label': 'Enable tagging for comics',
         'description': 'Show options on the comic add form for tagging',
+    },
+    IMAGE_COMIC_NAV_BUTTONS: {
+        'is_active': False,
+        'label': 'Image nav on comics',
+        'description': 'Show large image nav buttons on comics',
     },
 }
