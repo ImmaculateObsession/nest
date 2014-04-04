@@ -343,12 +343,19 @@ class TaggedComicView(ListView):
 
         return context
 
-# class TagDetailView(DetailView):
+class TagListView(ListView):
 
-#     template_name = "tag_detail.html"
+    template_name = "tags.html"
 
-#     def get_object(self):
-#         return Tag.objects.filter()
+    def get_queryset(self, **kwargs):
+        return Tag.objects.filter(pebbles__in=[self.request.pebble])
+
+    def get_context_data(self, **kwargs):
+        context = super(TagListView, self).get_context_data(**kwargs)
+        pebble_settings = PebbleSettings.objects.get(pebble=self.request.pebble).settings
+        context['pebble_settings'] = pebble_settings
+
+        return context
 
 
 
@@ -1034,7 +1041,9 @@ class TagAddView(NeedsLoginMixin, FormView):
     def get_form_kwargs(self):
         kwargs = super(TagAddView, self).get_form_kwargs()
         pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        tags = Tag.objects.filter(pebbles__in=pebbles)
         kwargs['pebbles'] = pebbles
+        kwargs['tags'] = tags
         return kwargs
 
     def form_valid(self, form):
@@ -1096,7 +1105,9 @@ class TagEditView(NeedsLoginMixin, FormView):
         self.tag = get_object_or_404(Tag, id=self.kwargs.get('id'))
         kwargs = super(TagEditView, self).get_form_kwargs()
         pebbles = Pebble.objects.get_pebbles_for_user(self.request.user)
+        tags = Tag.objects.filter(pebbles__in=pebbles)
         kwargs['pebbles'] = pebbles
+        kwargs['tags'] = tags
         kwargs['selected_pebble'] = self.tag.pebbles.all()[0].id
 
         return kwargs

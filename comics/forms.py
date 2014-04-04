@@ -210,3 +210,19 @@ class TagForm(NeedsPebbleForm):
         initial=False,
     )
 
+    def __init__(self, *args, **kwargs):
+        tags = kwargs.pop('tags')
+        super(TagForm, self).__init__(*args, **kwargs)
+        choices = [(tag.id, tag.tag) for tag in tags]
+
+        self.fields['previous_tag'] = forms.ChoiceField(
+            required=False,
+            choices=choices,
+            widget=forms.Select(attrs={'class':'form-control',}),
+        )
+        self.fields['next_tag'] = forms.ChoiceField(
+            required=False,
+            choices=choices,
+            widget=forms.Select(attrs={'class':'form-control',}),
+        )
+

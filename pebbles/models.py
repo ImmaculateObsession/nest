@@ -42,6 +42,11 @@ class Pebble(models.Model):
         posts = [post for post in posts if not post.comic]
         return posts
 
+    def tags(self):
+        from comics.models import Tag
+        tags = Tag.objects.filter(pebbles__in=[self])
+        return tags
+
     def about_page(self):
         #XXX: This is a hack to display a link to the about page. Better strategy needed.
         try:
