@@ -190,13 +190,13 @@ class ComicViewMixin(object):
                     pass
             else:
                 context['chapter_backward'] = story_start
-        except IndexError:
+        except (IndexError, ValueError) as e:
             pass
 
         try:
             story_tag = comic.tags.filter(is_story=True)[0]
             context['chapter_forward'] = story_tag.next_tag.get_first_comic()
-        except (IndexError, AttributeError) as e:
+        except (IndexError, AttributeError, ValueError) as e:
             pass
 
         return context
