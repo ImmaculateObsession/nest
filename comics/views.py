@@ -20,14 +20,12 @@ from django.views.generic import (
     TemplateView,
     ListView,
     FormView,
-    DetailView,
 )
 
 from comics.models import (
     Post,
     Comic,
     Character,
-    Contributor,
     Tag,
 )
 from comics.forms import (
@@ -180,6 +178,25 @@ class ComicViewMixin(object):
                 published__gt=comic.published
             ).order_by('published')[0]
         except IndexError:
+            pass
+
+        try:
+            story_tag = comic.tags.filter(is_story=True)[0]
+            story_start = story_tag.get_first_comic()
+            if story_start == comic:
+                try: 
+                    context['chapter_backward'] = story_tag.previous_tag.get_first_comic()
+                except Tag.DoesNotExist:
+                    pass
+            else:
+                context['chapter_backward'] = story_start
+        except IndexError:
+            pass
+
+        try:
+            story_tag = comic.tags.filter(is_story=True)[0]
+            context['chapter_forward'] = story_tag.next_tag.get_first_comic()
+        except (IndexError, AttributeError) as e:
             pass
 
         return context
@@ -571,6 +588,8 @@ class ComicEditView(ComicEditBaseView):
         comic.image_url_large=form.cleaned_data.get('image_url_large', '')
         comic.save()
 
+        comic.tags.clear()
+        post.tags.clear()
         tags = Tag.objects.filter(id__in=form.cleaned_data.get('tags'))
         for tag in tags:
             post.tags.add(tag)

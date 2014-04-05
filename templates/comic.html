@@ -65,6 +65,15 @@
             {% else %}
             <a class="btn btn-default" href="/comic/{{ first_comic.post.slug }}" title="first">
             {% endifswitch %}
+                <span class="fa fa-fast-backward"></span>
+            </a>
+            {% endif %}
+            {% if chapter_backward %}
+            {% ifswitch image_nav_buttons %}
+            <a class="btn btn-default comic-nav-button" href="/comic/{{ chapter_backward.post.slug }}" title="chapter backward">
+            {% else %}
+            <a class="btn btn-default" href="/comic/{{ chapter_backward.post.slug }}" title="first">
+            {% endifswitch %}
                 <span class="fa fa-step-backward"></span>
             </a>
             {% endif %}
@@ -96,13 +105,22 @@
                 <span class="fa fa-arrow-right"></span>
             </a>
             {% endif %}
+            {% if chapter_forward %}
+            {% ifswitch image_nav_buttons %}
+            <a class="btn btn-default comic-nav-button" href="/comic/{{ chapter_forward.post.slug }}" title="chapter forward">
+            {% else %}
+            <a class="btn btn-default" href="/comic/{{ chapter_forward.post.slug }}" title="first">
+            {% endifswitch %}
+                <span class="fa fa-step-forward"></span>
+            </a>
+            {% endif %}
             {% if last_comic %}
             {% ifswitch image_nav_buttons %}
             <a class="btn btn-default comic-nav-button" href="/comic/{{ last_comic.post.slug }}" title="last">
             {% else %}
             <a class="btn btn-default" href="/comic/{{ last_comic.post.slug }}" title="last">
             {% endifswitch %}
-                <span class="fa fa-step-forward"></span>
+                <span class="fa fa-fast-forward"></span>
             </a>
             {% endif %}
         </div>

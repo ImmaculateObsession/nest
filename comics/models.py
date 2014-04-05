@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.utils.text import slugify
@@ -184,12 +183,32 @@ class Tag(models.Model):
     description = models.TextField(blank=True)
     header_image = models.URLField(blank=True)
     is_story = models.BooleanField(default=False)
+    previous_tag = models.ForeignKey(
+        'self',
+        blank=True,
+        null=True,
+        related_name='prev',
+    )
+    next_tag = models.ForeignKey(
+        'self',
+        blank=True,
+        null=True,
+        related_name='next'
+    )
     pebbles = models.ManyToManyField(
         Pebble,
         blank=True,
         null=True,
         db_constraint=False,
     )
+
+    def get_first_comic(self):
+        try:
+            return Comic.published_comics.filter(
+                tags__in=[self],
+            ).order_by('published')[0]
+        except:
+            return None
 
     def __str__(self):
         return self.tag
