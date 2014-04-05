@@ -186,7 +186,7 @@ class ComicViewMixin(object):
             if story_start == comic:
                 try: 
                     context['chapter_backward'] = story_tag.previous_tag.get_first_comic()
-                except Tag.DoesNotExist:
+                except AttributeError:
                     pass
             else:
                 context['chapter_backward'] = story_start
