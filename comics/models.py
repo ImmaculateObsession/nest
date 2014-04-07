@@ -77,14 +77,14 @@ class Comic(models.Model):
         return Contributor.objects.filter(post=self.post, role=Contributor.CREATOR)
 
     def get_comic_url(self):
-        pebbles = self.pebbles.all()
-        if not pebbles:
-            return None
-        else:
+        try:
+            pebbles = self.pebbles.all()
             return "http://%s%s" % (
                 pebbles[0].settings().primary_domain.url,
                 reverse('comicpostview', args=(self.post.slug,)),
             )
+        except ValueError:
+            return None
 
     def is_published(self):
         if self.is_live and self.published < timezone.now():
