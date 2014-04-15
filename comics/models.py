@@ -15,6 +15,12 @@ class PublishedComicManager(models.Manager):
             )
 
 
+class ComicManager(models.Manager):
+
+    def get_comics_for_user(self, user):
+        pebbles = Pebble.objects.get_pebbles_for_user(user)
+        return self.filter(pebbles__in=pebbles)
+
 class Comic(models.Model):
     title = models.CharField(max_length=140)
     image_url = models.URLField()
@@ -51,7 +57,7 @@ class Comic(models.Model):
         db_constraint=False,
     )
 
-    objects = models.Manager()
+    objects = ComicManager()
 
     published_comics = PublishedComicManager()
 

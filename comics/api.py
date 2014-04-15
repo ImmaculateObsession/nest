@@ -7,16 +7,20 @@ import hashlib
 
 from django.utils import timezone
 
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import (
-    IsAdminUser,
-    IsAuthenticated,
-)
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework.renderers import JSONRenderer
+from comics.serializers import ComicSerializer
+from comics.models import Comic
 
-from pebbles.models import PebbleSettings
+from rest_framework import mixins
+from rest_framework import generics
+
+from rest_framework.authentication import (
+    SessionAuthentication,
+    BasicAuthentication,
+)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+from rest_framework.views import APIView
 
 from petroglyphs.models import Setting
 
@@ -57,3 +61,23 @@ class S3SignView(APIView):
             'url': url,
         }
         return Response(data)
+
+class APIComicListView(generics.ListCreateAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ComicSerializer
+
+    def get(self, request, *args, **kwargs):
+        # import pdb; pdb.set_trace()
+        return super(APIComicListView, self).get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Comic.objects.get_comics_for_user(self.request.user)
+
+class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticated,)
+    serializer_class = ComicSerializer
+
+    def get_queryset(self):
+        return Comic.objects.get_comics_for_user(self.request.user)

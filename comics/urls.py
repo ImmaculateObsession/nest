@@ -1,4 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url, include
 from django.conf import settings
 from gargoyle.decorators import switch_is_active
 
@@ -25,7 +25,24 @@ from comics.views import (
     TagEditView,
 )
 
-from comics.api import S3SignView
+from comics.api import (
+    S3SignView,
+    APIComicListView,
+    APIComicDetailView,
+)
+
+apipatterns = patterns('',
+    url(
+        r'^list/$',
+        APIComicListView.as_view(),
+        name='apicomiclistview',
+    ),
+    url(
+        r'^(?P<pk>[0-9]+)/$',
+        APIComicDetailView.as_view(),
+        name='apicomicdetailview',
+    ),
+)
 
 comicpatterns = patterns('',
     url(r'^$', ComicPostView.as_view(), name='comichomeview'),
@@ -44,6 +61,7 @@ comicpatterns = patterns('',
         switch_is_active(settings.LIVE_COMIC_VIEW)(LiveComicView.as_view()),
         name='livecomicview',
     ),
+    url(r'^api/', include(apipatterns)),
     url(r'^(?P<id>\d+)/$', ComicPostView.as_view()),
     url(
         r'^(?P<slug>[\w-]+)/$',
