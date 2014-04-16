@@ -17,7 +17,10 @@ from rest_framework.authentication import (
     SessionAuthentication,
     BasicAuthentication,
 )
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticated,
+    IsAuthenticatedOrReadOnly,
+)
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
@@ -64,7 +67,7 @@ class S3SignView(APIView):
 
 class APIComicListView(generics.ListCreateAPIView):
     authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = ComicSerializer
 
     def get(self, request, *args, **kwargs):
@@ -72,12 +75,16 @@ class APIComicListView(generics.ListCreateAPIView):
         return super(APIComicListView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
-        return Comic.objects.get_comics_for_user(self.request.user)
+        if not self.request.user.is_anonymous:
+            return Comic.objects.get_comics_for_user(self.request.user)
+        return Comic.published_comics.all()
 
 class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (BasicAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = ComicSerializer
 
     def get_queryset(self):
-        return Comic.objects.get_comics_for_user(self.request.user)
+        if not self.request.user.is_anonymous:
+            return Comic.objects.get_comics_for_user(self.request.user)
+        return Comic.published_comics.all()
