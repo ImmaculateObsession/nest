@@ -29,6 +29,10 @@ from comics.api import (
     S3SignView,
     APIComicListView,
     APIComicDetailView,
+    APIPanelListView,
+    APIPanelDetailView,
+    APITagListView,
+    APITagDetailView,
 )
 
 apipatterns = patterns('',
@@ -36,6 +40,26 @@ apipatterns = patterns('',
         r'^list/$',
         APIComicListView.as_view(),
         name='apicomiclistview',
+    ),
+    url(
+        r'^panel/list/$',
+        APIPanelListView.as_view(),
+        name='apipanellistview',
+    ),
+    url(
+        r'^panel/(?P<pk>[0-9]+)/$',
+        APIPanelDetailView.as_view(),
+        name='apipaneldetailview',
+    ),
+    url(
+        r'^tag/list/$',
+        APITagListView.as_view(),
+        name='apitaglistview',
+    ),
+    url(
+        r'^tag(?P<pk>[0-9]+)/$',
+        APITagDetailView.as_view(),
+        name='apitagdetailview',
     ),
     url(
         r'^(?P<pk>[0-9]+)/$',

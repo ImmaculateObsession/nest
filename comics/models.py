@@ -29,6 +29,7 @@ class Comic(models.Model):
     published = models.DateTimeField(default=timezone.now, blank=True)
     is_live = models.BooleanField(default=False)
     transcript = models.TextField(blank=True)
+    thumb = models.URLField(blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True, db_constraint=False)
     post = models.ForeignKey(
         'Post',
@@ -97,8 +98,44 @@ class Comic(models.Model):
             return True
         return False
 
+    def panels(self):
+        return Panel.objects.filter(comic=self)
+
     # def can_edit(self, user):
     #     if self.pebbles
+
+class PublishedPanelManager(models.Manager):
+    def get_query_set(self):
+        return super(PublishedPanelManager, self).get_query_set().filter(
+            comic__is_live=True,
+            comic__published__gte=timezone.now,
+        )
+
+class PanelManager(models.Manager):
+    def get_panels_for_user(self, user):
+        comics = Comic.objects.get_comics_for_user(user)
+        panels = []
+        panels += [comic.panels() for comic in comics]
+        return panels
+
+class Panel(models.Model):
+    comic = models.ForeignKey(
+        'Comic',
+        blank=True,
+        null=True,
+        on_delete=models.SET_NULL,
+    )
+    image = models.URLField(blank=True, null=True)
+
+    objects = PanelManager()
+
+    published_panels = PublishedPanelManager()
+
+    def __str__(self):
+        return "Panel on %s" % (self.comic.title)
+
+    class Meta:
+        order_with_respect_to = 'comic'
 
 
 class PublishedPostManager(models.Manager):
@@ -184,6 +221,13 @@ class Character(models.Model):
         return self.name
 
 
+class TagManager(models.Manager):
+
+    def get_tags_for_user(self, user):
+        pebbles = Pebble.objects.get_pebbles_for_user(user)
+        return self.filter(pebbles__in=pebbles)
+
+
 class Tag(models.Model):
     tag = models.CharField(max_length=140)
     description = models.TextField(blank=True)
@@ -207,6 +251,8 @@ class Tag(models.Model):
         null=True,
         db_constraint=False,
     )
+
+    objects = TagManager()
 
     def get_first_comic(self):
         try:

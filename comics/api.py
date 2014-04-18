@@ -7,10 +7,13 @@ import hashlib
 
 from django.utils import timezone
 
-from comics.serializers import ComicSerializer
-from comics.models import Comic
+from comics.serializers import (
+    ComicSerializer,
+    PanelSerializer,
+    TagSerializer,
+)
+from comics.models import Comic, Panel, Tag
 
-from rest_framework import mixins
 from rest_framework import generics
 
 from rest_framework.authentication import (
@@ -70,9 +73,6 @@ class APIComicListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = ComicSerializer
 
-    def get(self, request, *args, **kwargs):
-        # import pdb; pdb.set_trace()
-        return super(APIComicListView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
         if not self.request.user.is_anonymous:
@@ -88,3 +88,46 @@ class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
         if not self.request.user.is_anonymous:
             return Comic.objects.get_comics_for_user(self.request.user)
         return Comic.published_comics.all()
+
+
+class APIPanelListView(generics.ListCreateAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = PanelSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_anonymous:
+            return Panel.objects.get_panels_for_user(self.request.user)
+        return Panel.published_panels.all()
+
+class APIPanelDetailView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = PanelSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_anonymous:
+            return Panel.objects.get_panels_for_user(self.request.user)
+        return Panel.published_panels.all()
+
+
+class APITagListView(generics.ListCreateAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = TagSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_anonymous:
+            return Tag.objects.get_tags_for_user(self.request.user)
+        return Tag.objects.all()
+
+
+class APITagDetailView(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = (BasicAuthentication,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    serializer_class = TagSerializer
+
+    def get_queryset(self):
+        if not self.request.user.is_anonymous:
+            return Tag.objects.get_tags_for_user(self.request.user)
+        return Tag.objects.all()

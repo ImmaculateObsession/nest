@@ -3,6 +3,7 @@
 static/suit/
 .DS_Store
 *.sublime-workspace
+py_api/test.py
 
 .Python
 bin/
