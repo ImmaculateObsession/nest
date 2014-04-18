@@ -125,6 +125,7 @@ class Panel(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
+    number = models.SmallIntegerField(blank=True, null=True)
     image = models.URLField(blank=True, null=True)
 
     objects = PanelManager()
