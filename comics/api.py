@@ -75,7 +75,7 @@ class APIComicListView(generics.ListCreateAPIView):
 
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Comic.objects.get_comics_for_user(self.request.user)
         return Comic.published_comics.all()
 
@@ -85,7 +85,7 @@ class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ComicSerializer
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Comic.objects.get_comics_for_user(self.request.user)
         return Comic.published_comics.all()
 
@@ -96,7 +96,7 @@ class APIPanelListView(generics.ListCreateAPIView):
     serializer_class = PanelSerializer
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Panel.objects.get_panels_for_user(self.request.user)
         return Panel.published_panels.all()
 
@@ -106,7 +106,7 @@ class APIPanelDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PanelSerializer
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Panel.objects.get_panels_for_user(self.request.user)
         return Panel.published_panels.all()
 
@@ -117,7 +117,7 @@ class APITagListView(generics.ListCreateAPIView):
     serializer_class = TagSerializer
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Tag.objects.get_tags_for_user(self.request.user)
         return Tag.objects.all()
 
@@ -128,6 +128,6 @@ class APITagDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = TagSerializer
 
     def get_queryset(self):
-        if not self.request.user.is_anonymous:
+        if not self.request.user.is_anonymous():
             return Tag.objects.get_tags_for_user(self.request.user)
         return Tag.objects.all()

@@ -1,9 +1,10 @@
 import requests
 
+# NEST_URL='https://www.inkpebble.com/comic/api/'
 NEST_URL='http://localhost:8000/comic/api/'
 
 class Nest(object):
-    auth = {}
+    auth = ()
     comic_list = 'list/'
     tag_list = 'tag/list/'
     tag_detail = 'tag/'
@@ -12,36 +13,37 @@ class Nest(object):
 
     def __init__(self, url=NEST_URL, user=None, password=None):
         self.url = url
-        if user:
-            self.auth['user'] = user
-        if password:
-            self.auth['password'] = password
+        if user and password:
+           self.auth = (user, password)
 
     def get_comics(self):
         url = "%s%s" % (self.url, self.comic_list)
-        r = requests.get(url)
-        return r.json()
+        if self.auth:
+            return requests.get(url, auth=self.auth).json()
+        return requests.get(url).json()
 
     def get_tags(self):
         url = "%s%s" % (self.url, self.tag_list)
-        r = requests.get(url)
-        return r.json()
+        if self.auth:
+            return requests.get(url, auth=self.auth).json()
+        return requests.get(url).json()
 
     def get_panels(self):
         url = "%s%s" % (self.url, self.panel_list)
-        r = requests.get(url)
-        return r.json()
+        if self.auth:
+            return requests.get(url, auth=self.auth).json()
+        return requests.get(url).json()
 
     def comic_detail(self, id):
         url = "%s%s/" % (self.url, id)
-        r = requests.get(url)
-        return r.json()
+        if self.auth:
+            return requests.get(url, auth=self.auth).json()
+        return requests.get(url).json()
 
     def comic_save(self, id, data=None):
-        if not self.auth or not self.auth.get('user') or not self.auth.get('password'):
+        if not self.auth:
             return {'error': 'You do not have permissions for that'}
         url = "%s%s/" % (self.url, id)
-        auth_tuple = (self.auth['user'], self.auth['password'])
-        r = requests.patch(url, data=data, auth=auth_tuple)
+        r = requests.patch(url, data=data, auth=self.auth)
         return r.json()
 
