@@ -46,3 +46,16 @@ class Nest(object):
         r = requests.patch(url, data=data, auth=self.auth)
         return r.json()
 
+    def tag_detail(self, id):
+        url = "%s%s%s/" % (self.url, self.tag_detail, id)
+        if self.auth:
+            return requests.get(url, auth=self.auth).json()
+        return requests.get(url).json()
+
+    def tag_save(self, id, data=None):
+        if not self.auth:
+            return {'error': 'You do not have permissions for that'}
+        url = "%s%s%s/" % (self.url, self.tag_detail, id)
+        r = requests.patch(url, data=data, auth=self.auth)
+        return r.json()
+

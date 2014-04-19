@@ -57,7 +57,7 @@ apipatterns = patterns('',
         name='apitaglistview',
     ),
     url(
-        r'^tag(?P<pk>[0-9]+)/$',
+        r'^tag/(?P<pk>[0-9]+)/$',
         APITagDetailView.as_view(),
         name='apitagdetailview',
     ),
