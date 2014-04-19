@@ -6,9 +6,9 @@ class Nest(object):
     auth = ()
     comic_list = 'list/'
     tag_list = 'tag/list/'
-    tag_detail = 'tag/'
+    tag_detail_url = 'tag/'
     panel_list = 'panel/list/'
-    panel_detail = 'panel/'
+    panel_detail_url = 'panel/'
 
     def __init__(self, url=NEST_URL, user=None, password=None):
         self.url = url
@@ -47,7 +47,7 @@ class Nest(object):
         return r.json()
 
     def tag_detail(self, id):
-        url = "%s%s%s/" % (self.url, self.tag_detail, id)
+        url = "%s%s%s/" % (self.url, self.tag_detail_url, id)
         if self.auth:
             return requests.get(url, auth=self.auth).json()
         return requests.get(url).json()
@@ -55,7 +55,7 @@ class Nest(object):
     def tag_save(self, id, data=None):
         if not self.auth:
             return {'error': 'You do not have permissions for that'}
-        url = "%s%s%s/" % (self.url, self.tag_detail, id)
+        url = "%s%s%s/" % (self.url, self.tag_detail_url, id)
         r = requests.patch(url, data=data, auth=self.auth)
         return r.json()
 

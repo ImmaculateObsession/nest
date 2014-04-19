@@ -76,7 +76,7 @@ class APIComicListView(generics.ListCreateAPIView):
 
     def get_queryset(self):
         if not self.request.user.is_anonymous():
-            return Comic.objects.get_comics_for_user(self.request.user)
+            return Comic.objects.get_comics_for_user(self.request.user).order_by('published')
         return Comic.published_comics.all()
 
 class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -86,7 +86,7 @@ class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
 
     def get_queryset(self):
         if not self.request.user.is_anonymous():
-            return Comic.objects.get_comics_for_user(self.request.user)
+            return Comic.objects.get_comics_for_user(self.request.user).order_by('published')
         return Comic.published_comics.all()
 
 
