@@ -9,8 +9,13 @@ from petroglyphs.models import Setting
 from pebbles.models import Pebble, PebbleSettings
 
 class LatestPostFeed(Feed):
-    link = "/feed/"
     description_template = "postfeed.html"
+
+    def link(self):
+        return 'http://' + self.pebble_settings.primary_domain.url
+
+    def feed_url(self):
+        return 'http://' + self.pebble_settings.primary_domain.url + '/feed/'
 
     def description(self):
         return self.pebble_settings.settings.get('feed_description', 'Comic Feed')
