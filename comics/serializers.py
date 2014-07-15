@@ -3,10 +3,10 @@ from comics.models import Comic, Panel, Tag
 
 
 class ComicSerializer(serializers.ModelSerializer):
+    url = serializers.CharField(source='get_comic_url', read_only=True)
 
     class Meta:
         model = Comic
-        fields = ('id', 'title', 'image_url', 'alt_text', 'thumb', 'tags', 'pebbles')
 
 class PanelSerializer(serializers.ModelSerializer):
 

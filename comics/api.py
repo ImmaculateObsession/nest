@@ -73,11 +73,14 @@ class APIComicListView(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = ComicSerializer
 
-
     def get_queryset(self):
+
         if not self.request.user.is_anonymous():
             return Comic.objects.get_comics_for_user(self.request.user).order_by('published')
-        return Comic.published_comics.all()
+        if self.request.pebble:
+            return self.request.pebble.comics_by_published()
+        else:
+            return Comic.published_comics.all()
 
 class APIComicDetailView(generics.RetrieveUpdateDestroyAPIView):
     authentication_classes = (BasicAuthentication,)
