@@ -212,24 +212,29 @@ LOGGING = {
             'class': 'django.utils.log.AdminEmailHandler',
             'formatter': 'verbose',
         },
+        'logging.handlers.SysLogHandler': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.SysLogHandler',
+            'facility': 'local5',
+            'formatter': 'loggly',
+        },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins'],
+            'handlers': ['mail_admins','logging.handlers.SysLogHandler'],
             'level': 'ERROR',
             'propagate': True,
         },
         'post_to_social': {
-            'handlers': ['mail_error'],
+            'handlers': ['mail_error','logging.handlers.SysLogHandler'],
             'level': 'INFO',
             'propagate': True,
         },
+        'loggly_logs':{
+            'handlers': ['logging.handlers.SysLogHandler'],
+            'propagate': True,
+            'format': 'loggly: %(message)s',
+            'level': 'DEBUG',
+        },
     },
 }
-
-# try:
-#     from mezzanine.utils.conf import set_dynamic_settings
-# except ImportError:
-#     pass
-# else:
-#     set_dynamic_settings(globals())
