@@ -1,3 +1,5 @@
+import logging
+
 from mixpanel import Mixpanel
 
 from django.conf import settings
@@ -39,6 +41,14 @@ class LatestPostFeed(Feed):
         return item.published
 
     def get_feed(self, obj, request):
+        log_string = "path='%s' host='%s' remote_addr='%s' user_agent='%s'" % (
+            request.path,
+            request.get_host(),
+            request.META.get('REMOTE_ADDR'),
+            request.META.get('HTTP_USER_AGENT'),
+        )
+        loggly_logger = logging.getLogger('loggly_logs')
+        loggly_logger.info(log_string)
         self.request = request
         self.pebble = self.request.pebble
         if not self.pebble:

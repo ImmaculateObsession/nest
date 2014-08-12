@@ -218,6 +218,11 @@ LOGGING = {
             'facility': 'local5',
             'formatter': 'loggly',
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
     },
     'loggers': {
         'django.request': {
@@ -238,3 +243,6 @@ LOGGING = {
         },
     },
 }
+
+if DEBUG: 
+    LOGGING['loggers']['loggly_logs']['handlers'] = ['console']
