@@ -3,6 +3,8 @@ import nexus
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from robots_txt.views import RobotsTextView
+
 from allauth.account.views import (
     signup,
     login,
@@ -12,7 +14,6 @@ from allauth.account.views import (
 from nest.views import HomeRedirectView
 
 from comics.views import (
-    HomeView,
     StaticPageView,
     ShareView,
     CharacterListView,
@@ -41,6 +42,7 @@ admin.autodiscover()
 nexus.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^robots.txt$', RobotsTextView.as_view()),
     url(r'^$', HomeRedirectView.as_view(), name='home'),
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),

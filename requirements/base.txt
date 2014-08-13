@@ -7,6 +7,7 @@ django-allauth==0.15.0
 mixpanel-py==3.0.0
 django-datetime-widget==0.6
 djangorestframework==2.3.10
+django-robots-txt==0.4
 git+https://github.com/phildini/petroglyphs.git#egg=petroglyphs
 git+https://github.com/ImmaculateObsession/nexus.git@master#egg=nexus==0.3.0
 git+https://github.com/ImmaculateObsession/gargoyle.git@pebbles#egg=gargoyle==0.2.0
