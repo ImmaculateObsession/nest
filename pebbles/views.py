@@ -1,5 +1,3 @@
-from mixpanel import Mixpanel
-
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -104,19 +102,6 @@ class AddPageView(NeedsLoginMixin, FormView):
             content=form.cleaned_data['content'],
             pebble=pebble,
         )
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Page Added', {
-            'pebble_id': pebble.id,
-            'page_id': pebble_page.id,
-            'is_live': form.cleaned_data.get('is_live', False),
-            'standalone': form.cleaned_data.get('standalone', False),
-        })
 
         return super(AddPageView, self).form_valid(form)
 
@@ -174,20 +159,6 @@ class EditPageView(NeedsLoginMixin, FormView):
         page.content = form.cleaned_data['content']
         page.pebble = Pebble.objects.get(id=form.cleaned_data['pebble'])
 
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Page Edited', {
-            'pebble_id': page.pebble.id,
-            'page_id': page.id,
-            'is_live': form.cleaned_data.get('is_live', False),
-            'standalone': form.cleaned_data.get('standalone', False),
-        })
-
         return super(EditPageView, self).form_valid(form)
 
 
@@ -222,18 +193,6 @@ class DeleteView(NeedsLoginMixin, FormView):
         if really_delete == 'yes':
             self.page.pebble = None
             self.page.save()
-
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Page Deleted', {
-            'page_id': self.page.id,
-            'is_live': self.page.is_live,
-        })
 
         return super(DeleteView, self).form_valid(form)
 

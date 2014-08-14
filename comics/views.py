@@ -2,8 +2,6 @@ import datetime
 
 from allauth.socialaccount.models import SocialToken
 
-from mixpanel import Mixpanel
-
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.shortcuts import (
@@ -492,20 +490,6 @@ class ComicAddView(ComicEditBaseView):
                     time_to_post=form.cleaned_data.get('social_post_time'),
                     social_network=SocialPost.TWITTER,
                 )
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Comic Added', {
-            'pebble_id': pebble.id,
-            'comic_id': comic.id,
-            'posted_to_facebook': bool(form.cleaned_data.get('facebook_post_message')),
-            'posted_to_twitter': bool(form.cleaned_data.get('twitter_post_message')),
-            'is_live': form.cleaned_data.get('is_live', False),
-        })
         return super(ComicAddView, self).form_valid(form)
 
 
@@ -597,19 +581,7 @@ class ComicEditView(ComicEditBaseView):
 
         if pebble not in comic.pebbles.all():
             comic.pebbles.add(pebble)
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Comic Edited', {
-            'pebble_id': pebble.id,
-            'comic_id': comic.id,
-            'is_live': form.cleaned_data.get('is_live', False),
-        })
-
+        
         return super(ComicEditView, self).form_valid(form)
 
 
@@ -684,18 +656,6 @@ class ComicDeleteView(NeedsLoginMixin, FormView):
                 self.comic.pebbles.remove(pebble)
                 self.comic.post.pebbles.remove(pebble)
 
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Comic Deleted', {
-            'comic_id': self.comic.id,
-            'is_live': self.comic.is_live,
-        })
-
         return super(ComicDeleteView, self).form_valid(form)
 
 
@@ -721,17 +681,6 @@ class CharacterAddView(NeedsLoginMixin, FormView):
             profile_pic_url=form.cleaned_data.get('profile_pic_url'),
         )
         character.pebbles.add(pebble)
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Character Added', {
-            'pebble_id': pebble.id,
-            'character_id': character.id,
-        })
 
         return super(CharacterAddView, self).form_valid(form)
 
@@ -790,18 +739,6 @@ class CharacterEditView(NeedsLoginMixin, FormView):
 
         if pebble not in character.pebbles.all():
             character.pebbles.add(pebble)
-
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Character Edited', {
-            'pebble_id': pebble.id,
-            'character_id': character.id,
-        })
 
         return super(CharacterEditView, self).form_valid(form)
 
@@ -865,17 +802,6 @@ class CharacterDeleteView(NeedsLoginMixin, FormView):
             for pebble in pebbles:
                 self.character.pebbles.remove(pebble)
 
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Character Deleted', {
-            'character_id': self.character.id,
-        })
-
         return super(CharacterDeleteView, self).form_valid(form)
 
 
@@ -904,19 +830,6 @@ class PostAddView(NeedsLoginMixin, FormView):
             creator = self.request.user,
         )
         post.pebbles.add(pebble)
-
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Post Added', {
-            'pebble_id': pebble.id,
-            'post_id': post.id,
-            'is_live': post.is_live,
-        })
 
         return super(PostAddView, self).form_valid(form)
 
@@ -983,19 +896,6 @@ class PostEditView(NeedsLoginMixin, FormView):
         if pebble not in post.pebbles.all():
             post.pebbles.add(pebble)
 
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Post Edited', {
-            'pebble_id': pebble.id,
-            'post_id': post.id,
-            'is_live': post.is_live,
-        })
-
         return super(PostEditView, self).form_valid(form)
 
 
@@ -1032,17 +932,6 @@ class PostDeleteView(NeedsLoginMixin, FormView):
             for pebble in pebbles:
                 self.thispost.pebbles.remove(pebble)
 
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Post Deleted', {
-            'post_id': self.thispost.id,
-        })
-
         return super(PostDeleteView, self).form_valid(form)
 
 
@@ -1073,18 +962,6 @@ class TagAddView(NeedsLoginMixin, FormView):
             header_image=form.cleaned_data.get('header_image'),
         )
         tag.pebbles.add(pebble)
-
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Tag Added', {
-            'pebble_id': pebble.id,
-            'tag_id': tag.id,
-        })
 
         return super(TagAddView, self).form_valid(form)
 
@@ -1141,18 +1018,6 @@ class TagEditView(NeedsLoginMixin, FormView):
 
         if pebble not in tag.pebbles.all():
             tag.pebbles.add(pebble)
-
-        mp = Mixpanel(Setting.objects.get(key='mixpanel_key').value)
-        mp.people_set(self.request.user.id, {
-            'username': self.request.user.username,
-            '$first_name': self.request.user.first_name,
-            '$last_name': self.request.user.last_name,
-            '$email': self.request.user.email,
-        })
-        mp.track(self.request.user.id, 'Tag Edited', {
-            'pebble_id': pebble.id,
-            'tag_id': tag.id,
-        })
 
         return super(TagEditView, self).form_valid(form)
 

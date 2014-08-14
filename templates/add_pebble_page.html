@@ -59,15 +59,4 @@
     <input class="btn btn-success col-md-offset-1" type="submit" value="Save" />
 </form>
 {% endblock %}
-
-{% block js_defer %}
-<script>
-    mixpanel.identify('{{ user.id }}');
-    {% if is_editing %}
-    mixpanel.identfiy('PebblePage Edit Hit');
-    {% else %}
-    mixpanel.identify('PebblePage Add Hit'):
-    {% endif %}
-</script>
-{% endblock %}
 </script>

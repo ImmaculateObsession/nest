@@ -163,10 +163,3 @@
 {% include "empty_dash.html" %}
 {% endif %}
 {% endblock %}
-
-{% block js_defer %}
-<script>
-mixpanel.identify('{{ user.id }}');
-mixpanel.track("Dashboard Page Hit");
-</script>
-{% endblock %}

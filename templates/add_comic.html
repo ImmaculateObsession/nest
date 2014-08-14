@@ -153,11 +153,5 @@ function s3_upload(){
         }
     });
 }
-mixpanel.identify('{{ user.id }}');
-{% if is_editing %}
-mixpanel.track("Comic Edit Page Hit", {"comic_id": "{{ comic_id }}"});
-{% else %}
-mixpanel.track("Comic Add Page Hit");
-{% endif %}
 </script>
 {% endblock %}
