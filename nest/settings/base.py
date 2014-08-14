@@ -189,7 +189,7 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
         'loggly': {
-            'format': 'loggly: %(levelname)s %(module)s %(message)s',
+            'format': 'loggly: %(levelname)s %(message)s',
         },
     },
     'filters': {
@@ -218,30 +218,32 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'verbose'
         },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['logging.handlers.SysLogHandler'],
+            'handlers': ['console', 'logging.handlers.SysLogHandler'],
+            'level': 'WARNING',
+            'format': '%(levelname)s %(message)s',
+            'propagate': True,
+        },
+        'django.db.backends': {
+            'handlers': ['console', 'logging.handlers.SysLogHandler'],
             'level': 'DEBUG',
-            'format': '%(levelname)s %(module)s %(message)s',
+            'format': '%(levelname)s %(message)s',
             'propagate': True,
         },
         'post_to_social': {
-            'handlers': ['logging.handlers.SysLogHandler'],
+            'handlers': ['console', 'logging.handlers.SysLogHandler'],
             'level': 'INFO',
             'propagate': True,
         },
         'loggly_logs':{
-            'handlers': ['logging.handlers.SysLogHandler'],
+            'handlers': ['console', 'logging.handlers.SysLogHandler'],
             'propagate': True,
-            'format': 'loggly: %(levelname)s %(module)s %(message)s',
+            'format': 'loggly: %(levelname)s %(message)s',
             'level': 'DEBUG',
         },
     },
 }
-
-if DEBUG: 
-    LOGGING['loggers']['loggly_logs']['handlers'] = ['console']
-
