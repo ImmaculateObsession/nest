@@ -176,9 +176,6 @@ EMAIL_HOST_PASSWORD = get_env_variable('MANDRILL_KEY')
 DEFAULT_FROM_EMAIL = 'site@inkpebble.com'
 SERVER_EMAIL = 'site@inkpebble.com'
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
 LOGGING = {
@@ -192,7 +189,7 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
         'loggly': {
-            'format':'loggly: %(message)s',
+            'format': 'loggly: %(levelname)s %(module)s %(message)s',
         },
     },
     'filters': {
@@ -226,19 +223,20 @@ LOGGING = {
     },
     'loggers': {
         'django.request': {
-            'handlers': ['mail_admins','logging.handlers.SysLogHandler'],
-            'level': 'ERROR',
+            'handlers': ['logging.handlers.SysLogHandler'],
+            'level': 'DEBUG',
+            'format': '%(levelname)s %(module)s %(message)s',
             'propagate': True,
         },
         'post_to_social': {
-            'handlers': ['mail_error','logging.handlers.SysLogHandler'],
+            'handlers': ['logging.handlers.SysLogHandler'],
             'level': 'INFO',
             'propagate': True,
         },
         'loggly_logs':{
             'handlers': ['logging.handlers.SysLogHandler'],
             'propagate': True,
-            'format': 'loggly: %(message)s',
+            'format': 'loggly: %(levelname)s %(module)s %(message)s',
             'level': 'DEBUG',
         },
     },
@@ -246,3 +244,4 @@ LOGGING = {
 
 if DEBUG: 
     LOGGING['loggers']['loggly_logs']['handlers'] = ['console']
+
