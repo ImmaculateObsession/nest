@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'pebbles.middleware.PebbleMiddleware',
+    'nest.logging_middleware.LoggingMiddleWare',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -182,14 +183,14 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(message)s'
-        },
         'simple': {
             'format': '%(levelname)s %(message)s'
         },
         'loggly': {
             'format': 'loggly: %(levelname)s %(message)s',
+        },
+        'loggly-request': {
+            'format': 'loggly: %(levelname)s %(message)s status=%(status_code)s',
         },
     },
     'filters': {
@@ -198,49 +199,38 @@ LOGGING = {
         },
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose',
-            'filters': ['require_debug_false',],
-        },
-        'mail_error': {
-            'level': 'INFO',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'verbose',
-        },
-        'logging.handlers.SysLogHandler': {
+        'loggly-handler': {
             'level': 'DEBUG',
             'class': 'logging.handlers.SysLogHandler',
             'facility': 'local5',
             'formatter': 'loggly',
         },
+        'request-handler': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.SysLogHandler',
+            'facility': 'local5',
+            'formatter': 'loggly-request',
+        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
+            'formatter': 'simple',
         },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console', 'logging.handlers.SysLogHandler'],
-            'level': 'WARNING',
-            'format': '%(levelname)s %(message)s',
-            'propagate': True,
-        },
-        'django.db.backends': {
-            'handlers': ['console', 'logging.handlers.SysLogHandler'],
-            'level': 'DEBUG',
-            'format': '%(levelname)s %(message)s',
-            'propagate': True,
+            'handlers': ['console', 'request-handler'],
+            'format': 'loggly: %(levelname)s %(message)s status=%(status_code)s',
+            'level': 'INFO',
+            'propagate': False,
         },
         'post_to_social': {
-            'handlers': ['console', 'logging.handlers.SysLogHandler'],
+            'handlers': ['console', 'loggly-handler'],
             'level': 'INFO',
             'propagate': True,
         },
         'loggly_logs':{
-            'handlers': ['console', 'logging.handlers.SysLogHandler'],
+            'handlers': ['console', 'loggly-handler'],
             'propagate': True,
             'format': 'loggly: %(levelname)s %(message)s',
             'level': 'DEBUG',
