@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }}Recommendations{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    {% if comics %}
+    <div class="col-md-6">
+        <h2>Comics</h2>
+        <ul class="list-group">
+        {% for comic in comics %}
+            <h3><a href="{{ comic.url }}">{{ comic.name }}</a></h3>
+            <p>Posted in <a href="{{ comic.post.get_url }}">{{ comic.post.title }}</a></p>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if games %}
+    <div class="col-md-6">
+        <h2>Games</h2>
+        {% for game in games %}
+            <a href="{{ game.url }}">{{ game.name }}</a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}
