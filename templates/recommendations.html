@@ -21,7 +21,8 @@
     <div class="col-md-6">
         <h2>Games</h2>
         {% for game in games %}
-            <a href="{{ game.url }}">{{ game.name }}</a>
+            <h3><a href="{{ game.url }}">{{ game.name }}</a></h3>
+            <p>Posted in <a href="{{ game.post.get_url }}">{{ game.post.title }}</a></p>
         {% endfor %}
     </div>
     {% endif %}
