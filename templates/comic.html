@@ -87,7 +87,7 @@
             </a>
             {% endif %}
             {% if pebble_settings.show_subscribe %}
-            <a href="javascript:void(0);" id="subscribe-btn" class="btn btn-default" data-toggle="popover">
+            <a href="javascript:void(0);" id="subscribe-btn" class="btn btn-default" data-toggle="popover" onClick="_gaq.push(['_trackEvent', 'Subscription Click', 'Email', 'Comic Subscribe Button'])">
                 <span class="fa fa-plus-square"></span> Subscribe <span id="popover-action" class="caret"></span>
             </a>
             {% endif %}

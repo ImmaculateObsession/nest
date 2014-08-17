@@ -21,22 +21,22 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             {% if pebble_settings.show_rss %}
-            <li><a id="header-rss" href="/feed/">
+            <li><a id="header-rss" href="/feed/" onClick="_gaq.push(['_trackEvent', 'Subscription Click', 'RSS', 'Header Subscription Bar'])">
                 <span class="cq-orange fa fa-rss"></span>
             </a></li>
             {% endif %}
             {% if pebble_settings.facebook_page %}
-            <li><a id="header-fb" href="https://www.facebook.com/{{ pebble_settings.facebook_page }}">
+            <li><a id="header-fb" href="https://www.facebook.com/{{ pebble_settings.facebook_page }}" onClick="_gaq.push(['_trackEvent', 'Subscription Click', 'Facebook', 'Header Subscription Bar'])">
                 <span class="cq-blue fa fa-facebook"></span>
             </a></li>
             {% endif %}
             {% if pebble_settings.twitter_page %}
-            <li><a id="header-twitter" href="https://twitter.com/{{ pebble_settings.twitter_page }}">
+            <li><a id="header-twitter" href="https://twitter.com/{{ pebble_settings.twitter_page }}" onClick="_gaq.push(['_trackEvent', 'Subscription Click', 'Twitter', 'Header Subscription Bar'])">
                 <span class="cq-light-blue fa fa-twitter"></span>
             </a></li>
             {% endif %}
             {% if pebble_settings.youtube_channel %}
-            <li><a id="header-youtube" href="https://www.youtube.com/channel/{{ pebble_settings.youtube_channel }}">
+            <li><a id="header-youtube" href="https://www.youtube.com/channel/{{ pebble_settings.youtube_channel }}" onClick="_gaq.push(['_trackEvent', 'Subscription Click', 'Youtube', 'Header Subscription Bar'])">
                 <span class="cq-red fa fa-youtube-play"></span>
             </a></li>
             {% endif %}
