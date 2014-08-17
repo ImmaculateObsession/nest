@@ -68,7 +68,10 @@ class Pebble(models.Model):
 
     @property
     def settings(self):
-        return PebbleSettings.objects.get(pebble=self)
+        try:
+            return PebbleSettings.objects.get(pebble=self)
+        except PebbleSettings.DoesNotExist:
+            return None
 
     def __str__(self):
         return self.title

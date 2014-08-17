@@ -1,7 +1,8 @@
 from django.views.generic import TemplateView
+from comics.views import NeedsPebbleMixin
 from recommendations.models import Recommendation
 
-class RecommendationListView(TemplateView):
+class RecommendationListView(NeedsPebbleMixin, TemplateView):
     template_name="recommendations.html"
 
     def get_context_data(self, **kwargs):
@@ -20,5 +21,6 @@ class RecommendationListView(TemplateView):
 
         context['comics'] = comics
         context['games'] = games
+        context['pebble_settings'] = pebble.settings.settings
 
         return context
