@@ -85,7 +85,6 @@ comicpatterns = patterns('',
         switch_is_active(settings.LIVE_COMIC_VIEW)(LiveComicView.as_view()),
         name='livecomicview',
     ),
-    url(r'^api/', include(apipatterns)),
     url(r'^(?P<id>\d+)/$', ComicPostView.as_view()),
     url(
         r'^(?P<slug>[\w-]+)/$',

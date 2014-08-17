@@ -188,6 +188,17 @@ class Post(models.Model):
             comic = None
         return comic
 
+    def get_url(self):
+        pebbles = self.pebbles.all()
+        if not pebbles:
+            if not self.comic:
+                return get_post_url()
+        else:
+            return "http://%s%s" % (
+                pebbles[0].settings.primary_domain.url,
+                reverse('comicpostview', args=(self.slug,)),
+            )
+
     def get_post_url(self):
         pebbles = self.pebbles.all()
         if not pebbles:

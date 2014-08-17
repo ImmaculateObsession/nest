@@ -151,6 +151,7 @@ INSTALLED_APPS = (
     'saltpeter',
     'pebbles',
     'profiles',
+    'recommendations',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

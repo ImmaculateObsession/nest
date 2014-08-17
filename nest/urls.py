@@ -25,6 +25,7 @@ from comics.urls import (
     characterpatterns,
     tagpatterns,
 )
+from comics.urls import apipatterns as comicapi
 
 from comics.feeds import LatestPostFeed
 
@@ -38,12 +39,22 @@ from pebbles.views import (
 
 from profiles.urls import profilepatterns
 
+from recommendations.urls import apipatterns as likeapi
+from recommendations.views import RecommendationListView
+
 admin.autodiscover()
 nexus.autodiscover()
+
+apipatterns = patterns('',
+    url(r'^comic/', include(comicapi)),
+    url(r'^likes/', include(likeapi)),
+)
 
 urlpatterns = patterns('',
     url(r'^robots.txt$', RobotsTextView.as_view()),
     url(r'^$', HomeRedirectView.as_view(), name='home'),
+    url(r'^likes/$', RecommendationListView.as_view(), name='like-list'),
+    url(r'^api/', include(apipatterns)),
     url(r'^comic/', include(comicpatterns)),
     url(r'^post/', include(postpatterns)),
     url(r'^tag/', include(tagpatterns)),

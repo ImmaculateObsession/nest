@@ -1,6 +1,6 @@
 import requests
 
-NEST_URL='https://www.inkpebble.com/comic/api/'
+NEST_URL='https://www.inkpebble.com/api/comic/'
 
 class Nest(object):
     auth = ()
