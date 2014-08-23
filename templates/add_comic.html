@@ -72,6 +72,9 @@
         </div>
     </div>
     <div class="row" id="preview">
+        {% if form.initial.image_url %}
+        <img class="comic img-responsive" src="{{ form.initial.image_url}}" />
+        {% endif %}
     </div>
     <div class="row row-padded">
         <div class="form-group col-md-offset-2 col-md-8">
