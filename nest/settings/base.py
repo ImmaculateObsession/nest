@@ -49,6 +49,8 @@ TEMPLATE_DIRS = (
 )
 STATIC_URL = '/static/'
 
+FEED_FETCHER_USER_AGENT = "InkpebbleDev/0.1 +http://example.com (Feed: %s, %s subscribers)"
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -152,6 +154,7 @@ INSTALLED_APPS = (
     'pebbles',
     'profiles',
     'recommendations',
+    'reader',
 )
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
