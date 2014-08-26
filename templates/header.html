@@ -46,7 +46,9 @@
             {% if pebble_characters %}
             <li><a href="{% url 'characterlistview' %}">Characters</a></li>
             {% endif %}
+            {% if pebble_settings %}
             <li><a href="{% url 'like-list' %}">Stuff We Like</a></li>
+            {% endif %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
