@@ -33,11 +33,7 @@ class Collection(models.Model):
     readers = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return "%s (updated:%s/checked:%s)" % (
-            self.title,
-            self.updated_on.strftime("%Y-%m-%d,%H:%M%Z"),
-            self.last_checked.strftime("%Y-%m-%d,%H:%M%Z"),
-        )
+        return "%s" % (self.title,)
 
 class Reader(models.Model):
     reader = models.ForeignKey(
