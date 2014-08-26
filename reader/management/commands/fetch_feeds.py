@@ -1,6 +1,7 @@
-import feedfetcher
+import feedparser
 import logging
 from datetime import datetime
+from dateutil import parser
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils import timezone
@@ -17,7 +18,7 @@ class Command(BaseCommand):
                 collection.id,
                 collection.readers,
             )
-            feed = feedfetcher.parse(
+            feed = feedparser.parse(
                 collection.feed_url,
                 agent=user_agent,
             )
@@ -27,10 +28,8 @@ class Command(BaseCommand):
                     title=entry.title,
                     link=entry.link,
                     collection=collection,
-                    published_on=datetime.fromtimestamp(
-                        mktime(entry.published_parsed),
-                    )
-                )
+                    published_on=parser.parse(entry.published),
+                )[0]
                 item.description = entry.description
                 item.save()
             if feed_info.title and collection.title != feed_info.title:
@@ -38,9 +37,9 @@ class Command(BaseCommand):
             if (feed_info.subtitle and
                 collection.subtitle != feed_info.subtitle):
                 collection.subtitle = feed_info.subtitle
-            if (feed_info.updated_parsed and 
-                collection.updated_on != feed_info.updated_parsed):
-                collection.updated_on = feed_info.updated_parsed
+            feed_updated = parser.parse(feed_info.updated)
+            if collection.updated_on != feed_updated:
+                collection.updated_on = feed_updated
 
             collection.last_checked = timezone.now()
             collection.save()

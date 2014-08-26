@@ -24,7 +24,7 @@ class Item(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=255)
     subtitle = models.TextField(blank=True, null=True)
-    link = models.URLField()
+    link = models.URLField(blank=True, null=True)
     feed_url = models.URLField()
     created = models.DateTimeField(auto_now_add=True)
     changed = models.DateTimeField(auto_now=True)
@@ -33,10 +33,10 @@ class Collection(models.Model):
     readers = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
-        return "%s (last updated %s, last checked %s)" % (
+        return "%s (updated:%s/checked:%s)" % (
             self.title,
-            self.updated_on,
-            self.last_checked,
+            self.updated_on.strftime("%Y-%m-%d,%H:%M%Z"),
+            self.last_checked.strftime("%Y-%m-%d,%H:%M%Z"),
         )
 
 class Reader(models.Model):
