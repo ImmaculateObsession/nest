@@ -81,7 +81,11 @@ class Reader(models.Model):
         if self.last_read:
             return self.last_read
         else:
-            return Item.objects.filter(
-                collection=self.collection
-            ).order_by('published_on')[0]
+            try:
+                return Item.objects.filter(
+                    collection=self.collection
+                ).order_by('published_on')[0]
+            except IndexError:
+                return None
+
 
