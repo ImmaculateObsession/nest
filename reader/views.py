@@ -11,21 +11,27 @@ class ReaderView(TemplateView):
         context = super(ReaderView, self).get_context_data(**kwargs)
 
         subs = Reader.objects.filter(reader=self.request.user)
-        current = subs[0].get_last_read()
 
-        subs[0].last_read = current
-        subs[0].save()
+        if subs:
+            try:
+                current = subs[0].get_last_read()
+                subs[0].last_read = current
+                subs[0].save()
+                left, right = current.get_siblings()
+            except IndexError:
+                current, left, right = None
 
-        left, right = current.get_siblings()
+            try:
+                down = subs[1].get_last_read()
+            except IndexError:
+                down = None
 
-        down = subs[1].get_last_read()
-
-        context.update({
-            'object': current,
-            'left': left,
-            'right': right,
-            'down': down,
-        })
+            context.update({
+                'object': current,
+                'left': left,
+                'right': right,
+                'down': down,
+            })
 
         return context
 
