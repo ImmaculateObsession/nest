@@ -39,7 +39,7 @@ from pebbles.views import (
 
 from profiles.urls import profilepatterns
 
-from reader.views import ReaderView
+from reader.urls import readerpatterns
 
 from recommendations.urls import apipatterns as likeapi
 from recommendations.views import RecommendationListView
@@ -61,7 +61,7 @@ urlpatterns = patterns('',
     url(r'^post/', include(postpatterns)),
     url(r'^tag/', include(tagpatterns)),
     url(r'^feed/$', LatestPostFeed(), name='postfeed'),
-    # url(r'^read/$', ReaderView.as_view(), name='reader-view'),
+    url(r'^read/', include(readerpatterns)),
     url(r'^pebbles/$', DashboardView.as_view(), name='dashview'),
     url(r'^pebble/', include(pebblepatterns)),
     url(r'^about/$', StaticPageView.as_view(), {'template': 'about.html'}),

@@ -36,8 +36,8 @@ class Command(BaseCommand):
                 item.save()
                 if result[1]:
                     logger.info('Created item: %s' % (item))
-            if feed_info.get('title') and collection.title != feed_info.title:
-                collection.title = feed_info.title
+            if feed_info.get('title') and collection.feed_title != feed_info.title:
+                collection.feed_title = feed_info.title
             if (feed_info.get('subtitle') and
                 collection.subtitle != feed_info.subtitle):
                 collection.subtitle = feed_info.subtitle

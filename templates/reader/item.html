@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="http://cdn.foundation5.zurb.com/foundation.css">
+    <link rel="stylesheet" href="{% static "compiled/reader.css" %}">
+{% endblock %}
+
+{% block content %}
+<div class="row has-centered-content">
+    {% if up %}
+    <a href="/read/{{up.id}}"><span class="fa fa-angle-up"></span> {{up.collection | safe}}: {{up.title | safe}}</a>
+    {% endif %}
+</div>
+<div class="row">
+    <div class="small-2 column">
+        {% if left %}
+        <a href="/read/{{ left.id }}"><span class="fa fa-angle-left"></span> Previous</a>
+        {% else %}
+        No more!
+        {% endif %}
+
+    </div>
+    <div class="small-8 column">
+        <h3>{{object.collection.title | safe}}: {{ object.title | safe }}</h3>
+        {{object.description | safe}}
+    </div>
+    <div class="small-2 column">
+        {% if right %}
+        <a href="/read/{{ right.id }}">Next <span class="fa fa-angle-right"></span></a>
+        {% else %}
+        No more!
+        {% endif %}
+    </div>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+<div class="row has-centered-content">
+    {% if down %}
+    <a href="/read/{{down.id}}"><span class="fa fa-angle-down"></span> {{ down.collection | safe }}: {{ down.title | safe }}</a>
+    {% endif %}
+</div>
+</nav>
+{% endblock %}
