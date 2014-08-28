@@ -10,7 +10,7 @@ class ReaderView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ReaderView, self).get_context_data(**kwargs)
 
-        subs = Reader.objects.filter(reader=self.request.user)
+        subs = Reader.objects.filter(reader=self.request.user).order_by('created')
 
         if subs:
             try:
@@ -42,7 +42,7 @@ class ItemView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ItemView, self).get_context_data(**kwargs)
-        subs = Reader.objects.filter(reader=self.request.user)
+        subs = Reader.objects.filter(reader=self.request.user).order_by('created')
         item = context['object']
         index = [i for i, x in enumerate(subs) if x.collection==item.collection][0]
         if index > 0:
