@@ -191,11 +191,16 @@ LOGGING = {
             'format': '%(levelname)s %(message)s'
         },
         'loggly': {
-            'format': 'loggly: %(levelname)s %(message)s',
+            '()': 'jsonlogger.JsonFormatter',
+            'format': '%(levelname)s %(message)s',
         },
         'loggly-request': {
-            'format': 'loggly: %(levelname)s %(message)s status=%(status_code)s',
+            '()': 'jsonlogger.JsonFormatter',
+            'format': '%(levelname)s %(message)s %(status_code)s',
         },
+        'json': {
+            '()': 'jsonlogger.JsonFormatter',
+        }
     },
     'filters': {
         'require_debug_false': {
@@ -218,13 +223,13 @@ LOGGING = {
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'simple',
+            'formatter': 'loggly-request',
         },
     },
     'loggers': {
         'django.request': {
             'handlers': ['console', 'request-handler'],
-            'format': 'loggly: %(levelname)s %(message)s status=%(status_code)s',
+            'format': '%(levelname)s %(message)s %(status_code)s',
             'level': 'INFO',
             'propagate': False,
         },
@@ -236,7 +241,7 @@ LOGGING = {
         'loggly_logs':{
             'handlers': ['console', 'loggly-handler'],
             'propagate': True,
-            'format': 'loggly: %(levelname)s %(message)s',
+            'format': '%(levelname)s %(message)s',
             'level': 'DEBUG',
         },
     },
