@@ -192,15 +192,8 @@ LOGGING = {
         },
         'loggly': {
             '()': 'jsonlogger.JsonFormatter',
-            'format': '%(levelname)s %(message)s',
+            'format': '%(levelname)s %(message)s %(status_code)s %(module)s %(name)s %(pathname)s %(asctime)s',
         },
-        'loggly-request': {
-            '()': 'jsonlogger.JsonFormatter',
-            'format': '%(levelname)s %(message)s %(status_code)s',
-        },
-        'json': {
-            '()': 'jsonlogger.JsonFormatter',
-        }
     },
     'filters': {
         'require_debug_false': {
@@ -214,22 +207,15 @@ LOGGING = {
             'facility': 'local5',
             'formatter': 'loggly',
         },
-        'request-handler': {
-            'level': 'DEBUG',
-            'class': 'logging.handlers.SysLogHandler',
-            'facility': 'local5',
-            'formatter': 'loggly-request',
-        },
         'console': {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
-            'formatter': 'loggly-request',
+            'formatter': 'loggly',
         },
     },
     'loggers': {
         'django.request': {
-            'handlers': ['console', 'request-handler'],
-            'format': '%(levelname)s %(message)s %(status_code)s',
+            'handlers': ['console', 'loggly-handler'],
             'level': 'INFO',
             'propagate': False,
         },
@@ -241,7 +227,6 @@ LOGGING = {
         'loggly_logs':{
             'handlers': ['console', 'loggly-handler'],
             'propagate': True,
-            'format': '%(levelname)s %(message)s',
             'level': 'DEBUG',
         },
     },
